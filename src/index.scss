@@ -1,0 +1,33 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+.embla__container {
+  display: flex;
+  gap: 1.5rem; /* match space-x-6 */
+}
+.embla__slide {
+  flex: 0 0 33.3333%;
+}
+.curved-bottom {
+clip-path: ellipse(100% 100% at 50% 20%);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 20s linear infinite;
+}
