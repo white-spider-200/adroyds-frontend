@@ -60,9 +60,17 @@ const SectorsSlider = () => {
   };
 
   return (
-    <div className="bg-[#f9fafb] py-12">
+    <div className="bg-[#f9fafb] py-24">
       <div className="mx-auto max-w-7xl px-4 text-center">
-        <h2 className="mb-12 text-center text-4xl font-black text-[#192757] md:text-6xl">Sectors</h2>
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: false }}
+          className="mb-16 text-center text-4xl font-black text-[#192757] md:text-6xl"
+        >
+          Sectors
+        </motion.h2>
 
         <Slider {...settings}>
           {sectors.map((sector, index) => (
@@ -73,7 +81,7 @@ const SectorsSlider = () => {
                 variants={fadeUpVariant}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: false, amount: 0.3 }}
                 custom={index}
               >
                 <h3 className="mb-7 text-start text-[28px] font-black text-white">{sector.title}</h3>

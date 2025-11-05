@@ -247,8 +247,15 @@ const MainLayout = ({ children }) => {
       <main className="flex-1 bg-gray-50">{children}</main>
 
       {/* Footer */}
-      <footer className="bg-[#0e1a41] py-6 text-center text-sm text-white">
-        © {new Date().getFullYear()} Adroyts. All rights reserved.
+
+      <footer className="bg-[#0e1a41]">
+        <div className="m-auto flex max-w-8xl items-center justify-between px-6 py-12 text-center text-sm text-white md:px-12">
+          <p>Copyright© {new Date().getFullYear()}. Adroyts Executive Search.</p>
+          <div className="flex items-center gap-8">
+            <p>Privacy Policy</p>
+            <p>Terms of Use</p>
+          </div>
+        </div>
       </footer>
 
       {/* Scroll Up Button */}
