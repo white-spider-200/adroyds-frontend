@@ -35,7 +35,7 @@ const AboutUs = () => {
           initial="hidden"
           whileInView="visible"
           variants={fadeUp}
-          className="text-5xl font-extrabold text-blue-700 md:text-6xl"
+          className="text-5xl font-extrabold text-blue-700 md:text-5xl"
         >
           About <span className="text-blue-600">Adroyts</span>
         </motion.h1>

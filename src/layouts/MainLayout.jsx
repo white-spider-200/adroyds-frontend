@@ -197,11 +197,12 @@ const MainLayout = ({ children }) => {
             <LanguageSwitcher />
             <button
               onClick={() => handleNav("/contact")}
-              className="hidden items-center gap-2 rounded-full bg-white px-4 py-2 text-black transition md:flex"
+              className="relative hidden items-center gap-2 rounded-full border-2 border-white bg-transparent px-4 py-2 text-white transition duration-300 ease-in-out hover:border-cyan-400 hover:text-cyan-400 md:flex"
             >
               <span>{i18n.language === "ar" ? "تواصل معنا" : "Contact Us"}</span>
-              <FaArrowRight />
+              <FaArrowRight className="transition duration-300 ease-in-out group-hover:translate-x-1" />
             </button>
+
             <button
               onClick={() => handleNav("/contact")}
               className="hidden items-center rounded-full bg-white p-3 text-black transition md:flex"
@@ -262,7 +263,7 @@ const MainLayout = ({ children }) => {
       {showScrollUp && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-4 right-6 z-50 rounded-full bg-blue-700 p-3 text-white shadow-lg transition hover:bg-blue-800"
+          className="fixed bottom-4 right-6 z-50 rounded-full bg-[#1dc0da] p-3 text-white shadow-lg transition-transform duration-300 ease-in-out hover:scale-110"
         >
           <FaArrowUp />
         </button>

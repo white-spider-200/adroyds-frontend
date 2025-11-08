@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import React from "react";
-import Slider from "react-slick";
 
 const sectors = [
   {
@@ -45,51 +44,41 @@ const fadeUpVariant = {
 };
 
 const SectorsSlider = () => {
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    arrows: true,
-    responsive: [
-      { breakpoint: 1280, settings: { slidesToShow: 3 } },
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 640, settings: { slidesToShow: 1 } },
-    ],
-  };
-
   return (
-    <div className="bg-[#f9fafb] py-24">
-      <div className="mx-auto max-w-7xl px-4 text-center">
+    <div className="bg-[#f9fafb] py-14">
+      <div className="mx-auto max-w-7xl px-0 text-center">
         <motion.h2
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: false }}
-          className="mb-16 text-center text-4xl font-black text-[#192757] md:text-6xl"
+          className="mb-16 text-center text-4xl font-black text-[#192757] md:text-5xl"
         >
           Sectors
         </motion.h2>
 
-        <Slider {...settings}>
+        <div className="flex justify-between">
           {sectors.map((sector, index) => (
-            <div key={index}>
-              <motion.div
-                className="mx-2 h-full min-h-[554px] rounded-3xl bg-black/20 bg-cover p-8"
-                style={{ backgroundImage: `url(${sector.image})` }}
-                variants={fadeUpVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
-                custom={index}
-              >
-                <h3 className="mb-7 text-start text-[28px] font-black text-white">{sector.title}</h3>
-                <p className="text-start text-xl font-normal text-white">{sector.description}</p>
-              </motion.div>
-            </div>
+            <motion.div
+              key={index}
+              className="mx-1.5 min-w-0 flex-1 cursor-pointer rounded-3xl bg-black/20 bg-cover p-4"
+              style={{ backgroundImage: `url(${sector.image})` }}
+              variants={fadeUpVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
+              custom={index}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 10px 20px rgba(0,0,0,0.3)",
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <h3 className="mb-4 text-start text-[28px] font-black text-white">{sector.title}</h3>
+              <p className="text-start text-xl font-normal text-white">{sector.description}</p>
+            </motion.div>
           ))}
-        </Slider>
+        </div>
       </div>
     </div>
   );

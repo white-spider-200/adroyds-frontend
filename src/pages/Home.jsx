@@ -5,8 +5,25 @@ import { useTranslation } from "react-i18next";
 import { FaArrowLeft, FaArrowRight, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 import SectorsSlider from "../components/SectorsSlider";
+import ServicesSection from "../components/ServicesSection";
 import { TestimonialsCarousel } from "../components/TestimonialsCarousel";
 import mainServices from "../services/mainServices";
+
+const buttonHoverPrimary = {
+  scale: 1.05,
+  boxShadow: "0 8px 15px rgba(29, 192, 218, 0.6)", // cyan glow
+  transition: { duration: 0.3, ease: "easeOut" },
+};
+
+const buttonHoverSecondary = {
+  scale: 1.05,
+  transition: { duration: 0.3, ease: "easeOut" },
+};
+
+const iconHover = {
+  scale: 1.2,
+  transition: { duration: 0.3, ease: "easeOut" },
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -206,20 +223,25 @@ const Home = () => {
           <motion.div className="flex items-center justify-center space-x-8" variants={scaleFadeItem}>
             <motion.div className="flex items-center justify-center space-x-8" variants={fadeUpItem}>
               <motion.button
-                className="rounded-full bg-[#1dc0da] px-6 py-3 text-xs font-black text-white transition"
-                whileHover={buttonHover}
+                className="rounded-full bg-[#1dc0da] px-6 py-3 text-xs font-black text-white shadow-md"
+                whileHover={buttonHoverPrimary}
               >
                 EXPLORE OUR SERVICES
               </motion.button>
 
               <motion.button
-                className="flex items-center space-x-2 text-xs font-black text-white transition"
-                whileHover={buttonHover}
+                className="flex items-center space-x-2 text-xs font-black text-white"
+                whileHover={buttonHoverSecondary}
               >
-                <svg className="h-6 w-6 fill-white" viewBox="0 0 24 24">
+                <motion.svg
+                  className="h-6 w-6 fill-white"
+                  viewBox="0 0 24 24"
+                  whileHover={iconHover}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1" fill="none" />
                   <polygon points="10,8 16,12 10,16" fill="white" />
-                </svg>
+                </motion.svg>
                 <span>Watch our video</span>
               </motion.button>
             </motion.div>
@@ -227,8 +249,11 @@ const Home = () => {
         </motion.div>
       </section>
       <div
-        className="-mt-20 bg-cover p-12 pb-24 pt-40"
-        style={{ backgroundImage: `url('/assets/stats-bg.png')` }}
+        className="-mt-20 bg-cover bg-center bg-no-repeat p-12 pb-24 pt-40"
+        style={{
+          backgroundImage: `url('/assets/stats-bg.png')`,
+          backgroundAttachment: "fixed", // <-- This keeps the background static
+        }}
       >
         {/* About Section */}
         <motion.section
@@ -266,7 +291,7 @@ const Home = () => {
         >
           {highlights.map((item, index) => {
             const borderSides = ["border-b-8", "border-r-8", "border-t-8", "border-l-8"];
-            const borderSide = borderSides[index % borderSides.length]; // repeat pattern
+            const borderSide = borderSides[index % borderSides.length];
             const suffix = index < 3 ? "+" : "%";
 
             return (
@@ -300,113 +325,19 @@ const Home = () => {
       </div>
 
       {/* 2. Services Section: The Expandable Container */}
-      <section className="relative bg-[#0E1C3F] py-24">
-        <motion.h2
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: false }}
-          className="mb-6 text-center text-4xl font-black text-white md:text-6xl"
-        >
-          Core Services
-        </motion.h2>
-
-        <div className="mx-auto flex h-[80vh] max-w-8xl space-x-4 overflow-hidden px-6 pt-6 md:px-12">
-          {services.map((service, index) => {
-            const isSelected = service.id === selectedServiceId;
-
-            const handlePrev = (e) => {
-              e.stopPropagation();
-              const prevIndex = (index - 1 + services.length) % services.length;
-              setSelectedServiceId(services[prevIndex].id);
-            };
-
-            const handleNext = (e) => {
-              e.stopPropagation();
-              const nextIndex = (index + 1) % services.length;
-              setSelectedServiceId(services[nextIndex].id);
-            };
-
-            return (
-              <motion.div
-                key={service.id}
-                className={`group relative cursor-pointer rounded-xl transition-all duration-700 ease-in-out ${
-                  isSelected ? "flex-grow-[4] p-10" : "w-20 flex-grow p-4"
-                } flex items-end bg-cover bg-center`}
-                style={{ backgroundImage: `url(${service.image})` }}
-                onClick={() => setSelectedServiceId(service.id)}
-              >
-                {/* Overlay */}
-                <div
-                  className={`absolute inset-0 rounded-xl transition-all duration-700 ${
-                    isSelected ? "bg-black/10" : "bg-black/10 group-hover:bg-black/50"
-                  }`}
-                ></div>
-
-                {/* Content */}
-                <div className="z-10 text-white transition-all duration-700">
-                  <h3
-                    className={`absolute font-extrabold leading-tight ${
-                      isSelected
-                        ? "right-10 top-6 text-2xl"
-                        : "bottom-96 left-[50px] -translate-x-1/2 rotate-[-90deg] whitespace-nowrap text-2xl"
-                    }`}
-                  >
-                    {service.title}
-                  </h3>
-
-                  {isSelected && (
-                    <motion.div
-                      initial="hidden"
-                      animate="visible"
-                      variants={fadeUp}
-                      custom={0.2}
-                      className="max-w-4xl space-y-4 px-16"
-                    >
-                      <h3 className="text-5xl font-semibold text-white">{service.subtitle}</h3>
-                      <p className="text-lg text-gray-100">{service.description}</p>
-
-                      {/* Main Button */}
-                      <button className="flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-gray-900 transition hover:bg-gray-200">
-                        <span>{service.buttonText}</span>
-                        <FaArrowRight className="text-gray-900" />
-                      </button>
-
-                      {/* Navigation Buttons */}
-                      <div className="mt-4 flex justify-end gap-4">
-                        <button
-                          onClick={handlePrev}
-                          className="rounded-full border-4 border-white p-2 text-white transition hover:bg-white hover:text-black"
-                        >
-                          <FaArrowLeft />
-                        </button>
-                        <button
-                          onClick={handleNext}
-                          className="rounded-full border-4 border-white p-2 text-white transition hover:bg-white hover:text-black"
-                        >
-                          <FaArrowRight />
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
+      <ServicesSection />
 
       {/* --- */}
 
       {/* Trusted Companies */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-20">
         <div className="text-center">
           <motion.h2
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: false }}
-            className="mb-16 text-center text-4xl font-black text-[#192757] md:text-6xl"
+            className="mb-16 text-center text-4xl font-black text-[#192757] md:text-5xl"
           >
             Trusted by...
           </motion.h2>
@@ -448,8 +379,9 @@ const Home = () => {
               achieved. <br /> These examples show how our recruitment and HR solutions make hiring faster,
               easier, and more effective.
             </p>
-            <button className="rounded-full bg-white px-6 py-3 text-black transition hover:bg-gray-200">
-              All case studies
+            <button className="flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-gray-900 transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white">
+              <span>All case studies</span>
+              <FaArrowRight className="transition duration-300" />
             </button>
           </motion.div>
 
@@ -469,8 +401,8 @@ const Home = () => {
                     <h3 className="mb-3 text-3xl font-black text-[#192757]">{caseStudy.title}</h3>
                     <p className="text-xl text-[#878da4]">{caseStudy.description}</p>
                   </div>
-                  <div className="mt-6 self-end rounded-full border-2 border-[#192757] p-4 text-[#192757]">
-                    <FaArrowRight className="text-[#192757]" />
+                  <div className="mt-6 cursor-pointer self-end rounded-full border-2 border-[#192757] p-4 text-gray-900 transition-transform duration-300 ease-in-out hover:scale-110">
+                    <FaArrowRight />
                   </div>
                 </div>
               </motion.div>
@@ -495,7 +427,7 @@ const Home = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: false }}
-            className="mb-12 text-center text-4xl font-black text-[#192757] md:text-6xl"
+            className="mb-12 text-center text-4xl font-black text-[#192757] md:text-5xl"
           >
             Latest Insights & News
           </motion.h2>
@@ -551,9 +483,9 @@ const Home = () => {
               Start your digital journey with a platform trusted by brands in Saudi Arabia.
             </p>
           </div>
-          <button className="hidden items-center gap-4 rounded-full bg-[#192757] px-8 py-3 text-[26px] text-white transition md:flex">
+          <button className="hidden items-center gap-4 rounded-full bg-[#192757] px-8 py-3 text-[26px] text-white transition duration-500 ease-in-out hover:scale-105 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 md:flex">
             <span>{i18n.language === "ar" ? "تواصل معنا" : "Contact Us Now"}</span>
-            <FaArrowRight className="text-lg" />
+            <FaArrowRight className="text-lg transition-transform duration-500 ease-in-out group-hover:translate-x-2" />
           </button>
         </motion.div>
       </section>
