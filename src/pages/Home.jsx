@@ -284,7 +284,6 @@ const Home = () => {
         {/* Stats Section */}
         <motion.section
           className="relative z-20 mx-auto mt-12 flex max-w-7xl flex-wrap justify-around gap-8 rounded-xl bg-white bg-opacity-90 p-8 text-center md:p-12"
-          initial="hidden"
           whileInView="visible"
           viewport={{ once: false }}
           variants={fadeUpContainer}
@@ -293,6 +292,11 @@ const Home = () => {
             const borderSides = ["border-b-8", "border-r-8", "border-t-8", "border-l-8"];
             const borderSide = borderSides[index % borderSides.length];
             const suffix = index < 3 ? "+" : "%";
+
+            const value = parseInt(item.value);
+
+            const baseDuration = 5; // all numbers take at least 5 seconds
+            const duration = Math.min(baseDuration + value / 1000, 10); // max 10 seconds
 
             return (
               <motion.div
@@ -307,8 +311,8 @@ const Home = () => {
                 >
                   <CountUp
                     start={0}
-                    end={parseInt(item.value)}
-                    duration={3}
+                    end={value}
+                    duration={duration}
                     separator={item?.isYear ? "" : ","}
                     suffix={suffix}
                     enableScrollSpy={true}
@@ -367,7 +371,7 @@ const Home = () => {
           {/* Left Side: Title, description, button */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0, transition: { duration: 2, ease: "easeOut" } }}
+            whileInView={{ opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } }}
             viewport={{ once: false }}
             className="mb-12 max-w-xl md:mb-0"
           >
@@ -440,7 +444,7 @@ const Home = () => {
                 whileInView="visible"
                 variants={fadeUp}
                 custom={i * 0.2}
-                className="group cursor-pointer overflow-hidden rounded-lg bg-white"
+                className="group cursor-pointer overflow-hidden rounded-lg bg-white shadow-md"
               >
                 {/* Image with zoom + overlay */}
                 <div className="relative overflow-hidden">
@@ -457,14 +461,30 @@ const Home = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.2 }}
-                  className="py-2"
+                  className="px-6 py-4"
                 >
                   <div className="mb-2 text-sm font-semibold text-blue-500">{blog.category}</div>
                   <p className="mb-2 text-sm text-gray-500">{blog.date}</p>
-                  <h3 className="text-xl text-[#192757]">{blog.title}</h3>
+                  <h3 className="mb-4 text-xl text-[#192757]">{blog.title}</h3>
+
+                  {/* Show Details button */}
+                  <button className="inline-flex items-center gap-3 bg-white py-3 font-semibold text-gray-900 transition duration-300 ease-in-out hover:text-cyan-400">
+                    <span>Show Details</span>
+                    <FaArrowRight className="transform transition duration-300 group-hover:translate-x-1" />
+                  </button>
                 </motion.div>
               </motion.div>
             ))}
+          </div>
+
+          {/* View More button */}
+          <div className="mt-12 flex justify-center">
+            <button
+              type="button"
+              className="relative hidden items-center gap-2 rounded-full border-2 border-black bg-transparent px-4 py-2 text-black transition duration-300 ease-in-out hover:border-cyan-400 hover:text-cyan-400 md:flex"
+            >
+              View More
+            </button>
           </div>
         </div>
       </section>
