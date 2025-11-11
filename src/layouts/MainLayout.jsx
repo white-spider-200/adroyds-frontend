@@ -27,7 +27,7 @@ const MainLayout = ({ children }) => {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const isActive = (path) => (location.pathname === path ? "text-white" : "text-white hover:text-blue-700 ");
+  const isActive = (path) => (location.pathname === path ? "text-white" : "text-white hover:text-blue-200 ");
 
   const handleNav = (path) => {
     setDropdown(null);

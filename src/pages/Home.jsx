@@ -201,10 +201,18 @@ const Home = () => {
 
   return (
     <div dir={i18n.language === "ar" ? "rtl" : "ltr"} className="bg-white font-lato text-gray-800">
-      <section
-        className="relative -mt-40 flex h-[750px] flex-col items-center justify-center bg-cover px-6 text-center"
-        style={{ backgroundImage: `url('/assets/hero-bg.png')` }}
-      >
+      <section className="relative -mt-40 flex min-h-[calc(100vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
+        {/* Background video */}
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/assets/adroyts-video.mp4" // replace with your video path
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+        {/* Overlay (optional for better text contrast) */}
+        <div className="absolute inset-0 bg-[#192757] opacity-50"></div>
         <motion.div
           className="relative z-10 mt-32 max-w-3xl"
           initial="hidden"
@@ -228,22 +236,6 @@ const Home = () => {
               >
                 EXPLORE OUR SERVICES
               </motion.button>
-
-              <motion.button
-                className="flex items-center space-x-2 text-xs font-black text-white"
-                whileHover={buttonHoverSecondary}
-              >
-                <motion.svg
-                  className="h-6 w-6 fill-white"
-                  viewBox="0 0 24 24"
-                  whileHover={iconHover}
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1" fill="none" />
-                  <polygon points="10,8 16,12 10,16" fill="white" />
-                </motion.svg>
-                <span>Watch our video</span>
-              </motion.button>
             </motion.div>
           </motion.div>
         </motion.div>
@@ -251,19 +243,19 @@ const Home = () => {
       <div
         className="-mt-20 bg-cover bg-center bg-no-repeat p-12 pb-24 pt-40"
         style={{
-          backgroundImage: `url('/assets/stats-bg.png')`,
+          backgroundImage: `url('/assets/about-us.jpeg')`,
           backgroundAttachment: "fixed", // <-- This keeps the background static
         }}
       >
         {/* About Section */}
         <motion.section
-          className="relative z-20 mx-auto max-w-7xl rounded-xl bg-white bg-opacity-90 p-8 md:p-12"
+          className="relative z-20 mx-auto max-w-7xl rounded-xl bg-white bg-opacity-70 p-8 md:p-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false }}
           variants={fadeUpContainer}
         >
-          <motion.p className="mx-auto mb-4 text-xl text-[#546e7a]" variants={fadeUp} custom={0}>
+          <motion.p className="mx-auto mb-4 text-xl text-black" variants={fadeUp} custom={0}>
             Adroyts is a leading firm in the field of human capital management and development, offering
             comprehensive and integrated solutions tailored to the needs of organizations in this vital
             sector. With years of experience and dedication, we have established our position as a trusted
@@ -283,7 +275,7 @@ const Home = () => {
 
         {/* Stats Section */}
         <motion.section
-          className="relative z-20 mx-auto mt-12 flex max-w-7xl flex-wrap justify-around gap-8 rounded-xl bg-white bg-opacity-90 p-8 text-center md:p-12"
+          className="relative z-20 mx-auto mt-12 flex max-w-7xl flex-wrap justify-around gap-8 rounded-xl bg-white bg-opacity-70 p-8 text-center md:p-12"
           whileInView="visible"
           viewport={{ once: false }}
           variants={fadeUpContainer}
