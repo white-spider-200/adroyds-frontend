@@ -17,8 +17,8 @@ const services = [
     title: "Adroyts Academy",
     subtitle: "Talent Acquisition Solutions",
     description:
-      "Our recruitment services connect you with top-tier professionals. We blend technology with a human touch to ensure perfect culture and skill alignment.",
-    image: "/assets/services-1.png",
+      "We help organizations identify, attract, and onboard the right talent through innovative acquisition strategies — combining data-driven insights with personalized engagement for lasting success.",
+    image: "/assets/services-2.png",
     buttonText: "View Service",
   },
   {
@@ -26,72 +26,53 @@ const services = [
     title: "Assessment Center Solutions",
     subtitle: "Professional Development Programs",
     description:
-      "We design tailored learning experiences to build leadership, enhance productivity, and drive continuous improvement across all levels.",
-    image: "/assets/services-1.png",
+      "Our assessment centers provide comprehensive evaluation tools to measure skills, competencies, and potential — supporting data-informed decisions in leadership development and succession planning.",
+    image: "/assets/services-3.png",
     buttonText: "View Service",
   },
   {
     id: 4,
     title: "Human Capital Consulting",
-    subtitle: "Professional Development Programs",
+    subtitle: "Strategic HR and Organizational Development",
     description:
-      "We design tailored learning experiences to build leadership, enhance productivity, and drive continuous improvement across all levels.",
-    image: "/assets/services-1.png",
+      "We partner with organizations to align people strategy with business goals — optimizing structures, enhancing performance, and driving cultural transformation for sustainable growth.",
+    image: "/assets/services-4.png",
     buttonText: "View Service",
   },
 ];
 
-// Responsive widths
 const COLLAPSED_WIDTH_DESKTOP = 120;
 const COLLAPSED_WIDTH_MOBILE = 80;
-const EXPANDED_WIDTH_DESKTOP = 900; // px
+const EXPANDED_WIDTH_DESKTOP = 900;
 const EXPANDED_WIDTH_MOBILE = "100%";
 const CARD_HEIGHT_DESKTOP = 500;
 const CARD_HEIGHT_MOBILE = 320;
 
-const ServiceCard = ({ service, isSelected, index, services, setSelectedServiceId }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [contentVisible, setContentVisible] = useState(isSelected); // <-- Init based on selected
+const ServiceCard = ({ service, isActive, onHover }) => {
+  const [contentVisible, setContentVisible] = useState(isActive);
 
-  // Simple window width check for responsiveness
   const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
-
   const collapsedWidth = isMobile ? COLLAPSED_WIDTH_MOBILE : COLLAPSED_WIDTH_DESKTOP;
   const expandedWidth = isMobile ? window.innerWidth : EXPANDED_WIDTH_DESKTOP;
   const cardHeight = isMobile ? CARD_HEIGHT_MOBILE : CARD_HEIGHT_DESKTOP;
 
-  const hoverIncrease = isMobile ? 30 : 40;
-  const width = isSelected ? expandedWidth : isHovered ? collapsedWidth + hoverIncrease : collapsedWidth;
-  const padding = isSelected ? 32 : 16;
-
-  // Update contentVisible when selection changes
+  // ⏱ Delay showing content for 1 second after hover
   useEffect(() => {
-    if (isSelected) {
-      setContentVisible(true);
+    let timeout;
+    if (isActive) {
+      timeout = setTimeout(() => setContentVisible(true), 400);
     } else {
       setContentVisible(false);
     }
-  }, [isSelected]);
-
-  // Navigation handlers
-  const handlePrev = (e) => {
-    e.stopPropagation();
-    const prevIndex = (index - 1 + services.length) % services.length;
-    setSelectedServiceId(services[prevIndex].id);
-  };
-  const handleNext = (e) => {
-    e.stopPropagation();
-    const nextIndex = (index + 1) % services.length;
-    setSelectedServiceId(services[nextIndex].id);
-  };
+    return () => clearTimeout(timeout);
+  }, [isActive]);
 
   return (
     <motion.div
       layout
-      initial={false}
       animate={{
-        width,
-        padding,
+        width: isActive ? expandedWidth : collapsedWidth,
+        padding: isActive ? 32 : 16,
         height: cardHeight,
       }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -103,39 +84,25 @@ const ServiceCard = ({ service, isSelected, index, services, setSelectedServiceI
         backgroundRepeat: "no-repeat",
         minWidth: collapsedWidth,
       }}
-      onClick={() => setSelectedServiceId(service.id)}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onUpdate={(latest) => {
-        let currentWidth;
-        if (typeof latest.width === "string" && latest.width.endsWith("%")) {
-          currentWidth = window.innerWidth;
-        } else {
-          currentWidth = Number(latest.width);
-        }
-        if (currentWidth >= expandedWidth - 5) {
-          if (!contentVisible) setContentVisible(true);
-        } else {
-          if (contentVisible) setContentVisible(false);
-        }
-      }}
+      onMouseEnter={() => onHover(service.id)}
+      onMouseLeave={() => onHover(null)}
     >
       {/* Overlay */}
       <motion.div
-        className="absolute inset-0 rounded-xl bg-black"
-        animate={{ opacity: isSelected ? 0.3 : 0.6 }}
+        className="absolute inset-0 rounded-xl bg-[#0e1a4137]"
+        animate={{ opacity: isActive ? 0.3 : 0.6 }}
         transition={{ duration: 0.45, ease: "easeInOut" }}
       />
 
       {/* Plus Icon */}
-      {!isSelected && (
+      {!isActive && (
         <div className="absolute bottom-4 right-12 text-white opacity-75 transition-opacity duration-300 group-hover:opacity-100">
           <FaPlusCircle size={28} />
         </div>
       )}
 
-      {/* Decorative shape */}
-      {isSelected && (
+      {/* Decorative Shape */}
+      {isActive && (
         <motion.div
           aria-hidden="true"
           className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-500 opacity-30 blur-3xl"
@@ -145,22 +112,23 @@ const ServiceCard = ({ service, isSelected, index, services, setSelectedServiceI
         />
       )}
 
+      {/* Rotating Title */}
       <h3
-        className={`absolute text-2xl leading-tight text-white transition-transform duration-700 ease-in-out ${
-          isSelected
-            ? "left-10 top-6 translate-x-0 translate-y-0 rotate-0"
-            : "bottom-80 left-[50px] -translate-x-1/2 rotate-[-90deg] whitespace-nowrap"
-        } `}
+        className={`absolute w-80 text-2xl leading-tight text-white transition-transform duration-1000 ease-linear ${
+          isActive
+            ? "left-10 top-10 translate-x-0 translate-y-0 rotate-0"
+            : "bottom-72 left-[50px] -translate-x-1/2 rotate-[-90deg] text-right"
+        }`}
       >
         {service.title}
       </h3>
 
-      {/* Content */}
+      {/* Content (shows after 1 second) */}
       <motion.div
         className="relative z-10 max-w-[600px] select-none text-white"
         initial={{ opacity: 0 }}
         animate={{ opacity: contentVisible ? 1 : 0 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
         style={{
           pointerEvents: contentVisible ? "auto" : "none",
           minHeight: "180px",
@@ -176,30 +144,17 @@ const ServiceCard = ({ service, isSelected, index, services, setSelectedServiceI
         >
           {service.buttonText} <FaArrowRight />
         </button>
-        <div className={`z-50 mt-6 flex justify-end gap-4 ${contentVisible ? "flex" : "hidden"}`}>
-          <button
-            onClick={handlePrev}
-            className="rounded-full border-4 border-white p-2 text-white transition hover:bg-white hover:text-black"
-          >
-            <FaArrowLeft />
-          </button>
-          <button
-            onClick={handleNext}
-            className="rounded-full border-4 border-white p-2 text-white transition hover:bg-white hover:text-black"
-          >
-            <FaArrowRight />
-          </button>
-        </div>
       </motion.div>
     </motion.div>
   );
 };
 
 const ServicesSection = () => {
-  const [selectedServiceId, setSelectedServiceId] = useState(services[0].id);
+  const [hoveredId, setHoveredId] = useState(null);
 
   return (
     <section className="relative overflow-hidden bg-[#0E1C3F] py-24">
+      {/* Decorative Backgrounds */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-20 -top-20 h-[400px] w-[400px] rounded-full bg-gradient-to-tr from-blue-600 via-cyan-500 to-teal-400 opacity-20 blur-3xl"
@@ -212,14 +167,12 @@ const ServicesSection = () => {
       <h2 className="mb-6 text-center text-4xl font-black text-white md:text-5xl">Core Services</h2>
 
       <div className="scrollbar-hide mx-auto flex max-w-8xl space-x-4 overflow-x-auto px-6 pt-6 md:px-12">
-        {services.map((service, index) => (
+        {services.map((service) => (
           <ServiceCard
             key={service.id}
             service={service}
-            isSelected={service.id === selectedServiceId}
-            index={index}
-            services={services}
-            setSelectedServiceId={setSelectedServiceId}
+            isActive={hoveredId ? hoveredId === service.id : service.id === 1}
+            onHover={setHoveredId}
           />
         ))}
       </div>
