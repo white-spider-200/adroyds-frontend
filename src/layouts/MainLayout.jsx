@@ -1,9 +1,29 @@
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaArrowRight, FaArrowUp, FaBars, FaChevronDown, FaSearch, FaTimes } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import LanguageSwitcher from "../components/LanguageSwitcher";
+
+const footerContainerVariants = {
+  hidden: { opacity: 1, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.15,
+      when: "beforeChildren",
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+const footerItemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
 
 const MainLayout = ({ children }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -248,6 +268,188 @@ const MainLayout = ({ children }) => {
       <main className="flex-1 bg-gray-50">{children}</main>
 
       {/* Footer */}
+      <motion.footer
+        className="bg-[#0e1a41] text-gray-300"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }} // animate every time, triggers when 20% visible
+        variants={footerContainerVariants}
+      >
+        {/* Inside your footer, wrap key blocks with motion.div and apply item variants */}
+
+        <motion.div
+          className="mx-auto grid max-w-8xl gap-10 px-6 py-12 md:grid-cols-12 md:px-12"
+          variants={footerItemVariants}
+        >
+          {/* Your first big block (logo + text + social icons) */}
+          <div className="md:col-span-4">
+            <div className="mb-6">
+              <img src="/assets/logo.png" alt="Adroyts Logo" className="h-10 w-auto" />
+            </div>
+
+            <p className="mb-6 max-w-xs font-bold leading-relaxed text-[#ffffff99]">
+              Adroyts’ focus is on serving corporate clients in Saudi Arabia and other GCC markets by
+              providing them with top experienced professionals in a range of key sectors.
+            </p>
+
+            <div className="flex space-x-3">
+              <a href="#" aria-label="LinkedIn" className="text-white transition hover:text-gray-400">
+                <img src="/assets/linkedin.png" alt="LinkedIn Icon" className="h-6 w-6 bg-cover" />
+              </a>
+              <a href="#" aria-label="X/Twitter" className="text-white transition hover:text-gray-400">
+                <img src="/assets/x.png" alt="X/Twitter Icon" className="h-6 w-6 bg-cover" />
+              </a>
+              <a href="#" aria-label="Instagram" className="text-white transition hover:text-gray-400">
+                <img src="/assets/instagram.png" alt="Instagram Icon" className="h-6 w-6 bg-cover" />
+              </a>
+            </div>
+          </div>
+
+          {/* RIGHT SIDE: Link Columns */}
+          <motion.div
+            className="grid grid-cols-1 gap-8 sm:grid-cols-3 md:col-span-8"
+            variants={footerItemVariants}
+          >
+            {/* Company Links Column */}
+            <div>
+              <h4 className="mb-4 text-xl uppercase tracking-widest text-white">Company</h4>
+              <ul className="space-y-3 text-[#ffffff99]">
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    Board of Directors
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    Contact Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    Careers
+                  </a>
+                </li>
+              </ul>
+            </div>
+            {/* Services Links Column */}
+            <div>
+              <h4 className="mb-4 text-xl uppercase tracking-widest text-white">Services</h4>
+              <ul className="space-y-3 text-[#ffffff99]">
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    Adroyts Academy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    Assessment Center Solutions
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    Human Capital Consulting
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    Recruitment Solutions
+                  </a>
+                </li>
+              </ul>
+            </div>
+            {/* Resources Links Column */}
+            <div>
+              <h4 className="mb-4 text-xl uppercase tracking-widest text-white">Resources</h4>
+              <ul className="space-y-3 text-[#ffffff99]">
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    Case Studies
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    FAQs
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    Media Gallery
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    News
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        <div className="mx-auto max-w-8xl border-t border-gray-700"></div>
+
+        <motion.div
+          className="mx-auto grid max-w-8xl gap-8 px-6 py-10 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:gap-16"
+          variants={footerItemVariants}
+        >
+          {/* Contact Information */}
+          <div className="grid gap-4 text-sm sm:grid-cols-3 md:col-span-1 lg:col-span-2">
+            <div className="flex items-start">
+              <span className="mr-3 mt-1 text-white">
+                <img src="/assets/location.png" alt="Location Icon" className="h-6 w-9 bg-cover" />
+              </span>
+              <p className="leading-relaxed text-[#ffffff99]">
+                3385 Thumamah Road, Alnada District, Riyadh 13317,
+                <br />
+                Kingdom of Saudi Arabia
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-start">
+                <span className="mr-3 text-white">
+                  <img src="/assets/phone.png" alt="Phone Icon" className="h-6 w-6 bg-cover" />
+                </span>
+                <p className="text-[#ffffff99]">+966 11 23 42 667</p>
+              </div>
+
+              <div className="flex items-start">
+                <span className="mr-3 text-white">
+                  <img src="/assets/email.png" alt="Email Icon" className="h-6 w-6 bg-cover" />
+                </span>
+                <p className="text-[#ffffff99]">contact@adroyts.com</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Newsletter */}
+          <div className="flex items-center">
+            <p className="mb-3 text-sm text-[#ffffff99]">Stay up to date on the latest Adroyts news.</p>
+            <form className="flex">
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="flex-grow border border-white/60 bg-transparent p-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-white"
+              />
+              <button className="bg-white px-4 py-2 text-sm font-semibold text-black transition duration-150 hover:bg-gray-200">
+                Send
+              </button>
+            </form>
+          </div>
+        </motion.div>
+
+        <div className="mx-auto max-w-8xl border-t border-gray-700"></div>
+      </motion.footer>
 
       <footer className="bg-[#0e1a41]">
         <div className="m-auto flex max-w-8xl items-center justify-between px-6 py-12 text-center text-sm text-white md:px-12">

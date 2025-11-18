@@ -164,7 +164,7 @@ const ServicesSection = () => {
         className="pointer-events-none absolute bottom-0 right-0 h-[300px] w-[300px] rounded-full bg-gradient-to-tr from-purple-700 via-pink-500 to-red-400 opacity-20 blur-3xl"
       />
 
-      <h2 className="mb-6 text-center text-4xl font-black text-white md:text-5xl">Core Services</h2>
+      <h2 className="mb-6 text-center text-4xl font-bold text-white md:text-5xl">Core Services</h2>
 
       <div className="scrollbar-hide mx-auto flex max-w-8xl space-x-4 overflow-x-auto px-6 pt-6 md:px-12">
         {services.map((service) => (

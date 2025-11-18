@@ -35,7 +35,7 @@ const TrustedCompanies = ({ clients }) => {
   return (
     <section className="bg-white py-20">
       <div className="text-center">
-        <h2 className="mb-12 text-4xl font-black text-[#192757] md:text-5xl">Trusted by...</h2>
+        <h2 className="mb-12 text-4xl font-bold text-[#192757] md:text-5xl">Trusted by...</h2>
         <Slider {...settings}>
           {clients.map((client) => (
             <div key={client.name} className="flex justify-center">

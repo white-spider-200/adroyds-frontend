@@ -52,7 +52,7 @@ const SectorsSlider = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: false }}
-          className="mb-16 text-center text-4xl font-black text-[#192757] md:text-5xl"
+          className="mb-16 text-center text-4xl font-bold text-[#192757] md:text-5xl"
         >
           Sectors
         </motion.h2>
@@ -61,7 +61,7 @@ const SectorsSlider = () => {
           {sectors.map((sector, index) => (
             <motion.div
               key={index}
-              className="mx-1.5 min-w-0 flex-1 cursor-pointer rounded-3xl bg-black/20 bg-cover p-4"
+              className="mx-1.5 min-w-0 flex-1 cursor-pointer rounded-3xl bg-black/20 bg-cover p-6 pb-10"
               style={{ backgroundImage: `url(${sector.image})` }}
               variants={fadeUpVariant}
               initial="hidden"
@@ -74,7 +74,7 @@ const SectorsSlider = () => {
               }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <h3 className="mb-4 text-start text-[28px] font-black text-white">{sector.title}</h3>
+              <h3 className="mb-4 text-start text-[28px] font-bold text-white">{sector.title}</h3>
               <p className="text-start text-xl font-normal text-white">{sector.description}</p>
             </motion.div>
           ))}

@@ -16,7 +16,7 @@ module.exports = {
         "blue-900": "#1E3A8A", // darkest
       },
       fontFamily: {
-        lato: ["Lato", "sans-serif"],
+        cairo: ["Cairo", "sans-serif"],
       },
       maxWidth: {
         "8xl": "88rem", // 1440px (you can adjust if you want wider)

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
-import { FaArrowLeft, FaArrowRight, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 import SectorsSlider from "../components/SectorsSlider";
 import ServicesSection from "../components/ServicesSection";
@@ -12,16 +12,6 @@ import mainServices from "../services/mainServices";
 const buttonHoverPrimary = {
   scale: 1.05,
   boxShadow: "0 8px 15px rgba(29, 192, 218, 0.6)", // cyan glow
-  transition: { duration: 0.3, ease: "easeOut" },
-};
-
-const buttonHoverSecondary = {
-  scale: 1.05,
-  transition: { duration: 0.3, ease: "easeOut" },
-};
-
-const iconHover = {
-  scale: 1.2,
   transition: { duration: 0.3, ease: "easeOut" },
 };
 
@@ -60,25 +50,6 @@ const fadeUpItem = {
 const buttonHover = {
   scale: 1.05,
   transition: { duration: 0.3, ease: "easeInOut" },
-};
-
-const footerContainerVariants = {
-  hidden: { opacity: 1, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      staggerChildren: 0.15,
-      when: "beforeChildren",
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
-
-const footerItemVariants = {
-  hidden: { opacity: 0, y: 15 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 const scaleFadeContainer = {
@@ -200,38 +171,38 @@ const Home = () => {
   }, [i18n.language]);
 
   return (
-    <div dir={i18n.language === "ar" ? "rtl" : "ltr"} className="bg-white font-lato text-gray-800">
+    <div dir={i18n.language === "ar" ? "rtl" : "ltr"} className="bg-white font-cairo text-gray-800">
       <section className="relative -mt-40 flex min-h-[calc(100vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         {/* Background video */}
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          src="/assets/adroyts-video.mp4" // replace with your video path
+          src="/assets/mamlakah.mp4" // replace with your video path
           autoPlay
           loop
           muted
           playsInline
         />
         {/* Overlay (optional for better text contrast) */}
-        <div className="absolute inset-0 bg-[#192757] opacity-50"></div>
+        <div className="absolute inset-0 bg-[#192757] opacity-40"></div>
         <motion.div
-          className="relative z-10 mt-32 max-w-3xl"
+          className="relative z-10 mt-32 max-w-4xl"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
           variants={scaleFadeContainer}
         >
-          <motion.h1 className="mb-8 text-3xl font-black text-white md:text-4xl" variants={scaleFadeItem}>
+          <motion.h1 className="mb-8 text-3xl font-bold text-white md:text-5xl" variants={scaleFadeItem}>
             Building the Future Workforce
           </motion.h1>
 
-          <motion.p className="mb-20 text-xl text-[#d2d2d2]" variants={scaleFadeItem}>
+          <motion.p className="mb-20 text-2xl text-[#d2d2d2]" variants={scaleFadeItem}>
             Innovative recruitment, HR academy training, and human capital consulting
           </motion.p>
 
           <motion.div className="flex items-center justify-center space-x-8" variants={scaleFadeItem}>
             <motion.div className="flex items-center justify-center space-x-8" variants={fadeUpItem}>
               <motion.button
-                className="rounded-full bg-[#1dc0da] px-6 py-3 text-xs font-black text-white shadow-md"
+                className="rounded-full bg-[#1dc0da] px-6 py-4 font-bold text-white shadow-md"
                 whileHover={buttonHoverPrimary}
               >
                 EXPLORE OUR SERVICES
@@ -243,7 +214,7 @@ const Home = () => {
       <div
         className="-mt-20 bg-cover bg-center bg-no-repeat p-12 pb-24 pt-40"
         style={{
-          backgroundImage: `url('/assets/about-us.jpeg')`,
+          backgroundImage: `url('/assets/about-us.jpg')`,
           backgroundAttachment: "fixed", // <-- This keeps the background static
         }}
       >
@@ -309,7 +280,7 @@ const Home = () => {
                     suffix={suffix}
                     enableScrollSpy={true}
                     scrollSpyOnce={false}
-                    className="text-5xl font-black"
+                    className="text-5xl font-bold"
                     style={{ color: item?.value_color || "#2563EB" }}
                   />
                 </div>
@@ -333,7 +304,7 @@ const Home = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: false }}
-            className="mb-16 text-center text-4xl font-black text-[#192757] md:text-5xl"
+            className="mb-16 text-center text-4xl font-bold text-[#192757] md:text-5xl"
           >
             Trusted by...
           </motion.h2>
@@ -394,7 +365,7 @@ const Home = () => {
               >
                 <div className="flex h-full flex-col justify-between p-10">
                   <div>
-                    <h3 className="mb-3 text-3xl font-black text-[#192757]">{caseStudy.title}</h3>
+                    <h3 className="mb-3 text-3xl font-bold text-[#192757]">{caseStudy.title}</h3>
                     <p className="text-xl text-[#878da4]">{caseStudy.description}</p>
                   </div>
                   <div className="mt-6 cursor-pointer self-end rounded-full border-2 border-[#192757] p-4 text-gray-900 transition-transform duration-300 ease-in-out hover:scale-110">
@@ -423,7 +394,7 @@ const Home = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: false }}
-            className="mb-12 text-center text-4xl font-black text-[#192757] md:text-5xl"
+            className="mb-12 text-center text-4xl font-bold text-[#192757] md:text-5xl"
           >
             Latest Insights & News
           </motion.h2>
@@ -490,7 +461,7 @@ const Home = () => {
           variants={fadeUp}
         >
           <div>
-            <h3 className="text-[40px] font-black text-[#192757]">Ready for Next-Gen Recruitment Tools?</h3>
+            <h3 className="text-[40px] font-bold text-[#192757]">Ready for Next-Gen Recruitment Tools?</h3>
             <p className="text-[26px] text-[#878da4]">
               Start your digital journey with a platform trusted by brands in Saudi Arabia.
             </p>
@@ -501,189 +472,6 @@ const Home = () => {
           </button>
         </motion.div>
       </section>
-
-      <motion.footer
-        className="bg-[#0e1a41] text-gray-300"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }} // animate every time, triggers when 20% visible
-        variants={footerContainerVariants}
-      >
-        {/* Inside your footer, wrap key blocks with motion.div and apply item variants */}
-
-        <motion.div
-          className="mx-auto grid max-w-8xl gap-10 px-6 py-12 md:grid-cols-12 md:px-12"
-          variants={footerItemVariants}
-        >
-          {/* Your first big block (logo + text + social icons) */}
-          <div className="md:col-span-4">
-            <div className="mb-6">
-              <img src="/assets/logo.png" alt="Adroyts Logo" className="h-10 w-auto" />
-            </div>
-
-            <p className="mb-6 max-w-xs font-bold leading-relaxed text-[#ffffff99]">
-              Adroyts’ focus is on serving corporate clients in Saudi Arabia and other GCC markets by
-              providing them with top experienced professionals in a range of key sectors.
-            </p>
-
-            <div className="flex space-x-3">
-              <a href="#" aria-label="LinkedIn" className="text-white transition hover:text-gray-400">
-                <img src="/assets/linkedin.png" alt="LinkedIn Icon" className="h-6 w-6 bg-cover" />
-              </a>
-              <a href="#" aria-label="X/Twitter" className="text-white transition hover:text-gray-400">
-                <img src="/assets/x.png" alt="X/Twitter Icon" className="h-6 w-6 bg-cover" />
-              </a>
-              <a href="#" aria-label="Instagram" className="text-white transition hover:text-gray-400">
-                <img src="/assets/instagram.png" alt="Instagram Icon" className="h-6 w-6 bg-cover" />
-              </a>
-            </div>
-          </div>
-
-          {/* RIGHT SIDE: Link Columns */}
-          <motion.div
-            className="grid grid-cols-1 gap-8 sm:grid-cols-3 md:col-span-8"
-            variants={footerItemVariants}
-          >
-            {/* Company Links Column */}
-            <div>
-              <h4 className="mb-4 text-xl uppercase tracking-widest text-white">Company</h4>
-              <ul className="space-y-3 text-[#ffffff99]">
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    Board of Directors
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    Careers
-                  </a>
-                </li>
-              </ul>
-            </div>
-            {/* Services Links Column */}
-            <div>
-              <h4 className="mb-4 text-xl uppercase tracking-widest text-white">Services</h4>
-              <ul className="space-y-3 text-[#ffffff99]">
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    Adroyts Academy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    Assessment Center Solutions
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    Human Capital Consulting
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    Recruitment Solutions
-                  </a>
-                </li>
-              </ul>
-            </div>
-            {/* Resources Links Column */}
-            <div>
-              <h4 className="mb-4 text-xl uppercase tracking-widest text-white">Resources</h4>
-              <ul className="space-y-3 text-[#ffffff99]">
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    Case Studies
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    FAQs
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    Media Gallery
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    News
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        <div className="mx-auto max-w-8xl border-t border-gray-700"></div>
-
-        <motion.div
-          className="mx-auto grid max-w-8xl gap-8 px-6 py-10 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:gap-16"
-          variants={footerItemVariants}
-        >
-          {/* Contact Information */}
-          <div className="grid gap-4 text-sm sm:grid-cols-3 md:col-span-1 lg:col-span-2">
-            <div className="flex items-start">
-              <span className="mr-3 mt-1 text-white">
-                <img src="/assets/location.png" alt="Location Icon" className="h-6 w-9 bg-cover" />
-              </span>
-              <p className="leading-relaxed text-[#ffffff99]">
-                3385 Thumamah Road, Alnada District, Riyadh 13317,
-                <br />
-                Kingdom of Saudi Arabia
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <div className="flex items-start">
-                <span className="mr-3 text-white">
-                  <img src="/assets/phone.png" alt="Phone Icon" className="h-6 w-6 bg-cover" />
-                </span>
-                <p className="text-[#ffffff99]">+966 11 23 42 667</p>
-              </div>
-
-              <div className="flex items-start">
-                <span className="mr-3 text-white">
-                  <img src="/assets/email.png" alt="Email Icon" className="h-6 w-6 bg-cover" />
-                </span>
-                <p className="text-[#ffffff99]">contact@adroyts.com</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Newsletter */}
-          <div className="flex items-center">
-            <p className="mb-3 text-sm text-[#ffffff99]">Stay up to date on the latest Adroyts news.</p>
-            <form className="flex">
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="flex-grow border border-white/60 bg-transparent p-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-white"
-              />
-              <button className="bg-white px-4 py-2 text-sm font-semibold text-black transition duration-150 hover:bg-gray-200">
-                Send
-              </button>
-            </form>
-          </div>
-        </motion.div>
-
-        <div className="mx-auto max-w-8xl border-t border-gray-700"></div>
-      </motion.footer>
     </div>
   );
 };
