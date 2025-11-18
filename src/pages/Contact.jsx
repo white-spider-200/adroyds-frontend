@@ -90,7 +90,7 @@ const Contact = () => {
         <iframe
           title="map"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3..."
-          className="mx-auto h-64 w-full max-w-2xl rounded-lg shadow"
+          className="mx-auto h-64 w-full max-w-2xl rounded-xl shadow"
           loading="lazy"
         ></iframe>
 

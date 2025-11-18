@@ -61,7 +61,7 @@ const SectorsSlider = () => {
           {sectors.map((sector, index) => (
             <motion.div
               key={index}
-              className="mx-1.5 min-w-0 flex-1 cursor-pointer rounded-3xl bg-black/20 bg-cover p-6 pb-10"
+              className="mx-1.5 min-w-0 flex-1 cursor-pointer rounded-xl bg-black/20 bg-cover p-6 pb-10"
               style={{ backgroundImage: `url(${sector.image})` }}
               variants={fadeUpVariant}
               initial="hidden"

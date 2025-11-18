@@ -143,6 +143,10 @@ const Home = () => {
   const [socialMedia, setSocialMedia] = useState([]);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
     const fetchHomeData = async () => {
       setLoading(true);
       try {
@@ -176,7 +180,7 @@ const Home = () => {
         {/* Background video */}
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          src="/assets/mamlakah.mp4" // replace with your video path
+          src="/assets/adroyts-video.mp4" // replace with your video path
           autoPlay
           loop
           muted
@@ -214,7 +218,7 @@ const Home = () => {
       <div
         className="-mt-20 bg-cover bg-center bg-no-repeat p-12 pb-24 pt-40"
         style={{
-          backgroundImage: `url('/assets/about-us.jpg')`,
+          backgroundImage: `url('/assets/about-us.png')`,
           backgroundAttachment: "fixed", // <-- This keeps the background static
         }}
       >
@@ -361,7 +365,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ delay: index * 0.2 }}
-                className="overflow-hidden rounded-2xl bg-white shadow-lg transition hover:shadow-2xl"
+                className="overflow-hidden rounded-xl bg-white shadow-lg transition hover:shadow-2xl"
               >
                 <div className="flex h-full flex-col justify-between p-10">
                   <div>
@@ -407,7 +411,7 @@ const Home = () => {
                 whileInView="visible"
                 variants={fadeUp}
                 custom={i * 0.2}
-                className="group cursor-pointer overflow-hidden rounded-lg bg-white shadow-md"
+                className="group cursor-pointer overflow-hidden rounded-xl bg-white shadow-md"
               >
                 {/* Image with zoom + overlay */}
                 <div className="relative overflow-hidden">

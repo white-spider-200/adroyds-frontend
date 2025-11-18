@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import React from "react";
-import { FaArrowRight } from "react-icons/fa";
+import React, { useEffect } from "react";
+import { FaArrowRight, FaPhoneAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 20 },
   visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
@@ -12,291 +12,324 @@ const fadeUp = {
   }),
 };
 
+const services = [
+  {
+    title: "Organizational Design",
+    desc: "Create effective structures, workflows, and operating models that boost efficiency and enable scalable growth.",
+  },
+  {
+    title: "HR Strategy",
+    desc: "Build robust HR frameworks, policies, and talent development plans aligned with organizational objectives.",
+  },
+  {
+    title: "Performance Optimization",
+    desc: "Implement systems that measure, develop, and reward performance to drive sustained productivity.",
+  },
+  {
+    title: "Change Management",
+    desc: "Guide organizations through transformation using structured change frameworks and stakeholder engagement.",
+  },
+  {
+    title: "Workforce Planning",
+    desc: "Align talent supply with organizational needs through structured workforce analysis and forecasting.",
+  },
+  {
+    title: "Culture & Engagement",
+    desc: "Strengthen organizational culture and improve engagement through targeted programs and diagnostics.",
+  },
+];
+
+const approachSteps = [
+  "Initial Assessment & Diagnostics",
+  "Strategy Development & Alignment",
+  "Solution Design & Implementation",
+  "Training & Change Enablement",
+  "Ongoing Support & Continuous Improvement",
+];
+
+const clientBenefits = [
+  "Customized solutions aligned with your business objectives",
+  "Improved workforce productivity and engagement",
+  "Agile and scalable organizational structures",
+  "Data-driven performance and talent management",
+  "Smooth transitions during periods of change",
+];
+
+const testimonials = [
+  {
+    name: "Sarah Ahmed",
+    role: "HR Director, GlobalTech",
+    quote:
+      "Adroyts’ consulting team transformed our HR processes, enabling faster decision-making and higher employee satisfaction.",
+  },
+  {
+    name: "Mohammed Al-Farsi",
+    role: "CEO, FinServ Corp",
+    quote:
+      "Their expertise in organizational design helped us realign our structure, resulting in significant operational improvements.",
+  },
+];
+
 const Consulting = () => {
   const navigate = useNavigate();
 
-  const services = [
-    {
-      title: "Organizational Design",
-      desc: "Create effective structures, workflows, and operating models that boost efficiency and enable scalable growth.",
-    },
-    {
-      title: "HR Strategy",
-      desc: "Build robust HR frameworks, policies, and talent development plans aligned with organizational objectives.",
-    },
-    {
-      title: "Performance Optimization",
-      desc: "Implement systems that measure, develop, and reward performance to drive sustained productivity.",
-    },
-    {
-      title: "Change Management",
-      desc: "Guide organizations through transformation using structured change frameworks and stakeholder engagement.",
-    },
-    {
-      title: "Workforce Planning",
-      desc: "Align talent supply with organizational needs through structured workforce analysis and forecasting.",
-    },
-    {
-      title: "Culture & Engagement",
-      desc: "Strengthen organizational culture and improve engagement through targeted programs and diagnostics.",
-    },
-  ];
-
-  const approachSteps = [
-    "Initial Assessment & Diagnostics",
-    "Strategy Development & Alignment",
-    "Solution Design & Implementation",
-    "Training & Change Enablement",
-    "Ongoing Support & Continuous Improvement",
-  ];
-
-  const clientBenefits = [
-    "Customized solutions aligned with your business objectives",
-    "Improved workforce productivity and engagement",
-    "Agile and scalable organizational structures",
-    "Data-driven performance and talent management",
-    "Smooth transitions during periods of change",
-  ];
-
-  const testimonials = [
-    {
-      name: "Sarah Ahmed",
-      role: "HR Director, GlobalTech",
-      quote:
-        "Adroyts’ consulting team transformed our HR processes, enabling faster decision-making and higher employee satisfaction.",
-    },
-    {
-      name: "Mohammed Al-Farsi",
-      role: "CEO, FinServ Corp",
-      quote:
-        "Their expertise in organizational design helped us realign our structure, resulting in significant operational improvements.",
-    },
-  ];
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
-    <div className="w-full bg-white font-sans text-[#1A1F36] selection:bg-blue-200 selection:text-gray-900">
+    <div className="w-full bg-white font-sans text-[#0E1C3F] selection:bg-[#1DC0DA]/30 selection:text-[#0E1C3F]">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 flex min-h-[calc(70vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
+      <section className="relative -mt-40 flex min-h-[80vh] items-center justify-center bg-cover bg-center px-6 text-center">
         <img
-          src="/assets/jobs-arabian-copy-scaled.png"
-          alt=""
+          src="/assets/eew.jpg"
+          alt="Consulting Background"
           className="absolute inset-0 h-full w-full object-cover"
         />
 
-        {/* Blue Gradient Overlay */}
-        <div className="absolute inset-0 bg-[#192757] opacity-70"></div>
+        {/* Dark Blue Gradient Overlay */}
+        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
 
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, ease: "easeOut" }}
-          className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="relative z-10 max-w-4xl px-4 pt-28"
         >
-          {/* Glass container */}
-          <div className="mt-40 rounded-3xl px-8 py-12 md:px-12 md:py-16">
-            {/* Breadcrumbs */}
-            <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
-              <ol className="inline-flex space-x-2">
-                <li>
-                  <a href="/" className="hover:text-white hover:underline">
-                    Home
-                  </a>
-                  <span className="mx-2">/</span>
-                </li>
-                <li className="font-semibold text-white" aria-current="page">
-                  Recruitment Solutions
-                </li>
-              </ol>
-            </nav>
+          {/* Breadcrumb */}
+          <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
+            <ol className="inline-flex space-x-2">
+              <li>
+                <a href="/" className="hover:text-white hover:underline">
+                  Home
+                </a>
+                <span className="mx-2">/</span>
+              </li>
+              <li className="font-semibold text-white">Human Capital Consulting</li>
+            </ol>
+          </nav>
 
-            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-5xl">
-              Recruitment Solutions
-            </h1>
-          </div>
+          <motion.h1
+            className="mb-4 text-4xl font-extrabold text-white md:text-5xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            Human Capital Consulting
+          </motion.h1>
+
+          <motion.button
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            className="mt-6 rounded-xl border border-white/30 bg-white/10 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+          >
+            Contact Us
+          </motion.button>
         </motion.div>
       </section>
 
-      <div className="mx-auto flex max-w-8xl gap-8 px-6 py-16 text-lg">
-        <div className="sticky top-32 flex h-full flex-col rounded-xl bg-gray-100 p-6">
-          <nav className="flex flex-col space-y-6">
-            {/* Recruitment Solutions (inactive) */}
-            <button
-              onClick={() => navigate("/services/recruitment")}
-              className="group flex w-full items-center justify-between rounded-md px-4 py-2 text-left text-[#1A2B88]/60 transition-colors hover:bg-blue-200 hover:text-blue-900"
-            >
-              <span>Recruitment Solutions</span>
-              <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
-            </button>
+      <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
+        {/* Sidebar Menu */}
+        <div className="sticky top-32 h-full flex-1">
+          <div className="flex flex-col rounded-xl bg-gray-100 p-6">
+            <nav className="flex flex-col space-y-6">
+              {/* Recruitment Solutions */}
+              <button
+                onClick={() => navigate("/services/recruitment")}
+                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+              >
+                <span>Recruitment Solutions</span>
+                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+              </button>
 
-            {/* Adroyts Academy (ACTIVE) */}
-            <button
-              onClick={() => navigate("/services/academy")}
-              className="group flex w-full items-center justify-between rounded-md px-4 py-2 text-left text-[#1A2B88]/60 transition-colors hover:bg-blue-200 hover:text-blue-900"
-            >
-              <span>Adroyts Academy</span>
-              <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
-            </button>
+              {/* Adroyts Academy */}
+              <button
+                onClick={() => navigate("/services/academy")}
+                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+              >
+                <span>Adroyts Academy</span>
+                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+              </button>
 
-            {/* Assessment Center */}
-            <button
-              onClick={() => navigate("/services/assessment")}
-              className="group flex w-full items-center justify-between rounded-md px-4 py-2 text-left text-[#1A2B88]/60 transition-colors hover:bg-blue-200 hover:text-blue-900"
-            >
-              <span>Assessment Center</span>
-              <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
-            </button>
+              {/* Assessment Center */}
+              <button
+                onClick={() => navigate("/services/assessment")}
+                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+              >
+                <span>Assessment Center</span>
+                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+              </button>
 
-            {/* Human Capital Consulting */}
-            <button
-              onClick={() => navigate("/services/consulting")}
-              className="group flex w-full items-center justify-between rounded-md bg-white px-4 py-2 text-left text-[#1A2B88] transition-colors hover:bg-blue-200 hover:text-blue-900"
-            >
-              <span>Human Capital Consulting</span>
-              <FaArrowRight className="translate-x-[-6px] transition-all duration-300" />
-            </button>
-          </nav>
+              {/* Human Capital Consulting (Active) */}
+              <button
+                onClick={() => navigate("/services/consulting")}
+                className="group flex w-full items-center justify-between rounded-xl bg-[#1DC0DA]/20 px-4 py-2 text-left text-[#0E1C3F] transition-colors hover:bg-[#1DC0DA]/40 hover:text-[#0E1C3F]/90"
+              >
+                <span>Human Capital Consulting</span>
+                <FaArrowRight className="translate-x-[-6px] text-[#0E1C3F] transition-all duration-300" />
+              </button>
+            </nav>
+          </div>
+
+          {/* CONTACT BOX WITH OVERLAY */}
+          <div className="relative mt-4 overflow-hidden rounded-xl py-6">
+            <img src="/assets/24-01-17-01-02.jpg" alt="Contact" className="h-56 w-full object-cover" />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-[#0E1C3F]/90"></div>
+
+            {/* Text */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-white">
+              {/* Icon in Circle */}
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white/20 py-5 backdrop-blur-sm">
+                <FaPhoneAlt className="text-2xl text-white" />
+              </div>
+
+              <p className="text-center text-xl font-semibold uppercase">Best Quality</p>
+              <p className="text-center text-xl font-semibold uppercase">Services</p>
+
+              <p className="mt-4 text-center text-sm opacity-90">Call us Anytime</p>
+              <p className="text-center text-xl font-bold">+ 92 666 888 0000</p>
+            </div>
+          </div>
         </div>
 
-        <div className="flex-[2] bg-white px-6">
-          {/* SERVICES SECTION */}
-          <section className="px-6 py-24">
-            <div className="mx-auto max-w-7xl">
-              <motion.h2
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="mb-12 text-center text-3xl font-bold text-[#1A2B88]"
-              >
-                Our Consulting Services
-              </motion.h2>
+        {/* Main Content */}
+        <div className="flex-[2.3] bg-white px-6">
+          {/* Banner Image */}
+          <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-xl">
+            <img src="/assets/eew.jpg" alt="Consulting Banner" className="h-full w-full object-cover" />
 
-              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-                {services.map((service, i) => (
-                  <motion.div
-                    key={i}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={fadeUp}
-                    transition={{ delay: i * 0.15 }}
-                    className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm transition hover:border-[#1A2B88] hover:shadow-lg"
-                  >
-                    <h3 className="text-xl font-bold text-[#1A1F36]">{service.title}</h3>
-                    <p className="mt-3 text-gray-600">{service.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-[#0E1C3F] opacity-10"></div>
+          </div>
+
+          {/* SERVICES */}
+          <section className="container mx-auto px-6 py-20">
+            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Consulting Services</h2>
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+              {services.map(({ title, desc }, i) => (
+                <motion.div
+                  key={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={fadeUp}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.15 }}
+                  className="group flex flex-col rounded-xl bg-white p-8 shadow-md transition-transform hover:-translate-y-2 hover:shadow-xl"
+                >
+                  <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
+                  <p className="flex-grow text-gray-700">{desc}</p>
+                </motion.div>
+              ))}
             </div>
           </section>
 
-          {/* APPROACH SECTION */}
-          <section className="bg-white px-6 py-24">
-            <div className="mx-auto max-w-7xl">
-              <motion.h2
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="mb-10 text-center text-3xl font-bold text-[#1A2B88]"
-              >
-                Our Approach
-              </motion.h2>
-
-              <div className="grid gap-10 md:grid-cols-5">
-                {approachSteps.map((step, i) => (
-                  <motion.div
-                    key={i}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={fadeUp}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex flex-col items-center text-center"
-                  >
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#1A2B88] text-xl font-semibold text-[#1A2B88]">
-                      {i + 1}
-                    </div>
-                    <p className="max-w-xs text-gray-700">{step}</p>
-                  </motion.div>
-                ))}
-              </div>
+          {/* APPROACH */}
+          <section className="container mx-auto px-6 py-20">
+            <h2 className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">Our Approach</h2>
+            <div className="mx-auto max-w-5xl space-y-10">
+              {approachSteps.map((step, i) => (
+                <motion.div
+                  key={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={fadeUp}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2 }}
+                  className="flex items-start space-x-6"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#0E1C3F] font-semibold text-[#0E1C3F]">
+                    {i + 1}
+                  </div>
+                  <p className="max-w-xl text-gray-700">{step}</p>
+                </motion.div>
+              ))}
             </div>
           </section>
 
-          {/* BENEFITS SECTION */}
-          <section className="px-6 py-24">
-            <div className="mx-auto max-w-7xl">
-              <motion.h2
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="mb-10 text-center text-3xl font-bold text-[#1A2B88]"
-              >
-                Client Benefits
-              </motion.h2>
-
-              <ul className="mx-auto max-w-4xl list-inside list-disc space-y-4 text-gray-600 md:text-lg">
-                {clientBenefits.map((benefit, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                  >
-                    {benefit}
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
+          {/* CLIENT BENEFITS */}
+          <section className="container mx-auto px-6 py-20">
+            <h2 className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">Client Benefits</h2>
+            <ul className="mx-auto max-w-4xl list-inside list-disc space-y-4 text-lg text-gray-700">
+              {clientBenefits.map((benefit, i) => (
+                <motion.li
+                  key={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={fadeUp}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.15 }}
+                >
+                  {benefit}
+                </motion.li>
+              ))}
+            </ul>
           </section>
 
-          {/* TESTIMONIALS SECTION */}
-          <section className="bg-white px-6 py-24">
-            <div className="mx-auto max-w-5xl text-center">
-              <motion.h2
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="mb-12 text-3xl font-bold text-[#1A2B88]"
-              >
-                What Our Clients Say
-              </motion.h2>
+          {/* TESTIMONIALS */}
+          <section className="container mx-auto px-6 py-20">
+            <h2 className="mb-12 text-center text-3xl font-bold text-[#0E1C3F]">What Our Clients Say</h2>
 
-              <div className="space-y-12">
-                {testimonials.map((t, i) => (
-                  <motion.blockquote
-                    key={i}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.2 }}
-                    className="mx-auto max-w-3xl rounded-xl border border-gray-200 bg-white p-8 shadow-sm"
-                  >
-                    <p className="mb-4 italic text-gray-700">"{t.quote}"</p>
-                    <footer className="font-semibold text-gray-900">
-                      — {t.name}, <span className="font-normal text-gray-600">{t.role}</span>
-                    </footer>
-                  </motion.blockquote>
-                ))}
-              </div>
+            <div className="mx-auto max-w-4xl space-y-12">
+              {testimonials.map(({ name, role, quote }, i) => (
+                <motion.blockquote
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.2 }}
+                  className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm"
+                >
+                  <p className="mb-4 italic text-gray-700">"{quote}"</p>
+                  <footer className="font-semibold text-gray-900">
+                    — {name}, <span className="font-normal text-gray-600">{role}</span>
+                  </footer>
+                </motion.blockquote>
+              ))}
             </div>
           </section>
 
           {/* FINAL CTA */}
-          <section className="bg-gradient-to-br from-[#1A2B88] to-[#4BC9F0] px-6 py-24 text-center text-white">
-            <h2 className="mb-6 text-4xl font-bold tracking-tight">
+          <section className="relative bg-white px-6 py-20 text-center">
+            <h2 className="mb-6 text-4xl font-bold tracking-tight text-[#1DC0DA]">
               Ready to elevate your human capital strategy?
             </h2>
-            <p className="mx-auto mb-10 max-w-3xl text-lg opacity-90">
+            <p className="mx-auto mb-10 max-w-3xl text-lg text-[#0E1C3F]">
               Partner with Adroyts Consulting to unlock your organization's full potential through innovative,
               tailored solutions.
             </p>
 
-            <button className="rounded-xl bg-white px-10 py-4 text-lg font-semibold text-[#1A2B88] shadow-xl transition hover:scale-110">
+            <button
+              className="rounded-xl border border-[#1DC0DA] bg-white px-10 py-4 text-lg font-semibold text-[#0E1C3F] shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-[#1DC0DA]/40"
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            >
               Contact Us
             </button>
+
+            {/* Sticky floating CTA */}
+            <a
+              href="#contact"
+              className="fixed bottom-6 right-6 z-50 rounded-full bg-[#1DC0DA] p-4 text-white shadow-lg transition hover:bg-[#17a8bb] md:hidden"
+              aria-label="Contact Us"
+              title="Contact Us"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+            </a>
           </section>
         </div>
       </div>

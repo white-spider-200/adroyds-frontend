@@ -87,7 +87,7 @@ const AboutUs = () => {
       {/* HERO SECTION */}
       <section className="relative -mt-40 flex min-h-[calc(70vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
-          src="/assets/jobs-arabian-copy-scaled.png"
+          src="/assets/WhatsApp-Image-2023-06-26-at-11.12.01-AM.webp"
           alt=""
           className="absolute inset-0 h-full w-full object-cover"
         />
@@ -102,7 +102,7 @@ const AboutUs = () => {
           className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
         >
           {/* Glass container */}
-          <div className="mt-40 rounded-3xl px-8 py-12 md:px-12 md:py-16">
+          <div className="mt-40 rounded-xl px-8 py-12 md:px-12 md:py-16">
             {/* Breadcrumbs */}
             <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
               <ol className="inline-flex space-x-2">
@@ -127,56 +127,76 @@ const AboutUs = () => {
       <section className="w-full bg-white py-20">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-12 px-6 md:flex-row">
           {/* LEFT IMAGE */}
-          <div className="w-full md:w-1/2">
+          <div className="relative w-full md:w-1/2">
             <img
-              src="/assets/jobs-arabian-copy-scaled.png"
+              src="/assets/WhatsApp-Image-2023-06-26-at-11.12.01-AM.webp"
               alt="About Adroyts"
-              className="w-full rounded-2xl object-cover shadow-lg"
+              className="w-full rounded-xl object-cover shadow-lg"
             />
+
+            {/* Circle Badge */}
+            <div className="absolute left-[-50px] top-20 flex -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-full bg-[#1DC0DA] px-6 py-9 text-center text-lg font-bold uppercase text-white shadow-lg">
+              Founded <br /> in 2006
+            </div>
           </div>
 
           {/* RIGHT CONTENT */}
           <div className="w-full md:w-1/2">
-            <h4 className="mb-3 text-sm font-semibold uppercase tracking-widest text-blue-700">
-              Welcome to Adroyts
+            <h4 className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#0E1C3F]">
+              Read About Us
             </h4>
 
-            <h2 className="mb-6 text-4xl font-bold leading-tight text-[#1A2B88] md:text-5xl">
-              Work together for your <br /> business success
+            <h2 className="mb-6 text-4xl font-bold leading-tight text-[#0E1C3F] md:text-5xl">
+              Get to know about <br /> Adroyts Agency Solutions
             </h2>
 
-            <p className="mb-6 leading-relaxed text-gray-700">
-              Lorem ipsum dolor sit amet nsectetur cing elituspe ndisse suscipit sagitis leo sit. Simply free
-              text available ornare eu est. Maecenas maximus, mi eget euismod lacinia.
+            <p className="mb-6 text-2xl leading-relaxed text-[#1DC0DA]">
+              We’re committed to delivering the best digital marketing for your businesses.
+            </p>
+
+            <p className="mb-6 leading-relaxed text-gray-600">
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+              alteration in some form, simply free text by injected humour, or randomised.
             </p>
 
             {/* FEATURES */}
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <span className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-blue-700 text-sm text-white">
+                <span className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#1DC0DA] text-sm text-white">
                   ✓
                 </span>
                 <p className="text-gray-700">
-                  <strong className="text-[#1A2B88]">Free Consultation</strong> — Lorem ipsum is not dolor sit
-                  amet, consectetur notted.
+                  Develop a <strong className="text-[#0E1C3F]">vision statement</strong>
                 </p>
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-blue-700 text-sm text-white">
+                <span className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#1DC0DA] text-sm text-white">
                   ✓
                 </span>
                 <p className="text-gray-700">
-                  <strong className="text-[#1A2B88]">Best team members</strong> — Lorem ipsum is not dolor sit
-                  amet, consectetur notted.
+                  Grow your <strong className="text-[#0E1C3F]">customer base</strong>
+                </p>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <span className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#1DC0DA] text-sm text-white">
+                  ✓
+                </span>
+                <p className="text-gray-700">
+                  Increase your <strong className="text-[#0E1C3F]">monthly sales</strong>
+                </p>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <span className="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#1DC0DA] text-sm text-white">
+                  ✓
+                </span>
+                <p className="text-gray-700">
+                  Beat your <strong className="text-[#0E1C3F]">competition</strong>
                 </p>
               </div>
             </div>
-
-            {/* BUTTON */}
-            <button className="mt-8 rounded-xl bg-[#1A2B88] px-8 py-4 font-semibold text-white shadow-md transition hover:bg-blue-900">
-              Learn More
-            </button>
           </div>
         </div>
       </section>
@@ -186,7 +206,7 @@ const AboutUs = () => {
         style={{ backgroundImage: "url('/assets/saudi-arabia-s-digital-transformation-free-photo.jpeg')" }}
       >
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
 
         {/* Content */}
         <div className="relative z-10 px-6 text-center">
@@ -197,7 +217,7 @@ const AboutUs = () => {
             Your Businesses
           </h1>
 
-          <button className="rounded-xl bg-white px-8 py-4 text-lg font-semibold tracking-tight text-[#1A2B88] shadow-md transition hover:bg-gray-100">
+          <button className="rounded-xl bg-[#1DC0DA] px-16 py-5 text-lg font-semibold uppercase tracking-tight text-white shadow-md transition">
             Discover More
           </button>
         </div>

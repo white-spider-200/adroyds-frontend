@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useEffect } from "react";
 import CountUp from "react-countup";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaAward, FaClipboardList, FaPhoneAlt, FaThumbsUp, FaUserCheck } from "react-icons/fa";
 import {
   PiBankLight,
   PiBriefcaseLight,
@@ -25,35 +25,23 @@ const fadeUp = {
   }),
 };
 
-const scrollIndicator = (
-  <svg
-    className="mx-auto mt-8 h-8 w-8 animate-bounce text-white"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={2}
-    viewBox="0 0 24 24"
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-  </svg>
-);
-
 const servicesList = [
   {
     title: "Executive Search",
     desc: "Identifying and engaging exceptional leaders who drive transformation.",
-    icon: <PiBriefcaseLight className="h-12 w-12 text-blue-700" />,
+    icon: <PiBriefcaseLight className="h-12 w-12 text-[#1DC0DA]" />,
     link: "#executive",
   },
   {
     title: "Professional Search",
     desc: "Delivering high-performing professionals to power your business growth.",
-    icon: <PiUsersThreeLight className="h-12 w-12 text-blue-700" />,
+    icon: <PiUsersThreeLight className="h-12 w-12 text-[#1DC0DA]" />,
     link: "#professional",
   },
   {
     title: "RPO (Recruitment Process Outsourcing)",
     desc: "Full-cycle recruitment ownership from sourcing to onboarding.",
-    icon: <PiClipboardTextLight className="h-12 w-12 text-blue-700" />,
+    icon: <PiClipboardTextLight className="h-12 w-12 text-[#1DC0DA]" />,
     link: "#rpo",
   },
 ];
@@ -80,134 +68,202 @@ const rpoFeatures = [
   "Scalable workforce model",
 ];
 
+const statsData = [
+  { num: 1200, suffix: "+", label: "Candidates Successfully Placed", icon: <FaUserCheck size={32} /> },
+  { num: 250, suffix: "+", label: "Recruitment Projects Completed", icon: <FaClipboardList size={32} /> },
+  { num: 95.93, suffix: "%", label: "Passed Probation Period", icon: <FaThumbsUp size={32} /> },
+  { num: 19, suffix: "+", label: "Years of Recruitment Excellence", icon: <FaAward size={32} /> },
+];
+
 const Recruitment = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
-    <div className="w-full bg-white font-sans text-[#1A1F36] selection:bg-blue-200 selection:text-gray-900">
+    <div className="w-full bg-white font-sans text-[#0E1C3F] selection:bg-[#1DC0DA]/30 selection:text-[#0E1C3F]">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 flex min-h-[calc(70vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
+      <section className="relative -mt-40 flex min-h-[80vh] items-center justify-center bg-cover bg-center px-6 text-center">
         <img
           src="/assets/jobs-arabian-copy-scaled.png"
-          alt=""
+          alt="Recruitment Solutions"
           className="absolute inset-0 h-full w-full object-cover"
         />
 
-        {/* Blue Gradient Overlay */}
-        <div className="absolute inset-0 bg-[#192757] opacity-70"></div>
+        {/* Dark Blue Gradient Overlay */}
+        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
 
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, ease: "easeOut" }}
-          className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="relative z-10 max-w-4xl px-4 pt-28"
         >
-          {/* Glass container */}
-          <div className="mt-40 rounded-3xl px-8 py-12 md:px-12 md:py-16">
-            {/* Breadcrumbs */}
-            <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
-              <ol className="inline-flex space-x-2">
-                <li>
-                  <a href="/" className="hover:text-white hover:underline">
-                    Home
-                  </a>
-                  <span className="mx-2">/</span>
-                </li>
-                <li className="font-semibold text-white" aria-current="page">
-                  Recruitment Solutions
-                </li>
-              </ol>
-            </nav>
+          {/* Breadcrumb */}
+          <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
+            <ol className="inline-flex space-x-2">
+              <li>
+                <a href="/" className="hover:text-white hover:underline">
+                  Home
+                </a>
+                <span className="mx-2">/</span>
+              </li>
+              <li className="font-semibold text-white">Recruitment Solutions</li>
+            </ol>
+          </nav>
 
-            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-5xl">
-              Recruitment Solutions
-            </h1>
-          </div>
+          <motion.h1
+            className="mb-4 text-4xl font-extrabold text-white md:text-5xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            Recruitment Solutions that Empower Organizations Since 2006
+          </motion.h1>
+
+          <motion.button
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            className="mt-6 rounded-xl border border-white/30 bg-white/10 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+          >
+            Contact Us
+          </motion.button>
         </motion.div>
       </section>
 
-      <div className="mx-auto flex max-w-8xl gap-8 px-6 py-16 text-lg">
-        <div className="sticky top-32 flex h-full flex-col rounded-xl bg-gray-100 p-6">
-          <nav className="flex flex-col space-y-6">
-            {/* Recruitment Solutions (inactive) */}
-            <button
-              onClick={() => navigate("/services/recruitment")}
-              className="group flex w-full items-center justify-between rounded-md bg-white px-4 py-2 text-left text-[#1A2B88] transition-colors hover:bg-blue-200 hover:text-blue-900"
-            >
-              <span>Recruitment Solutions</span>
-              <FaArrowRight className="translate-x-[-6px] transition-all duration-300" />
-            </button>
+      <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
+        <div className="sticky top-32 h-full flex-1">
+          {/* MENU BOX */}
+          <div className="flex flex-col rounded-xl bg-gray-100 p-6">
+            <nav className="flex flex-col space-y-6">
+              {/* Recruitment Solutions (ACTIVE) */}
+              <button
+                onClick={() => navigate("/services/recruitment")}
+                className="group flex w-full items-center justify-between rounded-xl bg-white px-4 py-2 text-left text-[#0E1C3F] transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+              >
+                <span>Recruitment Solutions</span>
+                <FaArrowRight className="translate-x-[-6px] transition-all duration-300" />
+              </button>
 
-            {/* Adroyts Academy (ACTIVE) */}
-            <button
-              onClick={() => navigate("/services/academy")}
-              className="group flex w-full items-center justify-between rounded-md px-4 py-2 text-left text-[#1A2B88]/60 transition-colors hover:bg-blue-200 hover:text-blue-900"
-            >
-              <span>Adroyts Academy</span>
-              <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
-            </button>
+              {/* Adroyts Academy */}
+              <button
+                onClick={() => navigate("/services/academy")}
+                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+              >
+                <span>Adroyts Academy</span>
+                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+              </button>
 
-            {/* Assessment Center */}
-            <button
-              onClick={() => navigate("/services/assessment")}
-              className="group flex w-full items-center justify-between rounded-md px-4 py-2 text-left text-[#1A2B88]/60 transition-colors hover:bg-blue-200 hover:text-blue-900"
-            >
-              <span>Assessment Center</span>
-              <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
-            </button>
+              {/* Assessment Center */}
+              <button
+                onClick={() => navigate("/services/assessment")}
+                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+              >
+                <span>Assessment Center</span>
+                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+              </button>
 
-            {/* Human Capital Consulting */}
-            <button
-              onClick={() => navigate("/services/consulting")}
-              className="group flex w-full items-center justify-between rounded-md px-4 py-2 text-left text-[#1A2B88]/60 transition-colors hover:bg-blue-200 hover:text-blue-900"
-            >
-              <span>Human Capital Consulting</span>
-              <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
-            </button>
-          </nav>
+              {/* Human Capital Consulting */}
+              <button
+                onClick={() => navigate("/services/consulting")}
+                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+              >
+                <span>Human Capital Consulting</span>
+                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+              </button>
+            </nav>
+          </div>
+
+          {/* CONTACT BOX WITH OVERLAY */}
+          <div className="relative mt-4 overflow-hidden rounded-xl py-6">
+            <img src="/assets/24-01-17-01-02.jpg" alt="Contact" className="h-56 w-full object-cover" />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-[#0E1C3F]/90"></div>
+
+            {/* Text */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-white">
+              {/* Icon in Circle */}
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white/20 py-5 backdrop-blur-sm">
+                <FaPhoneAlt className="text-2xl text-white" />
+              </div>
+
+              <p className="text-center text-xl font-semibold uppercase">Best Quality</p>
+              <p className="text-center text-xl font-semibold uppercase">Services</p>
+
+              <p className="mt-4 text-center text-sm opacity-90">Call us Anytime</p>
+              <p className="text-center text-xl font-bold">+ 92 666 888 0000</p>
+            </div>
+          </div>
         </div>
 
-        <div className="flex-[2] bg-white px-6">
+        <div className="flex-[2.3] bg-white px-6">
+          <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-xl">
+            <img
+              src="/assets/jobs-arabian-copy-scaled.png"
+              alt="Recruitment Solutions"
+              className="h-full w-full object-cover"
+            />
+
+            {/* OVERLAY */}
+            <div className="absolute inset-0 bg-[#0E1C3F] opacity-10"></div>
+          </div>
+
           {/* INTRO */}
           <section className="container pb-16 md:max-w-4xl">
-            <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#1A2B88]">
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">
               About Our Recruitment Solutions
             </h2>
+
             <p className="text-lg leading-relaxed text-gray-700">
               For nearly two decades, Adroyts has been a trusted recruitment partner for organizations across
               Saudi Arabia. We provide end-to-end hiring solutions that balance precision, speed, and cultural
               alignment—helping clients secure the right talent every time.
             </p>
           </section>
-          <section className="relative w-full bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 py-8">
-            {/* Content */}
-            <div className="relative mx-auto max-w-8xl">
-              <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
-                {[
-                  { num: 294, suffix: "", label: "Projects Done" },
-                  { num: 987, suffix: "", label: "Satisfied Customers" },
-                  { num: 60, suffix: "K", label: "Total Earned" },
-                  { num: 1523, suffix: "", label: "Award Wins" },
-                ].map((item, i) => (
-                  <motion.div
+
+          {/* STATS SECTION */}
+          <section className="relative overflow-hidden rounded-lg bg-[#1DC0DA] p-10 text-white md:p-12">
+            {/* Polygon overlay */}
+            <svg
+              className="absolute left-0 top-0 h-full w-full opacity-20"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+              viewBox="0 0 800 400"
+              fill="none"
+            >
+              <polygon points="0,0 800,0 800,100 0,300" fill="#a05df4" />
+              <polygon points="800,400 0,400 0,300 800,100" fill="#6c35d9" />
+            </svg>
+
+            <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
+              {/* Stats */}
+              <div className="flex flex-1 justify-between">
+                {statsData.map(({ icon, num, suffix, label }, i) => (
+                  <div
                     key={i}
-                    className="p-2"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: i * 0.15 }}
+                    className={`flex flex-col items-center px-6 ${
+                      i < statsData.length - 1 ? "border-r border-white/30" : ""
+                    }`}
                   >
-                    <h3 className="text-5xl font-bold tracking-tight text-white md:text-6xl">
+                    <div className="mb-4 text-white">{icon}</div>
+                    <div className="text-4xl font-bold">
                       <CountUp
+                        end={num}
+                        decimals={num % 1 !== 0 ? 2 : 0}
+                        duration={2.5}
+                        suffix={suffix}
                         start={0}
                         enableScrollSpy={true}
-                        end={item.num}
-                        duration={2.5}
                         separator=","
-                        suffix={item.suffix}
                       />
-                    </h3>
-                    <p className="mt-3 text-xl font-semibold text-white">{item.label}</p>
-                  </motion.div>
+                    </div>
+                    <div className="mt-1 text-center text-xs tracking-widest">{label}</div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -215,8 +271,8 @@ const Recruitment = () => {
 
           {/* SERVICES */}
           <section className="container mx-auto px-6 py-20">
-            <h2 className="mb-12 text-center text-4xl font-bold text-[#1A1F36]">Our Recruitment Services</h2>
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Recruitment Services</h2>
+            <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
               {servicesList.map(({ title, desc, icon, link }, i) => (
                 <motion.a
                   key={i}
@@ -226,14 +282,14 @@ const Recruitment = () => {
                   variants={fadeUp}
                   custom={i * 0.1}
                   viewport={{ once: true }}
-                  className="group flex flex-col rounded-2xl bg-white p-8 shadow-md transition-transform hover:-translate-y-2 hover:shadow-xl"
+                  className="group flex flex-col rounded-xl bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
                 >
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-blue-700 transition group-hover:bg-blue-200">
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#1DC0DA]/20 text-[#1DC0DA] transition group-hover:bg-[#1DC0DA]/40">
                     {icon}
                   </div>
-                  <h3 className="mb-2 text-xl font-semibold text-gray-900">{title}</h3>
-                  <p className="flex-grow text-gray-600">{desc}</p>
-                  <span className="mt-4 text-sm font-semibold text-blue-700 underline decoration-2 underline-offset-2 transition group-hover:text-blue-900">
+                  <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
+                  <p className="flex-grow text-gray-700">{desc}</p>
+                  <span className="mt-4 text-sm font-semibold text-[#1DC0DA] underline decoration-2 underline-offset-2 transition group-hover:text-[#0A9AB8]">
                     Learn More →
                   </span>
                 </motion.a>
@@ -244,15 +300,15 @@ const Recruitment = () => {
           {/* EXECUTIVE SEARCH */}
           <section id="executive" className="bg-white py-20">
             <div className="container mx-auto px-6">
-              <h2 className="mb-12 text-center text-3xl font-bold text-[#1A2B88]">Executive Search</h2>
+              <h2 className="mb-12 text-center text-3xl font-bold text-[#0E1C3F]">Executive Search</h2>
 
               {/* Timeline */}
               <div className="relative mx-auto max-w-5xl">
-                <div className="absolute left-0 right-0 top-5 mx-auto h-1 w-full max-w-5xl bg-blue-200"></div>
+                <div className="absolute left-0 right-0 top-5 mx-auto h-1 w-full max-w-5xl bg-[#1DC0DA]/40"></div>
                 <div className="relative flex justify-between gap-6">
                   {executiveSteps.map((step, i) => (
                     <div key={i} className="flex flex-col items-center text-center">
-                      <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-blue-700 bg-white font-semibold text-blue-700">
+                      <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-[#1DC0DA] bg-white font-semibold text-[#0E1C3F]">
                         {i + 1}
                       </div>
                       <p className="mt-3 max-w-xs text-sm font-medium text-gray-700">{step}</p>
@@ -265,7 +321,7 @@ const Recruitment = () => {
 
           {/* PROFESSIONAL SEARCH */}
           <section id="professional" className="container mx-auto px-6 py-20">
-            <h2 className="mb-10 text-center text-3xl font-bold text-[#1A2B88]">Professional Search</h2>
+            <h2 className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">Professional Search</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
               {profFeatures.map((feature, i) => (
                 <motion.div
@@ -277,13 +333,13 @@ const Recruitment = () => {
                   viewport={{ once: true }}
                   className="rounded-xl bg-white p-8 text-center shadow-md"
                 >
-                  <PiPersonLight className="mx-auto mb-4 h-10 w-10 text-blue-700" />
+                  <PiPersonLight className="mx-auto mb-4 h-10 w-10 text-[#1DC0DA]" />
                   <p className="text-gray-700">{feature}</p>
                 </motion.div>
               ))}
             </div>
 
-            <div className="mt-12 rounded-2xl border border-gray-300 bg-blue-700 p-10 text-center text-lg font-semibold text-white shadow-lg">
+            <div className="mt-12 rounded-xl border border-gray-300 bg-[#0E1C3F] p-10 text-center text-lg font-semibold text-white shadow-lg">
               While Executive Search targets leadership roles, Professional Search focuses on mid-level and
               technical talent—delivering speed, scalability, and precision.
             </div>
@@ -292,7 +348,7 @@ const Recruitment = () => {
           {/* RPO SECTION */}
           <section
             id="rpo"
-            className="bg-gradient-to-br from-blue-700 via-blue-800 to-blue-600 px-6 py-20 text-white"
+            className="rounded-xl bg-gradient-to-br from-[#0E1C3F] via-[#0B1640] to-[#0A163B] px-6 py-20 text-white"
           >
             <div className="container mx-auto max-w-7xl">
               <h2 className="mb-8 text-center text-3xl font-bold tracking-tight">
@@ -317,7 +373,7 @@ const Recruitment = () => {
                 ))}
               </div>
 
-              <div className="mt-12 text-center text-xl font-semibold">
+              <div className="mt-12 text-center text-xl font-semibold text-[#1DC0DA]">
                 Average time-to-fill reduction: 45%
               </div>
             </div>
@@ -325,22 +381,23 @@ const Recruitment = () => {
 
           {/* FINAL CTA */}
           <section className="relative bg-white px-6 py-20 text-center">
-            <h2 className="mb-6 text-4xl font-bold tracking-tight text-blue-700">
+            <h2 className="mb-6 text-4xl font-bold tracking-tight text-[#1DC0DA]">
               Ready to build your next great team?
             </h2>
-            <p className="mx-auto mb-10 max-w-3xl text-lg text-gray-700">
+            <p className="mx-auto mb-10 max-w-3xl text-lg text-[#0E1C3F]">
               Whether you’re seeking top executives, skilled professionals, or full recruitment support,
               Adroyts is ready to help.
             </p>
 
-            <button className="rounded-xl border border-blue-700 bg-white px-10 py-4 text-lg font-semibold text-blue-700 shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-blue-200">
+            <button className="rounded-xl border border-[#1DC0DA] bg-white px-10 py-4 text-lg font-semibold text-[#0E1C3F] shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-[#1DC0DA]/40">
               Contact Us
             </button>
 
             {/* Sticky floating CTA */}
+
             <a
               href="#contact"
-              className="fixed bottom-6 right-6 z-50 rounded-full bg-blue-700 p-4 text-white shadow-lg transition hover:bg-blue-800 md:hidden"
+              className="fixed bottom-6 right-6 z-50 rounded-full bg-[#1DC0DA] p-4 text-white shadow-lg transition hover:bg-[#17a8bb] md:hidden"
               aria-label="Contact Us"
               title="Contact Us"
             >

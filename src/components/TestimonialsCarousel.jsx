@@ -72,7 +72,7 @@ export const TestimonialsCarousel = ({ testimonials }) => {
           <Slider ref={sliderRef} {...settings}>
             {testimonials.map((t, idx) => (
               <div key={idx} className="px-4">
-                <div className="flex h-[360px] flex-col justify-between rounded-2xl border-b-8 border-[#192757] bg-white shadow-lg transition">
+                <div className="flex h-[360px] flex-col justify-between rounded-xl border-b-8 border-[#192757] bg-white shadow-lg transition">
                   <div className="p-8 text-gray-600">
                     <p className="text-left text-base italic leading-relaxed">“{t.comment}”</p>
                   </div>

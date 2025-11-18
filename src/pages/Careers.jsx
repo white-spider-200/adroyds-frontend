@@ -12,7 +12,7 @@ const Careers = () => {
   }, [location]);
 
   return (
-    <div className="font-cairo -mt-40 min-h-[calc(100vh+70px)] bg-[#0a1d56] px-6 py-20 text-gray-100 lg:px-24">
+    <div className="-mt-40 min-h-[calc(100vh+70px)] bg-[#0a1d56] px-6 py-20 font-cairo text-gray-100 lg:px-24">
       <h1 className="mb-16 mt-40 text-center text-4xl font-extrabold text-white md:text-5xl">Careers</h1>
 
       {/* Join Us Section */}
@@ -29,20 +29,20 @@ const Careers = () => {
           <input
             type="text"
             placeholder="Full Name"
-            className="w-full rounded-lg border border-white/30 bg-white/20 p-3 text-white placeholder-gray-300 focus:border-white focus:outline-none"
+            className="w-full rounded-xl border border-white/30 bg-white/20 p-3 text-white placeholder-gray-300 focus:border-white focus:outline-none"
           />
           <input
             type="email"
             placeholder="Email Address"
-            className="w-full rounded-lg border border-white/30 bg-white/20 p-3 text-white placeholder-gray-300 focus:border-white focus:outline-none"
+            className="w-full rounded-xl border border-white/30 bg-white/20 p-3 text-white placeholder-gray-300 focus:border-white focus:outline-none"
           />
           <input
             type="file"
-            className="w-full rounded-lg border border-white/30 bg-white/20 p-3 text-white placeholder-gray-300 focus:border-white focus:outline-none"
+            className="w-full rounded-xl border border-white/30 bg-white/20 p-3 text-white placeholder-gray-300 focus:border-white focus:outline-none"
           />
           <button
             type="submit"
-            className="rounded-lg bg-white px-6 py-3 font-semibold text-[#0a1d56] shadow-lg transition hover:scale-105 hover:bg-gray-100"
+            className="rounded-xl bg-white px-6 py-3 font-semibold text-[#0a1d56] shadow-lg transition hover:scale-105 hover:bg-gray-100"
           >
             Submit Application
           </button>

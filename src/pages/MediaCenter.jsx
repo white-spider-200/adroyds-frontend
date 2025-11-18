@@ -41,7 +41,7 @@ const MediaCenter = () => {
           className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
         >
           {/* Glass container */}
-          <div className="mt-40 rounded-3xl px-8 py-12 md:px-12 md:py-16">
+          <div className="mt-40 rounded-xl px-8 py-12 md:px-12 md:py-16">
             {/* Breadcrumbs */}
             <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
               <ol className="inline-flex space-x-2">
@@ -85,7 +85,7 @@ const MediaCenter = () => {
                 whileHover={{ scale: 1.04 }}
                 className="rounded-xl bg-white p-6 shadow transition hover:shadow-lg"
               >
-                <div className="mb-4 h-32 w-full rounded-lg bg-gray-300"></div>
+                <div className="mb-4 h-32 w-full rounded-xl bg-gray-300"></div>
                 <h3 className="text-lg font-semibold text-gray-900">Case Study {i}</h3>
                 <p className="mt-2 text-sm text-gray-700">
                   A brief overview of the strategic impact and business outcomes.

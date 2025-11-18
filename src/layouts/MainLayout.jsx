@@ -256,7 +256,7 @@ const MainLayout = ({ children }) => {
             ))}
             <button
               onClick={() => handleNav("/contact")}
-              className="w-full rounded-lg bg-white px-4 py-2 text-black shadow"
+              className="w-full rounded-xl bg-white px-4 py-2 text-black shadow"
             >
               {i18n.language === "ar" ? "تواصل الآن" : "Get in Touch"}
             </button>
