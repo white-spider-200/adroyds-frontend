@@ -96,7 +96,6 @@ const MainLayout = ({ children }) => {
               >
                 {[
                   { label: "Overview", hash: "#overview" },
-                  { label: "Vision & Mission", hash: "#vision" },
                   { label: "Our Values", hash: "#values" },
                   { label: "Why Adroyts", hash: "#why" },
                   { label: "Board of Directors", hash: "#board" },
@@ -207,7 +206,7 @@ const MainLayout = ({ children }) => {
               </div>
             </div>
 
-            <Link to="/contact" className={isActive("/contact")}>
+            <Link to="/FAQs" className={isActive("/FAQs")}>
               {i18n.language === "ar" ? "الاسئلة الشائعة" : "FAQs"}
             </Link>
           </nav>
@@ -223,12 +222,12 @@ const MainLayout = ({ children }) => {
               <FaArrowRight className="transition duration-300 ease-in-out group-hover:translate-x-1" />
             </button>
 
-            <button
+            {/* <button
               onClick={() => handleNav("/contact")}
               className="hidden items-center rounded-full bg-white p-3 text-black transition md:flex"
             >
               <FaSearch />
-            </button>
+            </button> */}
             <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
               {mobileOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
             </button>
@@ -268,13 +267,7 @@ const MainLayout = ({ children }) => {
       <main className="flex-1 bg-gray-50">{children}</main>
 
       {/* Footer */}
-      <motion.footer
-        className="bg-[#0e1a41] text-gray-300"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }} // animate every time, triggers when 20% visible
-        variants={footerContainerVariants}
-      >
+      <motion.footer className="bg-[#0e1a41] text-gray-300" initial="hidden" whileInView="visible">
         {/* Inside your footer, wrap key blocks with motion.div and apply item variants */}
 
         <motion.div

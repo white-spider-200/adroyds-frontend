@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { FaArrowRight, FaPhoneAlt } from "react-icons/fa";
+import { PiBriefcaseLight, PiClipboardTextLight, PiUsersThreeLight } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 
 const fadeUp = {
@@ -16,22 +17,20 @@ const services = [
   {
     title: "Professional Development Programs",
     desc: "Structured learning paths designed to enhance communication, leadership, productivity, and workplace readiness skills, empowering professionals to excel.",
+    icon: <PiBriefcaseLight className="h-12 w-12 text-[#1DC0DA]" />,
+    link: "#executive",
   },
   {
     title: "Technical Skills Training",
     desc: "Hands-on courses covering full-stack development, cloud computing, data analytics, and UI/UX fundamentals to prepare learners for tech-driven roles.",
+    icon: <PiUsersThreeLight className="h-12 w-12 text-[#1DC0DA]" />,
+    link: "#professional",
   },
   {
     title: "Customized Corporate Training",
     desc: "Tailored programs aligned with your organization’s goals, focused on workforce upskilling, reskilling, and accelerating talent to meet evolving business needs.",
-  },
-  {
-    title: "Youth & Graduate Programs",
-    desc: "Targeted training to prepare fresh graduates and job seekers with employability skills, career coaching, and real-world project experience.",
-  },
-  {
-    title: "Workshops & Short Courses",
-    desc: "Intensive sessions on communication, project management, presentation skills, and technical fundamentals designed for quick skill upgrades.",
+    icon: <PiClipboardTextLight className="h-12 w-12 text-[#1DC0DA]" />,
+    link: "#rpo",
   },
 ];
 
@@ -114,7 +113,7 @@ const Academy = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Adroyts Academy
+            Skill-Building & Training Solutions that Elevate Careers Since 2006{" "}
           </motion.h1>
 
           <motion.button
@@ -207,23 +206,72 @@ const Academy = () => {
             {/* OVERLAY */}
             <div className="absolute inset-0 bg-[#0E1C3F] opacity-10"></div>
           </div>
+          {/* INTRO */}
+          <section className="container pb-16 md:max-w-4xl">
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">About Adroyts Academy</h2>
+
+            <p className="text-lg leading-relaxed text-gray-700">
+              For years, Adroyts Academy has been dedicated to developing the skills and capabilities of
+              learners, professionals, and future leaders across the region. We deliver comprehensive training
+              programs that blend industry-aligned knowledge, hands-on practice, and real-world
+              application—empowering individuals and organizations to grow with confidence and impact.
+            </p>
+          </section>
+
+          {/* STATS SECTION */}
+          <section className="relative overflow-hidden rounded-lg bg-[#1DC0DA] p-10 text-white md:p-12">
+            {/* Polygon overlay */}
+            <svg
+              className="absolute left-0 top-0 h-full w-full opacity-20"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+              viewBox="0 0 800 400"
+              fill="none"
+            >
+              <polygon points="0,0 800,0 800,100 0,300" fill="#a05df4" />
+              <polygon points="800,400 0,400 0,300 800,100" fill="#6c35d9" />
+            </svg>
+
+            <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
+              <div className="flex flex-1 justify-between">
+                {stats.map(({ num, label }, i) => (
+                  <div
+                    key={i}
+                    className={`flex flex-col items-center px-6 ${
+                      i < stats.length - 1 ? "border-r border-white/30" : ""
+                    }`}
+                  >
+                    <div className="text-4xl font-bold">{num.toLocaleString()}</div>
+                    <div className="mt-1 text-center text-xs tracking-widest">{label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
           {/* SERVICES */}
           <section className="container mx-auto px-6 py-20">
-            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Services</h2>
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
-              {services.map(({ title, desc }, i) => (
-                <motion.div
+            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Recruitment Services</h2>
+            <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
+              {services.map(({ title, desc, icon, link }, i) => (
+                <motion.a
                   key={i}
+                  href={link}
                   initial="hidden"
                   whileInView="visible"
                   variants={fadeUp}
+                  custom={i * 0.1}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                  className="group flex flex-col rounded-xl bg-white p-8 shadow-md transition-transform hover:-translate-y-2 hover:shadow-xl"
+                  className="group flex flex-col rounded-xl bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
                 >
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#1DC0DA]/20 text-[#1DC0DA] transition group-hover:bg-[#1DC0DA]/40">
+                    {icon}
+                  </div>
                   <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
                   <p className="flex-grow text-gray-700">{desc}</p>
-                </motion.div>
+                  <span className="mt-4 text-sm font-semibold text-[#1DC0DA] underline decoration-2 underline-offset-2 transition group-hover:text-[#0A9AB8]">
+                    Learn More →
+                  </span>
+                </motion.a>
               ))}
             </div>
           </section>
@@ -273,37 +321,6 @@ const Academy = () => {
                 </motion.li>
               ))}
             </ul>
-          </section>
-
-          {/* STATS SECTION */}
-          <section className="relative overflow-hidden rounded-lg bg-[#1DC0DA] p-10 text-white md:p-12">
-            {/* Polygon overlay */}
-            <svg
-              className="absolute left-0 top-0 h-full w-full opacity-20"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              viewBox="0 0 800 400"
-              fill="none"
-            >
-              <polygon points="0,0 800,0 800,100 0,300" fill="#a05df4" />
-              <polygon points="800,400 0,400 0,300 800,100" fill="#6c35d9" />
-            </svg>
-
-            <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
-              <div className="flex flex-1 justify-between">
-                {stats.map(({ num, label }, i) => (
-                  <div
-                    key={i}
-                    className={`flex flex-col items-center px-6 ${
-                      i < stats.length - 1 ? "border-r border-white/30" : ""
-                    }`}
-                  >
-                    <div className="text-4xl font-bold">{num.toLocaleString()}</div>
-                    <div className="mt-1 text-center text-xs tracking-widest">{label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </section>
 
           {/* FINAL CTA */}

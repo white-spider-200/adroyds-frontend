@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { FaArrowRight, FaPhoneAlt } from "react-icons/fa";
+import { PiBriefcaseLight, PiClipboardTextLight, PiUsersThreeLight } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 
 const fadeUp = {
@@ -16,26 +17,20 @@ const services = [
   {
     title: "Psychometric Tests",
     desc: "Scientifically validated tools to measure aptitude, personality, and work behavior.",
+    icon: <PiBriefcaseLight className="h-12 w-12 text-[#1DC0DA]" />,
+    link: "#executive",
   },
   {
     title: "Role Simulations",
     desc: "Real-world tasks to assess decision-making, problem-solving, and leadership skills.",
+    icon: <PiUsersThreeLight className="h-12 w-12 text-[#1DC0DA]" />,
+    link: "#professional",
   },
   {
     title: "Development Feedback",
     desc: "Clear reports providing direction for both individual improvement and organizational development.",
-  },
-  {
-    title: "Competency Mapping",
-    desc: "Identify the critical behaviors, strengths, and improvement areas that align with organizational goals.",
-  },
-  {
-    title: "Behavioral Assessments",
-    desc: "Evaluate communication style, team interaction, leadership tendencies, and workplace behavioral patterns.",
-  },
-  {
-    title: "Talent Identification",
-    desc: "Robust frameworks to identify high-potential employees and future leaders within your organization.",
+    icon: <PiClipboardTextLight className="h-12 w-12 text-[#1DC0DA]" />,
+    link: "#rpo",
   },
 ];
 
@@ -114,7 +109,7 @@ const Assessment = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Assessment Center
+            Talent Assessment Services that Drive Better Hiring Since 2006{" "}
           </motion.h1>
 
           <motion.button
@@ -207,23 +202,44 @@ const Assessment = () => {
             {/* OVERLAY */}
             <div className="absolute inset-0 bg-[#0E1C3F] opacity-10"></div>
           </div>
+          {/* INTRO */}
+          <section className="container pb-16 md:max-w-4xl">
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">
+              About Our Assessment Center
+            </h2>
+
+            <p className="text-lg leading-relaxed text-gray-700">
+              For nearly two decades, Adroyts has been at the forefront of talent evaluation, helping
+              organizations make confident, data-driven decisions through precise and reliable assessment
+              solutions. Our Assessment Center provides a comprehensive suite of tools and methodologies
+              designed to measure skills, behavior, potential, and job readiness with accuracy and
+              transparency.
+            </p>
+          </section>
           {/* SERVICES */}
           <section className="container mx-auto px-6 py-20">
-            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Assessment Services</h2>
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
-              {services.map(({ title, desc }, i) => (
-                <motion.div
+            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Recruitment Services</h2>
+            <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
+              {services.map(({ title, desc, icon, link }, i) => (
+                <motion.a
                   key={i}
+                  href={link}
                   initial="hidden"
                   whileInView="visible"
                   variants={fadeUp}
+                  custom={i * 0.1}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                  className="group flex flex-col rounded-xl bg-white p-8 shadow-md transition-transform hover:-translate-y-2 hover:shadow-xl"
+                  className="group flex flex-col rounded-xl bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
                 >
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#1DC0DA]/20 text-[#1DC0DA] transition group-hover:bg-[#1DC0DA]/40">
+                    {icon}
+                  </div>
                   <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
                   <p className="flex-grow text-gray-700">{desc}</p>
-                </motion.div>
+                  <span className="mt-4 text-sm font-semibold text-[#1DC0DA] underline decoration-2 underline-offset-2 transition group-hover:text-[#0A9AB8]">
+                    Learn More →
+                  </span>
+                </motion.a>
               ))}
             </div>
           </section>

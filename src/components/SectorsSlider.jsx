@@ -48,11 +48,11 @@ const SectorsSlider = () => {
     <div className="bg-[#f9fafb] py-14">
       <div className="mx-auto max-w-7xl px-0 text-center">
         <motion.h2
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: false }}
-          className="mb-16 text-center text-4xl font-bold text-[#192757] md:text-5xl"
+          className="mb-16 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl"
         >
           Sectors
         </motion.h2>

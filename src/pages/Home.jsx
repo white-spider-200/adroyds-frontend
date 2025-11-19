@@ -68,50 +68,6 @@ const scaleFadeItem = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-// 1. Service Data Array with unique IDs
-const services = [
-  {
-    id: "recruitment",
-    mainTitle: "Recruitment Solutions",
-    title: "Recruitment Solutions",
-    subtitle: "for a Smarter Workforce",
-    description:
-      "We provide intelligent recruitment solutions designed to attract, assess, and retain top talent—empowering your organization to build a smarter, more efficient workforce that drives long-term success.",
-    image: "/assets/services-1.png",
-    buttonText: "View Solutions",
-  },
-  {
-    id: "academy",
-    mainTitle: "Adroyts Academy",
-    title: "Adroyts Academy",
-    subtitle: "Upskilling Tomorrow's Leaders",
-    description:
-      "Our academy offers specialized training and development programs to enhance the skills of your human capital, ensuring your team is equipped for future challenges and growth.",
-    image: "/assets/services-1.png",
-    buttonText: "Explore Academy",
-  },
-  {
-    id: "assessment",
-    mainTitle: "Assessment Center",
-    title: "Assessment Center",
-    subtitle: "Precision in Talent Evaluation",
-    description:
-      "We utilize advanced assessment tools and methodologies to accurately evaluate candidate competencies, ensuring a precise fit for critical roles within your organization.",
-    image: "/assets/services-1.png",
-    buttonText: "Learn About Assessments",
-  },
-  {
-    id: "consulting",
-    mainTitle: "Human Capital Consulting",
-    title: "Human Capital Consulting",
-    subtitle: "Strategic Workforce Planning",
-    description:
-      "Our consulting services help you align your human capital strategy with your business objectives, covering everything from organizational design to performance management.",
-    image: "/assets/services-1.png",
-    buttonText: "Consult Our Experts",
-  },
-];
-
 const caseStudies = [
   {
     id: "cs1",
@@ -304,11 +260,11 @@ const Home = () => {
       <section className="bg-white py-20">
         <div className="text-center">
           <motion.h2
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: false }}
-            className="mb-16 text-center text-4xl font-bold text-[#192757] md:text-5xl"
+            className="mb-16 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl"
           >
             Trusted by...
           </motion.h2>
@@ -394,13 +350,13 @@ const Home = () => {
       <section className="bg-white py-16">
         <div className="mx-auto max-w-8xl px-6 py-12 md:px-12">
           <motion.h2
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: false }}
-            className="mb-12 text-center text-4xl font-bold text-[#192757] md:text-5xl"
+            className="mb-12 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl"
           >
-            Latest Insights & News
+            News & Articles
           </motion.h2>
 
           <div className="grid gap-10 md:grid-cols-3">
@@ -411,7 +367,7 @@ const Home = () => {
                 whileInView="visible"
                 variants={fadeUp}
                 custom={i * 0.2}
-                className="group cursor-pointer overflow-hidden rounded-xl bg-white shadow-md"
+                className="group cursor-pointer overflow-hidden rounded-xl bg-white shadow-md transition-shadow hover:shadow-xl"
               >
                 {/* Image with zoom + overlay */}
                 <div className="relative overflow-hidden">
@@ -420,9 +376,8 @@ const Home = () => {
                     alt={blog.title}
                     className="h-64 w-full transform object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-black/10 transition duration-500 ease-out group-hover:bg-black/0"></div>
+                  <div className="absolute inset-0 transition duration-500 ease-out group-hover:bg-transparent"></div>
                 </div>
-
                 {/* Text under the image with fade-up */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -430,12 +385,14 @@ const Home = () => {
                   transition={{ duration: 0.5, delay: i * 0.2 }}
                   className="px-6 py-4"
                 >
-                  <div className="mb-2 text-sm font-semibold text-blue-500">{blog.category}</div>
-                  <p className="mb-2 text-sm text-gray-500">{blog.date}</p>
-                  <h3 className="mb-4 text-xl text-[#192757]">{blog.title}</h3>
-
+                  <div className="mb-2 text-sm font-semibold text-[#1DC0DA]">{blog.category}</div>
+                  <p className="mb-2 text-sm text-[#6b7c93]">{blog.date}</p>
+                  <h3 className="mb-4 text-xl text-[#0E1C3F]">{blog.title}</h3>
                   {/* Show Details button */}
-                  <button className="inline-flex items-center gap-3 bg-white py-3 font-semibold text-gray-900 transition duration-300 ease-in-out hover:text-cyan-400">
+                  <button
+                    className="inline-flex items-center gap-3 rounded-md border border-[#1DC0DA] bg-white px-5 py-3 font-semibold text-[#1DC0DA] transition duration-300 hover:bg-[#1DC0DA] hover:text-white"
+                    aria-label={`Show details about ${blog.title}`}
+                  >
                     <span>Show Details</span>
                     <FaArrowRight className="transform transition duration-300 group-hover:translate-x-1" />
                   </button>
@@ -443,12 +400,11 @@ const Home = () => {
               </motion.div>
             ))}
           </div>
-
           {/* View More button */}
           <div className="mt-12 flex justify-center">
             <button
               type="button"
-              className="relative hidden items-center gap-2 rounded-full border-2 border-black bg-transparent px-4 py-2 text-black transition duration-300 ease-in-out hover:border-cyan-400 hover:text-cyan-400 md:flex"
+              className="hidden items-center gap-2 rounded-full border-2 border-[#0E1C3F] bg-transparent px-6 py-2 text-[#0E1C3F] transition duration-300 hover:border-[#1DC0DA] hover:text-[#1DC0DA] md:flex"
             >
               View More
             </button>

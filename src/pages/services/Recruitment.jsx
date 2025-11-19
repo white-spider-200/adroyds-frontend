@@ -3,15 +3,10 @@ import React, { useEffect } from "react";
 import CountUp from "react-countup";
 import { FaArrowRight, FaAward, FaClipboardList, FaPhoneAlt, FaThumbsUp, FaUserCheck } from "react-icons/fa";
 import {
-  PiBankLight,
   PiBriefcaseLight,
-  PiChartBarLight,
   PiClipboardTextLight,
   PiGearSixLight,
-  PiHeartbeatLight,
-  PiMonitorLight,
   PiPersonLight,
-  PiShareNetworkLight,
   PiUsersThreeLight,
 } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";

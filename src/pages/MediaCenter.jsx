@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { FaArrowRight } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
+
+import mainServices from "../services/mainServices";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -18,11 +22,40 @@ const scrollToHash = (hash) => {
 };
 
 const MediaCenter = () => {
+  const { i18n } = useTranslation();
+
+  const [loading, setLoading] = useState(false);
+  const [articles, setArticles] = useState([]);
+  const [news, setNews] = useState([]);
+
   const location = useLocation();
+
   useEffect(() => scrollToHash(location.hash), [location.hash]);
 
+  useEffect(() => {
+    const fetchHomeData = async () => {
+      setLoading(true);
+
+      try {
+        const [articlesRes, newsRes] = await Promise.all([
+          mainServices.getArticles(i18n.language),
+          mainServices.getNews(i18n.language),
+        ]);
+
+        setArticles(articlesRes?.data?.data?.data || []);
+        setNews(newsRes?.data?.data?.data || []);
+      } catch (err) {
+        console.error("Home data fetch error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHomeData();
+  }, [i18n.language]);
+
   return (
-    <div className="bg-white font-cairo text-gray-900 selection:bg-blue-200 selection:text-gray-900">
+    <div className="bg-white font-sans text-[#0E1C3F] selection:bg-[#1DC0DA] selection:text-white">
       {/* HERO SECTION */}
       <section className="relative -mt-40 flex min-h-[calc(70vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
@@ -64,128 +97,219 @@ const MediaCenter = () => {
         </motion.div>
       </section>
 
-      {/* CASE STUDIES */}
-      <div className="mx-auto mb-20 max-w-8xl rounded-xl bg-gray-100 p-10 shadow-md">
-        <motion.section
-          id="case-studies"
-          initial="hidden"
-          whileInView="visible"
-          variants={fadeUp}
-          className="text-center"
-        >
-          <h2 className="mb-4 text-3xl font-semibold text-gray-900">Case Studies</h2>
-          <p className="mx-auto max-w-2xl text-gray-700">
-            Explore transformation journeys showcasing the impact of Adroyts’ HR and digital solutions.
-          </p>
-
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3].map((i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.04 }}
-                className="rounded-xl bg-white p-6 shadow transition hover:shadow-lg"
-              >
-                <div className="mb-4 h-32 w-full rounded-xl bg-gray-300"></div>
-                <h3 className="text-lg font-semibold text-gray-900">Case Study {i}</h3>
-                <p className="mt-2 text-sm text-gray-700">
-                  A brief overview of the strategic impact and business outcomes.
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-      </div>
-
-      {/* Separator */}
-      <div className="mx-auto my-16 h-px w-40 rounded bg-gradient-to-r from-gray-300 via-gray-400 to-gray-300"></div>
-
-      {/* BLOG */}
+      {/* CASE STUDIES SECTION - PREMIUM */}
       <motion.section
-        id="blog"
+        id="case-studies"
         initial="hidden"
         whileInView="visible"
         variants={fadeUp}
-        custom={0.2}
-        className="mx-auto mb-20 max-w-8xl rounded-xl bg-gray-100 p-10 text-center shadow-md"
+        custom={0.4}
+        className="bg-[#f8fbfe] py-32"
       >
-        <h2 className="mb-4 text-3xl font-semibold text-gray-900">Blog</h2>
-        <p className="mx-auto max-w-2xl text-gray-700">
-          Expert insights, leadership perspectives, and HR innovation trends.
-        </p>
+        <div className="mx-auto max-w-7xl px-6 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: false }}
+            className="text-center text-4xl font-extrabold text-gray-900"
+          >
+            Case Studies
+          </motion.h2>
 
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {[1, 2, 3].map((i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.05 }}
-              className="overflow-hidden rounded-xl bg-white shadow transition hover:shadow-lg"
-            >
-              <div className="h-36 w-full bg-gray-300"></div>
-              <div className="p-5">
-                <h3 className="text-lg font-semibold text-gray-900">Blog Post {i}</h3>
-                <p className="mt-2 text-sm text-gray-700">Latest trends and expert thought leadership.</p>
-              </div>
-            </motion.div>
-          ))}
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-gray-700">
+            Explore impactful transformations delivered across different industries and sectors.
+          </p>
+
+          <div className="mt-14 grid gap-12 md:grid-cols-3">
+            {[
+              {
+                title: "Enhancing Workforce Productivity",
+                desc: "A large enterprise increased operational efficiency by 37% through structured learning programs.",
+                icon: "📈",
+              },
+              {
+                title: "Digital Transformation Enablement",
+                desc: "Adroyts helped a government entity build digital competencies across all departments.",
+                icon: "💻",
+              },
+              {
+                title: "Leadership Development",
+                desc: "An organization strengthened its leadership pipeline through customized development solutions.",
+                icon: "🏆",
+              },
+            ].map((study, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2, duration: 0.6 }}
+                className="group rounded-2xl bg-white p-10 shadow-xl ring-1 ring-gray-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#1DC0DA]/10 text-3xl">
+                  {study.icon}
+                </div>
+
+                <h3 className="mb-3 text-xl font-semibold text-[#0E1C3F]">{study.title}</h3>
+                <p className="leading-relaxed text-[#5b6d85]">{study.desc}</p>
+
+                <button className="mt-6 inline-flex items-center gap-2 font-semibold text-[#1DC0DA] hover:underline">
+                  Read Case Study <FaArrowRight />
+                </button>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </motion.section>
 
-      {/* Separator */}
-      <div className="mx-auto my-16 h-px w-40 rounded bg-gradient-to-r from-gray-300 via-gray-400 to-gray-300"></div>
+      {/* Blog Section */}
+      <section id="blog" className="bg-white py-16 pt-36">
+        <div className="mx-auto max-w-8xl px-6 py-12 md:px-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: false }}
+            className="text-center text-4xl font-extrabold text-gray-900"
+          >
+            News & Articles
+          </motion.h2>
 
-      {/* NEWS */}
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-gray-700">
+            Explore impactful transformations delivered across different industries and sectors.
+          </p>
+
+          <div className="mt-12 grid gap-10 md:grid-cols-3">
+            {articles?.map((blog, i) => (
+              <motion.div
+                key={i}
+                initial="hidden"
+                whileInView="visible"
+                variants={fadeUp}
+                custom={i * 0.2}
+                className="group cursor-pointer overflow-hidden rounded-xl bg-white shadow-md transition-shadow hover:shadow-xl"
+              >
+                {/* Image with zoom + overlay */}
+                <div className="relative overflow-hidden">
+                  <img
+                    src={blog.image}
+                    alt={blog.title}
+                    className="h-64 w-full transform object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 transition duration-500 ease-out group-hover:bg-transparent"></div>
+                </div>
+
+                {/* Text under the image with fade-up */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.2 }}
+                  className="px-6 py-4"
+                >
+                  <div className="mb-2 text-sm font-semibold text-[#1DC0DA]">{blog.category}</div>
+                  <p className="mb-2 text-sm text-[#6b7c93]">{blog.date}</p>
+                  <h3 className="mb-4 text-xl text-[#0E1C3F]">{blog.title}</h3>
+
+                  {/* Show Details button */}
+                  <button
+                    className="inline-flex items-center gap-3 rounded-md border border-[#1DC0DA] bg-white px-5 py-3 font-semibold text-[#1DC0DA] transition duration-300 hover:bg-[#1DC0DA] hover:text-white"
+                    aria-label={`Show details about ${blog.title}`}
+                  >
+                    <span>Show Details</span>
+                    <FaArrowRight className="transform transition duration-300 group-hover:translate-x-1" />
+                  </button>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* View More button */}
+          <div className="mt-12 flex justify-center">
+            <button
+              type="button"
+              className="hidden items-center gap-2 rounded-full border-2 border-[#0E1C3F] bg-transparent px-6 py-2 text-[#0E1C3F] transition duration-300 hover:border-[#1DC0DA] hover:text-[#1DC0DA] md:flex"
+            >
+              View More
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* NEWS SECTION - IMPROVED */}
       <motion.section
         id="news"
         initial="hidden"
         whileInView="visible"
         variants={fadeUp}
-        custom={0.4}
-        className="mx-auto mb-20 max-w-8xl rounded-xl bg-gray-100 p-10 text-center shadow-md"
+        className="bg-white py-32"
       >
-        <h2 className="mb-4 text-3xl font-semibold text-gray-900">News</h2>
-        <p className="mx-auto max-w-2xl text-gray-700">
-          Stay updated on announcements, events, and organizational milestones.
-        </p>
+        <div className="mx-auto max-w-7xl px-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: false }}
+            className="text-center text-4xl font-extrabold text-gray-900"
+          >
+            Latest News{" "}
+          </motion.h2>
 
-        <div className="mt-10 grid gap-8 sm:grid-cols-2">
-          {[1, 2].map((i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.03 }}
-              className="rounded-xl border border-gray-300 bg-white p-6 shadow-sm transition hover:shadow-md"
-            >
-              <h3 className="text-lg font-semibold text-gray-900">News Update {i}</h3>
-              <p className="mt-2 text-sm text-gray-700">
-                Highlights of recent achievements and announcements.
-              </p>
-            </motion.div>
-          ))}
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-gray-700">
+            Discover the latest updates and announcements from our organization.
+          </p>
+
+          <div className="mt-12 grid gap-12 md:grid-cols-3">
+            {news.map((item, i) => (
+              <motion.div
+                key={i}
+                className="overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200 transition hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                  />
+                </div>
+
+                <div className="px-6 py-6">
+                  <p className="mb-2 text-sm text-[#6b7c93]">{item.date}</p>
+                  <h3 className="text-xl font-semibold text-[#0E1C3F]">{item.title}</h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </motion.section>
 
-      {/* Separator */}
-      <div className="mx-auto my-16 h-px w-40 rounded bg-gradient-to-r from-gray-300 via-gray-400 to-gray-300"></div>
-
-      {/* GALLERY */}
+      {/* GALLERY SECTION - IMPROVED */}
       <motion.section
         id="gallery"
         initial="hidden"
         whileInView="visible"
         variants={fadeUp}
-        custom={0.6}
-        className="mx-auto max-w-8xl rounded-xl bg-gray-100 p-10 text-center shadow-md"
+        className="mx-auto mt-20 max-w-8xl rounded-2xl bg-[#f0f4f8] px-10 py-32 text-center shadow-lg"
       >
-        <h2 className="mb-4 text-3xl font-semibold text-gray-900">Media Gallery</h2>
-        <p className="mx-auto max-w-2xl text-gray-700">
-          A visual journey through events, milestones, and team moments.
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: false }}
+          className="text-center text-4xl font-extrabold text-gray-900"
+        >
+          Media Gallery
+        </motion.h2>
+
+        <p className="mx-auto mt-6 max-w-3xl text-lg text-gray-700">
+          Explore special moments captured from events, gatherings, and achievements.
         </p>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <motion.div
               key={i}
               whileHover={{ scale: 1.05 }}
-              className="h-56 w-full cursor-pointer rounded-xl bg-gray-300 shadow transition hover:shadow-lg"
+              className="h-64 w-full cursor-pointer rounded-xl bg-[#d3e8f9] shadow-md transition hover:shadow-xl"
             />
           ))}
         </div>

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { FaArrowRight, FaPhoneAlt } from "react-icons/fa";
+import { PiBriefcaseLight, PiClipboardTextLight, PiUsersThreeLight } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 
 const fadeUp = {
@@ -16,26 +17,20 @@ const services = [
   {
     title: "Organizational Design",
     desc: "Create effective structures, workflows, and operating models that boost efficiency and enable scalable growth.",
+    icon: <PiBriefcaseLight className="h-12 w-12 text-[#1DC0DA]" />,
+    link: "#executive",
   },
   {
     title: "HR Strategy",
     desc: "Build robust HR frameworks, policies, and talent development plans aligned with organizational objectives.",
+    icon: <PiUsersThreeLight className="h-12 w-12 text-[#1DC0DA]" />,
+    link: "#professional",
   },
   {
     title: "Performance Optimization",
     desc: "Implement systems that measure, develop, and reward performance to drive sustained productivity.",
-  },
-  {
-    title: "Change Management",
-    desc: "Guide organizations through transformation using structured change frameworks and stakeholder engagement.",
-  },
-  {
-    title: "Workforce Planning",
-    desc: "Align talent supply with organizational needs through structured workforce analysis and forecasting.",
-  },
-  {
-    title: "Culture & Engagement",
-    desc: "Strengthen organizational culture and improve engagement through targeted programs and diagnostics.",
+    icon: <PiClipboardTextLight className="h-12 w-12 text-[#1DC0DA]" />,
+    link: "#rpo",
   },
 ];
 
@@ -115,7 +110,7 @@ const Consulting = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Human Capital Consulting
+            Human Capital Solutions that Strengthen Organizations Since 2006{" "}
           </motion.h1>
 
           <motion.button
@@ -205,28 +200,46 @@ const Consulting = () => {
             {/* Overlay */}
             <div className="absolute inset-0 bg-[#0E1C3F] opacity-10"></div>
           </div>
+          {/* INTRO */}
+          <section className="container pb-16 md:max-w-4xl">
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">
+              About Our Human Capital Consulting{" "}
+            </h2>
 
+            <p className="text-lg leading-relaxed text-gray-700">
+              For nearly two decades, Adroyts has supported organizations across the region in building
+              stronger, more agile, and future-ready workforces. Our Human Capital Consulting services are
+              designed to help companies unlock the full potential of their people by aligning talent strategy
+              with business objectives.
+            </p>
+          </section>
           {/* SERVICES */}
           <section className="container mx-auto px-6 py-20">
-            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Consulting Services</h2>
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
-              {services.map(({ title, desc }, i) => (
-                <motion.div
+            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Recruitment Services</h2>
+            <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
+              {services.map(({ title, desc, icon, link }, i) => (
+                <motion.a
                   key={i}
+                  href={link}
                   initial="hidden"
                   whileInView="visible"
                   variants={fadeUp}
+                  custom={i * 0.1}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                  className="group flex flex-col rounded-xl bg-white p-8 shadow-md transition-transform hover:-translate-y-2 hover:shadow-xl"
+                  className="group flex flex-col rounded-xl bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
                 >
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#1DC0DA]/20 text-[#1DC0DA] transition group-hover:bg-[#1DC0DA]/40">
+                    {icon}
+                  </div>
                   <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
                   <p className="flex-grow text-gray-700">{desc}</p>
-                </motion.div>
+                  <span className="mt-4 text-sm font-semibold text-[#1DC0DA] underline decoration-2 underline-offset-2 transition group-hover:text-[#0A9AB8]">
+                    Learn More →
+                  </span>
+                </motion.a>
               ))}
             </div>
           </section>
-
           {/* APPROACH */}
           <section className="container mx-auto px-6 py-20">
             <h2 className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">Our Approach</h2>

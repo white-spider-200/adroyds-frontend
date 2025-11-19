@@ -11,6 +11,7 @@ import MainLayout from "./layouts/MainLayout";
 import AboutUs from "./pages/AboutUs";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
+import Faqs from "./pages/FAQs";
 import Home from "./pages/Home";
 import MediaCenter from "./pages/MediaCenter";
 import NotFound from "./pages/NotFound";
@@ -50,6 +51,7 @@ export default function App() {
         <Route path="/careers" element={<Careers />} />
         <Route path="/media" element={<MediaCenter />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/FAQs" element={<Faqs />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </MainLayout>

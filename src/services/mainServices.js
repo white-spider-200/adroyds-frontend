@@ -11,7 +11,8 @@ const getLangHeaders = (lang) => ({
 
 const mainServices = {
   // ✅ GET
-  getArticles: (lang) => API.get("/articles", getLangHeaders(lang)), // Blogs
+  getArticles: (lang) => API.get("/articles", getLangHeaders(lang)),
+  getNews: (lang) => API.get("/news", getLangHeaders(lang)),
   getTestimonials: (lang) => API.get("/testimonials", getLangHeaders(lang)),
   getClients: (lang) => API.get("/clients", getLangHeaders(lang)),
   getCompanyHighlights: (lang) => API.get("/company-highlights", getLangHeaders(lang)),

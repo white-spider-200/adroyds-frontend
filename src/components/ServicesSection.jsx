@@ -164,7 +164,15 @@ const ServicesSection = () => {
         className="pointer-events-none absolute bottom-0 right-0 h-[300px] w-[300px] rounded-full bg-gradient-to-tr from-purple-700 via-pink-500 to-red-400 opacity-20 blur-3xl"
       />
 
-      <h2 className="mb-6 text-center text-4xl font-bold text-white md:text-5xl">Core Services</h2>
+      <motion.h2
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false }}
+        className="mb-16 text-center text-4xl font-bold tracking-tight text-white md:text-5xl"
+      >
+        Core Services
+      </motion.h2>
 
       <div className="scrollbar-hide mx-auto flex max-w-8xl space-x-4 overflow-x-auto px-6 pt-6 md:px-12">
         {services.map((service) => (
