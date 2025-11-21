@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa"; // import icons
+import { FaCheck, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa"; // import icons
 
 import mainServices from "../services/mainServices";
+import { SplitText } from "../utils/SplitText";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -42,7 +43,7 @@ const Contact = () => {
   return (
     <div className="bg-white font-cairo text-gray-900 selection:bg-blue-200 selection:text-gray-900">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 flex min-h-[calc(70vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
+      <section className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
           src="/assets/WhatsApp-Image-2023-06-26-at-11.12.01-AM.webp"
           alt=""
@@ -50,7 +51,7 @@ const Contact = () => {
         />
 
         {/* Blue Gradient Overlay */}
-        <div className="absolute inset-0 bg-[#192757] opacity-70"></div>
+        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -59,7 +60,7 @@ const Contact = () => {
           className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
         >
           {/* Glass container */}
-          <div className="mt-40 rounded-xl px-8 py-12 md:px-12 md:py-16">
+          <div className="mt-40 rounded-lg px-8 py-12 md:px-12 md:py-16">
             {/* Breadcrumbs */}
             <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
               <ol className="inline-flex space-x-2">
@@ -81,104 +82,146 @@ const Contact = () => {
           </div>
         </motion.div>
       </section>
-      {/* Address & Contact Cards Section */}
-      <section className="mx-auto mb-12 mt-24 flex max-w-5xl flex-col gap-6 px-6 md:flex-row md:justify-center">
-        <div className="flex flex-col items-center gap-4 rounded-xl bg-gray-100 p-16 text-center md:w-1/2">
-          <div className="flex h-32 w-32 items-center justify-center rounded-full bg-[#1DC0DA]">
-            <FaMapMarkerAlt className="text-5xl text-white" />
-          </div>
 
-          <div>
-            <h3 className="mb-1 text-2xl font-bold text-gray-900">Address</h3>
-            <p className="text-xl text-gray-500">
-              60 broklyn golden street, New york. United States of America
-            </p>
-          </div>
-        </div>
-        <div className="flex flex-col items-center gap-4 rounded-xl bg-gray-100 p-16 text-center md:w-1/2">
-          <div className="flex h-32 w-32 items-center justify-center rounded-full bg-[#1DC0DA]">
-            <FaPhoneAlt className="text-5xl text-white" />
-          </div>
-
-          <div>
-            <h3 className="mb-1 text-2xl font-bold text-gray-900">Contact</h3>
-            <p className="text-xl text-gray-500">needhelp@company.com 92 666 888 0000 </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-20 text-center">
-        {/* Subtitle */}
-        <p className="mb-2 text-sm tracking-widest text-[#8b78b1]">CONTACT WITH US</p>
-
-        {/* Title */}
-        <h2 className="mb-12 text-4xl font-extrabold text-[#0f0f19] md:text-5xl">HAVE ANY QUESTIONS?</h2>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="mx-auto max-w-5xl space-y-6 text-left">
-          {/* Two Column Grid */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your name"
-              value={formData.name}
-              onChange={handleChange}
-              className="rounded-xl bg-[#f6f3fa] p-4 text-gray-700 placeholder-gray-500 outline-none"
-              required
-            />
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Email address"
-              value={formData.email}
-              onChange={handleChange}
-              className="rounded-xl bg-[#f6f3fa] p-4 text-gray-700 placeholder-gray-500 outline-none"
-              required
-            />
-
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone number"
-              value={formData.phone}
-              onChange={handleChange}
-              className="rounded-xl bg-[#f6f3fa] p-4 text-gray-700 placeholder-gray-500 outline-none"
-            />
-
-            <input
-              type="text"
-              name="subject"
-              placeholder="Subject"
-              value={formData.subject}
-              onChange={handleChange}
-              className="rounded-xl bg-[#f6f3fa] p-4 text-gray-700 placeholder-gray-500 outline-none"
-              required
-            />
-          </div>
-
-          {/* Message Box */}
-          <textarea
-            name="message"
-            placeholder="Write a message"
-            value={formData.message}
-            onChange={handleChange}
-            className="h-48 w-full rounded-xl bg-[#f6f3fa] p-4 text-gray-700 placeholder-gray-500 outline-none"
-            required
-          />
-
-          {/* Submit Button */}
-          <div className="flex justify-center">
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className="rounded-lg bg-[#1DC0DA] px-12 py-4 font-semibold tracking-widest text-white hover:bg-[#19aac0] disabled:opacity-50"
+      <section id="overview" className="w-full bg-white py-24">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 md:grid-cols-2">
+          {/* RIGHT CONTENT */}
+          <div className="flex flex-col justify-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              className="mb-3 w-fit rounded-md bg-[#e9fcff] px-4 py-2 text-sm font-semibold text-cyan-400"
             >
-              {status === "loading" ? "Sending..." : "SEND A MESSAGE"}
-            </button>
+              Contact Us
+            </motion.div>
+
+            <SplitText className="mb-6 text-4xl font-extrabold text-[#0E1C3F]">
+              Get in Touch Let's Start the Conversation
+            </SplitText>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="mb-6 font-medium leading-relaxed text-gray-600"
+            >
+              We're here to help you find the right staffing solutions for your needs. Whether you're a
+              company looking to hire top talent or a candidate seeking your next career opportunity,
+            </motion.p>
+
+            {/* Feature List */}
+            <div className="flex flex-col gap-3">
+              {[...Array(2)].map((_, idx) => (
+                <div
+                  key={idx}
+                  className="group relative flex cursor-pointer gap-3 rounded-lg bg-gray-100 p-3 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-cyan-400"
+                >
+                  {/* Icon with circle background */}
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 px-4 text-white transition-colors duration-300 group-hover:bg-white group-hover:text-cyan-400">
+                    <FaPhoneAlt className="text-lg" />
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-gray-900 transition-colors duration-300 group-hover:text-white">
+                      Gives us a Call
+                    </h4>
+                    <p className="text-sm leading-snug text-gray-600 transition-colors duration-300 group-hover:text-white">
+                      123-456-7890
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </form>
+          {/* LEFT IMAGES + STATS */}
+          <div className="relative flex gap-4 rounded-xl bg-gray-100 p-2 py-6 md:gap-6">
+            <section className="w-full px-6 text-gray-800">
+              <h2 className="mb-1 text-lg font-extrabold text-gray-900">Send us a Message</h2>
+              <p className="mb-6 text-gray-500">
+                Feel free to reach out to us with any questions, inquiries, or staffing requirements you may
+                have. Our experienced
+              </p>
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                  <input
+                    type="text"
+                    name="firstName"
+                    aria-label="First Name"
+                    placeholder="First Name"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                    className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
+                  />
+                  <input
+                    type="text"
+                    name="lastName"
+                    aria-label="Last Name"
+                    placeholder="Last Name"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                    className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                  <input
+                    type="email"
+                    name="email"
+                    aria-label="Email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
+                  />
+                  <input
+                    type="tel"
+                    name="phone"
+                    aria-label="Phone"
+                    placeholder="Phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
+                  />
+                </div>
+
+                <input
+                  type="text"
+                  name="subject"
+                  aria-label="Subject"
+                  placeholder="Subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
+                  className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
+                />
+
+                <textarea
+                  name="message"
+                  aria-label="Message"
+                  placeholder="Message"
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  className="w-full resize-none rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
+                />
+
+                <div className="text-center">
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="inline-block rounded-md bg-cyan-400 px-12 py-3 text-lg font-semibold text-white transition hover:bg-cyan-500 disabled:opacity-50"
+                  >
+                    {status === "loading" ? "Submitting..." : "Submit Now"}
+                  </button>
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
       </section>
 
       {status === "success" && <p className="mt-4 text-green-600">Message sent successfully!</p>}

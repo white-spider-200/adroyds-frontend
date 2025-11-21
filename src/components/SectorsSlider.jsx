@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import React from "react";
 
+import { SplitText } from "../utils/SplitText";
+
 const sectors = [
   {
     title: "Government",
@@ -46,22 +48,16 @@ const fadeUpVariant = {
 const SectorsSlider = () => {
   return (
     <div className="bg-[#f9fafb] py-14">
-      <div className="mx-auto max-w-7xl px-0 text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: false }}
-          className="mb-16 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl"
-        >
+      <div className="mx-auto max-w-6xl px-6 text-center">
+        <SplitText className="mb-16 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl">
           Sectors
-        </motion.h2>
+        </SplitText>
 
         <div className="flex justify-between">
           {sectors.map((sector, index) => (
             <motion.div
               key={index}
-              className="mx-1.5 min-w-0 flex-1 cursor-pointer rounded-xl bg-black/20 bg-cover p-6 pb-10"
+              className="mx-1.5 min-w-0 flex-1 cursor-pointer rounded-lg bg-black/20 bg-cover p-6 pb-10"
               style={{ backgroundImage: `url(${sector.image})` }}
               variants={fadeUpVariant}
               initial="hidden"

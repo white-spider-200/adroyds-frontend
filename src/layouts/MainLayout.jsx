@@ -63,13 +63,13 @@ const MainLayout = ({ children }) => {
           isScrolled ? "bg-[#0E1C3F]/40 backdrop-blur-md" : ""
         }`}
       >
-        <div className="container mx-auto flex max-w-8xl items-center justify-between p-6 md:px-12">
+        <div className="container mx-auto flex max-w-6xl items-center justify-between p-6 md:px-6">
           {/* Logo */}
           <Link to="/" onClick={scrollToTop} className="flex items-center space-x-2">
             <img
               src="/assets/logo.png" // adjust path based on your file location
               alt="Adroyts Logo"
-              className="h-10 w-auto" // adjust size as needed
+              className="h-9 w-auto" // adjust size as needed
             />
           </Link>
 
@@ -90,14 +90,15 @@ const MainLayout = ({ children }) => {
                 <FaChevronDown className="mt-0.5 text-xs" />
               </button>
               <div
-                className={`absolute left-0 top-full mt-2 w-56 rounded-xl border bg-white py-2 shadow-md transition-all duration-200 ${
+                className={`absolute left-0 top-full mt-2 w-56 rounded-lg border bg-white py-2 shadow-md transition-all duration-200 ${
                   dropdown === "about" ? "visible opacity-100" : "invisible opacity-0"
                 }`}
               >
                 {[
                   { label: "Overview", hash: "#overview" },
-                  { label: "Our Values", hash: "#values" },
+                  { label: "Core Values", hash: "#values" },
                   { label: "Why Adroyts", hash: "#why" },
+                  { label: "Mission & Vision", hash: "#mission-vision" },
                   { label: "Board of Directors", hash: "#board" },
                   { label: "Executive Management", hash: "#executive" },
                 ].map((item) => (
@@ -123,7 +124,7 @@ const MainLayout = ({ children }) => {
                 <FaChevronDown className="mt-0.5 text-xs" />
               </button>
               <div
-                className={`absolute left-0 top-full mt-2 w-60 rounded-xl border bg-white py-2 shadow-md transition-all duration-200 ${
+                className={`absolute left-0 top-full mt-2 w-60 rounded-lg border bg-white py-2 shadow-md transition-all duration-200 ${
                   dropdown === "services" ? "visible opacity-100" : "invisible opacity-0"
                 }`}
               >
@@ -155,19 +156,18 @@ const MainLayout = ({ children }) => {
                 <FaChevronDown className="mt-0.5 text-xs" />
               </button>
               <div
-                className={`absolute left-0 top-full mt-2 w-52 rounded-xl border bg-white py-2 shadow-md transition-all duration-200 ${
+                className={`absolute left-0 top-full mt-2 w-52 rounded-lg border bg-white py-2 shadow-md transition-all duration-200 ${
                   dropdown === "media" ? "visible opacity-100" : "invisible opacity-0"
                 }`}
               >
                 {[
-                  { label: "Case Studies", hash: "#case-studies" },
-                  { label: "Blog", hash: "#blog" },
-                  { label: "News", hash: "#news" },
-                  { label: "Media Center", hash: "#gallery" },
+                  { label: "Blog", hash: "media-center/blogs" },
+                  { label: "News", hash: "media-center/news" },
+                  { label: "Case Studies", hash: "media-center/case-studies" },
                 ].map((item) => (
                   <button
                     key={item.hash}
-                    onClick={() => handleNav(`/media${item.hash}`)}
+                    onClick={() => handleNav(`/${item.hash}`)}
                     className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-blue-50"
                   >
                     {item.label}
@@ -187,7 +187,7 @@ const MainLayout = ({ children }) => {
                 <FaChevronDown className="mt-0.5 text-xs" />
               </button>
               <div
-                className={`absolute left-0 top-full mt-2 w-44 rounded-xl border bg-white py-2 shadow-md transition-all duration-200 ${
+                className={`absolute left-0 top-full mt-2 w-44 rounded-lg border bg-white py-2 shadow-md transition-all duration-200 ${
                   dropdown === "careers" ? "visible opacity-100" : "invisible opacity-0"
                 }`}
               >
@@ -255,7 +255,7 @@ const MainLayout = ({ children }) => {
             ))}
             <button
               onClick={() => handleNav("/contact")}
-              className="w-full rounded-xl bg-white px-4 py-2 text-black shadow"
+              className="w-full rounded-lg bg-white px-4 py-2 text-black shadow"
             >
               {i18n.language === "ar" ? "تواصل الآن" : "Get in Touch"}
             </button>
@@ -271,7 +271,7 @@ const MainLayout = ({ children }) => {
         {/* Inside your footer, wrap key blocks with motion.div and apply item variants */}
 
         <motion.div
-          className="mx-auto grid max-w-8xl gap-10 px-6 py-12 md:grid-cols-12 md:px-12"
+          className="mx-auto grid max-w-6xl gap-10 px-6 py-12 md:grid-cols-12 md:px-12"
           variants={footerItemVariants}
         >
           {/* Your first big block (logo + text + social icons) */}
@@ -389,10 +389,10 @@ const MainLayout = ({ children }) => {
           </motion.div>
         </motion.div>
 
-        <div className="mx-auto max-w-8xl border-t border-gray-700"></div>
+        <div className="mx-auto max-w-6xl border-t border-gray-700"></div>
 
         <motion.div
-          className="mx-auto grid max-w-8xl gap-8 px-6 py-10 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:gap-16"
+          className="mx-auto grid max-w-6xl gap-8 px-6 py-10 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:gap-16"
           variants={footerItemVariants}
         >
           {/* Contact Information */}
@@ -441,11 +441,11 @@ const MainLayout = ({ children }) => {
           </div>
         </motion.div>
 
-        <div className="mx-auto max-w-8xl border-t border-gray-700"></div>
+        <div className="mx-auto max-w-6xl border-t border-gray-700"></div>
       </motion.footer>
 
       <footer className="bg-[#0e1a41]">
-        <div className="m-auto flex max-w-8xl items-center justify-between px-6 py-12 text-center text-sm text-white md:px-12">
+        <div className="m-auto flex max-w-6xl items-center justify-between px-6 py-12 text-center text-sm text-white md:px-12">
           <p>Copyright© {new Date().getFullYear()}. Adroyts Executive Search.</p>
           <div className="flex items-center gap-8">
             <p>Privacy Policy</p>
@@ -458,7 +458,7 @@ const MainLayout = ({ children }) => {
       {showScrollUp && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-4 right-6 z-50 rounded-full bg-[#1dc0da] p-3 text-white shadow-lg transition-transform duration-300 ease-in-out hover:scale-110"
+          className="fixed bottom-4 right-6 z-50 rounded-full bg-cyan-400 p-3 text-white shadow-lg transition-transform duration-300 ease-in-out hover:scale-110"
         >
           <FaArrowUp />
         </button>

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
+import { SplitText } from "../utils/SplitText";
+
 const Careers = () => {
   const location = useLocation();
 
@@ -45,13 +47,13 @@ const Careers = () => {
   return (
     <div className="bg-white font-cairo text-gray-900 selection:bg-blue-200 selection:text-gray-900">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 flex min-h-[calc(70vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
+      <section className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
           src="/assets/WhatsApp-Image-2023-06-26-at-11.12.01-AM.webp"
           alt="Careers Hero"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#192757] opacity-70"></div>
+        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -59,7 +61,7 @@ const Careers = () => {
           transition={{ duration: 1.1, ease: "easeOut" }}
           className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
         >
-          <div className="mt-40 rounded-xl px-8 py-12 md:px-12 md:py-16">
+          <div className="mt-40 rounded-lg px-8 py-12 md:px-12 md:py-16">
             <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
               <ol className="inline-flex space-x-2">
                 <li>
@@ -83,7 +85,9 @@ const Careers = () => {
       {/* Join Us Form Section */}
       <section className="px-6 py-20 pt-36 text-center" id="join">
         <p className="mb-2 text-sm tracking-widest text-[#8b78b1]">JOIN OUR TEAM</p>
-        <h2 className="mb-12 text-4xl font-extrabold text-[#0f0f19] md:text-5xl">Express Your Interest</h2>
+        <SplitText className="mb-12 text-4xl font-extrabold text-[#0f0f19] md:text-5xl">
+          Express Your Interest
+        </SplitText>
 
         <form
           onSubmit={handleSubmit}
@@ -97,7 +101,7 @@ const Careers = () => {
               placeholder="Full Name"
               value={formData.fullName}
               onChange={handleChange}
-              className="rounded-xl bg-[#f6f3fa] p-4 text-gray-700 placeholder-gray-500 outline-none"
+              className="rounded-lg bg-[#f6f3fa] p-4 text-gray-700 placeholder-gray-500 outline-none"
               required
             />
             <input
@@ -106,14 +110,14 @@ const Careers = () => {
               placeholder="Email Address"
               value={formData.email}
               onChange={handleChange}
-              className="rounded-xl bg-[#f6f3fa] p-4 text-gray-700 placeholder-gray-500 outline-none"
+              className="rounded-lg bg-[#f6f3fa] p-4 text-gray-700 placeholder-gray-500 outline-none"
               required
             />
             <input
               type="file"
               name="resume"
               onChange={handleChange}
-              className="col-span-full rounded-xl bg-[#f6f3fa] p-4 text-gray-700 placeholder-gray-500 outline-none"
+              className="col-span-full rounded-lg bg-[#f6f3fa] p-4 text-gray-700 placeholder-gray-500 outline-none"
               accept=".pdf,.doc,.docx"
             />
           </div>
@@ -122,7 +126,7 @@ const Careers = () => {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="rounded-lg bg-[#1DC0DA] px-12 py-4 font-semibold tracking-widest text-white hover:bg-[#19aac0] disabled:opacity-50"
+              className="rounded-lg bg-cyan-400 px-12 py-4 font-semibold tracking-widest text-white hover:bg-[#19aac0] disabled:opacity-50"
             >
               {status === "loading" ? "Sending..." : "Submit Application"}
             </button>
@@ -138,24 +142,24 @@ const Careers = () => {
 
       {/* Job Openings Section */}
       <section id="openings" className="mx-auto max-w-6xl px-6 pb-20 pt-36">
-        <h2 className="mb-12 text-center text-2xl font-semibold text-gray-900">Job Openings</h2>
+        <SplitText className="mb-12 text-center text-2xl font-semibold text-gray-900">Job Openings</SplitText>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <div className="rounded-xl border border-gray-200 bg-gray-50 p-6 shadow transition hover:shadow-lg">
+          <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 shadow transition hover:shadow-lg">
             <h3 className="mb-2 text-lg font-semibold text-gray-900">HR Consultant</h3>
             <p className="mb-6 text-gray-700">
               Support HR transformation projects and organizational development initiatives.
             </p>
-            <button className="rounded bg-[#1DC0DA] px-4 py-2 font-semibold text-white transition hover:bg-[#19aac0]">
+            <button className="rounded bg-cyan-400 px-4 py-2 font-semibold text-white transition hover:bg-[#19aac0]">
               Apply Now
             </button>
           </div>
 
-          <div className="rounded-xl border border-gray-200 bg-gray-50 p-6 shadow transition hover:shadow-lg">
+          <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 shadow transition hover:shadow-lg">
             <h3 className="mb-2 text-lg font-semibold text-gray-900">Talent Acquisition Specialist</h3>
             <p className="mb-6 text-gray-700">
               Source, screen, and recruit top candidates for diverse roles.
             </p>
-            <button className="rounded bg-[#1DC0DA] px-4 py-2 font-semibold text-white transition hover:bg-[#19aac0]">
+            <button className="rounded bg-cyan-400 px-4 py-2 font-semibold text-white transition hover:bg-[#19aac0]">
               Apply Now
             </button>
           </div>

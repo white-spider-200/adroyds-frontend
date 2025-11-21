@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
-import { FaArrowRight, FaPhoneAlt } from "react-icons/fa";
+import { FaArrowRight, FaChalkboardTeacher, FaPhoneAlt, FaUserTie, FaUsersCog } from "react-icons/fa";
 import { PiBriefcaseLight, PiClipboardTextLight, PiUsersThreeLight } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
+
+import { SplitText } from "../../utils/SplitText";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -17,19 +19,19 @@ const services = [
   {
     title: "Professional Development Programs",
     desc: "Structured learning paths designed to enhance communication, leadership, productivity, and workplace readiness skills, empowering professionals to excel.",
-    icon: <PiBriefcaseLight className="h-12 w-12 text-[#1DC0DA]" />,
+    icon: <PiBriefcaseLight className="h-12 w-12 text-cyan-400" />,
     link: "#executive",
   },
   {
     title: "Technical Skills Training",
     desc: "Hands-on courses covering full-stack development, cloud computing, data analytics, and UI/UX fundamentals to prepare learners for tech-driven roles.",
-    icon: <PiUsersThreeLight className="h-12 w-12 text-[#1DC0DA]" />,
+    icon: <PiUsersThreeLight className="h-12 w-12 text-cyan-400" />,
     link: "#professional",
   },
   {
     title: "Customized Corporate Training",
     desc: "Tailored programs aligned with your organization’s goals, focused on workforce upskilling, reskilling, and accelerating talent to meet evolving business needs.",
-    icon: <PiClipboardTextLight className="h-12 w-12 text-[#1DC0DA]" />,
+    icon: <PiClipboardTextLight className="h-12 w-12 text-cyan-400" />,
     link: "#rpo",
   },
 ];
@@ -76,9 +78,9 @@ const Academy = () => {
   }, []);
 
   return (
-    <div className="w-full bg-white font-sans text-[#0E1C3F] selection:bg-[#1DC0DA]/30 selection:text-[#0E1C3F]">
+    <div className="w-full bg-white font-sans text-[#0E1C3F] selection:bg-cyan-400/30 selection:text-[#0E1C3F]">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 flex min-h-[80vh] items-center justify-center bg-cover bg-center px-6 text-center">
+      <section className="relative -mt-40 flex min-h-[calc(60vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
           src="/assets/saudi-arabia-s-digital-transformation-free-photo.jpeg"
           alt="Adroyts Academy Background"
@@ -106,19 +108,13 @@ const Academy = () => {
               <li className="font-semibold text-white">Adroyts Academy</li>
             </ol>
           </nav>
-
-          <motion.h1
-            className="mb-4 text-4xl font-extrabold text-white md:text-5xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            Skill-Building & Training Solutions that Elevate Careers Since 2006{" "}
-          </motion.h1>
+          <SplitText className="mb-4 text-4xl font-extrabold text-white md:text-5xl">
+            Expert Training, Career Growth Since 2006
+          </SplitText>
 
           <motion.button
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="mt-6 rounded-xl border border-white/30 bg-white/10 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-xl"
+            className="mt-6 rounded-lg border border-white/30 bg-white/10 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
@@ -128,15 +124,16 @@ const Academy = () => {
         </motion.div>
       </section>
 
-      <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
+      <div className="mx-auto flex max-w-6xl gap-2 px-6 py-16 text-lg">
         {/* Sidebar Menu */}
         <div className="sticky top-32 h-full flex-1">
-          <div className="flex flex-col rounded-xl bg-gray-100 p-6">
-            <nav className="flex flex-col space-y-6">
+          <div className="flex flex-col rounded-lg bg-gray-100 p-4 py-6">
+            <p className="mb-4 font-semibold">Our Services</p>
+            <nav className="flex flex-col space-y-4">
               {/* Recruitment Solutions */}
               <button
                 onClick={() => navigate("/services/recruitment")}
-                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
               >
                 <span>Recruitment Solutions</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
@@ -145,7 +142,7 @@ const Academy = () => {
               {/* Adroyts Academy (Active) */}
               <button
                 onClick={() => navigate("/services/academy")}
-                className="group flex w-full items-center justify-between rounded-xl bg-[#1DC0DA]/20 px-4 py-2 text-left text-[#0E1C3F] transition-colors hover:bg-[#1DC0DA]/40 hover:text-[#0E1C3F]/90"
+                className="group flex w-full items-center justify-between rounded-lg bg-cyan-400/20 px-4 py-2 text-left text-[#0E1C3F] transition-colors hover:bg-cyan-400/40 hover:text-[#0E1C3F]/90"
               >
                 <span>Adroyts Academy</span>
                 <FaArrowRight className="translate-x-[-6px] text-[#0E1C3F] transition-all duration-300" />
@@ -154,7 +151,7 @@ const Academy = () => {
               {/* Assessment Center */}
               <button
                 onClick={() => navigate("/services/assessment")}
-                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
               >
                 <span>Assessment Center</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
@@ -163,7 +160,7 @@ const Academy = () => {
               {/* Human Capital Consulting */}
               <button
                 onClick={() => navigate("/services/consulting")}
-                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
               >
                 <span>Human Capital Consulting</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
@@ -172,55 +169,48 @@ const Academy = () => {
           </div>
 
           {/* CONTACT BOX WITH OVERLAY */}
-          <div className="relative mt-4 overflow-hidden rounded-xl py-6">
-            <img src="/assets/24-01-17-01-02.jpg" alt="Contact" className="h-56 w-full object-cover" />
+          <div className="relative mt-4 overflow-hidden rounded-lg">
+            <img src="/assets/24-01-17-01-02.jpg" alt="Contact" className="h-48 w-full object-cover" />
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-[#0E1C3F]/90"></div>
 
             {/* Text */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-white">
-              {/* Icon in Circle */}
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white/20 py-5 backdrop-blur-sm">
-                <FaPhoneAlt className="text-2xl text-white" />
-              </div>
+            <div className="absolute inset-0 flex flex-col items-start justify-center space-y-4 p-8 text-white">
+              <p className="text-xl font-semibold">If You Need Any Service Contact With Us</p>
 
-              <p className="text-center text-xl font-semibold uppercase">Best Quality</p>
-              <p className="text-center text-xl font-semibold uppercase">Services</p>
-
-              <p className="mt-4 text-center text-sm opacity-90">Call us Anytime</p>
-              <p className="text-center text-xl font-bold">+ 92 666 888 0000</p>
+              <p className="flex w-full items-center gap-3 rounded-md bg-white px-6 py-2 font-semibold text-[#0E1C3F]">
+                <FaPhoneAlt />+ 92 666 888 0000
+              </p>
             </div>
           </div>
         </div>
 
         {/* Main Content */}
         <div className="flex-[2.3] bg-white px-6">
-          <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-xl">
+          {/* HERO IMAGE */}
+          <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
               src="/assets/saudi-arabia-s-digital-transformation-free-photo.jpeg"
               alt="Recruitment Solutions"
               className="h-full w-full object-cover"
             />
-
-            {/* OVERLAY */}
             <div className="absolute inset-0 bg-[#0E1C3F] opacity-10"></div>
           </div>
-          {/* INTRO */}
+
+          {/* INTRO / ABOUT */}
           <section className="container pb-16 md:max-w-4xl">
             <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">About Adroyts Academy</h2>
-
             <p className="text-lg leading-relaxed text-gray-700">
-              For years, Adroyts Academy has been dedicated to developing the skills and capabilities of
-              learners, professionals, and future leaders across the region. We deliver comprehensive training
-              programs that blend industry-aligned knowledge, hands-on practice, and real-world
-              application—empowering individuals and organizations to grow with confidence and impact.
+              Adroyts Academy is committed to shaping the next generation of professionals and leaders across
+              the region. Our programs combine industry-aligned knowledge, practical experience, and
+              real-world application, empowering individuals and organizations to achieve measurable growth
+              and lasting impact.
             </p>
           </section>
 
           {/* STATS SECTION */}
-          <section className="relative overflow-hidden rounded-lg bg-[#1DC0DA] p-10 text-white md:p-12">
-            {/* Polygon overlay */}
+          <section className="relative overflow-hidden rounded-lg bg-cyan-400 p-10 text-white md:p-12">
             <svg
               className="absolute left-0 top-0 h-full w-full opacity-20"
               xmlns="http://www.w3.org/2000/svg"
@@ -232,14 +222,16 @@ const Academy = () => {
               <polygon points="800,400 0,400 0,300 800,100" fill="#6c35d9" />
             </svg>
 
-            <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
+            <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
               <div className="flex flex-1 justify-between">
-                {stats.map(({ num, label }, i) => (
+                {[
+                  { num: 15, label: "Years of Trusted Training" },
+                  { num: 500, label: "Professionals Empowered" },
+                  { num: 1000, label: "Program Graduates Across Industries" },
+                ].map(({ num, label }, i) => (
                   <div
                     key={i}
-                    className={`flex flex-col items-center px-6 ${
-                      i < stats.length - 1 ? "border-r border-white/30" : ""
-                    }`}
+                    className={`flex flex-col items-center px-6 ${i < 2 ? "border-r border-white/30" : ""}`}
                   >
                     <div className="text-4xl font-bold">{num.toLocaleString()}</div>
                     <div className="mt-1 text-center text-xs tracking-widest">{label}</div>
@@ -248,11 +240,31 @@ const Academy = () => {
               </div>
             </div>
           </section>
+
           {/* SERVICES */}
           <section className="container mx-auto px-6 py-20">
             <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Recruitment Services</h2>
             <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
-              {services.map(({ title, desc, icon, link }, i) => (
+              {[
+                {
+                  title: "Executive Talent Acquisition",
+                  desc: "Connect top-tier professionals to drive strategic growth and strengthen your leadership team.",
+                  icon: <FaUserTie size={24} />,
+                  link: "#",
+                },
+                {
+                  title: "Corporate Training Programs",
+                  desc: "Develop high-performing teams with tailored learning experiences designed for real-world impact.",
+                  icon: <FaChalkboardTeacher size={24} />,
+                  link: "#",
+                },
+                {
+                  title: "Leadership Development Workshops",
+                  desc: "Equip leaders with the skills to inspire, innovate, and lead effectively in dynamic environments.",
+                  icon: <FaUsersCog size={24} />,
+                  link: "#",
+                },
+              ].map(({ title, desc, icon, link }, i) => (
                 <motion.a
                   key={i}
                   href={link}
@@ -261,14 +273,14 @@ const Academy = () => {
                   variants={fadeUp}
                   custom={i * 0.1}
                   viewport={{ once: true }}
-                  className="group flex flex-col rounded-xl bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
+                  className="group flex flex-col rounded-lg bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
                 >
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#1DC0DA]/20 text-[#1DC0DA] transition group-hover:bg-[#1DC0DA]/40">
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-400 transition group-hover:bg-cyan-400/40">
                     {icon}
                   </div>
                   <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
                   <p className="flex-grow text-gray-700">{desc}</p>
-                  <span className="mt-4 text-sm font-semibold text-[#1DC0DA] underline decoration-2 underline-offset-2 transition group-hover:text-[#0A9AB8]">
+                  <span className="mt-4 text-sm font-semibold text-cyan-400 underline decoration-2 underline-offset-2 transition group-hover:text-[#0A9AB8]">
                     Learn More →
                   </span>
                 </motion.a>
@@ -280,7 +292,24 @@ const Academy = () => {
           <section className="container mx-auto px-6 py-20">
             <h2 className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">Our Training Approach</h2>
             <div className="mx-auto max-w-5xl space-y-10">
-              {trainingSteps.map(({ title, desc }, i) => (
+              {[
+                {
+                  title: "Needs Assessment",
+                  desc: "We collaborate with your organization to identify skill gaps and strategic objectives.",
+                },
+                {
+                  title: "Customized Curriculum",
+                  desc: "Our programs are tailored to meet your team’s unique goals and industry requirements.",
+                },
+                {
+                  title: "Hands-On Learning",
+                  desc: "Practical exercises, real-world case studies, and interactive sessions drive actionable skills.",
+                },
+                {
+                  title: "Continuous Evaluation",
+                  desc: "Regular assessments and feedback ensure measurable outcomes and long-term retention.",
+                },
+              ].map(({ title, desc }, i) => (
                 <motion.div
                   key={i}
                   initial="hidden"
@@ -308,7 +337,12 @@ const Academy = () => {
               Why Choose Adroyts Academy
             </h2>
             <ul className="mx-auto max-w-4xl list-inside list-disc space-y-4 text-lg text-gray-700">
-              {whyChooseUs.map((point, i) => (
+              {[
+                "Proven track record of transforming professionals into industry leaders.",
+                "Industry-aligned programs designed for practical, real-world application.",
+                "Expert instructors with decades of leadership and corporate experience.",
+                "Customized solutions to meet organizational and individual objectives.",
+              ].map((point, i) => (
                 <motion.li
                   key={i}
                   initial="hidden"
@@ -325,22 +359,23 @@ const Academy = () => {
 
           {/* FINAL CTA */}
           <section className="relative bg-white px-6 py-20 text-center">
-            <h2 className="mb-6 text-4xl font-bold tracking-tight text-[#1DC0DA]">
-              Ready to Invest in Your Team’s Growth?
+            <h2 className="mb-6 text-4xl font-bold tracking-tight text-cyan-400">
+              Invest in Your Team. Unlock Their Full Potential.
             </h2>
             <p className="mx-auto mb-10 max-w-3xl text-lg text-[#0E1C3F]">
-              Join hundreds of organizations and professionals who trust Adroyts Academy for impactful,
-              results-driven training.
+              Join the hundreds of organizations and professionals who rely on Adroyts Academy for
+              cutting-edge, results-driven training. Empower your teams with the skills and knowledge to excel
+              in a competitive world.
             </p>
 
-            <button className="rounded-xl border border-[#1DC0DA] bg-white px-10 py-4 text-lg font-semibold text-[#0E1C3F] shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-[#1DC0DA]/40">
-              Contact Us
+            <button className="rounded-lg border border-cyan-400 bg-white px-10 py-4 text-lg font-semibold text-[#0E1C3F] shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-cyan-400/40">
+              Get Started Today
             </button>
 
-            {/* Sticky floating CTA */}
+            {/* Sticky floating CTA for mobile */}
             <a
               href="#contact"
-              className="fixed bottom-6 right-6 z-50 rounded-full bg-[#1DC0DA] p-4 text-white shadow-lg transition hover:bg-[#17a8bb] md:hidden"
+              className="fixed bottom-6 right-6 z-50 rounded-full bg-cyan-400 p-4 text-white shadow-lg transition hover:bg-[#17a8bb] md:hidden"
               aria-label="Contact Us"
               title="Contact Us"
             >

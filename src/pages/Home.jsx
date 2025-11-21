@@ -2,12 +2,14 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaCalendarAlt } from "react-icons/fa";
+import { LuArrowUpRight } from "react-icons/lu";
 
 import SectorsSlider from "../components/SectorsSlider";
 import ServicesSection from "../components/ServicesSection";
 import { TestimonialsCarousel } from "../components/TestimonialsCarousel";
 import mainServices from "../services/mainServices";
+import { SplitText } from "../utils/SplitText";
 
 const buttonHoverPrimary = {
   scale: 1.05,
@@ -151,9 +153,9 @@ const Home = () => {
           viewport={{ once: false, amount: 0.3 }}
           variants={scaleFadeContainer}
         >
-          <motion.h1 className="mb-8 text-3xl font-bold text-white md:text-5xl" variants={scaleFadeItem}>
+          <SplitText className="mb-8 text-3xl font-bold text-white md:text-5xl">
             Building the Future Workforce
-          </motion.h1>
+          </SplitText>
 
           <motion.p className="mb-20 text-2xl text-[#d2d2d2]" variants={scaleFadeItem}>
             Innovative recruitment, HR academy training, and human capital consulting
@@ -162,8 +164,12 @@ const Home = () => {
           <motion.div className="flex items-center justify-center space-x-8" variants={scaleFadeItem}>
             <motion.div className="flex items-center justify-center space-x-8" variants={fadeUpItem}>
               <motion.button
-                className="rounded-full bg-[#1dc0da] px-6 py-4 font-bold text-white shadow-md"
-                whileHover={buttonHoverPrimary}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                whileHover={{ scale: 1.1, backgroundColor: "#22d3ee" }}
+                className="rounded-full bg-cyan-400 px-6 py-4 font-bold text-white shadow-md"
               >
                 EXPLORE OUR SERVICES
               </motion.button>
@@ -180,7 +186,7 @@ const Home = () => {
       >
         {/* About Section */}
         <motion.section
-          className="relative z-20 mx-auto max-w-7xl rounded-xl bg-white bg-opacity-70 p-8 md:p-12"
+          className="relative z-20 mx-auto max-w-6xl rounded-lg bg-white bg-opacity-70 p-8 md:p-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false }}
@@ -206,7 +212,7 @@ const Home = () => {
 
         {/* Stats Section */}
         <motion.section
-          className="relative z-20 mx-auto mt-12 flex max-w-7xl flex-wrap justify-around gap-8 rounded-xl bg-white bg-opacity-70 p-8 text-center md:p-12"
+          className="relative z-20 mx-auto mt-12 flex max-w-6xl flex-wrap justify-around gap-8 rounded-lg bg-white bg-opacity-70 p-8 text-center md:p-12"
           whileInView="visible"
           viewport={{ once: false }}
           variants={fadeUpContainer}
@@ -224,7 +230,7 @@ const Home = () => {
             return (
               <motion.div
                 key={item.label}
-                className="flex flex-col items-center rounded-xl py-0"
+                className="flex flex-col items-center rounded-lg py-0"
                 variants={fadeUp}
                 custom={index * 0.2}
               >
@@ -259,15 +265,9 @@ const Home = () => {
       {/* Trusted Companies */}
       <section className="bg-white py-20">
         <div className="text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: false }}
-            className="mb-16 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl"
-          >
-            Trusted by...
-          </motion.h2>
+          <SplitText className="mb-16 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl">
+            Trusted by
+          </SplitText>
           <div className="relative overflow-hidden">
             <div className="animate-marquee flex space-x-24">
               {[...clients, ...clients].map((client, index) => (
@@ -287,10 +287,10 @@ const Home = () => {
 
       {/* Case Studies */}
       <section
-        className="bg-gray-50 bg-cover p-12 py-20 pt-40"
+        className="bg-gray-50 bg-cover py-16 pt-40 md:py-20"
         style={{ backgroundImage: `url('/assets/studies-bg.png')` }}
       >
-        <div className="mx-auto max-w-8xl px-6 md:flex md:items-start md:justify-between md:gap-12 md:px-12">
+        <div className="mx-auto max-w-6xl px-6 md:flex md:items-start md:justify-between md:gap-12">
           {/* Left Side: Title, description, button */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -298,13 +298,18 @@ const Home = () => {
             viewport={{ once: false }}
             className="mb-12 max-w-xl md:mb-0"
           >
-            <h2 className="mb-6 text-6xl font-bold text-white">Case Studies</h2>
-            <p className="mb-8 text-xl leading-relaxed text-white">
+            <SplitText className="mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl">
+              Case Studies
+            </SplitText>
+            <p className="mb-8 max-w-lg text-base leading-relaxed text-white sm:text-lg md:text-xl">
               Our case studies show real examples of how we help companies find the right people and improve
               their hiring process.
-              <br /> Each story explains the company’s problem, what we did to solve it, and the results they
-              achieved. <br /> These examples show how our recruitment and HR solutions make hiring faster,
-              easier, and more effective.
+              <br />
+              Each story explains the company’s problem, what we did to solve it, and the results they
+              achieved.
+              <br />
+              These examples show how our recruitment and HR solutions make hiring faster, easier, and more
+              effective.
             </p>
             <button className="flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-gray-900 transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white">
               <span>All case studies</span>
@@ -312,8 +317,8 @@ const Home = () => {
             </button>
           </motion.div>
 
-          {/* Right Side: Two cards side-by-side */}
-          <div className="grid grid-cols-1 gap-8 md:w-2/3 md:grid-cols-2">
+          {/* Right Side: Two cards side-by-side on md+, stacked on sm */}
+          <div className="grid w-full gap-6 md:w-2/3 md:grid-cols-2">
             {caseStudies.slice(0, 2).map((caseStudy, index) => (
               <motion.div
                 key={caseStudy.id}
@@ -321,16 +326,14 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ delay: index * 0.2 }}
-                className="overflow-hidden rounded-xl bg-white shadow-lg transition hover:shadow-2xl"
+                className="flex flex-col justify-between overflow-hidden rounded-lg bg-white p-8 shadow-lg transition hover:shadow-2xl"
               >
-                <div className="flex h-full flex-col justify-between p-10">
-                  <div>
-                    <h3 className="mb-3 text-3xl font-bold text-[#192757]">{caseStudy.title}</h3>
-                    <p className="text-xl text-[#878da4]">{caseStudy.description}</p>
-                  </div>
-                  <div className="mt-6 cursor-pointer self-end rounded-full border-2 border-[#192757] p-4 text-gray-900 transition-transform duration-300 ease-in-out hover:scale-110">
-                    <FaArrowRight />
-                  </div>
+                <div>
+                  <h3 className="mb-3 text-2xl font-bold text-[#192757] sm:text-3xl">{caseStudy.title}</h3>
+                  <p className="text-base text-[#878da4] sm:text-xl">{caseStudy.description}</p>
+                </div>
+                <div className="mt-6 cursor-pointer self-end rounded-full border-2 border-[#192757] p-3 text-gray-900 transition-transform duration-300 ease-in-out hover:scale-110 sm:p-4">
+                  <FaArrowRight />
                 </div>
               </motion.div>
             ))}
@@ -348,16 +351,10 @@ const Home = () => {
 
       {/* Blog Section */}
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-8xl px-6 py-12 md:px-12">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: false }}
-            className="mb-12 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl"
-          >
+        <div className="mx-auto max-w-6xl px-6 py-12">
+          <SplitText className="mb-12 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl">
             News & Articles
-          </motion.h2>
+          </SplitText>
 
           <div className="grid gap-10 md:grid-cols-3">
             {articles?.map((blog, i) => (
@@ -367,35 +364,51 @@ const Home = () => {
                 whileInView="visible"
                 variants={fadeUp}
                 custom={i * 0.2}
-                className="group cursor-pointer overflow-hidden rounded-xl bg-white shadow-md transition-shadow hover:shadow-xl"
+                whileHover={{ y: -8 }}
+                transition={{ type: "tween", duration: 0.6, ease: "easeOut" }}
+                className="group flex h-full flex-col overflow-hidden rounded-lg bg-gray-100"
               >
-                {/* Image with zoom + overlay */}
                 <div className="relative overflow-hidden">
                   <img
                     src={blog.image}
                     alt={blog.title}
-                    className="h-64 w-full transform object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                    className="h-64 w-full transform object-cover transition-transform duration-700 ease-out group-hover:rotate-[6deg] group-hover:scale-110"
                   />
                   <div className="absolute inset-0 transition duration-500 ease-out group-hover:bg-transparent"></div>
                 </div>
-                {/* Text under the image with fade-up */}
+
+                {/* Text and button container */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.2 }}
-                  className="px-6 py-4"
+                  className="flex flex-grow flex-col px-6 py-4"
                 >
-                  <div className="mb-2 text-sm font-semibold text-[#1DC0DA]">{blog.category}</div>
-                  <p className="mb-2 text-sm text-[#6b7c93]">{blog.date}</p>
-                  <h3 className="mb-4 text-xl text-[#0E1C3F]">{blog.title}</h3>
-                  {/* Show Details button */}
-                  <button
-                    className="inline-flex items-center gap-3 rounded-md border border-[#1DC0DA] bg-white px-5 py-3 font-semibold text-[#1DC0DA] transition duration-300 hover:bg-[#1DC0DA] hover:text-white"
-                    aria-label={`Show details about ${blog.title}`}
+                  <div className="mb-2 text-sm font-semibold text-cyan-400">{blog.category}</div>
+                  <p className="mb-2 flex items-center gap-2 text-sm text-[#6b7c93]">
+                    <FaCalendarAlt className="text-black" />
+                    {blog.date}
+                  </p>
+                  {/* Title as clickable link */}
+                  <a
+                    href={blog.url}
+                    className="mb-4 cursor-pointer text-xl font-semibold text-[#0E1C3F] transition duration-300 hover:text-cyan-400"
+                    aria-label={`Read more about ${blog.title}`}
                   >
-                    <span>Show Details</span>
-                    <FaArrowRight className="transform transition duration-300 group-hover:translate-x-1" />
-                  </button>
+                    {blog.title}
+                  </a>
+                  {/* Spacer to push button down */}
+                  <div className="flex-grow" />
+
+                  {/* Read More button */}
+                  <a
+                    href={blog.url}
+                    className="inline-flex w-max cursor-pointer items-center gap-1 rounded-md bg-white font-semibold text-black transition duration-300 hover:text-cyan-400"
+                    aria-label={`Read more about ${blog.title}`}
+                  >
+                    <span>Read More</span>
+                    <LuArrowUpRight className="transform transition duration-300" />
+                  </a>
                 </motion.div>
               </motion.div>
             ))}
@@ -404,7 +417,7 @@ const Home = () => {
           <div className="mt-12 flex justify-center">
             <button
               type="button"
-              className="hidden items-center gap-2 rounded-full border-2 border-[#0E1C3F] bg-transparent px-6 py-2 text-[#0E1C3F] transition duration-300 hover:border-[#1DC0DA] hover:text-[#1DC0DA] md:flex"
+              className="hidden items-center gap-2 rounded-full border-2 border-[#0E1C3F] bg-transparent px-6 py-2 text-[#0E1C3F] transition duration-300 hover:border-cyan-400 hover:text-cyan-400 md:flex"
             >
               View More
             </button>
@@ -414,15 +427,17 @@ const Home = () => {
 
       <section className="bg-[#eceff1] text-gray-300">
         <motion.div
-          className="mx-auto flex max-w-8xl items-center justify-between gap-10 px-6 py-12 md:px-12"
+          className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-12 md:flex-row md:gap-10 md:px-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
           variants={fadeUp}
         >
           <div>
-            <h3 className="text-[40px] font-bold text-[#192757]">Ready for Next-Gen Recruitment Tools?</h3>
-            <p className="text-[26px] text-[#878da4]">
+            <h3 className="mb-2 text-2xl font-bold text-[#192757] sm:text-3xl md:text-4xl">
+              Ready for Next-Gen Recruitment Tools?
+            </h3>
+            <p className="text-base text-[#878da4] sm:text-lg md:text-xl">
               Start your digital journey with a platform trusted by brands in Saudi Arabia.
             </p>
           </div>

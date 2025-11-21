@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaPlusCircle } from "react-icons/fa";
 
+import { SplitText } from "../utils/SplitText";
+
 const services = [
   {
     id: 1,
@@ -41,22 +43,36 @@ const services = [
   },
 ];
 
-const COLLAPSED_WIDTH_DESKTOP = 120;
+const COLLAPSED_WIDTH_DESKTOP = 100;
 const COLLAPSED_WIDTH_MOBILE = 80;
-const EXPANDED_WIDTH_DESKTOP = 900;
+const EXPANDED_WIDTH_DESKTOP = 780;
 const EXPANDED_WIDTH_MOBILE = "100%";
 const CARD_HEIGHT_DESKTOP = 500;
 const CARD_HEIGHT_MOBILE = 320;
 
 const ServiceCard = ({ service, isActive, onHover }) => {
   const [contentVisible, setContentVisible] = useState(isActive);
+  const [isMobile, setIsMobile] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 0);
 
-  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+  // Update isMobile and windowWidth on resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize(); // initial check
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const collapsedWidth = isMobile ? COLLAPSED_WIDTH_MOBILE : COLLAPSED_WIDTH_DESKTOP;
-  const expandedWidth = isMobile ? window.innerWidth : EXPANDED_WIDTH_DESKTOP;
+  const expandedWidth = isMobile ? windowWidth * 0.95 : EXPANDED_WIDTH_DESKTOP;
   const cardHeight = isMobile ? CARD_HEIGHT_MOBILE : CARD_HEIGHT_DESKTOP;
 
-  // ⏱ Delay showing content for 1 second after hover
+  // Delay showing content for 400ms after hover
   useEffect(() => {
     let timeout;
     if (isActive) {
@@ -72,31 +88,34 @@ const ServiceCard = ({ service, isActive, onHover }) => {
       layout
       animate={{
         width: isActive ? expandedWidth : collapsedWidth,
-        padding: isActive ? 32 : 16,
+        padding: isActive ? (isMobile ? 16 : 32) : isMobile ? 8 : 16,
         height: cardHeight,
       }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
-      className="relative flex flex-shrink-0 cursor-pointer flex-col justify-end overflow-hidden rounded-xl"
+      className="relative flex flex-shrink-0 cursor-pointer flex-col justify-end overflow-hidden rounded-lg shadow-lg"
       style={{
         backgroundImage: `url(${service.image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         minWidth: collapsedWidth,
+        boxShadow: isActive ? "0 10px 25px rgba(0,0,0,0.3)" : "none",
       }}
       onMouseEnter={() => onHover(service.id)}
       onMouseLeave={() => onHover(null)}
+      onTouchStart={() => onHover(service.id)} // touch support (mobile)
+      onTouchEnd={() => onHover(null)}
     >
       {/* Overlay */}
       <motion.div
-        className="absolute inset-0 rounded-xl bg-[#0e1a4137]"
+        className="absolute inset-0 rounded-lg bg-[#0e1a4137]"
         animate={{ opacity: isActive ? 0.3 : 0.6 }}
         transition={{ duration: 0.45, ease: "easeInOut" }}
       />
 
       {/* Plus Icon */}
       {!isActive && (
-        <div className="absolute bottom-4 right-12 text-white opacity-75 transition-opacity duration-300 group-hover:opacity-100">
+        <div className="absolute bottom-4 right-8 text-white opacity-75 transition-opacity duration-300 group-hover:opacity-100">
           <FaPlusCircle size={28} />
         </div>
       )}
@@ -105,7 +124,7 @@ const ServiceCard = ({ service, isActive, onHover }) => {
       {isActive && (
         <motion.div
           aria-hidden="true"
-          className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-500 opacity-30 blur-3xl"
+          className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-500 opacity-30 blur-3xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -114,28 +133,36 @@ const ServiceCard = ({ service, isActive, onHover }) => {
 
       {/* Rotating Title */}
       <h3
-        className={`absolute w-80 text-2xl leading-tight text-white transition-transform duration-1000 ease-linear ${
+        className={`absolute w-72 text-2xl leading-tight text-white transition-transform duration-1000 ease-linear ${
           isActive
-            ? "left-10 top-10 translate-x-0 translate-y-0 rotate-0"
-            : "bottom-72 left-[50px] -translate-x-1/2 rotate-[-90deg] text-right"
+            ? "left-6 top-6 translate-x-0 translate-y-0 rotate-0"
+            : "bottom-72 left-[40px] -translate-x-1/2 rotate-[-90deg] text-right"
         }`}
+        style={{
+          fontSize: isMobile ? "1.1rem" : "1.5rem",
+          width: isMobile ? 180 : 298,
+        }}
       >
         {service.title}
       </h3>
 
-      {/* Content (shows after 1 second) */}
+      {/* Content (shows after delay) */}
       <motion.div
-        className="relative z-10 max-w-[600px] select-none text-white"
+        className="relative z-10 max-w-full select-none text-white"
         initial={{ opacity: 0 }}
         animate={{ opacity: contentVisible ? 1 : 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
         style={{
           pointerEvents: contentVisible ? "auto" : "none",
           minHeight: "180px",
+          maxWidth: isMobile ? "90%" : "600px",
+          paddingBottom: isMobile ? 16 : 0,
         }}
       >
-        <h3 className="text-3xl font-bold">{service.subtitle}</h3>
-        <p className="mt-2 whitespace-normal break-words text-lg">{service.description}</p>
+        <h3 className={`text-2xl font-bold ${isMobile ? "text-xl" : "text-3xl"}`}>{service.subtitle}</h3>
+        <p className={`mt-2 whitespace-normal break-words text-base ${isMobile ? "text-sm" : "text-lg"}`}>
+          {service.description}
+        </p>
 
         <button
           className={`mt-6 flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-gray-900 transition duration-300 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white ${
@@ -153,28 +180,22 @@ const ServicesSection = () => {
   const [hoveredId, setHoveredId] = useState(null);
 
   return (
-    <section className="relative overflow-hidden bg-[#0E1C3F] py-24">
+    <section className="relative overflow-hidden bg-[#0E1C3F] py-16 sm:py-24">
       {/* Decorative Backgrounds */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-20 -top-20 h-[400px] w-[400px] rounded-full bg-gradient-to-tr from-blue-600 via-cyan-500 to-teal-400 opacity-20 blur-3xl"
+        className="pointer-events-none absolute -left-20 -top-20 h-[400px] w-[400px] rounded-full bg-gradient-to-tr from-blue-600 via-cyan-400 to-teal-400 opacity-20 blur-3xl"
       />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute bottom-0 right-0 h-[300px] w-[300px] rounded-full bg-gradient-to-tr from-purple-700 via-pink-500 to-red-400 opacity-20 blur-3xl"
       />
 
-      <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false }}
-        className="mb-16 text-center text-4xl font-bold tracking-tight text-white md:text-5xl"
-      >
+      <SplitText className="mb-12 text-center text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
         Core Services
-      </motion.h2>
+      </SplitText>
 
-      <div className="scrollbar-hide mx-auto flex max-w-8xl space-x-4 overflow-x-auto px-6 pt-6 md:px-12">
+      <div className="scrollbar-hide mx-auto flex max-w-6xl space-x-4 overflow-x-auto px-4 sm:px-6">
         {services.map((service) => (
           <ServiceCard
             key={service.id}

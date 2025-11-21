@@ -11,6 +11,8 @@ import {
 } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 
+import { SplitText } from "../../utils/SplitText";
+
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (delay = 0) => ({
@@ -24,19 +26,19 @@ const servicesList = [
   {
     title: "Executive Search",
     desc: "Identifying and engaging exceptional leaders who drive transformation.",
-    icon: <PiBriefcaseLight className="h-12 w-12 text-[#1DC0DA]" />,
+    icon: <PiBriefcaseLight className="h-12 w-12 text-cyan-400" />,
     link: "#executive",
   },
   {
     title: "Professional Search",
     desc: "Delivering high-performing professionals to power your business growth.",
-    icon: <PiUsersThreeLight className="h-12 w-12 text-[#1DC0DA]" />,
+    icon: <PiUsersThreeLight className="h-12 w-12 text-cyan-400" />,
     link: "#professional",
   },
   {
     title: "RPO (Recruitment Process Outsourcing)",
     desc: "Full-cycle recruitment ownership from sourcing to onboarding.",
-    icon: <PiClipboardTextLight className="h-12 w-12 text-[#1DC0DA]" />,
+    icon: <PiClipboardTextLight className="h-12 w-12 text-cyan-400" />,
     link: "#rpo",
   },
 ];
@@ -78,9 +80,9 @@ const Recruitment = () => {
   }, []);
 
   return (
-    <div className="w-full bg-white font-sans text-[#0E1C3F] selection:bg-[#1DC0DA]/30 selection:text-[#0E1C3F]">
+    <div className="w-full bg-white font-sans text-[#0E1C3F] selection:bg-cyan-400/30 selection:text-[#0E1C3F]">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 flex min-h-[80vh] items-center justify-center bg-cover bg-center px-6 text-center">
+      <section className="relative -mt-40 flex min-h-[calc(60vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
           src="/assets/jobs-arabian-copy-scaled.png"
           alt="Recruitment Solutions"
@@ -109,18 +111,13 @@ const Recruitment = () => {
             </ol>
           </nav>
 
-          <motion.h1
-            className="mb-4 text-4xl font-extrabold text-white md:text-5xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
+          <SplitText className="mb-4 text-4xl font-extrabold text-white md:text-5xl">
             Recruitment Solutions that Empower Organizations Since 2006
-          </motion.h1>
+          </SplitText>
 
           <motion.button
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="mt-6 rounded-xl border border-white/30 bg-white/10 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-xl"
+            className="mt-6 rounded-lg border border-white/30 bg-white/10 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
@@ -130,15 +127,16 @@ const Recruitment = () => {
         </motion.div>
       </section>
 
-      <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
+      <div className="mx-auto flex max-w-6xl gap-2 px-6 py-16 text-lg">
         <div className="sticky top-32 h-full flex-1">
           {/* MENU BOX */}
-          <div className="flex flex-col rounded-xl bg-gray-100 p-6">
-            <nav className="flex flex-col space-y-6">
+          <div className="flex flex-col rounded-lg bg-gray-100 p-4 py-6">
+            <p className="mb-4 font-semibold">Our Services</p>
+            <nav className="flex flex-col space-y-4">
               {/* Recruitment Solutions (ACTIVE) */}
               <button
                 onClick={() => navigate("/services/recruitment")}
-                className="group flex w-full items-center justify-between rounded-xl bg-white px-4 py-2 text-left text-[#0E1C3F] transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg bg-white px-4 py-2 text-left font-semibold text-[#0E1C3F] transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
               >
                 <span>Recruitment Solutions</span>
                 <FaArrowRight className="translate-x-[-6px] transition-all duration-300" />
@@ -147,7 +145,7 @@ const Recruitment = () => {
               {/* Adroyts Academy */}
               <button
                 onClick={() => navigate("/services/academy")}
-                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
               >
                 <span>Adroyts Academy</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
@@ -156,7 +154,7 @@ const Recruitment = () => {
               {/* Assessment Center */}
               <button
                 onClick={() => navigate("/services/assessment")}
-                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
               >
                 <span>Assessment Center</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
@@ -165,7 +163,7 @@ const Recruitment = () => {
               {/* Human Capital Consulting */}
               <button
                 onClick={() => navigate("/services/consulting")}
-                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
               >
                 <span>Human Capital Consulting</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
@@ -174,30 +172,25 @@ const Recruitment = () => {
           </div>
 
           {/* CONTACT BOX WITH OVERLAY */}
-          <div className="relative mt-4 overflow-hidden rounded-xl py-6">
-            <img src="/assets/24-01-17-01-02.jpg" alt="Contact" className="h-56 w-full object-cover" />
+          <div className="relative mt-4 overflow-hidden rounded-lg">
+            <img src="/assets/24-01-17-01-02.jpg" alt="Contact" className="h-48 w-full object-cover" />
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-[#0E1C3F]/90"></div>
 
             {/* Text */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-white">
-              {/* Icon in Circle */}
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white/20 py-5 backdrop-blur-sm">
-                <FaPhoneAlt className="text-2xl text-white" />
-              </div>
+            <div className="absolute inset-0 flex flex-col items-start justify-center space-y-4 p-8 text-white">
+              <p className="text-xl font-semibold">If You Need Any Service Contact With Us</p>
 
-              <p className="text-center text-xl font-semibold uppercase">Best Quality</p>
-              <p className="text-center text-xl font-semibold uppercase">Services</p>
-
-              <p className="mt-4 text-center text-sm opacity-90">Call us Anytime</p>
-              <p className="text-center text-xl font-bold">+ 92 666 888 0000</p>
+              <p className="flex w-full items-center gap-3 rounded-md bg-white px-6 py-2 font-semibold text-[#0E1C3F]">
+                <FaPhoneAlt />+ 92 666 888 0000
+              </p>
             </div>
           </div>
         </div>
 
         <div className="flex-[2.3] bg-white px-6">
-          <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-xl">
+          <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
               src="/assets/jobs-arabian-copy-scaled.png"
               alt="Recruitment Solutions"
@@ -222,7 +215,7 @@ const Recruitment = () => {
           </section>
 
           {/* STATS SECTION */}
-          <section className="relative overflow-hidden rounded-lg bg-[#1DC0DA] p-10 text-white md:p-12">
+          <section className="relative overflow-hidden rounded-lg bg-cyan-400 p-10 text-white md:p-12">
             {/* Polygon overlay */}
             <svg
               className="absolute left-0 top-0 h-full w-full opacity-20"
@@ -235,7 +228,7 @@ const Recruitment = () => {
               <polygon points="800,400 0,400 0,300 800,100" fill="#6c35d9" />
             </svg>
 
-            <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
+            <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
               {/* Stats */}
               <div className="flex flex-1 justify-between">
                 {statsData.map(({ icon, num, suffix, label }, i) => (
@@ -277,14 +270,14 @@ const Recruitment = () => {
                   variants={fadeUp}
                   custom={i * 0.1}
                   viewport={{ once: true }}
-                  className="group flex flex-col rounded-xl bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
+                  className="group flex flex-col rounded-lg bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
                 >
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#1DC0DA]/20 text-[#1DC0DA] transition group-hover:bg-[#1DC0DA]/40">
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-400 transition group-hover:bg-cyan-400/40">
                     {icon}
                   </div>
                   <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
                   <p className="flex-grow text-gray-700">{desc}</p>
-                  <span className="mt-4 text-sm font-semibold text-[#1DC0DA] underline decoration-2 underline-offset-2 transition group-hover:text-[#0A9AB8]">
+                  <span className="mt-4 text-sm font-semibold text-cyan-400 underline decoration-2 underline-offset-2 transition group-hover:text-[#0A9AB8]">
                     Learn More →
                   </span>
                 </motion.a>
@@ -299,11 +292,11 @@ const Recruitment = () => {
 
               {/* Timeline */}
               <div className="relative mx-auto max-w-5xl">
-                <div className="absolute left-0 right-0 top-5 mx-auto h-1 w-full max-w-5xl bg-[#1DC0DA]/40"></div>
+                <div className="absolute left-0 right-0 top-5 mx-auto h-1 w-full max-w-5xl bg-cyan-400/40"></div>
                 <div className="relative flex justify-between gap-6">
                   {executiveSteps.map((step, i) => (
                     <div key={i} className="flex flex-col items-center text-center">
-                      <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-[#1DC0DA] bg-white font-semibold text-[#0E1C3F]">
+                      <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-cyan-400 bg-white font-semibold text-[#0E1C3F]">
                         {i + 1}
                       </div>
                       <p className="mt-3 max-w-xs text-sm font-medium text-gray-700">{step}</p>
@@ -326,15 +319,15 @@ const Recruitment = () => {
                   variants={fadeUp}
                   custom={i * 0.15}
                   viewport={{ once: true }}
-                  className="rounded-xl bg-white p-8 text-center shadow-md"
+                  className="rounded-lg bg-white p-8 text-center shadow-md"
                 >
-                  <PiPersonLight className="mx-auto mb-4 h-10 w-10 text-[#1DC0DA]" />
+                  <PiPersonLight className="mx-auto mb-4 h-10 w-10 text-cyan-400" />
                   <p className="text-gray-700">{feature}</p>
                 </motion.div>
               ))}
             </div>
 
-            <div className="mt-12 rounded-xl border border-gray-300 bg-[#0E1C3F] p-10 text-center text-lg font-semibold text-white shadow-lg">
+            <div className="mt-12 rounded-lg border border-gray-300 bg-[#0E1C3F] p-10 text-center text-lg font-semibold text-white shadow-lg">
               While Executive Search targets leadership roles, Professional Search focuses on mid-level and
               technical talent—delivering speed, scalability, and precision.
             </div>
@@ -343,9 +336,9 @@ const Recruitment = () => {
           {/* RPO SECTION */}
           <section
             id="rpo"
-            className="rounded-xl bg-gradient-to-br from-[#0E1C3F] via-[#0B1640] to-[#0A163B] px-6 py-20 text-white"
+            className="rounded-lg bg-gradient-to-br from-[#0E1C3F] via-[#0B1640] to-[#0A163B] px-6 py-20 text-white"
           >
-            <div className="container mx-auto max-w-7xl">
+            <div className="container mx-auto max-w-6xl">
               <h2 className="mb-8 text-center text-3xl font-bold tracking-tight">
                 Recruitment Process Outsourcing (RPO)
               </h2>
@@ -360,7 +353,7 @@ const Recruitment = () => {
                 {rpoFeatures.map((item, i) => (
                   <div
                     key={i}
-                    className="rounded-xl border border-white/30 bg-white/10 p-8 text-center backdrop-blur-md"
+                    className="rounded-lg border border-white/30 bg-white/10 p-8 text-center backdrop-blur-md"
                   >
                     <PiGearSixLight className="mx-auto mb-3 h-10 w-10 text-white" />
                     <p>{item}</p>
@@ -368,7 +361,7 @@ const Recruitment = () => {
                 ))}
               </div>
 
-              <div className="mt-12 text-center text-xl font-semibold text-[#1DC0DA]">
+              <div className="mt-12 text-center text-xl font-semibold text-cyan-400">
                 Average time-to-fill reduction: 45%
               </div>
             </div>
@@ -376,7 +369,7 @@ const Recruitment = () => {
 
           {/* FINAL CTA */}
           <section className="relative bg-white px-6 py-20 text-center">
-            <h2 className="mb-6 text-4xl font-bold tracking-tight text-[#1DC0DA]">
+            <h2 className="mb-6 text-4xl font-bold tracking-tight text-cyan-400">
               Ready to build your next great team?
             </h2>
             <p className="mx-auto mb-10 max-w-3xl text-lg text-[#0E1C3F]">
@@ -384,7 +377,7 @@ const Recruitment = () => {
               Adroyts is ready to help.
             </p>
 
-            <button className="rounded-xl border border-[#1DC0DA] bg-white px-10 py-4 text-lg font-semibold text-[#0E1C3F] shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-[#1DC0DA]/40">
+            <button className="rounded-lg border border-cyan-400 bg-white px-10 py-4 text-lg font-semibold text-[#0E1C3F] shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-cyan-400/40">
               Contact Us
             </button>
 
@@ -392,7 +385,7 @@ const Recruitment = () => {
 
             <a
               href="#contact"
-              className="fixed bottom-6 right-6 z-50 rounded-full bg-[#1DC0DA] p-4 text-white shadow-lg transition hover:bg-[#17a8bb] md:hidden"
+              className="fixed bottom-6 right-6 z-50 rounded-full bg-cyan-400 p-4 text-white shadow-lg transition hover:bg-[#17a8bb] md:hidden"
               aria-label="Contact Us"
               title="Contact Us"
             >

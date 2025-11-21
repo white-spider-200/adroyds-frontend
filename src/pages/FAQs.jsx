@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
+import { SplitText } from "../utils/SplitText";
+
 const faqData = [
   {
     question: "How can I apply for a job?",
@@ -42,13 +44,13 @@ const Faqs = () => {
   return (
     <div className="bg-white font-cairo text-gray-900 selection:bg-blue-200 selection:text-gray-900">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 flex min-h-[calc(70vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
+      <section className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
           src="/assets/WhatsApp-Image-2023-06-26-at-11.12.01-AM.webp"
           alt="FAQs Hero"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#192757] opacity-70"></div>
+        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -56,7 +58,7 @@ const Faqs = () => {
           transition={{ duration: 1.1, ease: "easeOut" }}
           className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
         >
-          <div className="mt-40 rounded-xl px-8 py-12 md:px-12 md:py-16">
+          <div className="mt-40 rounded-lg px-8 py-12 md:px-12 md:py-16">
             <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
               <ol className="inline-flex space-x-2">
                 <li>
@@ -79,20 +81,20 @@ const Faqs = () => {
 
       {/* FAQ Section */}
       <section className="mx-auto max-w-5xl px-6 py-20">
-        <h2 className="mb-12 text-center text-4xl font-extrabold text-[#0f0f19] md:text-5xl">
+        <SplitText className="mb-12 text-center text-4xl font-extrabold text-[#0f0f19] md:text-5xl">
           Your Questions Answered
-        </h2>
+        </SplitText>
 
         <div className="space-y-6">
           {faqData.map((faq, index) => (
             <div
               key={index}
-              className="cursor-pointer rounded-xl border border-gray-300 bg-[#f6f3fa] p-6 shadow transition hover:shadow-lg"
+              className="cursor-pointer rounded-lg border border-gray-300 bg-[#f6f3fa] p-6 shadow transition hover:shadow-lg"
               onClick={() => toggle(index)}
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-xl font-semibold text-gray-900">{faq.question}</h3>
-                <span className="select-none text-2xl font-bold text-[#1DC0DA]">
+                <span className="select-none text-2xl font-bold text-cyan-400">
                   {openIndex === index ? "−" : "+"}
                 </span>
               </div>

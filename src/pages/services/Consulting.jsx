@@ -4,6 +4,8 @@ import { FaArrowRight, FaPhoneAlt } from "react-icons/fa";
 import { PiBriefcaseLight, PiClipboardTextLight, PiUsersThreeLight } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 
+import { SplitText } from "../../utils/SplitText";
+
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (delay = 0) => ({
@@ -17,19 +19,19 @@ const services = [
   {
     title: "Organizational Design",
     desc: "Create effective structures, workflows, and operating models that boost efficiency and enable scalable growth.",
-    icon: <PiBriefcaseLight className="h-12 w-12 text-[#1DC0DA]" />,
+    icon: <PiBriefcaseLight className="h-12 w-12 text-cyan-400" />,
     link: "#executive",
   },
   {
     title: "HR Strategy",
     desc: "Build robust HR frameworks, policies, and talent development plans aligned with organizational objectives.",
-    icon: <PiUsersThreeLight className="h-12 w-12 text-[#1DC0DA]" />,
+    icon: <PiUsersThreeLight className="h-12 w-12 text-cyan-400" />,
     link: "#professional",
   },
   {
     title: "Performance Optimization",
     desc: "Implement systems that measure, develop, and reward performance to drive sustained productivity.",
-    icon: <PiClipboardTextLight className="h-12 w-12 text-[#1DC0DA]" />,
+    icon: <PiClipboardTextLight className="h-12 w-12 text-cyan-400" />,
     link: "#rpo",
   },
 ];
@@ -73,9 +75,9 @@ const Consulting = () => {
   }, []);
 
   return (
-    <div className="w-full bg-white font-sans text-[#0E1C3F] selection:bg-[#1DC0DA]/30 selection:text-[#0E1C3F]">
+    <div className="w-full bg-white font-sans text-[#0E1C3F] selection:bg-cyan-400/30 selection:text-[#0E1C3F]">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 flex min-h-[80vh] items-center justify-center bg-cover bg-center px-6 text-center">
+      <section className="relative -mt-40 flex min-h-[calc(60vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
           src="/assets/eew.jpg"
           alt="Consulting Background"
@@ -104,18 +106,13 @@ const Consulting = () => {
             </ol>
           </nav>
 
-          <motion.h1
-            className="mb-4 text-4xl font-extrabold text-white md:text-5xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            Human Capital Solutions that Strengthen Organizations Since 2006{" "}
-          </motion.h1>
+          <SplitText className="mb-4 text-4xl font-extrabold text-white md:text-5xl">
+            Human Capital Solutions that Strengthen Organizations Since 2006
+          </SplitText>
 
           <motion.button
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="mt-6 rounded-xl border border-white/30 bg-white/10 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-xl"
+            className="mt-6 rounded-lg border border-white/30 bg-white/10 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
@@ -125,15 +122,16 @@ const Consulting = () => {
         </motion.div>
       </section>
 
-      <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
+      <div className="mx-auto flex max-w-6xl gap-2 px-6 py-16 text-lg">
         {/* Sidebar Menu */}
         <div className="sticky top-32 h-full flex-1">
-          <div className="flex flex-col rounded-xl bg-gray-100 p-6">
-            <nav className="flex flex-col space-y-6">
+          <div className="flex flex-col rounded-lg bg-gray-100 p-4 py-6">
+            <p className="mb-4 font-semibold">Our Services</p>
+            <nav className="flex flex-col space-y-4">
               {/* Recruitment Solutions */}
               <button
                 onClick={() => navigate("/services/recruitment")}
-                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
               >
                 <span>Recruitment Solutions</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
@@ -142,7 +140,7 @@ const Consulting = () => {
               {/* Adroyts Academy */}
               <button
                 onClick={() => navigate("/services/academy")}
-                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
               >
                 <span>Adroyts Academy</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
@@ -151,7 +149,7 @@ const Consulting = () => {
               {/* Assessment Center */}
               <button
                 onClick={() => navigate("/services/assessment")}
-                className="group flex w-full items-center justify-between rounded-xl px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-[#1DC0DA]/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
               >
                 <span>Assessment Center</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
@@ -160,7 +158,7 @@ const Consulting = () => {
               {/* Human Capital Consulting (Active) */}
               <button
                 onClick={() => navigate("/services/consulting")}
-                className="group flex w-full items-center justify-between rounded-xl bg-[#1DC0DA]/20 px-4 py-2 text-left text-[#0E1C3F] transition-colors hover:bg-[#1DC0DA]/40 hover:text-[#0E1C3F]/90"
+                className="group flex w-full items-center justify-between rounded-lg bg-cyan-400/20 px-4 py-2 text-left text-[#0E1C3F] transition-colors hover:bg-cyan-400/40 hover:text-[#0E1C3F]/90"
               >
                 <span>Human Capital Consulting</span>
                 <FaArrowRight className="translate-x-[-6px] text-[#0E1C3F] transition-all duration-300" />
@@ -169,24 +167,19 @@ const Consulting = () => {
           </div>
 
           {/* CONTACT BOX WITH OVERLAY */}
-          <div className="relative mt-4 overflow-hidden rounded-xl py-6">
-            <img src="/assets/24-01-17-01-02.jpg" alt="Contact" className="h-56 w-full object-cover" />
+          <div className="relative mt-4 overflow-hidden rounded-lg">
+            <img src="/assets/24-01-17-01-02.jpg" alt="Contact" className="h-48 w-full object-cover" />
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-[#0E1C3F]/90"></div>
 
             {/* Text */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-white">
-              {/* Icon in Circle */}
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white/20 py-5 backdrop-blur-sm">
-                <FaPhoneAlt className="text-2xl text-white" />
-              </div>
+            <div className="absolute inset-0 flex flex-col items-start justify-center space-y-4 p-8 text-white">
+              <p className="text-xl font-semibold">If You Need Any Service Contact With Us</p>
 
-              <p className="text-center text-xl font-semibold uppercase">Best Quality</p>
-              <p className="text-center text-xl font-semibold uppercase">Services</p>
-
-              <p className="mt-4 text-center text-sm opacity-90">Call us Anytime</p>
-              <p className="text-center text-xl font-bold">+ 92 666 888 0000</p>
+              <p className="flex w-full items-center gap-3 rounded-md bg-white px-6 py-2 font-semibold text-[#0E1C3F]">
+                <FaPhoneAlt />+ 92 666 888 0000
+              </p>
             </div>
           </div>
         </div>
@@ -194,25 +187,28 @@ const Consulting = () => {
         {/* Main Content */}
         <div className="flex-[2.3] bg-white px-6">
           {/* Banner Image */}
-          <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-xl">
-            <img src="/assets/eew.jpg" alt="Consulting Banner" className="h-full w-full object-cover" />
-
-            {/* Overlay */}
+          <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
+            <img
+              src="/assets/eew.jpg"
+              alt="Human Capital Consulting Banner"
+              className="h-full w-full object-cover"
+            />
             <div className="absolute inset-0 bg-[#0E1C3F] opacity-10"></div>
           </div>
+
           {/* INTRO */}
           <section className="container pb-16 md:max-w-4xl">
             <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">
-              About Our Human Capital Consulting{" "}
+              About Our Human Capital Consulting
             </h2>
-
             <p className="text-lg leading-relaxed text-gray-700">
-              For nearly two decades, Adroyts has supported organizations across the region in building
-              stronger, more agile, and future-ready workforces. Our Human Capital Consulting services are
-              designed to help companies unlock the full potential of their people by aligning talent strategy
-              with business objectives.
+              For nearly two decades, Adroyts has helped organizations across the region build agile,
+              high-performing, and future-ready workforces. Our Human Capital Consulting services align talent
+              strategy with business objectives to unlock the full potential of your people and drive
+              sustainable growth.
             </p>
           </section>
+
           {/* SERVICES */}
           <section className="container mx-auto px-6 py-20">
             <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Recruitment Services</h2>
@@ -226,20 +222,21 @@ const Consulting = () => {
                   variants={fadeUp}
                   custom={i * 0.1}
                   viewport={{ once: true }}
-                  className="group flex flex-col rounded-xl bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
+                  className="group flex flex-col rounded-lg bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
                 >
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#1DC0DA]/20 text-[#1DC0DA] transition group-hover:bg-[#1DC0DA]/40">
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-400 transition group-hover:bg-cyan-400/40">
                     {icon}
                   </div>
                   <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
                   <p className="flex-grow text-gray-700">{desc}</p>
-                  <span className="mt-4 text-sm font-semibold text-[#1DC0DA] underline decoration-2 underline-offset-2 transition group-hover:text-[#0A9AB8]">
+                  <span className="mt-4 text-sm font-semibold text-cyan-400 underline decoration-2 underline-offset-2 transition group-hover:text-[#0A9AB8]">
                     Learn More →
                   </span>
                 </motion.a>
               ))}
             </div>
           </section>
+
           {/* APPROACH */}
           <section className="container mx-auto px-6 py-20">
             <h2 className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">Our Approach</h2>
@@ -285,7 +282,6 @@ const Consulting = () => {
           {/* TESTIMONIALS */}
           <section className="container mx-auto px-6 py-20">
             <h2 className="mb-12 text-center text-3xl font-bold text-[#0E1C3F]">What Our Clients Say</h2>
-
             <div className="mx-auto max-w-4xl space-y-12">
               {testimonials.map(({ name, role, quote }, i) => (
                 <motion.blockquote
@@ -293,7 +289,7 @@ const Consulting = () => {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.2 }}
-                  className="rounded-xl border border-gray-200 bg-white p-8 shadow-sm"
+                  className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm"
                 >
                   <p className="mb-4 italic text-gray-700">"{quote}"</p>
                   <footer className="font-semibold text-gray-900">
@@ -306,16 +302,16 @@ const Consulting = () => {
 
           {/* FINAL CTA */}
           <section className="relative bg-white px-6 py-20 text-center">
-            <h2 className="mb-6 text-4xl font-bold tracking-tight text-[#1DC0DA]">
-              Ready to elevate your human capital strategy?
+            <h2 className="mb-6 text-4xl font-bold tracking-tight text-cyan-400">
+              Ready to Transform Your Workforce?
             </h2>
             <p className="mx-auto mb-10 max-w-3xl text-lg text-[#0E1C3F]">
-              Partner with Adroyts Consulting to unlock your organization's full potential through innovative,
-              tailored solutions.
+              Partner with Adroyts Consulting to implement strategic, data-driven human capital solutions that
+              deliver measurable results.
             </p>
 
             <button
-              className="rounded-xl border border-[#1DC0DA] bg-white px-10 py-4 text-lg font-semibold text-[#0E1C3F] shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-[#1DC0DA]/40"
+              className="rounded-lg border border-cyan-400 bg-white px-10 py-4 text-lg font-semibold text-[#0E1C3F] shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-cyan-400/40"
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
               Contact Us
@@ -324,7 +320,7 @@ const Consulting = () => {
             {/* Sticky floating CTA */}
             <a
               href="#contact"
-              className="fixed bottom-6 right-6 z-50 rounded-full bg-[#1DC0DA] p-4 text-white shadow-lg transition hover:bg-[#17a8bb] md:hidden"
+              className="fixed bottom-6 right-6 z-50 rounded-full bg-cyan-400 p-4 text-white shadow-lg transition hover:bg-[#17a8bb] md:hidden"
               aria-label="Contact Us"
               title="Contact Us"
             >
