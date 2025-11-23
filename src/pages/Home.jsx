@@ -185,7 +185,7 @@ const Home = () => {
       <div
         className="-mt-20 bg-cover bg-center bg-no-repeat p-12 pb-16 pt-32"
         style={{
-          backgroundImage: `url('/assets/saudi11-blog-thumbnail.jpg')`,
+          backgroundImage: `url('/assets/about-us.png')`,
           backgroundAttachment: "fixed",
         }}
       >
@@ -316,7 +316,10 @@ const Home = () => {
               These examples show how our recruitment and HR solutions make hiring faster, easier, and more
               effective.
             </p>
-            <button className="flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-gray-900 transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white">
+            <button
+              onClick={() => navigate("/media-center/case-studies")}
+              className="flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-gray-900 transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white"
+            >
               <span>All case studies</span>
               <FaArrowRight className="transition duration-300" />
             </button>
@@ -337,7 +340,10 @@ const Home = () => {
                   <h3 className="mb-3 text-2xl font-bold text-[#192757] sm:text-3xl">{caseStudy.title}</h3>
                   <p className="text-base text-[#878da4] sm:text-xl">{caseStudy.description}</p>
                 </div>
-                <div className="mt-6 cursor-pointer self-end rounded-full border-2 border-[#192757] p-3 text-gray-900 transition-transform duration-300 ease-in-out hover:scale-110 sm:p-4">
+                <div
+                  onClick={() => navigate(`/case-study?id=${caseStudy.id}`)}
+                  className="mt-6 cursor-pointer self-end rounded-full border-2 border-[#192757] p-3 text-gray-900 transition-transform duration-300 ease-in-out hover:scale-110 sm:p-4"
+                >
                   <FaArrowRight />
                 </div>
               </motion.div>
@@ -406,14 +412,14 @@ const Home = () => {
                   <div className="flex-grow" />
 
                   {/* Read More button */}
-                  <a
-                    href={blog.url}
+                  <button
+                    onClick={() => navigate(`/blog?id=${blog.id}`)}
                     className="inline-flex w-max cursor-pointer items-center gap-1 rounded-md bg-white font-semibold text-black transition duration-300 hover:text-cyan-400"
                     aria-label={`Read more about ${blog.title}`}
                   >
                     <span>Read More</span>
                     <LuArrowUpRight className="transform transition duration-300" />
-                  </a>
+                  </button>
                 </motion.div>
               </motion.div>
             ))}
@@ -421,6 +427,7 @@ const Home = () => {
           {/* View More button */}
           <div className="mt-12 flex justify-center">
             <button
+              onClick={() => navigate("/media-center/blogs")}
               type="button"
               className="hidden items-center gap-2 rounded-full border-2 border-[#0E1C3F] bg-transparent px-6 py-2 text-[#0E1C3F] transition duration-300 hover:border-cyan-400 hover:text-cyan-400 md:flex"
             >

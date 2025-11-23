@@ -2,13 +2,7 @@ import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import CountUp from "react-countup";
 import { FaArrowRight, FaAward, FaClipboardList, FaPhoneAlt, FaThumbsUp, FaUserCheck } from "react-icons/fa";
-import {
-  PiBriefcaseLight,
-  PiClipboardTextLight,
-  PiGearSixLight,
-  PiPersonLight,
-  PiUsersThreeLight,
-} from "react-icons/pi";
+import { PiGearSixLight, PiPersonLight } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../../utils/SplitText";
@@ -22,23 +16,32 @@ const fadeUp = {
   }),
 };
 
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (custom) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: custom * 0.15, duration: 0.6, ease: "easeOut" },
+  }),
+};
+
 const servicesList = [
   {
     title: "Executive Search",
     desc: "Identifying and engaging exceptional leaders who drive transformation.",
-    icon: <PiBriefcaseLight className="h-12 w-12 text-cyan-400" />,
+    image: "/assets/sear.jpg", // replace with your image path
     link: "#executive",
   },
   {
     title: "Professional Search",
     desc: "Delivering high-performing professionals to power your business growth.",
-    icon: <PiUsersThreeLight className="h-12 w-12 text-cyan-400" />,
+    image: "/assets/shutterstock_591060992.jpg",
     link: "#professional",
   },
   {
     title: "RPO (Recruitment Process Outsourcing)",
     desc: "Full-cycle recruitment ownership from sourcing to onboarding.",
-    icon: <PiClipboardTextLight className="h-12 w-12 text-cyan-400" />,
+    image: "/assets/shutterstock_2212724739.jpg",
     link: "#rpo",
   },
 ];
@@ -116,7 +119,7 @@ const Recruitment = () => {
           </SplitText>
 
           <motion.button
-            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => navigate("/contact")}
             className="mt-6 rounded-lg border border-white/30 bg-white/10 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -186,8 +189,9 @@ const Recruitment = () => {
             <div className="absolute inset-0 flex flex-col items-start justify-center space-y-4 p-8 text-white">
               <p className="text-xl font-semibold">If You Need Any Service Contact With Us</p>
 
-              <p className="flex w-full items-center gap-3 rounded-md bg-white px-6 py-2 font-semibold text-[#0E1C3F]">
-                <FaPhoneAlt />+ 92 666 888 0000
+              <p className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-6 py-2 font-semibold text-[#0E1C3F]">
+                <FaPhoneAlt />
+                +966112342667
               </p>
             </div>
           </div>
@@ -264,33 +268,54 @@ const Recruitment = () => {
           {/* SERVICES */}
           <section className="container mx-auto px-6 py-20">
             <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Recruitment Services</h2>
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
-              {servicesList.map(({ title, desc, icon, link }, i) => (
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+              {servicesList.map(({ title, desc, image, link }, index) => (
                 <motion.a
-                  key={i}
+                  key={index}
                   href={link}
+                  className="relative flex w-full flex-col justify-end overflow-hidden rounded-2xl bg-cover bg-center pt-32 shadow-lg"
+                  style={{ backgroundImage: `url(${image})` }}
+                  variants={fadeUpVariant}
                   initial="hidden"
                   whileInView="visible"
-                  variants={fadeUp}
-                  custom={i * 0.1}
-                  viewport={{ once: true }}
-                  className="group flex flex-col rounded-lg bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
+                  viewport={{ once: false, amount: 0.3 }}
+                  custom={index}
+                  whileHover={{
+                    scale: 1.05,
+                    rotate: 0.5,
+                  }}
+                  transition={{ type: "spring", stiffness: 200, damping: 18 }}
                 >
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-400 transition group-hover:bg-cyan-400/40">
-                    {icon}
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0E1C3F]/80 to-transparent"></div>
+
+                  {/* Frosted Glass Card */}
+                  <div className="relative z-10 mx-4 mb-6 rounded-xl border border-white/20 bg-white/10 p-6 shadow-md backdrop-blur-md transition-shadow duration-300 hover:shadow-xl">
+                    <h3 className="mb-3 text-2xl font-semibold text-white drop-shadow-md">{title}</h3>
+                    <p className="text-lg text-white/90">{desc}</p>
+                    <span className="mt-4 inline-block text-sm font-medium text-white/80 underline transition-colors hover:text-white">
+                      Learn More →
+                    </span>
                   </div>
-                  <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
-                  <p className="flex-grow text-gray-700">{desc}</p>
-                  <span className="mt-4 text-sm font-semibold text-cyan-400 underline decoration-2 underline-offset-2 transition group-hover:text-[#0A9AB8]">
-                    Learn More →
-                  </span>
+
+                  {/* Soft Glow on Hover */}
+                  <motion.div
+                    className="pointer-events-none absolute inset-0"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 0.25 }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      background:
+                        "radial-gradient(circle at center, rgba(255,255,255,0.25), transparent 70%)",
+                    }}
+                  />
                 </motion.a>
               ))}
             </div>
           </section>
 
           {/* EXECUTIVE SEARCH */}
-          <section id="executive" className="bg-white py-20">
+          <section id="executive" className="bg-white py-28">
             <div className="container mx-auto px-6">
               <h2 className="mb-12 text-center text-3xl font-bold text-[#0E1C3F]">Executive Search</h2>
 
@@ -312,7 +337,7 @@ const Recruitment = () => {
           </section>
 
           {/* PROFESSIONAL SEARCH */}
-          <section id="professional" className="container mx-auto px-6 py-20">
+          <section id="professional" className="bg-white py-28">
             <h2 className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">Professional Search</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
               {profFeatures.map((feature, i) => (
@@ -340,7 +365,7 @@ const Recruitment = () => {
           {/* RPO SECTION */}
           <section
             id="rpo"
-            className="rounded-lg bg-gradient-to-br from-[#0E1C3F] via-[#0B1640] to-[#0A163B] px-6 py-20 text-white"
+            className="rounded-lg bg-gradient-to-br from-[#0E1C3F] via-[#0B1640] to-[#0A163B] px-6 py-28 text-white"
           >
             <div className="container mx-auto max-w-6xl">
               <h2 className="mb-8 text-center text-3xl font-bold tracking-tight">
@@ -381,7 +406,10 @@ const Recruitment = () => {
               Adroyts is ready to help.
             </p>
 
-            <button className="rounded-lg border border-cyan-400 bg-white px-10 py-4 text-lg font-semibold text-[#0E1C3F] shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-cyan-400/40">
+            <button
+              onClick={() => navigate("/contact")}
+              className="rounded-lg border border-cyan-400 bg-white px-10 py-4 text-lg font-semibold text-[#0E1C3F] shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-cyan-400/40"
+            >
               Contact Us
             </button>
 
