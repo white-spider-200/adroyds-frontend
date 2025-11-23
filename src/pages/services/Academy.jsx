@@ -82,7 +82,7 @@ const Academy = () => {
       {/* HERO SECTION */}
       <section className="relative -mt-40 flex min-h-[calc(60vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
-          src="/assets/saudi-arabia-s-digital-transformation-free-photo.jpeg"
+          src="/assets/SEC_Batch02_33.jpg"
           alt="Adroyts Academy Background"
           className="absolute inset-0 h-full w-full object-cover"
         />
@@ -170,7 +170,11 @@ const Academy = () => {
 
           {/* CONTACT BOX WITH OVERLAY */}
           <div className="relative mt-4 overflow-hidden rounded-lg">
-            <img src="/assets/24-01-17-01-02.jpg" alt="Contact" className="h-48 w-full object-cover" />
+            <img
+              src="/assets/conatact-us-placeholder.jpg"
+              alt="Contact"
+              className="h-48 w-full object-cover"
+            />
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-[#0E1C3F]/90"></div>
@@ -191,7 +195,7 @@ const Academy = () => {
           {/* HERO IMAGE */}
           <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
-              src="/assets/saudi-arabia-s-digital-transformation-free-photo.jpeg"
+              src="/assets/SEC_Batch02_33.jpg"
               alt="Recruitment Solutions"
               className="h-full w-full object-cover"
             />

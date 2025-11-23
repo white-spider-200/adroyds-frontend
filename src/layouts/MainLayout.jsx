@@ -426,7 +426,7 @@ const MainLayout = ({ children }) => {
           </div>
 
           {/* Newsletter */}
-          <div className="flex items-center">
+          <div className="flex flex-col">
             <p className="mb-3 text-sm text-[#ffffff99]">Stay up to date on the latest Adroyts news.</p>
             <form className="flex">
               <input

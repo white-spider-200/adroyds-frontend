@@ -45,7 +45,7 @@ const Contact = () => {
       {/* HERO SECTION */}
       <section className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
-          src="/assets/WhatsApp-Image-2023-06-26-at-11.12.01-AM.webp"
+          src="/assets/adroyts-office.webp"
           alt=""
           className="absolute inset-0 h-full w-full object-cover"
         />

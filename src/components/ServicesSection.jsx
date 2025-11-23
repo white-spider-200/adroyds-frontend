@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import { FaArrowLeft, FaArrowRight, FaPlusCircle } from "react-icons/fa";
+import { FaArrowRight, FaPlusCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../utils/SplitText";
 
@@ -13,6 +14,7 @@ const services = [
       "We provide intelligent recruitment solutions designed to attract, assess, and retain top talent — empowering your organization to build a smarter, more efficient workforce that drives long-term success.",
     image: "/assets/services-1.png",
     buttonText: "View Service",
+    path: "/services/recruitment",
   },
   {
     id: 2,
@@ -22,6 +24,7 @@ const services = [
       "We help organizations identify, attract, and onboard the right talent through innovative acquisition strategies — combining data-driven insights with personalized engagement for lasting success.",
     image: "/assets/services-2.png",
     buttonText: "View Service",
+    path: "/services/academy",
   },
   {
     id: 3,
@@ -31,6 +34,7 @@ const services = [
       "Our assessment centers provide comprehensive evaluation tools to measure skills, competencies, and potential — supporting data-informed decisions in leadership development and succession planning.",
     image: "/assets/services-3.png",
     buttonText: "View Service",
+    path: "/services/assessment",
   },
   {
     id: 4,
@@ -40,17 +44,18 @@ const services = [
       "We partner with organizations to align people strategy with business goals — optimizing structures, enhancing performance, and driving cultural transformation for sustainable growth.",
     image: "/assets/services-4.png",
     buttonText: "View Service",
+    path: "/services/consulting",
   },
 ];
 
 const COLLAPSED_WIDTH_DESKTOP = 100;
 const COLLAPSED_WIDTH_MOBILE = 80;
 const EXPANDED_WIDTH_DESKTOP = 780;
-const EXPANDED_WIDTH_MOBILE = "100%";
 const CARD_HEIGHT_DESKTOP = 500;
 const CARD_HEIGHT_MOBILE = 320;
 
 const ServiceCard = ({ service, isActive, onHover }) => {
+  const navigate = useNavigate();
   const [contentVisible, setContentVisible] = useState(isActive);
   const [isMobile, setIsMobile] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 0);
@@ -61,9 +66,7 @@ const ServiceCard = ({ service, isActive, onHover }) => {
       setWindowWidth(window.innerWidth);
       setIsMobile(window.innerWidth <= 768);
     };
-
-    handleResize(); // initial check
-
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -102,9 +105,9 @@ const ServiceCard = ({ service, isActive, onHover }) => {
         boxShadow: isActive ? "0 10px 25px rgba(0,0,0,0.3)" : "none",
       }}
       onMouseEnter={() => onHover(service.id)}
-      onMouseLeave={() => onHover(null)}
-      onTouchStart={() => onHover(service.id)} // touch support (mobile)
-      onTouchEnd={() => onHover(null)}
+      onMouseLeave={() => {}}
+      onTouchStart={() => onHover(service.id)}
+      onTouchEnd={() => {}}
     >
       {/* Overlay */}
       <motion.div
@@ -146,7 +149,7 @@ const ServiceCard = ({ service, isActive, onHover }) => {
         {service.title}
       </h3>
 
-      {/* Content (shows after delay) */}
+      {/* Content */}
       <motion.div
         className="relative z-10 max-w-full select-none text-white"
         initial={{ opacity: 0 }}
@@ -165,6 +168,7 @@ const ServiceCard = ({ service, isActive, onHover }) => {
         </p>
 
         <button
+          onClick={() => navigate(service.path)}
           className={`mt-6 flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-gray-900 transition duration-300 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white ${
             contentVisible ? "block" : "hidden"
           }`}
@@ -177,10 +181,15 @@ const ServiceCard = ({ service, isActive, onHover }) => {
 };
 
 const ServicesSection = () => {
-  const [hoveredId, setHoveredId] = useState(null);
+  const [hoveredId, setHoveredId] = useState(1); // first card active by default
+
+  const handleHover = (id) => {
+    if (id !== null) setHoveredId(id);
+    // Do NOT reset on leave
+  };
 
   return (
-    <section className="relative overflow-hidden bg-[#0E1C3F] py-16 sm:py-24">
+    <section id="services" className="relative overflow-hidden bg-[#0E1C3F] py-16 sm:py-24">
       {/* Decorative Backgrounds */}
       <div
         aria-hidden="true"
@@ -200,8 +209,8 @@ const ServicesSection = () => {
           <ServiceCard
             key={service.id}
             service={service}
-            isActive={hoveredId ? hoveredId === service.id : service.id === 1}
-            onHover={setHoveredId}
+            isActive={hoveredId === service.id}
+            onHover={handleHover}
           />
         ))}
       </div>

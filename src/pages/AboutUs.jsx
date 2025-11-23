@@ -67,71 +67,15 @@ const AboutUs = () => {
     }),
   };
 
-  const whyChooseUs = [
-    {
-      titleEn: "Outstanding Track Record",
-      titleAr: "سجلّ متميز",
-      descEn:
-        "High successful placement rate across various sectors, serving over 500 leading companies and government entities.",
-      descAr: `سجلّ متميز بنسبة توظيف ناجحة عالية في مختلف القطاعات.
-نخدم أكثر من 500 عميل من الشركات الرائدة والجهات الحكومية.`,
-      icon: FaChartLine,
-    },
-    {
-      titleEn: "Exclusive Talent Database",
-      titleAr: "قاعدة بيانات حصرية",
-      descEn: "An exclusive database of top talents updated annually to meet market needs.",
-      descAr: "قاعدة بيانات حصرية تضم أفضل الكفاءات ويتم تحديثها بشكل سنوي.",
-      icon: FaDatabase,
-    },
-    {
-      titleEn: "Professional Consulting Team",
-      titleAr: "فريق استشاري محترف",
-      descEn: "A professional consulting team with deep expertise in the Saudi and regional labor market.",
-      descAr: "فريق استشاري محترف يتمتع بخبرة عميقة في سوق العمل السعودي والإقليمي.",
-      icon: FaUsers,
-    },
-    {
-      titleEn: "Employment Guarantee",
-      titleAr: "ضمان للمرشحين",
-      descEn: "A 12-month guarantee for hired candidates to ensure quality and sustainable employment.",
-      descAr: "ضمان للمرشحين المعينين يمتد حتى 12 شهرًا لضمان جودة التوظيف واستدامته.",
-      icon: FaShieldAlt,
-    },
-  ];
-
-  const slideFromLeft = {
-    hidden: { opacity: 0, x: -100 }, // start 100px left, invisible
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
-  };
-
-  const content = {
-    en: {
-      title: "Get to know about Adroyts",
-      brief:
-        "We partner with top companies in Saudi Arabia and the GCC, delivering expert leadership and skilled professionals. With over 400 clients served, we focus on personalized, high-quality service and building strong, lasting client relationships.",
-      features: [
-        "Develop a vision statement",
-        "Grow your customer base",
-        "Increase your monthly sales",
-        "Beat your competition",
-      ],
-    },
-    ar: {
-      subtitle: "اقرأ عنا",
-      title: "تعرف على حلول وكالة أدرويتس",
-      brief:
-        "نخدم أبرز الشركات في السعودية ودول الخليج، من خلال توفير قيادات محترفة وكفاءات متخصصة. بعد دعمنا لأكثر من 400 عميل، نركز على تقديم خدمات مخصصة وعالية الجودة وبناء علاقات قوية ومستدامة مع عملائنا.",
-      features: ["تطوير بيان الرؤية", "زيادة قاعدة العملاء", "زيادة مبيعاتك الشهرية", "التفوق على منافسيك"],
-    },
-  };
-
   return (
     <div className="bg-white font-cairo text-gray-900 selection:bg-blue-200 selection:text-gray-900">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
+      <section
+        id="overview"
+        className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center"
+      >
         <img
-          src="/assets/WhatsApp-Image-2023-06-26-at-11.12.01-AM.webp"
+          src="/assets/adroyts-office.webp"
           alt=""
           className="absolute inset-0 h-full w-full object-cover"
         />
@@ -166,7 +110,7 @@ const AboutUs = () => {
       </section>
 
       {/* OVERVIEW */}
-      <section id="overview" className="w-full bg-white py-28">
+      <section className="w-full bg-white py-28">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 md:grid-cols-2">
           {/* LEFT IMAGES + STATS */}
           <div className="relative flex gap-4 md:gap-6">
@@ -174,7 +118,7 @@ const AboutUs = () => {
               <div className="overflow-hidden rounded-lg">
                 <div className="overflow-hidden rounded-lg">
                   <motion.img
-                    src="/assets/WhatsApp-Image-2023-06-26-at-11.12.01-AM.webp"
+                    src="/assets/istockphoto-1395570261-612x612.jpg"
                     alt="About"
                     className="h-[380px] w-full object-cover transition-transform duration-500 ease-out hover:scale-110 md:h-[400px]"
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -200,7 +144,7 @@ const AboutUs = () => {
 
               <div className="overflow-hidden rounded-lg">
                 <motion.img
-                  src="/assets/WhatsApp-Image-2023-06-26-at-11.12.01-AM.webp"
+                  src="/assets/Screenshot 2025-11-23 103258.png"
                   alt="About"
                   className="h-[380px] w-full object-cover md:h-[400px]"
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -435,7 +379,7 @@ const AboutUs = () => {
             {/* Image */}
             <div className="overflow-hidden rounded-lg">
               <motion.img
-                src="/assets/WhatsApp-Image-2023-06-26-at-11.12.01-AM.webp"
+                src="/assets/adroyts-office.webp"
                 alt="Why Choose Us"
                 className="h-full w-full max-w-xl rounded-lg object-cover"
                 initial={{ opacity: 0, scale: 0.95 }}

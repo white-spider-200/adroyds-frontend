@@ -13,11 +13,12 @@ import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
 import Faqs from "./pages/FAQs";
 import Home from "./pages/Home";
-import MediaCenter from "./pages/MediaCenter";
 import BlogDetails from "./pages/mediaCenter/BlogDetails";
 import Blogs from "./pages/mediaCenter/Blogs";
 import CaseStudies from "./pages/mediaCenter/CaseStudies";
+import CaseStudyDetails from "./pages/mediaCenter/CaseStudyDetails";
 import News from "./pages/mediaCenter/News";
+import NewsDetails from "./pages/mediaCenter/NewsDetails";
 import NotFound from "./pages/NotFound";
 import Academy from "./pages/services/Academy";
 import Assessment from "./pages/services/Assessment";
@@ -56,10 +57,11 @@ export default function App() {
         <Route path="/media-center/news" element={<News />} />
         <Route path="/media-center/case-studies" element={<CaseStudies />} />
         <Route path="/careers" element={<Careers />} />
-        <Route path="/media" element={<MediaCenter />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/FAQs" element={<Faqs />} />
         <Route path="/blog" element={<BlogDetails />} />
+        <Route path="/news" element={<NewsDetails />} />
+        <Route path="/case-study" element={<CaseStudyDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </MainLayout>

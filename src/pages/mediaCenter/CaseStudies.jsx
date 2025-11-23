@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -45,6 +46,8 @@ const dummyCaseStudies = [
 ];
 
 const CaseStudies = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -137,6 +140,7 @@ const CaseStudies = () => {
                   <div className="flex items-center justify-between text-sm text-gray-500">
                     <span>Client: {caseStudy.client}</span>
                     <button
+                      onClick={() => navigate(`/case-study?id=${caseStudy.id}`)}
                       aria-label={`Read more about ${caseStudy.title}`}
                       className="inline-flex items-center gap-2 font-semibold text-cyan-400 transition hover:text-[#0E1C3F]"
                     >

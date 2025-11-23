@@ -167,7 +167,11 @@ const Assessment = () => {
 
           {/* CONTACT BOX WITH OVERLAY */}
           <div className="relative mt-4 overflow-hidden rounded-lg">
-            <img src="/assets/24-01-17-01-02.jpg" alt="Contact" className="h-48 w-full object-cover" />
+            <img
+              src="/assets/conatact-us-placeholder.jpg"
+              alt="Contact"
+              className="h-48 w-full object-cover"
+            />
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-[#0E1C3F]/90"></div>

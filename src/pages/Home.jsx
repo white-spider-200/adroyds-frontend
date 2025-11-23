@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
+import Marquee from "react-fast-marquee";
 import { useTranslation } from "react-i18next";
 import { FaArrowRight, FaCalendarAlt } from "react-icons/fa";
 import { LuArrowUpRight } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 
 import SectorsSlider from "../components/SectorsSlider";
 import ServicesSection from "../components/ServicesSection";
@@ -86,13 +88,10 @@ const caseStudies = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
   const { i18n } = useTranslation();
   const [loading, setLoading] = useState(true);
-  const [selectedServiceId, setSelectedServiceId] = useState("recruitment");
   const [activeIndex, setActiveIndex] = useState(null);
-  const toggleFAQ = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
 
   const [articles, setArticles] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
@@ -164,6 +163,12 @@ const Home = () => {
           <motion.div className="flex items-center justify-center space-x-8" variants={scaleFadeItem}>
             <motion.div className="flex items-center justify-center space-x-8" variants={fadeUpItem}>
               <motion.button
+                onClick={() => {
+                  const section = document.getElementById("services");
+                  if (section) {
+                    section.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: false }}
@@ -178,10 +183,10 @@ const Home = () => {
         </motion.div>
       </section>
       <div
-        className="-mt-20 bg-cover bg-center bg-no-repeat p-12 pb-24 pt-40"
+        className="-mt-20 bg-cover bg-center bg-no-repeat p-12 pb-16 pt-32"
         style={{
-          backgroundImage: `url('/assets/about-us.png')`,
-          backgroundAttachment: "fixed", // <-- This keeps the background static
+          backgroundImage: `url('/assets/saudi11-blog-thumbnail.jpg')`,
+          backgroundAttachment: "fixed",
         }}
       >
         {/* About Section */}
@@ -201,6 +206,7 @@ const Home = () => {
 
           <motion.div variants={fadeUp} custom={0.2} className="flex">
             <motion.button
+              onClick={() => navigate("/about#overview")}
               className="flex items-center space-x-3 font-semibold text-[#0E1C3F] hover:text-[#00CFFF]"
               whileHover={buttonHover}
             >
@@ -212,7 +218,7 @@ const Home = () => {
 
         {/* Stats Section */}
         <motion.section
-          className="relative z-20 mx-auto mt-12 flex max-w-6xl flex-wrap justify-around gap-8 rounded-lg bg-white bg-opacity-70 p-8 text-center md:p-12"
+          className="relative z-20 mx-auto mt-4 flex max-w-6xl flex-wrap justify-around gap-8 rounded-lg bg-white bg-opacity-70 p-8 text-center md:p-12"
           whileInView="visible"
           viewport={{ once: false }}
           variants={fadeUpContainer}
@@ -263,23 +269,22 @@ const Home = () => {
       {/* --- */}
 
       {/* Trusted Companies */}
-      <section className="bg-white py-20">
+
+      <section className="bg-gray-100 py-20">
         <div className="text-center">
-          <SplitText className="mb-16 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl">
+          <SplitText className="mb-8 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl">
             Trusted by
           </SplitText>
-          <div className="relative overflow-hidden">
-            <div className="animate-marquee flex space-x-24">
-              {[...clients, ...clients].map((client, index) => (
-                <img
-                  key={`${client.name}-${index}`}
-                  src={client.image}
-                  alt={client.name}
-                  className="h-24 w-auto object-cover opacity-80 transition-opacity duration-300 hover:opacity-100"
-                />
-              ))}
-            </div>
-          </div>
+          <Marquee>
+            {clients.map((client, index) => (
+              <img
+                key={index}
+                src={client.image}
+                alt={client.name}
+                className="mx-9 h-44 w-44 object-contain opacity-80 grayscale filter transition duration-300 hover:opacity-100 hover:grayscale-0"
+              />
+            ))}
+          </Marquee>
         </div>
       </section>
 

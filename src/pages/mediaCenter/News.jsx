@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaSpinner } from "react-icons/fa";
 import { LuArrowUpRight } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 
 import mainServices from "../../services/mainServices";
 
@@ -17,6 +18,7 @@ const fadeUp = {
 
 const News = () => {
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const [articles, setArticles] = useState([]);
@@ -144,14 +146,14 @@ const News = () => {
                     <div className="flex-grow" />
 
                     {/* Read More button (no border, black text, slower hover) */}
-                    <a
-                      href={item.url}
+                    <button
+                      onClick={() => navigate(`/news?id=${item.id}`)}
                       className="inline-flex w-max cursor-pointer items-center gap-1 rounded-md bg-white font-semibold text-black transition duration-300 hover:text-cyan-400"
                       aria-label={`Read more about ${item.title}`}
                     >
                       <span>Read More</span>
                       <LuArrowUpRight className="transform transition duration-300" />
-                    </a>
+                    </button>
                   </motion.div>
                 </motion.div>
               ))}

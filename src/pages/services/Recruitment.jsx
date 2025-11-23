@@ -84,7 +84,7 @@ const Recruitment = () => {
       {/* HERO SECTION */}
       <section className="relative -mt-40 flex min-h-[calc(60vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
-          src="/assets/jobs-arabian-copy-scaled.png"
+          src="/assets/business-meeting-saudi-arabia-1024x683.webp"
           alt="Recruitment Solutions"
           className="absolute inset-0 h-full w-full object-cover"
         />
@@ -173,7 +173,11 @@ const Recruitment = () => {
 
           {/* CONTACT BOX WITH OVERLAY */}
           <div className="relative mt-4 overflow-hidden rounded-lg">
-            <img src="/assets/24-01-17-01-02.jpg" alt="Contact" className="h-48 w-full object-cover" />
+            <img
+              src="/assets/conatact-us-placeholder.jpg"
+              alt="Contact"
+              className="h-48 w-full object-cover"
+            />
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-[#0E1C3F]/90"></div>
@@ -192,7 +196,7 @@ const Recruitment = () => {
         <div className="flex-[2.3] bg-white px-6">
           <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
-              src="/assets/jobs-arabian-copy-scaled.png"
+              src="/assets/business-meeting-saudi-arabia-1024x683.webp"
               alt="Recruitment Solutions"
               className="h-full w-full object-cover"
             />

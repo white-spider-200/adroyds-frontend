@@ -79,7 +79,7 @@ const Consulting = () => {
       {/* HERO SECTION */}
       <section className="relative -mt-40 flex min-h-[calc(60vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
-          src="/assets/eew.jpg"
+          src="/assets/adroyts-consulting.png"
           alt="Consulting Background"
           className="absolute inset-0 h-full w-full object-cover"
         />
@@ -168,7 +168,11 @@ const Consulting = () => {
 
           {/* CONTACT BOX WITH OVERLAY */}
           <div className="relative mt-4 overflow-hidden rounded-lg">
-            <img src="/assets/24-01-17-01-02.jpg" alt="Contact" className="h-48 w-full object-cover" />
+            <img
+              src="/assets/conatact-us-placeholder.jpg"
+              alt="Contact"
+              className="h-48 w-full object-cover"
+            />
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-[#0E1C3F]/90"></div>
@@ -189,7 +193,7 @@ const Consulting = () => {
           {/* Banner Image */}
           <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
-              src="/assets/eew.jpg"
+              src="/assets/adroyts-consulting.png"
               alt="Human Capital Consulting Banner"
               className="h-full w-full object-cover"
             />

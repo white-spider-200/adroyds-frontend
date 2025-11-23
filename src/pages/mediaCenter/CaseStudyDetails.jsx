@@ -13,9 +13,9 @@ const fadeUp = {
   }),
 };
 
-const BlogDetails = () => {
+const CaseStudyDetails = () => {
   const [loading, setLoading] = useState(true);
-  const [blog, setBlog] = useState(null);
+  const [caseStudy, setBlog] = useState(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -90,15 +90,15 @@ const BlogDetails = () => {
                   </a>
                   <span className="mx-2">/</span>
                 </li>
-                <li className="font-semibold text-white">{blog.title}</li>
+                <li className="font-semibold text-white">{caseStudy.title}</li>
               </ol>
             </nav>
 
             <SplitText className="text-4xl font-extrabold leading-tight text-white drop-shadow md:text-5xl">
-              {blog.title}
+              {caseStudy.title}
             </SplitText>
             <p className="mt-4 flex items-center justify-center gap-2 text-white/75">
-              <FaCalendarAlt /> {blog.date}
+              <FaCalendarAlt /> {caseStudy.date}
             </p>
           </div>
         </motion.div>
@@ -112,19 +112,19 @@ const BlogDetails = () => {
           variants={fadeUp}
           className="prose prose-lg max-w-none text-gray-700"
         >
-          {/* Blog Image */}
-          {blog.image && (
+          {/* CaseStudy Image */}
+          {caseStudy.image && (
             <img
-              src={blog.image}
-              alt={blog.title}
+              src={caseStudy.image}
+              alt={caseStudy.title}
               className="mb-6 h-[450px] w-full rounded-lg object-cover"
             />
           )}
 
-          {/* Blog Date */}
-          {blog.date && (
+          {/* CaseStudy Date */}
+          {caseStudy.date && (
             <p className="mb-4 text-sm text-gray-500">
-              {new Date(blog.date).toLocaleDateString(undefined, {
+              {new Date(caseStudy.date).toLocaleDateString(undefined, {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -132,12 +132,12 @@ const BlogDetails = () => {
             </p>
           )}
 
-          {/* Blog Content */}
-          <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+          {/* CaseStudy Content */}
+          <div dangerouslySetInnerHTML={{ __html: caseStudy.content }} />
         </motion.div>
       </section>
     </div>
   );
 };
 
-export default BlogDetails;
+export default CaseStudyDetails;
