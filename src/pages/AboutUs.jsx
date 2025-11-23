@@ -130,7 +130,7 @@ const AboutUs = () => {
                 </div>
               </div>
 
-              <div className="rounded-lg bg-[#0E1C3F] p-6 text-center">
+              <div className="rounded-lg bg-orange-400 p-6 text-center">
                 <p className="text-4xl font-extrabold text-white">15+</p>
                 <p className="mt-2 text-base text-white/70">Years of Excellence</p>
               </div>
@@ -310,7 +310,7 @@ const AboutUs = () => {
                 whileHover={{ y: -8 }}
                 viewport={{ once: false }}
                 custom={i}
-                className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out hover:bg-cyan-400"
+                className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out hover:bg-orange-400"
               >
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 text-cyan-400 transition-colors duration-300 group-hover:bg-white group-hover:text-cyan-400">
                   <FaStar size={24} />
@@ -330,47 +330,47 @@ const AboutUs = () => {
       </section>
 
       {/* WHY CHOOSE US */}
-      <section id="why" className="w-full bg-white py-16">
+      <section id="why" className="w-full bg-[#0E1C3F] py-16">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 md:grid-cols-[3fr_2fr]">
           {/* LEFT SIDE */}
           <div className="flex gap-4">
             {/* Cards */}
             <div className="flex flex-col gap-4">
               {/* CARD 1 */}
-              <div className="group rounded-lg bg-gray-100 p-6 text-center transition duration-300 ease-in-out hover:-translate-y-2 hover:bg-cyan-400">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg text-cyan-400 transition-colors duration-300 group-hover:text-white">
+              <div className="group rounded-lg bg-[#1F2B4D] p-6 text-center transition duration-300 ease-in-out hover:-translate-y-2 hover:bg-orange-400">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg text-[#1DC0DA] transition-colors duration-300 group-hover:text-white">
                   <FaCalculator className="h-8 w-8" />
                 </div>
-                <h3 className="whitespace-nowrap text-2xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-white">
+                <h3 className="whitespace-nowrap text-2xl font-bold text-white transition-colors duration-300 group-hover:text-white">
                   98%
                 </h3>
-                <p className="mt-2 whitespace-nowrap text-gray-600 transition-colors duration-300 group-hover:text-white">
+                <p className="mt-2 whitespace-nowrap text-[#B0B0B0] transition-colors duration-300 group-hover:text-white">
                   Client Satisfaction
                 </p>
               </div>
 
               {/* CARD 2 */}
-              <div className="group rounded-lg bg-gray-100 p-6 text-center transition duration-300 ease-in-out hover:-translate-y-2 hover:bg-cyan-400">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg text-cyan-400 transition-colors duration-300 group-hover:text-white">
+              <div className="group rounded-lg bg-[#1F2B4D] p-6 text-center transition duration-300 ease-in-out hover:-translate-y-2 hover:bg-orange-400">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg text-[#1DC0DA] transition-colors duration-300 group-hover:text-white">
                   <FaAward className="h-8 w-8" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-white">
+                <h3 className="text-2xl font-bold text-white transition-colors duration-300 group-hover:text-white">
                   15+
                 </h3>
-                <p className="mt-2 whitespace-nowrap text-gray-600 transition-colors duration-300 group-hover:text-white">
+                <p className="mt-2 whitespace-nowrap text-[#B0B0B0] transition-colors duration-300 group-hover:text-white">
                   Years of Expertise
                 </p>
               </div>
 
               {/* CARD 3 */}
-              <div className="group rounded-lg bg-gray-100 p-6 text-center transition duration-300 ease-in-out hover:-translate-y-2 hover:bg-cyan-400">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg text-cyan-400 transition-colors duration-300 group-hover:text-white">
+              <div className="group rounded-lg bg-[#1F2B4D] p-6 text-center transition duration-300 ease-in-out hover:-translate-y-2 hover:bg-orange-400">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-lg text-[#1DC0DA] transition-colors duration-300 group-hover:text-white">
                   <FaUsers className="h-8 w-8" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-white">
+                <h3 className="text-2xl font-bold text-white transition-colors duration-300 group-hover:text-white">
                   Global
                 </h3>
-                <p className="mt-2 whitespace-nowrap text-gray-600 transition-colors duration-300 group-hover:text-white">
+                <p className="mt-2 whitespace-nowrap text-[#B0B0B0] transition-colors duration-300 group-hover:text-white">
                   Talent Network
                 </p>
               </div>
@@ -396,12 +396,12 @@ const AboutUs = () => {
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="mb-3 w-fit rounded-md bg-[#e9fcff] px-4 py-2 text-sm font-semibold text-cyan-400"
+              className="mb-3 w-fit rounded-md bg-[#1DC0DA]/20 px-4 py-2 text-sm font-semibold text-[#1DC0DA]"
             >
               Why ADROYTS?
             </motion.div>
 
-            <SplitText className="mb-6 text-4xl font-extrabold text-[#0E1C3F]">
+            <SplitText className="mb-6 text-4xl font-extrabold text-white">
               Your Strategic Partner in Leadership & Talent Solutions
             </SplitText>
 
@@ -410,7 +410,7 @@ const AboutUs = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
               viewport={{ once: false }}
-              className="mb-6 font-medium leading-relaxed text-gray-600"
+              className="mb-6 font-medium leading-relaxed text-[#B0B0B0]"
             >
               At ADROYTS, we combine deep market insight, global networks, and a commitment to excellence to
               deliver leadership and HR solutions that transform organizations. We focus on understanding your
@@ -425,10 +425,10 @@ const AboutUs = () => {
                 "Proven Record of Client Success",
               ].map((item, index) => (
                 <div key={index} className="flex items-center gap-2">
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-cyan-400 text-sm text-white">
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1DC0DA] text-sm text-white">
                     ✓
                   </span>
-                  <p className="font-medium text-gray-800">{item}</p>
+                  <p className="font-medium text-white">{item}</p>
                 </div>
               ))}
             </div>

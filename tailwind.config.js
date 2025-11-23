@@ -14,6 +14,9 @@ module.exports = {
         "blue-700": "#1D4ED8", // base blue
         "blue-800": "#1E40AF", // darker
         "blue-900": "#1E3A8A", // darkest
+        "cyan-400": "#1DC0DA",
+        "orange-400": "#F3AF1B",
+        "orange-500": "#E67E22",
       },
       fontFamily: {
         cairo: ["Cairo", "sans-serif"],
