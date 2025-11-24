@@ -48,7 +48,7 @@ const fadeUpVariant = {
 const SectorsSlider = () => {
   return (
     <div className="bg-white py-20">
-      <div className="mx-auto max-w-8xl px-6 text-center">
+      <div className="mx-auto max-w-7xl px-6 text-center">
         <SplitText className="mb-14 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl">
           Sectors We Serve
         </SplitText>
@@ -58,7 +58,7 @@ const SectorsSlider = () => {
           {sectors.map((sector, index) => (
             <motion.div
               key={index}
-              className="relative flex w-full flex-col justify-end overflow-hidden rounded-xl bg-cover bg-center pt-32"
+              className="relative flex w-full flex-col justify-end overflow-hidden rounded-xl bg-cover bg-center pt-24"
               style={{ backgroundImage: `url(${sector.image})` }}
               variants={fadeUpVariant}
               initial="hidden"
@@ -74,7 +74,7 @@ const SectorsSlider = () => {
               {/* Gradient Overlay */}
 
               {/* Content */}
-              <div className="relative z-10 mx-6 mb-4 rounded-xl border border-white/20 bg-white/10 p-3">
+              <div className="relative z-10 mx-4 mb-4 rounded-xl border border-white/20 bg-white/10 p-3">
                 <h3 className="mb-3 text-left text-2xl font-semibold text-white">{sector.title}</h3>
                 <p className="text-left text-lg leading-relaxed text-white/90">{sector.description}</p>
               </div>

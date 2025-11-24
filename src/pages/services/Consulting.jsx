@@ -122,7 +122,7 @@ const Consulting = () => {
         </motion.div>
       </section>
 
-      <div className="mx-auto flex max-w-8xl gap-2 px-6 py-16 text-lg">
+      <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
         {/* Sidebar Menu */}
         <div className="sticky top-32 h-full flex-1">
           {/* MENU BOX */}

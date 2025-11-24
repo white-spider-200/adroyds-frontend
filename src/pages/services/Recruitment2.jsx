@@ -1,14 +1,8 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import CountUp from "react-countup";
-import {
-  FaArrowRight,
-  FaChalkboardTeacher,
-  FaPhoneAlt,
-  FaThumbsUp,
-  FaUserCheck,
-  FaUsersCog,
-} from "react-icons/fa";
+import { FaArrowRight, FaAward, FaClipboardList, FaPhoneAlt, FaThumbsUp, FaUserCheck } from "react-icons/fa";
+import { PiGearSixLight, PiPersonLight } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../../utils/SplitText";
@@ -33,60 +27,55 @@ const fadeUpVariant = {
 
 const servicesList = [
   {
-    title: "Professional Development Programs",
-    desc: "Structured learning paths designed to enhance communication, leadership, productivity, and workplace readiness skills, empowering professionals to excel.",
+    title: "Executive Search",
+    desc: "Identifying and engaging exceptional leaders who drive transformation.",
     image: "/assets/istock-90868745-large-spxmmo.jpeg", // replace with your image path
     link: "#executive",
   },
   {
-    title: "Technical Skills Training",
-    desc: "Hands-on courses covering full-stack development, cloud computing, data analytics, and UI/UX fundamentals to prepare learners for tech-driven roles.",
+    title: "Professional Search",
+    desc: "Delivering high-performing professionals to power your business growth.",
     image: "/assets/shutterstock_591060992.jpg",
     link: "#professional",
   },
   {
-    title: "Customized Corporate Training",
-    desc: "Tailored programs aligned with your organization’s goals, focused on workforce upskilling, reskilling, and accelerating talent to meet evolving business needs.",
+    title: "RPO (Recruitment Process Outsourcing)",
+    desc: "Full-cycle recruitment ownership from sourcing to onboarding.",
     image: "/assets/shutterstock_2212724739.jpg",
     link: "#rpo",
   },
 ];
 
-const trainingSteps = [
-  {
-    title: "Assess",
-    desc: "Identify individual and organizational skill gaps to tailor impactful training programs.",
-  },
-  {
-    title: "Train",
-    desc: "Deliver expert-led, interactive training sessions using a blended approach of online and in-person learning.",
-  },
-  {
-    title: "Apply",
-    desc: "Provide hands-on exercises and real-world projects to solidify knowledge and practical skills.",
-  },
-  {
-    title: "Validate",
-    desc: "Conduct assessments and certifications to ensure mastery and measurable outcomes.",
-  },
+const executiveSteps = [
+  "Understanding Client Needs",
+  "Market Research & Talent Mapping",
+  "Shortlisting & Evaluation",
+  "Client Presentation & Interviews",
+  "Offer Management & Onboarding",
 ];
 
-const whyChooseUs = [
-  "Experienced industry trainers with real-world expertise",
-  "Comprehensive curriculum aligned with current market demands",
-  "Blended learning models offering flexibility and engagement",
-  "Robust assessment and certification to validate skills",
-  "Partnership approach to support long-term talent development",
+const profFeatures = [
+  "Proprietary candidate database",
+  "Rapid response for urgent hires",
+  "Custom sourcing pipelines",
+  "Dedicated account manager",
+];
+
+const rpoFeatures = [
+  "End-to-end recruitment ownership",
+  "Dedicated sector-focused recruiters",
+  "Unlimited hiring scope",
+  "Scalable workforce model",
 ];
 
 const statsData = [
-  { num: 1200, label: "Graduates Certified", icon: <FaUserCheck size={32} /> },
-  { num: 85, label: "Corporate Partners", icon: <FaUsersCog size={32} /> },
-  { num: 500, label: "Training Sessions Delivered", icon: <FaChalkboardTeacher size={32} /> },
-  { num: 95, label: "Satisfaction Rate (%)", icon: <FaThumbsUp size={32} /> },
+  { num: 1200, suffix: "+", label: "Candidates Successfully Placed", icon: <FaUserCheck size={32} /> },
+  { num: 250, suffix: "+", label: "Recruitment Projects Completed", icon: <FaClipboardList size={32} /> },
+  { num: 95.93, suffix: "%", label: "Passed Probation Period", icon: <FaThumbsUp size={32} /> },
+  { num: 19, suffix: "+", label: "Years of Recruitment Excellence", icon: <FaAward size={32} /> },
 ];
 
-const Academy = () => {
+const Recruitment2 = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -94,12 +83,12 @@ const Academy = () => {
   }, []);
 
   return (
-    <div className="w-full bg-white font-sans text-[#0E1C3F] selection:bg-cyan-400/30 selection:text-[#0E1C3F]">
+    <div className="w-full bg-navy-500 font-sans text-white selection:bg-cyan-400/30 selection:text-white">
       {/* HERO SECTION */}
       <section className="relative -mt-40 flex min-h-[calc(60vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
-          src="/assets/SEC_Batch02_33.jpg"
-          alt="Adroyts Academy Background"
+          src="/assets/business-meeting-saudi-arabia-1024x683.webp"
+          alt="Recruitment Solutions"
           className="absolute inset-0 h-full w-full object-cover"
         />
 
@@ -121,11 +110,12 @@ const Academy = () => {
                 </a>
                 <span className="mx-2">/</span>
               </li>
-              <li className="font-semibold text-white">Adroyts Academy</li>
+              <li className="font-semibold text-white">Recruitment Solutions</li>
             </ol>
           </nav>
+
           <SplitText className="mb-4 text-4xl font-extrabold text-white md:text-5xl">
-            Expert Training, Career Growth Since 2006
+            Recruitment Solutions that Empower Organizations Since 2006
           </SplitText>
 
           <motion.button
@@ -141,27 +131,26 @@ const Academy = () => {
       </section>
 
       <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
-        {/* Sidebar Menu */}
         <div className="sticky top-32 h-full flex-1">
           {/* MENU BOX */}
           <div className="flex flex-col rounded-lg bg-[#0E1C3F] p-4 py-6 text-white">
             <nav className="flex flex-col space-y-4">
-              {/* Recruitment Solutions (INACTIVE NOW) */}
+              {/* Recruitment Solutions (ACTIVE) */}
               <button
                 onClick={() => navigate("/services/recruitment")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
-              >
-                <span>Recruitment Solutions</span>
-                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
-              </button>
-
-              {/* Adroyts Academy (ACTIVE) */}
-              <button
-                onClick={() => navigate("/services/academy")}
                 className="group flex w-full items-center justify-between rounded-lg bg-cyan-400 px-4 py-2 text-left font-semibold text-white transition-colors hover:bg-cyan-400/30"
               >
-                <span>Adroyts Academy</span>
+                <span>Recruitment Solutions</span>
                 <FaArrowRight className="translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0" />
+              </button>
+
+              {/* Adroyts Academy */}
+              <button
+                onClick={() => navigate("/services/academy")}
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
+              >
+                <span>Adroyts Academy</span>
+                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
               </button>
 
               {/* Assessment Center */}
@@ -199,7 +188,7 @@ const Academy = () => {
             <div className="absolute inset-0 flex flex-col items-start justify-center space-y-4 p-8 text-white">
               <p className="text-xl font-semibold">If You Need Any Service Contact With Us</p>
 
-              <p className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-6 py-2 font-semibold text-[#0E1C3F]">
+              <p className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-6 py-2 font-semibold text-navy-500">
                 <FaPhoneAlt />
                 +966112342667
               </p>
@@ -207,26 +196,28 @@ const Academy = () => {
           </div>
         </div>
 
-        {/* Main Content */}
-        <div className="flex-[2.7] bg-white px-6">
-          {/* HERO IMAGE */}
+        <div className="flex-[2.7] px-6">
           <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
-              src="/assets/SEC_Batch02_33.jpg"
+              src="/assets/business-meeting-saudi-arabia-1024x683.webp"
               alt="Recruitment Solutions"
               className="h-full w-full object-cover"
             />
+
+            {/* OVERLAY */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F] to-orange-400 opacity-20"></div>
           </div>
 
-          {/* INTRO / ABOUT */}
+          {/* INTRO */}
           <section className="container pb-16 md:max-w-4xl">
-            <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">About Adroyts Academy</h2>
-            <p className="text-lg leading-relaxed text-gray-700">
-              Adroyts Academy is committed to shaping the next generation of professionals and leaders across
-              the region. Our programs combine industry-aligned knowledge, practical experience, and
-              real-world application, empowering individuals and organizations to achieve measurable growth
-              and lasting impact.
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-white">
+              About Our Recruitment Solutions
+            </h2>
+
+            <p className="text-lg leading-relaxed text-white/80">
+              For nearly two decades, Adroyts has been a trusted recruitment partner for organizations across
+              Saudi Arabia. We provide end-to-end hiring solutions that balance precision, speed, and cultural
+              alignment—helping clients secure the right talent every time.
             </p>
           </section>
 
@@ -275,7 +266,7 @@ const Academy = () => {
 
           {/* SERVICES */}
           <section className="container mx-auto px-6 py-20">
-            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Recruitment Services</h2>
+            <h2 className="mb-12 text-center text-4xl font-bold text-white">Our Recruitment Services</h2>
             <div className="grid grid-cols-1 gap-3 md:grid-cols-1">
               {servicesList.map(({ title, desc, image, link }, index) => (
                 <motion.a
@@ -318,100 +309,143 @@ const Academy = () => {
             </div>
           </section>
 
-          {/* TRAINING APPROACH */}
+          {/* EXECUTIVE SEARCH */}
           <section
-            id="training"
+            id="executive"
             className="relative rounded-xl bg-navy-500 bg-cover bg-center bg-no-repeat py-28"
+            style={{ backgroundImage: "url('/assets/istock-90868745-large-spxmmo.jpeg')" }}
           >
             {/* Overlay */}
             <div className="absolute inset-0 rounded-xl bg-[#0E1C3F]/90"></div>
 
-            {/* CONTENT — above overlay */}
+            {/* CONTENT — now above overlay */}
             <div className="relative z-10 mx-auto max-w-7xl px-6">
-              <h2 className="mb-16 text-center text-3xl font-bold text-white">Our Training Approach</h2>
+              <h2 className="mb-16 text-center text-3xl font-bold text-white">Executive Search</h2>
 
               <div className="relative flex justify-between">
                 {/* Horizontal Line */}
                 <div className="absolute left-0 right-0 top-6 mx-auto h-[2px] bg-white/20"></div>
 
-                {[
-                  {
-                    title: "Needs Assessment",
-                    desc: "We collaborate with your organization to identify skill gaps and strategic objectives.",
-                  },
-                  {
-                    title: "Customized Curriculum",
-                    desc: "Our programs are tailored to meet your team’s unique goals and industry requirements.",
-                  },
-                  {
-                    title: "Hands-On Learning",
-                    desc: "Practical exercises, real-world case studies, and interactive sessions drive actionable skills.",
-                  },
-                  {
-                    title: "Continuous Evaluation",
-                    desc: "Regular assessments and feedback ensure measurable outcomes and long-term retention.",
-                  },
-                ].map(({ title, desc }, i) => (
-                  <div key={i} className="flex w-44 flex-col items-center text-center">
+                {executiveSteps.map((step, i) => (
+                  <div key={i} className="flex w-40 flex-col items-center text-center">
                     {/* Number Badge */}
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-400 text-xl font-bold text-white">
+                    <div className="z-10 flex h-12 w-12 items-center justify-center rounded-full bg-orange-400 text-xl font-bold text-white">
                       {i + 1}
                     </div>
 
                     {/* Step Title */}
-                    <h3 className="mt-4 text-lg font-semibold text-white">{title}</h3>
-
-                    {/* Step Description */}
-                    <p className="mt-2 text-sm text-white/80">{desc}</p>
+                    <h3 className="mt-4 text-lg font-semibold text-white">{step}</h3>
                   </div>
                 ))}
               </div>
             </div>
           </section>
 
-          {/* WHY CHOOSE US */}
-          <section className="container mx-auto px-6 py-20">
-            <h2 className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">
-              Why Choose Adroyts Academy
-            </h2>
-            <ul className="mx-auto max-w-4xl list-inside list-disc space-y-4 text-lg text-gray-700">
-              {[
-                "Proven track record of transforming professionals into industry leaders.",
-                "Industry-aligned programs designed for practical, real-world application.",
-                "Expert instructors with decades of leadership and corporate experience.",
-                "Customized solutions to meet organizational and individual objectives.",
-              ].map((point, i) => (
-                <motion.li
+          {/* PROFESSIONAL SEARCH */}
+          <section id="professional" className="py-28">
+            <h2 className="mb-10 text-center text-3xl font-bold text-white">Professional Search</h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+              {profFeatures.map((feature, i) => (
+                <motion.div
                   key={i}
                   initial="hidden"
                   whileInView="visible"
                   variants={fadeUp}
+                  custom={i * 0.15}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
+                  className="rounded-lg p-8 text-center shadow-md"
                 >
-                  {point}
-                </motion.li>
+                  <PiPersonLight className="mx-auto mb-4 h-10 w-10 text-cyan-400" />
+                  <p className="text-white/80">{feature}</p>
+                </motion.div>
               ))}
-            </ul>
+            </div>
+
+            <div className="mt-12 rounded-lg border border-gray-300 bg-[#0E1C3F] p-10 text-center text-lg font-semibold text-white shadow-lg">
+              While Executive Search targets leadership roles, Professional Search focuses on mid-level and
+              technical talent—delivering speed, scalability, and precision.
+            </div>
+          </section>
+
+          {/* RPO SECTION */}
+          <section
+            id="rpo"
+            className="relative rounded-xl bg-navy-500 bg-cover bg-center bg-no-repeat px-6 py-28"
+            style={{ backgroundImage: "url('/assets/shutterstock_2212724739.jpg')" }}
+          >
+            {/* Overlay */}
+            <div className="absolute inset-0 rounded-xl bg-[#0E1C3F]/90"></div>
+
+            {/* CONTENT ABOVE OVERLAY */}
+            <div className="container relative z-10 mx-auto max-w-7xl">
+              <h2 className="mb-8 text-center text-3xl font-bold tracking-tight text-white">
+                Recruitment Process Outsourcing (RPO)
+              </h2>
+
+              <p className="mx-auto mb-12 max-w-3xl text-center text-lg leading-relaxed text-white/90">
+                Adroyts’ RPO service offers an end-to-end recruitment solution. Your dedicated Adroyts team
+                becomes an extension of your HR function—equipped with sector-savvy recruiters, sourcing
+                tools, and scalable capacity.
+              </p>
+
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
+                {rpoFeatures.map((item, i) => (
+                  <div
+                    key={i}
+                    className="rounded-lg border border-white/30 bg-white/10 p-8 text-center backdrop-blur-md"
+                  >
+                    <PiGearSixLight className="mx-auto mb-3 h-10 w-10 text-white" />
+                    <p className="text-white">{item}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-12 text-center text-xl font-semibold text-cyan-400">
+                Average time-to-fill reduction: 45%
+              </div>
+            </div>
           </section>
 
           {/* FINAL CTA */}
-          <section className="relative bg-white px-6 py-20 text-center">
+          <section className="relative px-6 py-20 text-center">
             <h2 className="mb-6 text-4xl font-bold tracking-tight text-cyan-400">
-              Invest in Your Team. Unlock Their Full Potential.
+              Ready to build your next great team?
             </h2>
-            <p className="mx-auto mb-10 max-w-3xl text-lg text-[#0E1C3F]">
-              Join the hundreds of organizations and professionals who rely on Adroyts Academy for
-              cutting-edge, results-driven training. Empower your teams with the skills and knowledge to excel
-              in a competitive world.
+            <p className="mx-auto mb-10 max-w-3xl text-lg text-white">
+              Whether you’re seeking top executives, skilled professionals, or full recruitment support,
+              Adroyts is ready to help.
             </p>
 
             <button
               onClick={() => navigate("/contact")}
-              className="rounded-lg border border-cyan-400 bg-white px-10 py-4 text-lg font-semibold text-[#0E1C3F] shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-cyan-400/40"
+              className="rounded-lg bg-cyan-400 px-10 py-4 text-lg font-semibold text-white shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-cyan-400/40"
             >
-              Get Started Today
+              Contact Us
             </button>
+
+            {/* Sticky floating CTA */}
+
+            <a
+              href="#contact"
+              className="fixed bottom-6 right-6 z-50 rounded-full bg-cyan-400 p-4 text-white shadow-lg transition hover:bg-[#17a8bb] md:hidden"
+              aria-label="Contact Us"
+              title="Contact Us"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+            </a>
           </section>
         </div>
       </div>
@@ -419,4 +453,4 @@ const Academy = () => {
   );
 };
 
-export default Academy;
+export default Recruitment2;

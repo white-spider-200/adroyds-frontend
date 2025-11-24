@@ -130,7 +130,7 @@ const Recruitment = () => {
         </motion.div>
       </section>
 
-      <div className="mx-auto flex max-w-8xl gap-2 px-6 py-16 text-lg">
+      <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
         <div className="sticky top-32 h-full flex-1">
           {/* MENU BOX */}
           <div className="flex flex-col rounded-lg bg-[#0E1C3F] p-4 py-6 text-white">
@@ -235,7 +235,7 @@ const Recruitment = () => {
               <polygon points="800,400 0,400 0,300 800,100" fill="#15a8bf" />
             </svg>
 
-            <div className="relative z-10 mx-auto flex max-w-8xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
+            <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
               {/* Stats */}
               <div className="flex flex-1 justify-between">
                 {statsData.map(({ icon, num, suffix, label }, i) => (
@@ -312,14 +312,14 @@ const Recruitment = () => {
           {/* EXECUTIVE SEARCH */}
           <section
             id="executive"
-            className="bg-navy-500 relative rounded-xl bg-cover bg-center bg-no-repeat py-28"
+            className="relative rounded-xl bg-navy-500 bg-cover bg-center bg-no-repeat py-28"
             style={{ backgroundImage: "url('/assets/istock-90868745-large-spxmmo.jpeg')" }}
           >
             {/* Overlay */}
             <div className="absolute inset-0 rounded-xl bg-[#0E1C3F]/90"></div>
 
             {/* CONTENT — now above overlay */}
-            <div className="relative z-10 mx-auto max-w-8xl px-6">
+            <div className="relative z-10 mx-auto max-w-7xl px-6">
               <h2 className="mb-16 text-center text-3xl font-bold text-white">Executive Search</h2>
 
               <div className="relative flex justify-between">
@@ -370,14 +370,14 @@ const Recruitment = () => {
           {/* RPO SECTION */}
           <section
             id="rpo"
-            className="bg-navy-500 relative rounded-xl bg-cover bg-center bg-no-repeat px-6 py-28"
+            className="relative rounded-xl bg-navy-500 bg-cover bg-center bg-no-repeat px-6 py-28"
             style={{ backgroundImage: "url('/assets/shutterstock_2212724739.jpg')" }}
           >
             {/* Overlay */}
             <div className="absolute inset-0 rounded-xl bg-[#0E1C3F]/90"></div>
 
             {/* CONTENT ABOVE OVERLAY */}
-            <div className="container relative z-10 mx-auto max-w-8xl">
+            <div className="container relative z-10 mx-auto max-w-7xl">
               <h2 className="mb-8 text-center text-3xl font-bold tracking-tight text-white">
                 Recruitment Process Outsourcing (RPO)
               </h2>

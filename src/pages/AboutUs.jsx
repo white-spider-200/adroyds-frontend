@@ -96,7 +96,7 @@ const AboutUs = () => {
                   <a href="/" className="hover:text-white hover:underline">
                     Home
                   </a>
-                  <FaChevronRight className="mx-2 text-cyan-400" />
+                  <span className="mx-2">/</span>
                 </li>
                 <li className="font-semibold text-white">About Us</li>
               </ol>
@@ -111,7 +111,7 @@ const AboutUs = () => {
 
       {/* OVERVIEW */}
       <section className="w-full bg-white py-28">
-        <div className="mx-auto grid max-w-8xl grid-cols-1 gap-10 px-6 md:grid-cols-2">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 md:grid-cols-2">
           {/* LEFT IMAGES + STATS */}
           <div className="relative flex gap-4 md:gap-6">
             <div className="flex flex-col gap-4 md:gap-6">
@@ -234,7 +234,7 @@ const AboutUs = () => {
         style={{ backgroundImage: "url('/assets/saudi-arabia-s-digital-transformation-free-photo.jpeg')" }}
       >
         {/* Overlay */}
-        <div className="to-navy-500/50 absolute inset-0 bg-gradient-to-r from-orange-400/60 via-cyan-400/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-400/60 via-cyan-400/40 to-navy-500/50"></div>
 
         {/* Content */}
         <div className="relative z-10 max-w-5xl px-6 text-center">
@@ -268,7 +268,7 @@ const AboutUs = () => {
 
       {/* OUR VALUES */}
       <section id="values" className="w-full bg-gray-100 px-6 py-20">
-        <div className="mx-auto max-w-8xl text-center">
+        <div className="mx-auto max-w-7xl text-center">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -331,7 +331,7 @@ const AboutUs = () => {
 
       {/* WHY CHOOSE US */}
       <section id="why" className="w-full bg-[#0E1C3F] py-16">
-        <div className="mx-auto grid max-w-8xl grid-cols-1 gap-10 px-6 md:grid-cols-[3fr_2fr]">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 md:grid-cols-[3fr_2fr]">
           {/* LEFT SIDE */}
           <div className="flex gap-4">
             {/* Cards */}
@@ -438,7 +438,7 @@ const AboutUs = () => {
 
       {/* MISSION & VISION */}
       <section id="mission-vision" className="w-full bg-gray-50 py-24">
-        <div className="mx-auto grid max-w-8xl grid-cols-1 gap-12 px-6 md:grid-cols-2">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 md:grid-cols-2">
           {/* MISSION */}
           <motion.div
             variants={cardVariant}
@@ -492,7 +492,7 @@ const AboutUs = () => {
 
       {/* DIRECTORS */}
       <section id="board" className="bg-gray-100 py-32">
-        <div className="mx-auto max-w-8xl px-6 text-center">
+        <div className="mx-auto max-w-7xl px-6 text-center">
           <SplitText className="text-4xl font-extrabold text-gray-900">Board Of Directors</SplitText>
 
           <motion.p
@@ -543,7 +543,7 @@ const AboutUs = () => {
 
       {/* EXECUTIVE MANAGEMENT */}
       <section id="executive" className="bg-white py-32">
-        <div className="mx-auto max-w-8xl text-center">
+        <div className="mx-auto max-w-7xl text-center">
           <SplitText className="text-4xl font-extrabold text-gray-900">Executive Management</SplitText>
 
           <motion.p

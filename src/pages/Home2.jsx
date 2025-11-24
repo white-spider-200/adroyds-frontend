@@ -86,8 +86,26 @@ const caseStudies = [
       "Building the essential skills and capabilities of employees to effectively prepare them for future leadership roles and sustainable organizational growth.",
   },
 ];
+const fadeVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1 } },
+};
+const sliderImages = [
+  "/assets/businessman-using-laptop-mouse.jpg",
+  "/assets/saudi11-blog-thumbnail.jpg",
+  "/assets/istockphoto-1395570261-612x613.jpg",
+];
 
-const Home = () => {
+const Home2 = () => {
+  const [current, setCurrent] = useState(0);
+
+  // Auto slide every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % sliderImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const [loading, setLoading] = useState(true);
@@ -134,52 +152,48 @@ const Home = () => {
   return (
     <div dir={i18n.language === "ar" ? "rtl" : "ltr"} className="bg-white font-cairo text-gray-800">
       <section className="relative -mt-40 flex min-h-[calc(100vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
-        {/* Background video */}
-        <video
-          className="absolute inset-0 h-full w-full object-cover"
-          src="/assets/adroyts-video.mp4" // replace with your video path
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
-        {/* Overlay (optional for better text contrast) */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
-        <motion.div
-          className="relative z-10 mt-32 max-w-4xl"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
-          variants={scaleFadeContainer}
-        >
+        {/* Slider */}
+        {sliderImages.map((src, index) => (
+          <motion.img
+            key={index}
+            src={src}
+            alt={`Slide ${index + 1}`}
+            className="absolute inset-0 h-full w-full object-cover"
+            variants={fadeVariants}
+            initial="hidden"
+            animate={current === index ? "visible" : "hidden"}
+          />
+        ))}
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F]/80 via-[#0E1C3F]/50 to-[#0E1C3F]/30"></div>
+
+        {/* Content */}
+        <motion.div className="relative z-10 mt-32 max-w-4xl">
           <SplitText className="mb-8 text-3xl font-bold text-white md:text-5xl">
             Building the Future Workforce
           </SplitText>
 
-          <motion.p className="mb-20 text-2xl text-[#d2d2d2]" variants={scaleFadeItem}>
+          <motion.p className="mb-20 text-2xl text-[#d2d2d2]">
             Innovative recruitment, HR academy training, and human capital consulting
           </motion.p>
 
-          <motion.div className="flex items-center justify-center space-x-8" variants={scaleFadeItem}>
-            <motion.div className="flex items-center justify-center space-x-8" variants={fadeUpItem}>
-              <div className="flex items-center justify-center">
-                <motion.button
-                  onClick={() => {
-                    const section = document.getElementById("services");
-                    if (section) section.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="rounded-full bg-cyan-400 px-6 py-4 font-bold text-white shadow-md hover:bg-cyan-500"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  EXPLORE OUR SERVICES
-                </motion.button>
-              </div>
-            </motion.div>
-          </motion.div>
+          <div className="flex items-center justify-center">
+            <motion.button
+              onClick={() => {
+                const section = document.getElementById("services");
+                if (section) section.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="rounded-full bg-cyan-400 px-6 py-4 font-bold text-white shadow-md hover:bg-cyan-500"
+              whileHover={{ scale: 1.1 }}
+            >
+              EXPLORE OUR SERVICES
+            </motion.button>
+          </div>
         </motion.div>
       </section>
       <div
-        className="relative bg-cover bg-center bg-no-repeat p-12 pb-16 pt-20"
+        className="relative bg-cover bg-center bg-no-repeat p-12 pb-16 pt-32"
         style={{
           backgroundImage: `url('/assets/mamalakah.jpg')`,
           backgroundAttachment: "fixed",
@@ -189,15 +203,18 @@ const Home = () => {
         {/* <div className="to-navy-500/50 absolute inset-0 bg-gradient-to-r from-orange-400/60 via-cyan-400/40"></div> */}
 
         {/* About Section */}
+        <SplitText className="mb-8 text-center text-4xl font-bold tracking-tight text-white md:text-5xl">
+          About Adroyts
+        </SplitText>
         <motion.section
-          className="relative z-20 mx-auto flex max-w-7xl flex-wrap justify-center gap-16 p-12 text-center shadow-2xl backdrop-blur-xl md:p-16"
+          className="relative z-20 mx-auto max-w-7xl rounded-xl p-10 md:p-14"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false }}
           variants={fadeUpContainer}
         >
           <motion.p
-            className="mx-auto mb-6 text-xl leading-relaxed text-white drop-shadow-lg"
+            className="mx-auto mb-6 text-xl leading-relaxed text-white/80 drop-shadow-lg"
             variants={fadeUp}
             custom={0}
           >
@@ -462,4 +479,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Home2;

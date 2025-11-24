@@ -48,9 +48,9 @@ const services = [
   },
 ];
 
-const COLLAPSED_WIDTH_DESKTOP = 120;
+const COLLAPSED_WIDTH_DESKTOP = 100;
 const COLLAPSED_WIDTH_MOBILE = 80;
-const EXPANDED_WIDTH_DESKTOP = 950;
+const EXPANDED_WIDTH_DESKTOP = 910;
 const CARD_HEIGHT_DESKTOP = 500;
 const CARD_HEIGHT_MOBILE = 320;
 
@@ -204,7 +204,7 @@ const ServicesSection = () => {
         Core Services
       </SplitText>
 
-      <div className="scrollbar-hide mx-auto flex max-w-8xl space-x-4 overflow-x-auto px-4 sm:px-6">
+      <div className="scrollbar-hide mx-auto flex max-w-7xl space-x-4 overflow-x-auto px-4 sm:px-6">
         {services.map((service) => (
           <ServiceCard
             key={service.id}

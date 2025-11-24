@@ -96,7 +96,7 @@ const CaseStudies = () => {
 
       {/* Case Studies Grid */}
       <section id="blog" className="bg-gray-100 py-16">
-        <div className="mx-auto max-w-8xl px-6 md:px-12">
+        <div className="mx-auto max-w-7xl px-6 md:px-12">
           <div className="grid gap-6 md:grid-cols-3">
             {dummyCaseStudies.map((caseStudy, i) => (
               <motion.article

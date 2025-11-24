@@ -96,7 +96,7 @@ const Blogs = () => {
 
       {/* Blog Section */}
       <section id="blog" className="bg-gray-100 py-16">
-        <div className="mx-auto max-w-8xl px-6">
+        <div className="mx-auto max-w-7xl px-6">
           {loading ? (
             // Loading UI
             <div className="flex justify-center py-20">

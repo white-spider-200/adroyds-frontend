@@ -47,7 +47,11 @@ const MainLayout = ({ children }) => {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const isActive = (path) => (location.pathname === path ? "text-white" : "text-white hover:text-blue-200 ");
+  const isActive = (path) =>
+    location.pathname == path ? "text-cyan-400" : "text-white hover:text-blue-200 ";
+
+  const isActiveParent = (prefix) =>
+    location.pathname.startsWith(prefix) ? "text-cyan-400" : "text-white hover:text-blue-200";
 
   const handleNav = (path) => {
     setDropdown(null);
@@ -63,7 +67,7 @@ const MainLayout = ({ children }) => {
           isScrolled ? "bg-[#0E1C3F]" : ""
         }`}
       >
-        <div className="container mx-auto flex max-w-8xl items-center justify-between p-6 md:px-6">
+        <div className="container mx-auto flex max-w-7xl items-center justify-between p-6 md:px-6">
           {/* Logo */}
           <Link to="/" onClick={scrollToTop} className="flex items-center space-x-2">
             <img
@@ -151,7 +155,7 @@ const MainLayout = ({ children }) => {
               onMouseEnter={() => setDropdown("media")}
               onMouseLeave={() => setDropdown(null)}
             >
-              <button className={`flex items-center gap-1 ${isActive("/media")}`}>
+              <button className={`flex items-center gap-1 ${isActiveParent("/media-center")}`}>
                 {i18n.language === "ar" ? "مركز المعرفة" : "Knowledge & Media Center"}
                 <FaChevronDown className="mt-0.5 text-xs" />
               </button>
@@ -271,7 +275,7 @@ const MainLayout = ({ children }) => {
         {/* Inside your footer, wrap key blocks with motion.div and apply item variants */}
 
         <motion.div
-          className="mx-auto grid max-w-8xl gap-10 px-6 py-12 md:grid-cols-12 md:px-12"
+          className="mx-auto grid max-w-7xl gap-10 px-6 py-12 md:grid-cols-12 md:px-12"
           variants={footerItemVariants}
         >
           {/* Your first big block (logo + text + social icons) */}
@@ -389,10 +393,10 @@ const MainLayout = ({ children }) => {
           </motion.div>
         </motion.div>
 
-        <div className="mx-auto max-w-8xl border-t border-gray-700"></div>
+        <div className="mx-auto max-w-7xl border-t border-gray-700"></div>
 
         <motion.div
-          className="mx-auto grid max-w-8xl gap-8 px-6 py-10 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:gap-16"
+          className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:gap-16"
           variants={footerItemVariants}
         >
           {/* Contact Information */}
@@ -441,11 +445,11 @@ const MainLayout = ({ children }) => {
           </div>
         </motion.div>
 
-        <div className="mx-auto max-w-8xl border-t border-gray-700"></div>
+        <div className="mx-auto max-w-7xl border-t border-gray-700"></div>
       </motion.footer>
 
       <footer className="bg-[#0e1a41]">
-        <div className="m-auto flex max-w-8xl items-center justify-between px-6 py-12 text-center text-sm text-white md:px-12">
+        <div className="m-auto flex max-w-7xl items-center justify-between px-6 py-12 text-center text-sm text-white md:px-12">
           <p>Copyright© {new Date().getFullYear()}. Adroyts Executive Search.</p>
           <div className="flex items-center gap-8">
             <p>Privacy Policy</p>

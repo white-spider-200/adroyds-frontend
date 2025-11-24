@@ -84,7 +84,7 @@ const Contact = () => {
       </section>
 
       <section id="overview" className="w-full bg-white py-24">
-        <div className="mx-auto grid max-w-8xl grid-cols-1 gap-10 px-6 md:grid-cols-2">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 md:grid-cols-2">
           {/* RIGHT CONTENT */}
           <div className="flex flex-col justify-center">
             <motion.div

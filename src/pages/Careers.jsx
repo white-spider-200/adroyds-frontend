@@ -141,7 +141,7 @@ const Careers = () => {
       </section>
 
       {/* Job Openings Section */}
-      <section id="openings" className="mx-auto max-w-8xl px-6 pb-20 pt-36">
+      <section id="openings" className="mx-auto max-w-7xl px-6 pb-20 pt-36">
         <SplitText className="mb-12 text-center text-2xl font-semibold text-gray-900">Job Openings</SplitText>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 shadow transition hover:shadow-lg">

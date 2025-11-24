@@ -95,7 +95,7 @@ const News = () => {
 
       {/* News Section */}
       <section id="news" className="bg-gray-100 py-16">
-        <div className="mx-auto max-w-8xl px-6">
+        <div className="mx-auto max-w-7xl px-6">
           {loading ? (
             <div className="flex justify-center py-20">
               <FaSpinner className="animate-spin text-4xl text-cyan-400" />
