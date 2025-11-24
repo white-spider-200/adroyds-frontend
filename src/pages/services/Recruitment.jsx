@@ -210,15 +210,21 @@ const Recruitment = () => {
 
           {/* INTRO */}
           <section className="container pb-16 md:max-w-4xl">
-            <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">
+            <SplitText className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">
               About Our Recruitment Solutions
-            </h2>
+            </SplitText>
 
-            <p className="text-lg leading-relaxed text-gray-700">
+            <motion.p
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+              viewport={{ once: false }}
+              className="mb-6 font-medium leading-relaxed text-gray-600"
+            >
               For nearly two decades, Adroyts has been a trusted recruitment partner for organizations across
               Saudi Arabia. We provide end-to-end hiring solutions that balance precision, speed, and cultural
               alignment—helping clients secure the right talent every time.
-            </p>
+            </motion.p>
           </section>
 
           {/* STATS SECTION */}
@@ -266,7 +272,9 @@ const Recruitment = () => {
 
           {/* SERVICES */}
           <section className="container mx-auto px-6 py-20">
-            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Recruitment Services</h2>
+            <SplitText className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">
+              Our Recruitment Services
+            </SplitText>
             <div className="grid grid-cols-1 gap-3 md:grid-cols-1">
               {servicesList.map(({ title, desc, image, link }, index) => (
                 <motion.a
@@ -320,7 +328,9 @@ const Recruitment = () => {
 
             {/* CONTENT — now above overlay */}
             <div className="relative z-10 mx-auto max-w-7xl px-6">
-              <h2 className="mb-16 text-center text-3xl font-bold text-white">Executive Search</h2>
+              <SplitText className="mb-16 text-center text-3xl font-bold text-white">
+                Executive Search
+              </SplitText>
 
               <div className="relative flex justify-between">
                 {/* Horizontal Line */}
@@ -343,7 +353,9 @@ const Recruitment = () => {
 
           {/* PROFESSIONAL SEARCH */}
           <section id="professional" className="bg-white py-28">
-            <h2 className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">Professional Search</h2>
+            <SplitText className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">
+              Professional Search
+            </SplitText>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
               {profFeatures.map((feature, i) => (
                 <motion.div
@@ -352,7 +364,7 @@ const Recruitment = () => {
                   whileInView="visible"
                   variants={fadeUp}
                   custom={i * 0.15}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   className="rounded-lg bg-white p-8 text-center shadow-md"
                 >
                   <PiPersonLight className="mx-auto mb-4 h-10 w-10 text-cyan-400" />
@@ -361,10 +373,16 @@ const Recruitment = () => {
               ))}
             </div>
 
-            <div className="mt-12 rounded-lg border border-gray-300 bg-[#0E1C3F] p-10 text-center text-lg font-semibold text-white shadow-lg">
+            <motion.p
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+              viewport={{ once: false }}
+              className="mt-12 rounded-lg border border-gray-300 bg-[#0E1C3F] p-10 text-center text-lg font-semibold text-white shadow-lg"
+            >
               While Executive Search targets leadership roles, Professional Search focuses on mid-level and
               technical talent—delivering speed, scalability, and precision.
-            </div>
+            </motion.p>
           </section>
 
           {/* RPO SECTION */}
@@ -378,25 +396,36 @@ const Recruitment = () => {
 
             {/* CONTENT ABOVE OVERLAY */}
             <div className="container relative z-10 mx-auto max-w-7xl">
-              <h2 className="mb-8 text-center text-3xl font-bold tracking-tight text-white">
+              <SplitText className="mb-8 text-center text-3xl font-bold tracking-tight text-white">
                 Recruitment Process Outsourcing (RPO)
-              </h2>
+              </SplitText>
 
-              <p className="mx-auto mb-12 max-w-3xl text-center text-lg leading-relaxed text-white/90">
+              <motion.p
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+                viewport={{ once: false }}
+                className="mx-auto mb-12 max-w-3xl text-center text-lg leading-relaxed text-white/90"
+              >
                 Adroyts’ RPO service offers an end-to-end recruitment solution. Your dedicated Adroyts team
                 becomes an extension of your HR function—equipped with sector-savvy recruiters, sourcing
                 tools, and scalable capacity.
-              </p>
+              </motion.p>
 
               <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
                 {rpoFeatures.map((item, i) => (
-                  <div
+                  <motion.div
                     key={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    variants={fadeUp}
+                    custom={i * 0.15}
+                    viewport={{ once: false }}
                     className="rounded-lg border border-white/30 bg-white/10 p-8 text-center backdrop-blur-md"
                   >
                     <PiGearSixLight className="mx-auto mb-3 h-10 w-10 text-white" />
                     <p className="text-white">{item}</p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
@@ -408,9 +437,9 @@ const Recruitment = () => {
 
           {/* FINAL CTA */}
           <section className="relative bg-white px-6 py-20 text-center">
-            <h2 className="mb-6 text-4xl font-bold tracking-tight text-cyan-400">
+            <SplitText className="mb-6 text-4xl font-bold tracking-tight text-cyan-400">
               Ready to build your next great team?
-            </h2>
+            </SplitText>
             <p className="mx-auto mb-10 max-w-3xl text-lg text-[#0E1C3F]">
               Whether you’re seeking top executives, skilled professionals, or full recruitment support,
               Adroyts is ready to help.
