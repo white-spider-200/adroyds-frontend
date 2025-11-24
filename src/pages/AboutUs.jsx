@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { FaCheck, FaStar, FaUsers } from "react-icons/fa";
+import { FaCheck, FaChevronCircleRight, FaChevronRight, FaStar, FaUsers } from "react-icons/fa";
 import { FaAward, FaCalculator, FaChartLine, FaDatabase, FaShieldAlt } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
@@ -80,7 +80,7 @@ const AboutUs = () => {
           className="absolute inset-0 h-full w-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
 
         <motion.div
           initial="hidden"
@@ -91,12 +91,12 @@ const AboutUs = () => {
         >
           <div className="mt-32 rounded-lg px-8 py-12 md:px-12 md:py-16">
             <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
-              <ol className="inline-flex space-x-2">
-                <li>
+              <ol className="flex items-center justify-center space-x-2">
+                <li className="flex items-center">
                   <a href="/" className="hover:text-white hover:underline">
                     Home
                   </a>
-                  <span className="mx-2">/</span>
+                  <FaChevronRight className="mx-2 text-cyan-400" />
                 </li>
                 <li className="font-semibold text-white">About Us</li>
               </ol>
@@ -111,7 +111,7 @@ const AboutUs = () => {
 
       {/* OVERVIEW */}
       <section className="w-full bg-white py-28">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 md:grid-cols-2">
+        <div className="mx-auto grid max-w-8xl grid-cols-1 gap-10 px-6 md:grid-cols-2">
           {/* LEFT IMAGES + STATS */}
           <div className="relative flex gap-4 md:gap-6">
             <div className="flex flex-col gap-4 md:gap-6">
@@ -234,7 +234,7 @@ const AboutUs = () => {
         style={{ backgroundImage: "url('/assets/saudi-arabia-s-digital-transformation-free-photo.jpeg')" }}
       >
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="to-navy-500/50 absolute inset-0 bg-gradient-to-r from-orange-400/60 via-cyan-400/40"></div>
 
         {/* Content */}
         <div className="relative z-10 max-w-5xl px-6 text-center">
@@ -268,7 +268,7 @@ const AboutUs = () => {
 
       {/* OUR VALUES */}
       <section id="values" className="w-full bg-gray-100 px-6 py-20">
-        <div className="mx-auto max-w-6xl text-center">
+        <div className="mx-auto max-w-8xl text-center">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -331,7 +331,7 @@ const AboutUs = () => {
 
       {/* WHY CHOOSE US */}
       <section id="why" className="w-full bg-[#0E1C3F] py-16">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 md:grid-cols-[3fr_2fr]">
+        <div className="mx-auto grid max-w-8xl grid-cols-1 gap-10 px-6 md:grid-cols-[3fr_2fr]">
           {/* LEFT SIDE */}
           <div className="flex gap-4">
             {/* Cards */}
@@ -438,7 +438,7 @@ const AboutUs = () => {
 
       {/* MISSION & VISION */}
       <section id="mission-vision" className="w-full bg-gray-50 py-24">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 md:grid-cols-2">
+        <div className="mx-auto grid max-w-8xl grid-cols-1 gap-12 px-6 md:grid-cols-2">
           {/* MISSION */}
           <motion.div
             variants={cardVariant}
@@ -492,7 +492,7 @@ const AboutUs = () => {
 
       {/* DIRECTORS */}
       <section id="board" className="bg-gray-100 py-32">
-        <div className="mx-auto max-w-6xl px-6 text-center">
+        <div className="mx-auto max-w-8xl px-6 text-center">
           <SplitText className="text-4xl font-extrabold text-gray-900">Board Of Directors</SplitText>
 
           <motion.p
@@ -543,7 +543,7 @@ const AboutUs = () => {
 
       {/* EXECUTIVE MANAGEMENT */}
       <section id="executive" className="bg-white py-32">
-        <div className="mx-auto max-w-6xl text-center">
+        <div className="mx-auto max-w-8xl text-center">
           <SplitText className="text-4xl font-extrabold text-gray-900">Executive Management</SplitText>
 
           <motion.p

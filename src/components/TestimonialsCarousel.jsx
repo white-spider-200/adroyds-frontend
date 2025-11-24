@@ -46,7 +46,7 @@ export const TestimonialsCarousel = ({ testimonials }) => {
   };
 
   return (
-    <section className="relative mx-auto max-w-6xl px-6 pb-10 pt-28">
+    <section className="relative mx-auto max-w-8xl px-6 pb-10 pt-28">
       <div className="grid grid-cols-1 gap-1 lg:grid-cols-4">
         {/* Left Section (Text + Arrows) */}
         <div className="relative col-span-1 flex flex-col items-start">

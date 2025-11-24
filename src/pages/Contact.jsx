@@ -51,7 +51,7 @@ const Contact = () => {
         />
 
         {/* Blue Gradient Overlay */}
-        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -84,7 +84,7 @@ const Contact = () => {
       </section>
 
       <section id="overview" className="w-full bg-white py-24">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 md:grid-cols-2">
+        <div className="mx-auto grid max-w-8xl grid-cols-1 gap-10 px-6 md:grid-cols-2">
           {/* RIGHT CONTENT */}
           <div className="flex flex-col justify-center">
             <motion.div

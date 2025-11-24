@@ -53,7 +53,7 @@ const Careers = () => {
           alt="Careers Hero"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -141,7 +141,7 @@ const Careers = () => {
       </section>
 
       {/* Job Openings Section */}
-      <section id="openings" className="mx-auto max-w-6xl px-6 pb-20 pt-36">
+      <section id="openings" className="mx-auto max-w-8xl px-6 pb-20 pt-36">
         <SplitText className="mb-12 text-center text-2xl font-semibold text-gray-900">Job Openings</SplitText>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div className="rounded-lg border border-gray-200 bg-gray-50 p-6 shadow transition hover:shadow-lg">

@@ -93,7 +93,7 @@ const Recruitment = () => {
         />
 
         {/* Dark Blue Gradient Overlay */}
-        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -130,7 +130,7 @@ const Recruitment = () => {
         </motion.div>
       </section>
 
-      <div className="mx-auto flex max-w-6xl gap-2 px-6 py-16 text-lg">
+      <div className="mx-auto flex max-w-8xl gap-2 px-6 py-16 text-lg">
         <div className="sticky top-32 h-full flex-1">
           {/* MENU BOX */}
           <div className="flex flex-col rounded-lg bg-[#0E1C3F] p-4 py-6 text-white">
@@ -196,7 +196,7 @@ const Recruitment = () => {
           </div>
         </div>
 
-        <div className="flex-[2.3] bg-white px-6">
+        <div className="flex-[2.7] bg-white px-6">
           <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
               src="/assets/business-meeting-saudi-arabia-1024x683.webp"
@@ -235,7 +235,7 @@ const Recruitment = () => {
               <polygon points="800,400 0,400 0,300 800,100" fill="#15a8bf" />
             </svg>
 
-            <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
+            <div className="relative z-10 mx-auto flex max-w-8xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
               {/* Stats */}
               <div className="flex flex-1 justify-between">
                 {statsData.map(({ icon, num, suffix, label }, i) => (
@@ -310,23 +310,33 @@ const Recruitment = () => {
           </section>
 
           {/* EXECUTIVE SEARCH */}
-          <section id="executive" className="bg-white py-28">
-            <div className="container mx-auto px-6">
-              <h2 className="mb-12 text-center text-3xl font-bold text-[#0E1C3F]">Executive Search</h2>
+          <section
+            id="executive"
+            className="bg-navy-500 relative rounded-xl bg-cover bg-center bg-no-repeat py-28"
+            style={{ backgroundImage: "url('/assets/istock-90868745-large-spxmmo.jpeg')" }}
+          >
+            {/* Overlay */}
+            <div className="absolute inset-0 rounded-xl bg-[#0E1C3F]/90"></div>
 
-              {/* Timeline */}
-              <div className="relative mx-auto max-w-5xl">
-                <div className="absolute left-0 right-0 top-5 mx-auto h-1 w-full max-w-5xl bg-cyan-400/40"></div>
-                <div className="relative flex justify-between gap-6">
-                  {executiveSteps.map((step, i) => (
-                    <div key={i} className="flex flex-col items-center text-center">
-                      <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-cyan-400 bg-white font-semibold text-[#0E1C3F]">
-                        {i + 1}
-                      </div>
-                      <p className="mt-3 max-w-xs text-sm font-medium text-gray-700">{step}</p>
+            {/* CONTENT — now above overlay */}
+            <div className="relative z-10 mx-auto max-w-8xl px-6">
+              <h2 className="mb-16 text-center text-3xl font-bold text-white">Executive Search</h2>
+
+              <div className="relative flex justify-between">
+                {/* Horizontal Line */}
+                <div className="absolute left-0 right-0 top-6 mx-auto h-[2px] bg-white/20"></div>
+
+                {executiveSteps.map((step, i) => (
+                  <div key={i} className="flex w-40 flex-col items-center text-center">
+                    {/* Number Badge */}
+                    <div className="z-10 flex h-12 w-12 items-center justify-center rounded-full bg-orange-400 text-xl font-bold text-white">
+                      {i + 1}
                     </div>
-                  ))}
-                </div>
+
+                    {/* Step Title */}
+                    <h3 className="mt-4 text-lg font-semibold text-white">{step}</h3>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
@@ -360,10 +370,15 @@ const Recruitment = () => {
           {/* RPO SECTION */}
           <section
             id="rpo"
-            className="rounded-lg bg-gradient-to-br from-[#0E1C3F] via-[#0B1640] to-[#0A163B] px-6 py-28 text-white"
+            className="bg-navy-500 relative rounded-xl bg-cover bg-center bg-no-repeat px-6 py-28"
+            style={{ backgroundImage: "url('/assets/shutterstock_2212724739.jpg')" }}
           >
-            <div className="container mx-auto max-w-6xl">
-              <h2 className="mb-8 text-center text-3xl font-bold tracking-tight">
+            {/* Overlay */}
+            <div className="absolute inset-0 rounded-xl bg-[#0E1C3F]/90"></div>
+
+            {/* CONTENT ABOVE OVERLAY */}
+            <div className="container relative z-10 mx-auto max-w-8xl">
+              <h2 className="mb-8 text-center text-3xl font-bold tracking-tight text-white">
                 Recruitment Process Outsourcing (RPO)
               </h2>
 
@@ -373,14 +388,14 @@ const Recruitment = () => {
                 tools, and scalable capacity.
               </p>
 
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
                 {rpoFeatures.map((item, i) => (
                   <div
                     key={i}
                     className="rounded-lg border border-white/30 bg-white/10 p-8 text-center backdrop-blur-md"
                   >
                     <PiGearSixLight className="mx-auto mb-3 h-10 w-10 text-white" />
-                    <p>{item}</p>
+                    <p className="text-white">{item}</p>
                   </div>
                 ))}
               </div>

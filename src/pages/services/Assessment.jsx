@@ -84,7 +84,7 @@ const Assessment = () => {
           className="absolute inset-0 h-full w-full object-cover"
         />
         {/* Dark Blue Gradient Overlay */}
-        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -111,7 +111,7 @@ const Assessment = () => {
 
           <motion.button
             onClick={() => navigate("/contact")}
-            className="mt-6 rounded-lg border border-white/30 bg-white/10 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-xl"
+            className="mt-6 rounded-lg border border-white/30 bg-cyan-400 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-cyan-500 hover:shadow-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
@@ -121,43 +121,43 @@ const Assessment = () => {
         </motion.div>
       </section>
 
-      <div className="mx-auto flex max-w-6xl gap-2 px-6 py-16 text-lg">
+      <div className="mx-auto flex max-w-8xl gap-2 px-6 py-16 text-lg">
         {/* Sidebar Menu */}
         <div className="sticky top-32 h-full flex-1">
-          <div className="flex flex-col rounded-lg bg-gray-100 p-4 py-6">
-            <p className="mb-4 font-semibold">Our Services</p>
+          {/* MENU BOX */}
+          <div className="flex flex-col rounded-lg bg-[#0E1C3F] p-4 py-6 text-white">
             <nav className="flex flex-col space-y-4">
-              {/* Recruitment Solutions */}
+              {/* Recruitment Solutions (INACTIVE) */}
               <button
                 onClick={() => navigate("/services/recruitment")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>Recruitment Solutions</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
               </button>
 
-              {/* Adroyts Academy */}
+              {/* Adroyts Academy (INACTIVE) */}
               <button
                 onClick={() => navigate("/services/academy")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>Adroyts Academy</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
               </button>
 
-              {/* Assessment Center (Active) */}
+              {/* Assessment Center (ACTIVE) */}
               <button
                 onClick={() => navigate("/services/assessment")}
-                className="group flex w-full items-center justify-between rounded-lg bg-cyan-400/20 px-4 py-2 text-left text-[#0E1C3F] transition-colors hover:bg-cyan-400/40 hover:text-[#0E1C3F]/90"
+                className="group flex w-full items-center justify-between rounded-lg bg-cyan-400 px-4 py-2 text-left font-semibold text-white transition-colors hover:bg-cyan-400/30"
               >
                 <span>Assessment Center</span>
-                <FaArrowRight className="translate-x-[-6px] text-[#0E1C3F] transition-all duration-300" />
+                <FaArrowRight className="translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0" />
               </button>
 
               {/* Human Capital Consulting */}
               <button
                 onClick={() => navigate("/services/consulting")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>Human Capital Consulting</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
@@ -189,7 +189,7 @@ const Assessment = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-[2.3] bg-white px-6">
+        <div className="flex-[2.7] bg-white px-6">
           {/* HERO IMAGE */}
           <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
@@ -197,7 +197,7 @@ const Assessment = () => {
               alt="Talent Assessment Solutions"
               className="h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-[#0E1C3F] opacity-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F] to-orange-400 opacity-20"></div>
           </div>
 
           {/* INTRO / ABOUT */}

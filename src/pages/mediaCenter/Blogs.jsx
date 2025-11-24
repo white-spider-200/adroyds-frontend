@@ -62,7 +62,7 @@ const Blogs = () => {
         />
 
         {/* Blue Gradient Overlay */}
-        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -96,7 +96,7 @@ const Blogs = () => {
 
       {/* Blog Section */}
       <section id="blog" className="bg-gray-100 py-16">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-8xl px-6">
           {loading ? (
             // Loading UI
             <div className="flex justify-center py-20">

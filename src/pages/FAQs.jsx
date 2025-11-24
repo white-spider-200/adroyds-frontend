@@ -50,7 +50,7 @@ const Faqs = () => {
           alt="FAQs Hero"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -89,16 +89,26 @@ const Faqs = () => {
           {faqData.map((faq, index) => (
             <div
               key={index}
-              className="cursor-pointer rounded-lg border border-gray-300 bg-[#f6f3fa] p-6 shadow transition hover:shadow-lg"
+              className="cursor-pointer rounded-lg border p-6 shadow transition hover:shadow-lg"
+              style={{
+                backgroundColor: "#EAF6FF",
+                borderColor: "#BEE3F8",
+              }}
               onClick={() => toggle(index)}
             >
               <div className="flex items-center justify-between">
-                <h3 className="text-xl font-semibold text-gray-900">{faq.question}</h3>
-                <span className="select-none text-2xl font-bold text-cyan-400">
+                <h3 className="text-xl font-semibold" style={{ color: "#0E1C3F" }}>
+                  {faq.question}
+                </h3>
+                <span className="select-none text-2xl font-bold" style={{ color: "#06B6D4" }}>
                   {openIndex === index ? "−" : "+"}
                 </span>
               </div>
-              {openIndex === index && <p className="mt-4 text-gray-700">{faq.answer}</p>}
+              {openIndex === index && (
+                <p className="mt-4" style={{ color: "#1F2937" }}>
+                  {faq.answer}
+                </p>
+              )}
             </div>
           ))}
         </div>

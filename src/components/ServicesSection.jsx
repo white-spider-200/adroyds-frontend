@@ -48,9 +48,9 @@ const services = [
   },
 ];
 
-const COLLAPSED_WIDTH_DESKTOP = 100;
+const COLLAPSED_WIDTH_DESKTOP = 120;
 const COLLAPSED_WIDTH_MOBILE = 80;
-const EXPANDED_WIDTH_DESKTOP = 780;
+const EXPANDED_WIDTH_DESKTOP = 950;
 const CARD_HEIGHT_DESKTOP = 500;
 const CARD_HEIGHT_MOBILE = 320;
 
@@ -118,7 +118,7 @@ const ServiceCard = ({ service, isActive, onHover }) => {
 
       {/* Plus Icon */}
       {!isActive && (
-        <div className="absolute bottom-4 right-8 text-white opacity-75 transition-opacity duration-300 group-hover:opacity-100">
+        <div className="absolute bottom-8 right-12 text-white opacity-75 transition-opacity duration-300 group-hover:opacity-100">
           <FaPlusCircle size={28} />
         </div>
       )}
@@ -139,7 +139,7 @@ const ServiceCard = ({ service, isActive, onHover }) => {
         className={`absolute w-72 text-2xl leading-tight text-white transition-transform duration-1000 ease-linear ${
           isActive
             ? "left-6 top-6 translate-x-0 translate-y-0 rotate-0"
-            : "bottom-72 left-[40px] -translate-x-1/2 rotate-[-90deg] text-right"
+            : "bottom-72 left-[55px] -translate-x-1/2 rotate-[-90deg] text-right"
         }`}
         style={{
           fontSize: isMobile ? "1.1rem" : "1.5rem",
@@ -204,7 +204,7 @@ const ServicesSection = () => {
         Core Services
       </SplitText>
 
-      <div className="scrollbar-hide mx-auto flex max-w-6xl space-x-4 overflow-x-auto px-4 sm:px-6">
+      <div className="scrollbar-hide mx-auto flex max-w-8xl space-x-4 overflow-x-auto px-4 sm:px-6">
         {services.map((service) => (
           <ServiceCard
             key={service.id}

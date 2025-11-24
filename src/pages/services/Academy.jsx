@@ -1,7 +1,14 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
-import { FaArrowRight, FaChalkboardTeacher, FaPhoneAlt, FaUserTie, FaUsersCog } from "react-icons/fa";
-import { PiBriefcaseLight, PiClipboardTextLight, PiUsersThreeLight } from "react-icons/pi";
+import CountUp from "react-countup";
+import {
+  FaArrowRight,
+  FaChalkboardTeacher,
+  FaPhoneAlt,
+  FaThumbsUp,
+  FaUserCheck,
+  FaUsersCog,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../../utils/SplitText";
@@ -15,23 +22,32 @@ const fadeUp = {
   }),
 };
 
-const services = [
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (custom) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: custom * 0.15, duration: 0.6, ease: "easeOut" },
+  }),
+};
+
+const servicesList = [
   {
     title: "Professional Development Programs",
     desc: "Structured learning paths designed to enhance communication, leadership, productivity, and workplace readiness skills, empowering professionals to excel.",
-    icon: <PiBriefcaseLight className="h-12 w-12 text-cyan-400" />,
+    image: "/assets/istock-90868745-large-spxmmo.jpeg", // replace with your image path
     link: "#executive",
   },
   {
     title: "Technical Skills Training",
     desc: "Hands-on courses covering full-stack development, cloud computing, data analytics, and UI/UX fundamentals to prepare learners for tech-driven roles.",
-    icon: <PiUsersThreeLight className="h-12 w-12 text-cyan-400" />,
+    image: "/assets/shutterstock_591060992.jpg",
     link: "#professional",
   },
   {
     title: "Customized Corporate Training",
     desc: "Tailored programs aligned with your organization’s goals, focused on workforce upskilling, reskilling, and accelerating talent to meet evolving business needs.",
-    icon: <PiClipboardTextLight className="h-12 w-12 text-cyan-400" />,
+    image: "/assets/shutterstock_2212724739.jpg",
     link: "#rpo",
   },
 ];
@@ -63,11 +79,11 @@ const whyChooseUs = [
   "Partnership approach to support long-term talent development",
 ];
 
-const stats = [
-  { num: 1200, label: "Graduates Certified" },
-  { num: 85, label: "Corporate Partners" },
-  { num: 500, label: "Training Sessions Delivered" },
-  { num: 95, label: "Satisfaction Rate (%)" },
+const statsData = [
+  { num: 1200, label: "Graduates Certified", icon: <FaUserCheck size={32} /> },
+  { num: 85, label: "Corporate Partners", icon: <FaUsersCog size={32} /> },
+  { num: 500, label: "Training Sessions Delivered", icon: <FaChalkboardTeacher size={32} /> },
+  { num: 95, label: "Satisfaction Rate (%)", icon: <FaThumbsUp size={32} /> },
 ];
 
 const Academy = () => {
@@ -88,7 +104,7 @@ const Academy = () => {
         />
 
         {/* Dark Blue Gradient Overlay */}
-        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -114,7 +130,7 @@ const Academy = () => {
 
           <motion.button
             onClick={() => navigate("/contact")}
-            className="mt-6 rounded-lg border border-white/30 bg-white/10 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-xl"
+            className="mt-6 rounded-lg border border-white/30 bg-cyan-400 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-cyan-500 hover:shadow-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
@@ -124,34 +140,34 @@ const Academy = () => {
         </motion.div>
       </section>
 
-      <div className="mx-auto flex max-w-6xl gap-2 px-6 py-16 text-lg">
+      <div className="mx-auto flex max-w-8xl gap-2 px-6 py-16 text-lg">
         {/* Sidebar Menu */}
         <div className="sticky top-32 h-full flex-1">
-          <div className="flex flex-col rounded-lg bg-gray-100 p-4 py-6">
-            <p className="mb-4 font-semibold">Our Services</p>
+          {/* MENU BOX */}
+          <div className="flex flex-col rounded-lg bg-[#0E1C3F] p-4 py-6 text-white">
             <nav className="flex flex-col space-y-4">
-              {/* Recruitment Solutions */}
+              {/* Recruitment Solutions (INACTIVE NOW) */}
               <button
                 onClick={() => navigate("/services/recruitment")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>Recruitment Solutions</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
               </button>
 
-              {/* Adroyts Academy (Active) */}
+              {/* Adroyts Academy (ACTIVE) */}
               <button
                 onClick={() => navigate("/services/academy")}
-                className="group flex w-full items-center justify-between rounded-lg bg-cyan-400/20 px-4 py-2 text-left text-[#0E1C3F] transition-colors hover:bg-cyan-400/40 hover:text-[#0E1C3F]/90"
+                className="group flex w-full items-center justify-between rounded-lg bg-cyan-400 px-4 py-2 text-left font-semibold text-white transition-colors hover:bg-cyan-400/30"
               >
                 <span>Adroyts Academy</span>
-                <FaArrowRight className="translate-x-[-6px] text-[#0E1C3F] transition-all duration-300" />
+                <FaArrowRight className="translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0" />
               </button>
 
               {/* Assessment Center */}
               <button
                 onClick={() => navigate("/services/assessment")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>Assessment Center</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
@@ -160,7 +176,7 @@ const Academy = () => {
               {/* Human Capital Consulting */}
               <button
                 onClick={() => navigate("/services/consulting")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-[#0E1C3F]/60 transition-colors hover:bg-cyan-400/20 hover:text-[#0E1C3F]"
+                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>Human Capital Consulting</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
@@ -192,7 +208,7 @@ const Academy = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-[2.3] bg-white px-6">
+        <div className="flex-[2.7] bg-white px-6">
           {/* HERO IMAGE */}
           <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
@@ -200,7 +216,7 @@ const Academy = () => {
               alt="Recruitment Solutions"
               className="h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-[#0E1C3F] opacity-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F] to-orange-400 opacity-20"></div>
           </div>
 
           {/* INTRO / ABOUT */}
@@ -216,6 +232,7 @@ const Academy = () => {
 
           {/* STATS SECTION */}
           <section className="relative overflow-hidden rounded-lg bg-cyan-400 p-10 text-white md:p-12">
+            {/* Polygon overlay */}
             <svg
               className="absolute left-0 top-0 h-full w-full opacity-20"
               xmlns="http://www.w3.org/2000/svg"
@@ -223,22 +240,32 @@ const Academy = () => {
               viewBox="0 0 800 400"
               fill="none"
             >
-              <polygon points="0,0 800,0 800,100 0,300" fill="#a05df4" />
-              <polygon points="800,400 0,400 0,300 800,100" fill="#6c35d9" />
+              <polygon points="0,0 800,0 800,100 0,300" fill="#1DC0DA" />
+              <polygon points="800,400 0,400 0,300 800,100" fill="#15a8bf" />
             </svg>
 
-            <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
+            <div className="relative z-10 mx-auto flex max-w-8xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
+              {/* Stats */}
               <div className="flex flex-1 justify-between">
-                {[
-                  { num: 15, label: "Years of Trusted Training" },
-                  { num: 500, label: "Professionals Empowered" },
-                  { num: 1000, label: "Program Graduates Across Industries" },
-                ].map(({ num, label }, i) => (
+                {statsData.map(({ icon, num, suffix, label }, i) => (
                   <div
                     key={i}
-                    className={`flex flex-col items-center px-6 ${i < 2 ? "border-r border-white/30" : ""}`}
+                    className={`flex flex-col items-center px-6 ${
+                      i < statsData.length - 1 ? "border-r border-white/30" : ""
+                    }`}
                   >
-                    <div className="text-4xl font-bold">{num.toLocaleString()}</div>
+                    <div className="mb-4 text-white">{icon}</div>
+                    <div className="text-4xl font-bold">
+                      <CountUp
+                        end={num}
+                        decimals={num % 1 !== 0 ? 2 : 0}
+                        duration={2.5}
+                        suffix={suffix}
+                        start={0}
+                        enableScrollSpy={true}
+                        separator=","
+                      />
+                    </div>
                     <div className="mt-1 text-center text-xs tracking-widest">{label}</div>
                   </div>
                 ))}
@@ -249,90 +276,96 @@ const Academy = () => {
           {/* SERVICES */}
           <section className="container mx-auto px-6 py-20">
             <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Recruitment Services</h2>
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
-              {[
-                {
-                  title: "Executive Talent Acquisition",
-                  desc: "Connect top-tier professionals to drive strategic growth and strengthen your leadership team.",
-                  icon: <FaUserTie size={24} />,
-                  link: "#",
-                },
-                {
-                  title: "Corporate Training Programs",
-                  desc: "Develop high-performing teams with tailored learning experiences designed for real-world impact.",
-                  icon: <FaChalkboardTeacher size={24} />,
-                  link: "#",
-                },
-                {
-                  title: "Leadership Development Workshops",
-                  desc: "Equip leaders with the skills to inspire, innovate, and lead effectively in dynamic environments.",
-                  icon: <FaUsersCog size={24} />,
-                  link: "#",
-                },
-              ].map(({ title, desc, icon, link }, i) => (
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-1">
+              {servicesList.map(({ title, desc, image, link }, index) => (
                 <motion.a
-                  key={i}
+                  key={index}
                   href={link}
+                  className="relative flex w-full flex-col justify-end overflow-hidden rounded-2xl bg-cover bg-center pt-32 shadow-lg"
+                  style={{ backgroundImage: `url(${image})` }}
+                  variants={fadeUpVariant}
                   initial="hidden"
                   whileInView="visible"
-                  variants={fadeUp}
-                  custom={i * 0.1}
-                  viewport={{ once: true }}
-                  className="group flex flex-col rounded-lg bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
+                  viewport={{ once: false, amount: 0.3 }}
+                  custom={index}
+                  whileHover={{
+                    scale: 1.05,
+                    rotate: 0.5,
+                  }}
+                  transition={{ type: "spring", stiffness: 200, damping: 18 }}
                 >
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-400 transition group-hover:bg-cyan-400/40">
-                    {icon}
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0E1C3F]/80 to-transparent"></div>
+
+                  {/* Frosted Glass Card with Cyan Accent */}
+                  <div className="relative z-10 mx-4 mb-6 rounded-xl bg-white/10 p-6 shadow-md backdrop-blur-md transition-all duration-300 hover:border-[#1DC0DA] hover:shadow-2xl">
+                    <h3 className="mb-3 text-2xl font-semibold text-orange-400 drop-shadow-md">{title}</h3>
+                    <p className="text-lg text-orange-400">{desc}</p>
                   </div>
-                  <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
-                  <p className="flex-grow text-gray-700">{desc}</p>
-                  <span className="mt-4 text-sm font-semibold text-cyan-400 underline decoration-2 underline-offset-2 transition group-hover:text-[#0A9AB8]">
-                    Learn More →
-                  </span>
+
+                  {/* Soft Glow on Hover */}
+                  <motion.div
+                    className="pointer-events-none absolute inset-0 rounded-2xl"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 0.3 }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      background: "radial-gradient(circle at center, rgba(29,192,218,0.35), transparent 70%)",
+                    }}
+                  />
                 </motion.a>
               ))}
             </div>
           </section>
 
           {/* TRAINING APPROACH */}
-          <section className="container mx-auto px-6 py-20">
-            <h2 className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">Our Training Approach</h2>
-            <div className="mx-auto max-w-5xl space-y-10">
-              {[
-                {
-                  title: "Needs Assessment",
-                  desc: "We collaborate with your organization to identify skill gaps and strategic objectives.",
-                },
-                {
-                  title: "Customized Curriculum",
-                  desc: "Our programs are tailored to meet your team’s unique goals and industry requirements.",
-                },
-                {
-                  title: "Hands-On Learning",
-                  desc: "Practical exercises, real-world case studies, and interactive sessions drive actionable skills.",
-                },
-                {
-                  title: "Continuous Evaluation",
-                  desc: "Regular assessments and feedback ensure measurable outcomes and long-term retention.",
-                },
-              ].map(({ title, desc }, i) => (
-                <motion.div
-                  key={i}
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={fadeUp}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.2 }}
-                  className="flex items-start space-x-6"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#0E1C3F] font-semibold text-[#0E1C3F]">
-                    {i + 1}
+          <section
+            id="training"
+            className="bg-navy-500 relative rounded-xl bg-cover bg-center bg-no-repeat py-28"
+          >
+            {/* Overlay */}
+            <div className="absolute inset-0 rounded-xl bg-[#0E1C3F]/90"></div>
+
+            {/* CONTENT — above overlay */}
+            <div className="relative z-10 mx-auto max-w-8xl px-6">
+              <h2 className="mb-16 text-center text-3xl font-bold text-white">Our Training Approach</h2>
+
+              <div className="relative flex justify-between">
+                {/* Horizontal Line */}
+                <div className="absolute left-0 right-0 top-6 mx-auto h-[2px] bg-white/20"></div>
+
+                {[
+                  {
+                    title: "Needs Assessment",
+                    desc: "We collaborate with your organization to identify skill gaps and strategic objectives.",
+                  },
+                  {
+                    title: "Customized Curriculum",
+                    desc: "Our programs are tailored to meet your team’s unique goals and industry requirements.",
+                  },
+                  {
+                    title: "Hands-On Learning",
+                    desc: "Practical exercises, real-world case studies, and interactive sessions drive actionable skills.",
+                  },
+                  {
+                    title: "Continuous Evaluation",
+                    desc: "Regular assessments and feedback ensure measurable outcomes and long-term retention.",
+                  },
+                ].map(({ title, desc }, i) => (
+                  <div key={i} className="flex w-44 flex-col items-center text-center">
+                    {/* Number Badge */}
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-400 text-xl font-bold text-white">
+                      {i + 1}
+                    </div>
+
+                    {/* Step Title */}
+                    <h3 className="mt-4 text-lg font-semibold text-white">{title}</h3>
+
+                    {/* Step Description */}
+                    <p className="mt-2 text-sm text-white/80">{desc}</p>
                   </div>
-                  <div>
-                    <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
-                    <p className="text-gray-700">{desc}</p>
-                  </div>
-                </motion.div>
-              ))}
+                ))}
+              </div>
             </div>
           </section>
 

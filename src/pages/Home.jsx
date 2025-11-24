@@ -144,7 +144,7 @@ const Home = () => {
           playsInline
         />
         {/* Overlay (optional for better text contrast) */}
-        <div className="absolute inset-0 bg-[#192757] opacity-40"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
         <motion.div
           className="relative z-10 mt-32 max-w-4xl"
           initial="hidden"
@@ -183,21 +183,28 @@ const Home = () => {
         </motion.div>
       </section>
       <div
-        className="-mt-20 bg-cover bg-center bg-no-repeat p-12 pb-16 pt-32"
+        className="relative bg-cover bg-center bg-no-repeat p-12 pb-16 pt-32"
         style={{
-          backgroundImage: `url('/assets/about-us.png')`,
+          backgroundImage: `url('/assets/mamalakah.jpg')`,
           backgroundAttachment: "fixed",
         }}
       >
+        {/* Gradient Overlay */}
+        {/* <div className="to-navy-500/50 absolute inset-0 bg-gradient-to-r from-orange-400/60 via-cyan-400/40"></div> */}
+
         {/* About Section */}
         <motion.section
-          className="relative z-20 mx-auto max-w-6xl rounded-lg bg-white bg-opacity-70 p-8 md:p-12"
+          className="relative z-20 mx-auto max-w-8xl rounded-2xl border border-white/30 bg-white/20 p-10 shadow-xl backdrop-blur-xl md:p-14"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false }}
           variants={fadeUpContainer}
         >
-          <motion.p className="mx-auto mb-4 text-xl text-black" variants={fadeUp} custom={0}>
+          <motion.p
+            className="mx-auto mb-6 text-xl leading-relaxed text-white drop-shadow-lg"
+            variants={fadeUp}
+            custom={0}
+          >
             Adroyts is a leading firm in the field of human capital management and development, offering
             comprehensive and integrated solutions tailored to the needs of organizations in this vital
             sector. With years of experience and dedication, we have established our position as a trusted
@@ -207,7 +214,7 @@ const Home = () => {
           <motion.div variants={fadeUp} custom={0.2} className="flex">
             <motion.button
               onClick={() => navigate("/about#overview")}
-              className="flex items-center space-x-3 font-semibold text-[#0E1C3F] hover:text-[#00CFFF]"
+              className="flex items-center space-x-3 font-semibold text-white hover:text-[#00CFFF]"
               whileHover={buttonHover}
             >
               <span>View more</span>
@@ -218,45 +225,41 @@ const Home = () => {
 
         {/* Stats Section */}
         <motion.section
-          className="relative z-20 mx-auto mt-4 flex max-w-6xl flex-wrap justify-around gap-8 rounded-lg bg-white bg-opacity-70 p-8 text-center md:p-12"
+          className="relative z-20 mx-auto mt-12 flex max-w-8xl flex-wrap justify-center gap-16 rounded-3xl border border-white/30 bg-gradient-to-r from-white/10 via-white/20 to-white/10 p-12 text-center shadow-2xl backdrop-blur-xl md:p-16"
           whileInView="visible"
           viewport={{ once: false }}
           variants={fadeUpContainer}
         >
           {highlights.map((item, index) => {
-            const borderSides = ["border-b-8", "border-r-8", "border-t-8", "border-l-8"];
-            const borderSide = borderSides[index % borderSides.length];
             const suffix = index < 3 ? "+" : "%";
-
             const value = parseInt(item.value);
-
-            const baseDuration = 5; // all numbers take at least 5 seconds
-            const duration = Math.min(baseDuration + value / 1000, 10); // max 10 seconds
 
             return (
               <motion.div
                 key={item.label}
-                className="flex flex-col items-center rounded-lg py-0"
+                className="flex flex-col items-center"
                 variants={fadeUp}
                 custom={index * 0.2}
               >
                 <div
-                  className={`mb-3 flex h-36 w-36 items-center justify-center rounded-full border-4 ${borderSide}`}
-                  style={{ borderColor: item?.value_color || "#2563EB" }}
+                  className={`mb-5 flex h-44 w-44 items-center justify-center rounded-full border-[6px] bg-white/10 shadow-[0_0_40px_#00CFFF40] backdrop-blur-3xl transition-transform duration-500 hover:scale-105`}
+                  style={{
+                    borderColor: item?.value_color || "#00CFFF",
+                    boxShadow: `0 0 40px ${item?.value_color || "#00CFFF"}80`,
+                  }}
                 >
                   <CountUp
                     start={0}
                     end={value}
-                    duration={duration}
                     separator={item?.isYear ? "" : ","}
                     suffix={suffix}
                     enableScrollSpy={true}
                     scrollSpyOnce={false}
-                    className="text-5xl font-bold"
-                    style={{ color: item?.value_color || "#2563EB" }}
+                    className={`text-6xl font-extrabold drop-shadow-2xl ${index < 3 ? "text-gradient" : ""}`}
+                    style={{ color: item?.value_color || "#00CFFF" }}
                   />
                 </div>
-                <p className="mt-4 text-2xl font-bold text-[#546e7a]">{item.title}</p>
+                <p className="mt-4 text-2xl font-semibold text-white drop-shadow-lg">{item.title}</p>
               </motion.div>
             );
           })}
@@ -281,7 +284,7 @@ const Home = () => {
                 key={index}
                 src={client.image}
                 alt={client.name}
-                className="mx-9 h-44 w-44 object-contain opacity-80 grayscale filter transition duration-300 hover:opacity-100 hover:grayscale-0"
+                className="mx-9 h-44 w-44 cursor-pointer object-contain opacity-80 grayscale filter transition duration-300 hover:opacity-100 hover:grayscale-0"
               />
             ))}
           </Marquee>
@@ -292,10 +295,10 @@ const Home = () => {
 
       {/* Case Studies */}
       <section
-        className="bg-gray-50 bg-cover py-16 pt-40 md:py-20"
+        className="bg-gray-50 bg-cover py-16 pt-40 md:py-32"
         style={{ backgroundImage: `url('/assets/studies-bg.png')` }}
       >
-        <div className="mx-auto max-w-6xl px-6 md:flex md:items-start md:justify-between md:gap-12">
+        <div className="mx-auto max-w-8xl px-6 py-6 md:flex md:items-start md:justify-between md:gap-44">
           {/* Left Side: Title, description, button */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -326,7 +329,7 @@ const Home = () => {
           </motion.div>
 
           {/* Right Side: Two cards side-by-side on md+, stacked on sm */}
-          <div className="grid w-full gap-6 md:w-2/3 md:grid-cols-2">
+          <div className="grid w-full gap-12 md:w-2/3 md:grid-cols-2">
             {caseStudies.slice(0, 2).map((caseStudy, index) => (
               <motion.div
                 key={caseStudy.id}
@@ -334,7 +337,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ delay: index * 0.2 }}
-                className="flex flex-col justify-between overflow-hidden rounded-lg bg-white p-8 shadow-lg transition hover:shadow-2xl"
+                className="flex flex-col justify-between overflow-hidden rounded-lg bg-white p-8 py-6 shadow-lg transition hover:shadow-2xl"
               >
                 <div>
                   <h3 className="mb-3 text-2xl font-bold text-[#192757] sm:text-3xl">{caseStudy.title}</h3>
@@ -362,7 +365,7 @@ const Home = () => {
 
       {/* Blog Section */}
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-6xl px-6 py-12">
+        <div className="mx-auto max-w-8xl px-6 py-12">
           <SplitText className="mb-12 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl">
             News & Articles
           </SplitText>
@@ -439,7 +442,7 @@ const Home = () => {
 
       <section className="bg-[#eceff1] text-gray-300">
         <motion.div
-          className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-12 md:flex-row md:gap-10 md:px-12"
+          className="mx-auto flex max-w-8xl flex-col items-start justify-between gap-6 px-6 py-12 md:flex-row md:gap-10 md:px-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}

@@ -62,7 +62,7 @@ const CaseStudies = () => {
         />
 
         {/* Blue Gradient Overlay */}
-        <div className="absolute inset-0 bg-[#0E1C3F] opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -96,7 +96,7 @@ const CaseStudies = () => {
 
       {/* Case Studies Grid */}
       <section id="blog" className="bg-gray-100 py-16">
-        <div className="mx-auto max-w-7xl px-6 md:px-12">
+        <div className="mx-auto max-w-8xl px-6 md:px-12">
           <div className="grid gap-6 md:grid-cols-3">
             {dummyCaseStudies.map((caseStudy, i) => (
               <motion.article
