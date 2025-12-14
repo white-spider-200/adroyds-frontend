@@ -1,42 +1,23 @@
 import { motion } from "framer-motion";
 
-const text = {
-  hidden: { opacity: 0 },
-  visible: (i = 1) => ({
-    opacity: 1,
-    transition: { staggerChildren: 0.03, delayChildren: 0.04 * i },
-  }),
-};
-
-const letter = {
-  hidden: { opacity: 0, y: `0.25em` },
+const slideSkew = {
+  hidden: { opacity: 0, x: -100, skewX: 15 },
   visible: {
     opacity: 1,
-    y: `0em`,
-    transition: { duration: 0.4, ease: "easeOut" },
+    x: 0,
+    skewX: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
   },
 };
 
-export const SplitText = ({ children, className }) => {
-  const words = children.split(" ");
-
-  return (
-    <motion.h2
-      className={className}
-      variants={text}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: false }}
-    >
-      {words.map((word, i) => (
-        <span className="mr-2 inline-block" key={i}>
-          {word.split("").map((char, i2) => (
-            <motion.span className="inline-block" variants={letter} key={i2}>
-              {char}
-            </motion.span>
-          ))}
-        </span>
-      ))}
-    </motion.h2>
-  );
-};
+export const SplitText = ({ children, className }) => (
+  <motion.h2
+    className={className}
+    variants={slideSkew}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: false }}
+  >
+    {children}
+  </motion.h2>
+);

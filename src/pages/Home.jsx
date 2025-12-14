@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import Marquee from "react-fast-marquee";
 import { useTranslation } from "react-i18next";
-import { FaArrowRight, FaCalendarAlt } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaCalendarAlt } from "react-icons/fa";
 import { LuArrowUpRight } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 
@@ -12,12 +12,6 @@ import ServicesSection from "../components/ServicesSection";
 import { TestimonialsCarousel } from "../components/TestimonialsCarousel";
 import mainServices from "../services/mainServices";
 import { SplitText } from "../utils/SplitText";
-
-const buttonHoverPrimary = {
-  scale: 1.05,
-  boxShadow: "0 8px 15px rgba(29, 192, 218, 0.6)", // cyan glow
-  transition: { duration: 0.3, ease: "easeOut" },
-};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -89,7 +83,7 @@ const caseStudies = [
 
 const Home = () => {
   const navigate = useNavigate();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -153,11 +147,11 @@ const Home = () => {
           variants={scaleFadeContainer}
         >
           <SplitText className="mb-8 text-3xl font-bold text-white md:text-5xl">
-            Building the Future Workforce
+            {t("qualitativeSkills")}
           </SplitText>
 
           <motion.p className="mb-20 text-2xl text-[#d2d2d2]" variants={scaleFadeItem}>
-            Innovative recruitment, HR academy training, and human capital consulting
+            {t("professionalExpertise")}
           </motion.p>
 
           <motion.div className="flex items-center justify-center space-x-8" variants={scaleFadeItem}>
@@ -171,7 +165,7 @@ const Home = () => {
                   className="rounded-full bg-cyan-400 px-6 py-4 font-bold text-white shadow-md hover:bg-cyan-500"
                   whileHover={{ scale: 1.1 }}
                 >
-                  EXPLORE OUR SERVICES
+                  {t("exploreOurServices")}
                 </motion.button>
               </div>
             </motion.div>
@@ -190,7 +184,7 @@ const Home = () => {
 
         {/* About Section */}
         <motion.section
-          className="relative z-20 mx-auto flex max-w-7xl flex-wrap justify-center gap-16 p-12 text-center shadow-2xl backdrop-blur-xl md:p-16"
+          className="relative z-20 mx-auto flex max-w-7xl flex-wrap justify-center gap-8 rounded-xl p-12 text-center shadow-xl backdrop-blur-xl md:p-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false }}
@@ -201,10 +195,7 @@ const Home = () => {
             variants={fadeUp}
             custom={0}
           >
-            Adroyts is a leading firm in the field of human capital management and development, offering
-            comprehensive and integrated solutions tailored to the needs of organizations in this vital
-            sector. With years of experience and dedication, we have established our position as a trusted
-            provider of high-quality consulting services and innovative solutions across diverse industries.
+            {t("aboutUsText1")}
           </motion.p>
 
           <motion.div variants={fadeUp} custom={0.2} className="flex">
@@ -213,15 +204,15 @@ const Home = () => {
               className="flex items-center space-x-3 font-semibold text-white hover:text-[#00CFFF]"
               whileHover={buttonHover}
             >
-              <span>View more</span>
-              <FaArrowRight className="mt-1" />
+              <span>{t("viewMore")}</span>
+              <FaArrowRight className={`mt-1 ${i18n.language === "ar" ? "rotate-180" : ""}`} />
             </motion.button>
           </motion.div>
         </motion.section>
 
         {/* Stats Section */}
         <motion.section
-          className="relative z-20 mx-auto mt-12 flex max-w-7xl flex-wrap justify-center gap-16 p-12 text-center shadow-2xl backdrop-blur-xl md:p-16"
+          className="relative z-20 mx-auto mt-12 flex max-w-7xl flex-wrap justify-center gap-16 rounded-xl p-12 text-center shadow-xl backdrop-blur-xl md:p-16"
           whileInView="visible"
           viewport={{ once: false }}
           variants={fadeUpContainer}
@@ -238,10 +229,9 @@ const Home = () => {
                 custom={index * 0.2}
               >
                 <div
-                  className={`mb-5 flex h-44 w-44 items-center justify-center rounded-full border-[6px] bg-white/10 shadow-[0_0_40px_#00CFFF40] backdrop-blur-3xl transition-transform duration-500 hover:scale-105`}
+                  className={`mb-5 flex h-44 w-44 items-center justify-center rounded-full border-[6px] bg-white/10 backdrop-blur-3xl transition-transform duration-500 hover:scale-105`}
                   style={{
                     borderColor: item?.value_color || "#00CFFF",
-                    boxShadow: `0 0 40px ${item?.value_color || "#00CFFF"}80`,
                   }}
                 >
                   <CountUp
@@ -251,7 +241,7 @@ const Home = () => {
                     suffix={suffix}
                     enableScrollSpy={true}
                     scrollSpyOnce={false}
-                    className={`text-6xl font-extrabold drop-shadow-2xl ${index < 3 ? "text-gradient" : ""}`}
+                    className={`text-6xl font-extrabold ${index < 3 ? "text-gradient" : ""}`}
                     style={{ color: item?.value_color || "#00CFFF" }}
                   />
                 </div>

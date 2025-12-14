@@ -64,7 +64,7 @@ const MainLayout = ({ children }) => {
       {/* Header */}
       <header
         className={`border-b-1 sticky top-0 z-50 transition-colors duration-300 ${
-          isScrolled ? "bg-[#0E1C3F]" : ""
+          isScrolled ? "bg-black bg-opacity-25 backdrop-blur-md" : ""
         }`}
       >
         <div className="container mx-auto flex max-w-7xl items-center justify-between p-6 md:px-6">
@@ -100,11 +100,9 @@ const MainLayout = ({ children }) => {
               >
                 {[
                   { label: "Overview", hash: "#overview" },
-                  { label: "Core Values", hash: "#values" },
-                  { label: "Why Adroyts", hash: "#why" },
-                  { label: "Mission & Vision", hash: "#mission-vision" },
-                  { label: "Board of Directors", hash: "#board" },
-                  { label: "Executive Management", hash: "#executive" },
+                  { label: "Our Pillars", hash: "#pillars" },
+                  { label: "Core Performance", hash: "#performance" },
+                  { label: "Why Us", hash: "#why" },
                 ].map((item) => (
                   <button
                     key={item.hash}
@@ -124,7 +122,7 @@ const MainLayout = ({ children }) => {
               onMouseLeave={() => setDropdown(null)}
             >
               <button className={`flex items-center gap-1 ${isActive("/services/recruitment")}`}>
-                {i18n.language === "ar" ? "الخدمات" : "Services"}
+                {i18n.language === "ar" ? "خدماتنا" : "Our Services"}
                 <FaChevronDown className="mt-0.5 text-xs" />
               </button>
               <div
@@ -181,35 +179,9 @@ const MainLayout = ({ children }) => {
             </div>
 
             {/* Careers */}
-            <div
-              className="relative"
-              onMouseEnter={() => setDropdown("careers")}
-              onMouseLeave={() => setDropdown(null)}
-            >
-              <button className={`flex items-center gap-1 ${isActive("/careers")}`}>
-                {i18n.language === "ar" ? "الوظائف" : "Careers"}
-                <FaChevronDown className="mt-0.5 text-xs" />
-              </button>
-              <div
-                className={`absolute left-0 top-full mt-2 w-44 rounded-lg border bg-white py-2 shadow-md transition-all duration-200 ${
-                  dropdown === "careers" ? "visible opacity-100" : "invisible opacity-0"
-                }`}
-              >
-                <button
-                  onClick={() => handleNav("/careers#join")}
-                  className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-blue-50"
-                >
-                  Join Us
-                </button>
-                <button
-                  onClick={() => handleNav("/careers#openings")}
-                  className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-blue-50"
-                >
-                  Job Openings
-                </button>
-              </div>
-            </div>
-
+            <Link to="/careers" className={isActive("/careers")}>
+              {i18n.language === "ar" ? "الوظائف" : "Careers"}
+            </Link>
             <Link to="/FAQs" className={isActive("/FAQs")}>
               {i18n.language === "ar" ? "الاسئلة الشائعة" : "FAQs"}
             </Link>

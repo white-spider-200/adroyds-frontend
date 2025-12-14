@@ -1,3 +1,121 @@
 {
-  "welcome_title": "Welcome to "
+  "home": "Home",
+  "qualitativeSkills": "Qualitative skills for sustainable growth,",
+  "professionalExpertise": "By attracting professional expertise and employing leading assessment methodologies.",
+  "exploreOurServices": "EXPLORE OUR SERVICES",
+  "viewMore": "View more",
+  "aboutUsText1": "With nearly two decades of experience, Adroits was founded in 2006 in Saudi Arabia, establishing itself as a leading provider of integrated professional solutions for human resource management and development.",
+  "desc1": "To achieve this core objective, Adroyts is committed to enhancing organizational capabilities through a comprehensive portfolio of services that includes recruitment solutions, assessment center solutions, human capital consulting, and the Adroyts Academy. Every step is grounded in precise methodologies and global best practices, with a strategic focus on output quality and sustainable impact in the workplace.",
+  "desc2": "From this standpoint, our priority revolves around client service. We focus on providing our partners with specialized and integrated solutions that deliver experienced leadership talent. This commitment has resulted in a strong track record serving over 00 entities across various sectors, reaffirming our dedication to building strong relationships based on mutual trust, accuracy, and meeting all requirements with excellence.",
+  "aboutUs": "About Us",
+  "LeadershipPlacements": "Leadership Placements",
+  "YearsofExcellence": "Years of Excellence",
+  "teamTabAlt": "Our Core Performance",
+  "teamDescription": "At the heart of Adroyts' system stands a team of specialized experts and consultants, distinguished by deep knowledge and accumulated professional experience across various sectors of human resource management. This distinguished team does not only provide services but ensures the highest levels of accuracy and effectiveness through strict adherence to professional and pioneering methodologies in all stages of human resource management and strategic partnership, including assessment processes, executive search, and qualitative recruitment. This performance is further strengthened by the firm commitment of the partnership to continuously develop the team's skills and capabilities, which guarantees the sustained quality of outputs, the effectiveness of our solutions, and the lasting value we provide to our clients.",
+  "valuesSectionTitle": "Core Values",
+  "valuesSectionSubtitle": "Our values define how we work, how we serve, and how we build meaningful partnerships rooted in trust and excellence.",
+  "values": [
+    {
+      "title": "Integrity",
+      "description": "We maintain the highest ethical standards, ensuring transparency, confidentiality, and trust in every engagement."
+    },
+    {
+      "title": "Excellence",
+      "description": "We deliver superior quality through rigorous assessments, deep market research, and a commitment to continuous improvement."
+    },
+    {
+      "title": "Partnership",
+      "description": "We collaborate closely with clients, becoming strategic allies who understand their vision and help build lasting success."
+    }
+  ],
+  "pillarsSectionTitle": "Our Pillars",
+  "pillarsSectionSubtitle": "Adroyts’ services stand firmly on three pillars that guarantee our clients the highest quality and sustainable impact:",
+  "pillars": [
+    {
+      "title": "Knowledge Depth",
+      "description": "Solid professional experience, enlightened by a deep understanding of market needs and client challenges."
+    },
+    {
+      "title": "Strategic Focus",
+      "description": "Comprehensive and precise analysis of each client’s requirements, ensuring uniquely tailored solutions."
+    },
+    {
+      "title": "Sustainable Relationship",
+      "description": "Building long-term partnerships based on mutual trust, providing continuous support and advanced consulting without interruption."
+    }
+  ],
+  "whySectionTab": "Why ADROYTS?",
+  "whySectionTitle": "Your Strategic Partner in Leadership & Talent Solutions",
+  "whySectionParagraph": "At ADROYTS, we combine deep market insight, global networks, and a commitment to excellence to deliver leadership and HR solutions that transform organizations. We focus on understanding your culture, challenges, and long-term goals to provide talent that drives meaningful impact.",
+  "whySectionFeatures": [
+    "Deep Regional & Global Expertise",
+    "Tailored Executive Search Solutions",
+    "Data-Driven Talent Assessment",
+    "Proven Record of Client Success"
+  ],
+  "recruitmentSolutions": [
+    {
+      "id": "executive",
+      "titleEn": "Executive Search",
+      "descriptionEn": "Adroyts specializes in Executive Search as a strategic center for attracting senior leadership. We do not just search for candidates, but strive to discover leaders capable of creating a transformative and direct impact on organizational performance and achieving their strategic vision.\nTo ensure this impact, we rely on a precise and comprehensive methodology; starting with an in-depth analysis of client needs, followed by accurate identification and professional evaluation of top-tier leadership talents, concluding with final recommendations based on evidence proving full alignment with success requirements.",
+      "stepsEn": [
+        "Gathering and analyzing job vacancy information: Conducting an in-depth analysis of organizational and skill requirements.",
+        "Searching for suitable competencies: Proactively targeting leadership competencies in the local and regional markets.",
+        "Interviewing and evaluating candidates: Conducting in-depth interviews to assess candidate suitability for the specific role.",
+        "Submitting candidate shortlist to the client: Providing a shortlist of the most qualified leaders for client review and interviews.",
+        "Conducting psychometric tests: Applying advanced behavioral and personality assessments to ensure cultural and leadership fit.",
+        "Checking candidate references: Verifying professional records and past performance through approved references.",
+        "Negotiating the job offer: Managing the negotiation process between client and candidate to ensure final agreement.",
+        "Completing the executive search task: Successfully concluding the process and ensuring smooth transition of the new leader."
+      ]
+    },
+    {
+      "id": "professional",
+      "titleEn": "Professional Search",
+      "descriptionEn": "We assist organizations in reaching the most suitable candidates through precise professional search that considers alignment of experiences with organizational culture and goals. We rely on a clear market vision and comprehensive assessment mechanisms to ensure selection of competencies capable of integration and delivering long-term institutional value.\nOur goal: Supporting teams, enhancing performance, and building sustainable recruitment partnerships.",
+      "featuresEn": [
+        "Proprietary candidate database",
+        "Rapid response for urgent hires",
+        "Custom sourcing pipelines",
+        "Dedicated account manager"
+      ]
+    },
+    {
+      "id": "rpo",
+      "titleEn": "Recruitment Process Outsourcing (RPO)",
+      "descriptionEn": "Adroyts offers recruitment process outsourcing solutions through an operational model that acts as an extension of the HR system within organizations. The service includes providing specialized recruitment teams on a full-time or part-time basis, working according to precise professional standards to ensure solid recruitment processes and improve candidate quality.\nThe partnership relies on extensive experience in attracting competencies that align with client needs.",
+      "featuresEn": [
+        "End-to-end recruitment ownership",
+        "Dedicated sector-focused recruiters",
+        "Unlimited hiring scope",
+        "Scalable workforce model"
+      ]
+    }
+  ],
+  "talentAssessment": {
+    "titleEn": "Talent Assessment",
+    "descriptionEn": "Adroyts provides advanced assessment solutions based on scientific tools and professional standards to measure abilities, competencies, and professional behaviors.\nTalent assessment activities aim to support hiring and development decisions and determine candidate suitability for professional roles, including several tests such as:",
+    "tests": [
+      {
+        "titleEn": "Psychometric Assessments",
+        "descEn": "Standardized scientific tools used to measure behavioral aspects, cognitive abilities, and personality traits of candidates."
+      },
+      {
+        "titleEn": "Competency-Based Interviews",
+        "descEn": "A system focusing on exploring candidates' past behaviors in specific situations to predict future performance."
+      },
+      {
+        "titleEn": "Study Case",
+        "descEn": "A method focusing on exploring candidates' past behaviors in specific situations to predict future performance."
+      },
+      {
+        "titleEn": "Discussion Group",
+        "descEn": "An activity where candidates are placed in a group setting to discuss a specific topic, to assess communication, leadership, and teamwork skills."
+      },
+      {
+        "titleEn": "Role-Playing Activities",
+        "descEn": "Interactive exercises simulating daily work situations to evaluate how the candidate handles challenges in a realistic environment, providing an accurate assessment of behavioral and leadership skills."
+      }
+    ]
+  }
 }

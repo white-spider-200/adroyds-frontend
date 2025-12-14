@@ -13,7 +13,6 @@ import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
 import Faqs from "./pages/FAQs";
 import Home from "./pages/Home";
-import Home2 from "./pages/Home2";
 import BlogDetails from "./pages/mediaCenter/BlogDetails";
 import Blogs from "./pages/mediaCenter/Blogs";
 import CaseStudies from "./pages/mediaCenter/CaseStudies";
@@ -34,7 +33,6 @@ export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Keep ?lang= in URL and update i18n
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     let lang = searchParams.get("lang");
@@ -45,6 +43,13 @@ export default function App() {
       navigate(`${location.pathname}?${searchParams.toString()}`, { replace: true });
     }
 
+    // ---- UPDATE BODY CLASS ----
+    if (lang === "ar") {
+      document.body.classList.add("rtl");
+    } else {
+      document.body.classList.remove("rtl");
+    }
+    // Update i18n if needed
     if (lang !== i18n.language) i18n.changeLanguage(lang);
   }, [location.search, i18n, navigate, location.pathname]);
 
@@ -52,7 +57,6 @@ export default function App() {
     <MainLayout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/home2" element={<Home2 />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/services/recruitment" element={<Recruitment />} />
         <Route path="/services/recruitment2" element={<Recruitment2 />} />
