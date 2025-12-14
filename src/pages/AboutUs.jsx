@@ -23,7 +23,7 @@ const scrollToHash = (hash) => {
 
 const AboutUs = () => {
   const location = useLocation();
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   // Load arrays and strings from translation files
   const pillars = t("pillars", { returnObjects: true });
@@ -94,7 +94,7 @@ const AboutUs = () => {
                 />
               </div>
 
-              <div className="rounded-lg bg-orange-400 p-6 text-center">
+              <div className="rounded-lg bg-cyan-400 p-6 text-center">
                 <p className="text-4xl font-extrabold text-white">15+</p>
                 <p className="mt-2 text-base text-white/70">{t("YearsofExcellence")}</p>
               </div>
@@ -169,7 +169,7 @@ const AboutUs = () => {
             {pillars.map((pillar, i) => (
               <motion.div
                 key={i}
-                className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out hover:bg-orange-400"
+                className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out hover:bg-cyan-400"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -8 }}

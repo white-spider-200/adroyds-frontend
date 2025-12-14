@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -47,12 +48,13 @@ const dummyCaseStudies = [
 
 const CaseStudies = () => {
   const navigate = useNavigate();
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   return (
-    <div className="bg-white font-sans text-[#0E1C3F] selection:bg-cyan-400 selection:text-white">
+    <div className="bg-white text-[#0E1C3F] selection:bg-cyan-400 selection:text-white">
       {/* HERO SECTION */}
       <section className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
@@ -77,7 +79,7 @@ const CaseStudies = () => {
               <ol className="inline-flex space-x-2">
                 <li>
                   <a href="/" className="hover:text-white hover:underline">
-                    Home
+                    {t("home")}
                   </a>
                   <span className="mx-2">/</span>
                 </li>

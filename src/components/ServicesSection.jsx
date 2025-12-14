@@ -8,7 +8,7 @@ import { SplitText } from "../utils/SplitText";
 const services = [
   {
     id: 1,
-    title: "Recruitment Solutions",
+    title: "recruitmentSolutionsTitle",
     subtitle: "Recruitment Solutions for a Smarter Workforce",
     description:
       "We provide intelligent recruitment solutions designed to attract, assess, and retain top talent — empowering your organization to build a smarter, more efficient workforce that drives long-term success.",
@@ -18,7 +18,7 @@ const services = [
   },
   {
     id: 2,
-    title: "Adroyts Academy",
+    title: "academy.title",
     subtitle: "Talent Acquisition Solutions",
     description:
       "We help organizations identify, attract, and onboard the right talent through innovative acquisition strategies — combining data-driven insights with personalized engagement for lasting success.",
@@ -28,7 +28,7 @@ const services = [
   },
   {
     id: 3,
-    title: "Assessment Center Solutions",
+    title: "talentAssessment.title",
     subtitle: "Professional Development Programs",
     description:
       "Our assessment centers provide comprehensive evaluation tools to measure skills, competencies, and potential — supporting data-informed decisions in leadership development and succession planning.",
@@ -38,7 +38,7 @@ const services = [
   },
   {
     id: 4,
-    title: "Human Capital Consulting",
+    title: "hrConsulting.title",
     subtitle: "Strategic HR and Organizational Development",
     description:
       "We partner with organizations to align people strategy with business goals — optimizing structures, enhancing performance, and driving cultural transformation for sustainable growth.",

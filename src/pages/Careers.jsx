@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { HiOutlineCalendar, HiOutlineLocationMarker } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
 import * as Yup from "yup";
@@ -9,6 +10,7 @@ import { SplitText } from "../utils/SplitText";
 
 const Careers = () => {
   const location = useLocation();
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
     if (location.hash) {
@@ -205,7 +207,7 @@ const Careers = () => {
               <ol className="inline-flex space-x-2">
                 <li>
                   <a href="/" className="hover:text-white hover:underline">
-                    Home
+                    {t("home")}
                   </a>
                   <span className="mx-2">/</span>
                 </li>

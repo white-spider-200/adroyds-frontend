@@ -32,7 +32,7 @@ const MainLayout = ({ children }) => {
   const [dropdown, setDropdown] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   // Scroll effects
   useEffect(() => {
@@ -131,17 +131,17 @@ const MainLayout = ({ children }) => {
                 }`}
               >
                 {[
-                  { label: "Recruitment Solutions", path: "/services/recruitment" },
-                  { label: "Adroyts Academy", path: "/services/academy" },
-                  { label: "Assessment Center", path: "/services/assessment" },
-                  { label: "Human Capital Consulting", path: "/services/consulting" },
+                  { label: "recruitmentSolutionsTitle", path: "/services/recruitment" },
+                  { label: "academy.title", path: "/services/academy" },
+                  { label: "talentAssessment.title", path: "/services/assessment" },
+                  { label: "hrConsulting.title", path: "/services/consulting" },
                 ].map((item) => (
                   <button
                     key={item.path}
                     onClick={() => handleNav(item.path)}
                     className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-blue-50"
                   >
-                    {item.label}
+                    {t(item.label)}
                   </button>
                 ))}
               </div>
@@ -295,7 +295,7 @@ const MainLayout = ({ children }) => {
                 </li>
                 <li>
                   <a href="#" className="transition duration-150 hover:text-white">
-                    Contact Us
+                    {t("contactUs")}
                   </a>
                 </li>
                 <li>
@@ -311,22 +311,22 @@ const MainLayout = ({ children }) => {
               <ul className="space-y-3 text-[#ffffff99]">
                 <li>
                   <a href="#" className="transition duration-150 hover:text-white">
-                    Adroyts Academy
+                    {t("academy.title")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="transition duration-150 hover:text-white">
-                    Assessment Center Solutions
+                    {"talentAssessment.title"}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="transition duration-150 hover:text-white">
-                    Human Capital Consulting
+                    {t("hrConsulting.title")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="transition duration-150 hover:text-white">
-                    Recruitment Solutions
+                    {t("recruitmentSolutionsTitle")}
                   </a>
                 </li>
               </ul>

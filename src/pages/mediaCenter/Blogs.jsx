@@ -18,7 +18,7 @@ const fadeUp = {
 };
 
 const Blogs = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -52,7 +52,7 @@ const Blogs = () => {
   }, [i18n.language]);
 
   return (
-    <div className="bg-white font-sans text-[#0E1C3F] selection:bg-cyan-400 selection:text-white">
+    <div className="bg-white text-[#0E1C3F] selection:bg-cyan-400 selection:text-white">
       {/* HERO SECTION */}
       <section className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
@@ -77,7 +77,7 @@ const Blogs = () => {
               <ol className="inline-flex space-x-2">
                 <li>
                   <a href="/" className="hover:text-white hover:underline">
-                    Home
+                    {t("home")}
                   </a>
                   <span className="mx-2">/</span>
                 </li>

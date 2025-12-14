@@ -1,88 +1,28 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { FaArrowRight, FaPhoneAlt } from "react-icons/fa";
-import { PiBriefcaseLight, PiClipboardTextLight, PiUsersThreeLight } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 
-import { SplitText } from "../../utils/SplitText";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay, duration: 0.6, ease: "easeOut" },
-  }),
-};
-
-const services = [
-  {
-    title: "Psychometric Tests",
-    desc: "Scientifically validated tools to measure aptitude, personality, and work behavior.",
-    icon: <PiBriefcaseLight className="h-12 w-12 text-cyan-400" />,
-    link: "#executive",
-  },
-  {
-    title: "Role Simulations",
-    desc: "Real-world tasks to assess decision-making, problem-solving, and leadership skills.",
-    icon: <PiUsersThreeLight className="h-12 w-12 text-cyan-400" />,
-    link: "#professional",
-  },
-  {
-    title: "Development Feedback",
-    desc: "Clear reports providing direction for both individual improvement and organizational development.",
-    icon: <PiClipboardTextLight className="h-12 w-12 text-cyan-400" />,
-    link: "#rpo",
-  },
-];
-
-const approachSteps = [
-  "Comprehensive Needs Analysis",
-  "Tailored Assessment Design",
-  "Multi-Method Evaluation Process",
-  "Detailed Reporting & Insights",
-  "Development Planning & Follow-up",
-];
-
-const clientBenefits = [
-  "Objective and accurate talent insights",
-  "Enhanced selection and promotion decisions",
-  "Alignment of employee capabilities with business goals",
-  "Reduced turnover and improved engagement",
-  "Data-driven leadership development programs",
-];
-
-const testimonials = [
-  {
-    name: "Laila Hussein",
-    role: "Talent Manager, MegaCorp",
-    quote:
-      "The Assessment Center solutions helped us identify and nurture key talent with unmatched accuracy and depth.",
-  },
-  {
-    name: "Faisal Al-Salem",
-    role: "HR Director, Innovatech",
-    quote:
-      "Adroyts’ assessment expertise brought clarity and confidence to our hiring and development processes.",
-  },
-];
-
-const Assessment = () => {
+const TalentAssessment = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const talentAssessment = t("talentAssessment", { returnObjects: true });
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
-    <div className="w-full bg-white font-sans text-[#0E1C3F] selection:bg-cyan-400/30 selection:text-[#0E1C3F]">
+    <div className="w-full bg-white text-[#0E1C3F] selection:bg-cyan-400/30 selection:text-[#0E1C3F]">
       {/* HERO SECTION */}
       <section className="relative -mt-40 flex min-h-[calc(60vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
           src="/assets/businessman-using-laptop-mouse.jpg"
-          alt="Assessment Center Background"
+          alt="Talent Assessment Background"
           className="absolute inset-0 h-full w-full object-cover"
         />
+
         {/* Dark Blue Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
 
@@ -97,17 +37,15 @@ const Assessment = () => {
             <ol className="inline-flex space-x-2">
               <li>
                 <a href="/" className="hover:text-white hover:underline">
-                  Home
+                  {t("home", "Home")}
                 </a>
                 <span className="mx-2">/</span>
               </li>
-              <li className="font-semibold text-white">Assessment Center</li>
+              <li className="font-semibold text-white">{talentAssessment.title}</li>
             </ol>
           </nav>
 
-          <SplitText className="mb-4 text-4xl font-extrabold text-white md:text-5xl">
-            Talent Assessment Services that Drive Better Hiring Since 2006
-          </SplitText>
+          <h1 className="mb-4 text-4xl font-extrabold text-white md:text-5xl">{talentAssessment.title}</h1>
 
           <motion.button
             onClick={() => navigate("/contact")}
@@ -116,7 +54,7 @@ const Assessment = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
           >
-            Contact Us
+            {t("contactUs")}{" "}
           </motion.button>
         </motion.div>
       </section>
@@ -127,39 +65,35 @@ const Assessment = () => {
           {/* MENU BOX */}
           <div className="flex flex-col rounded-lg bg-[#0E1C3F] p-4 py-6 text-white">
             <nav className="flex flex-col space-y-4">
-              {/* Recruitment Solutions (INACTIVE) */}
               <button
                 onClick={() => navigate("/services/recruitment")}
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
-                <span>Recruitment Solutions</span>
+                <span>{t("recruitmentSolutionsTitle")}</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
               </button>
 
-              {/* Adroyts Academy (INACTIVE) */}
               <button
                 onClick={() => navigate("/services/academy")}
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
-                <span>Adroyts Academy</span>
+                <span>{t("academy.title")}</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
               </button>
 
-              {/* Assessment Center (ACTIVE) */}
               <button
                 onClick={() => navigate("/services/assessment")}
                 className="group flex w-full items-center justify-between rounded-lg bg-cyan-400 px-4 py-2 text-left font-semibold text-white transition-colors hover:bg-cyan-400/30"
               >
-                <span>Assessment Center</span>
+                <span>{talentAssessment.title}</span>
                 <FaArrowRight className="translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0" />
               </button>
 
-              {/* Human Capital Consulting */}
               <button
                 onClick={() => navigate("/services/consulting")}
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
-                <span>Human Capital Consulting</span>
+                <span>{t("hrConsulting.title")}</span>
                 <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
               </button>
             </nav>
@@ -178,7 +112,7 @@ const Assessment = () => {
 
             {/* Text */}
             <div className="absolute inset-0 flex flex-col items-start justify-center space-y-4 p-8 text-white">
-              <p className="text-xl font-semibold">If You Need Any Service Contact With Us</p>
+              <p className="text-xl font-semibold">{t("needServiceContactUs")} </p>
 
               <p className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-6 py-2 font-semibold text-[#0E1C3F]">
                 <FaPhoneAlt />
@@ -194,137 +128,33 @@ const Assessment = () => {
           <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
               src="/assets/businessman-using-laptop-mouse.jpg"
-              alt="Talent Assessment Solutions"
+              alt={talentAssessment.title}
               className="h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F] to-orange-400 opacity-20"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F] to-cyan-400 opacity-20"></div>
           </div>
 
-          {/* INTRO / ABOUT */}
+          {/* About Section */}
           <section className="container pb-16 md:max-w-4xl">
             <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">
-              About Our Assessment Center
+              {talentAssessment.title}
             </h2>
-            <p className="text-lg leading-relaxed text-gray-700">
-              For nearly two decades, Adroyts has been a leader in talent assessment, helping organizations
-              make confident, data-driven decisions. Our Assessment Center offers a comprehensive suite of
-              scientifically validated tools to evaluate skills, behaviors, potential, and job readiness with
-              precision and transparency. We empower organizations to select, develop, and retain the right
-              talent.
-            </p>
+            <p className="text-lg leading-relaxed text-gray-700">{talentAssessment.description}</p>
           </section>
 
-          {/* SERVICES */}
+          {/* Tools Section */}
           <section className="container mx-auto px-6 py-20">
-            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">Our Recruitment Services</h2>
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
-              {services.map(({ title, desc, icon, link }, i) => (
-                <motion.a
-                  key={i}
-                  href={link}
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={fadeUp}
-                  custom={i * 0.1}
-                  viewport={{ once: true }}
-                  className="group flex flex-col rounded-lg bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
-                >
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-cyan-400/20 text-cyan-400 transition group-hover:bg-cyan-400/40">
-                    {icon}
-                  </div>
-                  <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
-                  <p className="flex-grow text-gray-700">{desc}</p>
-                  <span className="mt-4 text-sm font-semibold text-cyan-400 underline decoration-2 underline-offset-2 transition group-hover:text-[#0A9AB8]">
-                    Learn More →
-                  </span>
-                </motion.a>
-              ))}
-            </div>
-          </section>
-
-          {/* APPROACH */}
-          <section className="container mx-auto px-6 py-20">
-            <h2 className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">Our Assessment Approach</h2>
-            <div className="mx-auto max-w-5xl space-y-10">
-              {approachSteps.map((step, i) => (
-                <motion.div
-                  key={i}
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={fadeUp}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.2 }}
-                  className="flex items-start space-x-6"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#0E1C3F] font-semibold text-[#0E1C3F]">
-                    {i + 1}
-                  </div>
-                  <div>
-                    <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{step}</h3>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </section>
-
-          {/* CLIENT BENEFITS */}
-          <section className="container mx-auto px-6 py-20">
-            <h2 className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">Key Benefits for Clients</h2>
-            <ul className="mx-auto max-w-4xl list-inside list-disc space-y-4 text-lg text-gray-700">
-              {clientBenefits.map((benefit, i) => (
-                <motion.li
-                  key={i}
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={fadeUp}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                >
-                  {benefit}
-                </motion.li>
-              ))}
-            </ul>
-          </section>
-
-          {/* TESTIMONIALS */}
-          <section className="container mx-auto px-6 py-20">
-            <h2 className="mb-12 text-center text-3xl font-bold text-[#0E1C3F]">Client Testimonials</h2>
-            <div className="mx-auto max-w-3xl space-y-12">
-              {testimonials.map(({ name, role, quote }, i) => (
-                <motion.blockquote
-                  key={i}
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={fadeUp}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                  className="rounded-lg border border-gray-200 bg-white p-8 shadow-md"
-                >
-                  <p className="mb-4 italic text-gray-700">"{quote}"</p>
-                  <footer className="font-semibold text-gray-900">
-                    — {name}, <span className="font-normal text-gray-600">{role}</span>
-                  </footer>
-                </motion.blockquote>
-              ))}
-            </div>
-          </section>
-
-          {/* FINAL CTA */}
-          <section className="relative bg-white px-6 py-20 text-center">
-            <h2 className="mb-6 text-4xl font-bold tracking-tight text-cyan-400">
-              Ready to Elevate Your Talent Assessment?
+            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">
+              {talentAssessment.toolsTitle}
             </h2>
-            <p className="mx-auto mb-10 max-w-3xl text-lg text-[#0E1C3F]">
-              Partner with Adroyts Assessment Center to make data-driven hiring decisions and unlock the full
-              potential of your workforce.
-            </p>
-
-            <button
-              onClick={() => navigate("/contact")}
-              className="rounded-lg border border-cyan-400 bg-white px-10 py-4 text-lg font-semibold text-[#0E1C3F] shadow-sm transition hover:shadow-lg hover:ring-2 hover:ring-cyan-400/40"
-            >
-              Contact Us
-            </button>
+            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-10 md:grid-cols-2">
+              {Object.values(talentAssessment.tools).map(({ title, description }, index) => (
+                <div key={index} className="rounded-lg border border-gray-200 p-6 shadow-sm">
+                  <h3 className="mb-3 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
+                  <p className="text-gray-600">{description}</p>
+                </div>
+              ))}
+            </div>
           </section>
         </div>
       </div>
@@ -332,4 +162,4 @@ const Assessment = () => {
   );
 };
 
-export default Assessment;
+export default TalentAssessment;

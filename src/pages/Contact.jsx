@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
@@ -22,7 +23,7 @@ const ContactAdroyts = () => {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-
+  const { t } = useTranslation();
   // Load Cloudflare Turnstile script
   useEffect(() => {
     const script = document.createElement("script");
@@ -146,12 +147,12 @@ const ContactAdroyts = () => {
               <ol className="inline-flex space-x-2">
                 <li>
                   <a href="/" className="hover:text-white hover:underline">
-                    Home
+                    {t("home")}
                   </a>
                   <span className="mx-2">/</span>
                 </li>
                 <li className="font-semibold text-white" aria-current="page">
-                  Contact Us
+                  {t("contactUs")}
                 </li>
               </ol>
             </nav>
@@ -362,10 +363,10 @@ const ContactAdroyts = () => {
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
               >
                 <option value="">Select service</option>
-                <option value="Recruitment Solutions">Recruitment Solutions</option>
-                <option value="Adroyts Academy">Adroyts Academy</option>
-                <option value="Assessment Center Solutions">Assessment Center Solutions</option>
-                <option value="Human Capital Consulting">Human Capital Consulting</option>
+                <option value="Recruitment Solutions">{t("recruitmentSolutionsTitle")}</option>
+                <option value="Adroyts Academy">{t("academy.title")}</option>
+                <option value="Assessment Center Solutions">{"talentAssessment.title"}</option>
+                <option value="Human Capital Consulting">{t("hrConsulting.title")}</option>
               </select>
               {errors.service && <p className="text-sm text-red-500">{errors.service}</p>}
             </div>

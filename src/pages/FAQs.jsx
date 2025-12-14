@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { SplitText } from "../utils/SplitText";
 
@@ -33,6 +34,7 @@ const faqData = [
 
 const Faqs = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const { i18n, t } = useTranslation();
 
   const toggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -63,7 +65,7 @@ const Faqs = () => {
               <ol className="inline-flex space-x-2">
                 <li>
                   <a href="/" className="hover:text-white hover:underline">
-                    Home
+                    {t("home")}
                   </a>
                   <span className="mx-2">/</span>
                 </li>

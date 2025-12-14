@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaCalendarAlt } from "react-icons/fa";
 
 import { SplitText } from "../../utils/SplitText";
@@ -16,6 +17,7 @@ const fadeUp = {
 const NewsDetails = () => {
   const [loading, setLoading] = useState(true);
   const [news, setBlog] = useState(null);
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -54,7 +56,7 @@ const NewsDetails = () => {
   }
 
   return (
-    <div className="bg-white font-sans text-[#0E1C3F] selection:bg-cyan-400 selection:text-white">
+    <div className="bg-white text-[#0E1C3F] selection:bg-cyan-400 selection:text-white">
       {/* HERO SECTION */}
       <section
         id="overview"
@@ -80,7 +82,7 @@ const NewsDetails = () => {
               <ol className="inline-flex space-x-2">
                 <li>
                   <a href="/" className="hover:text-white hover:underline">
-                    Home
+                    {t("home")}
                   </a>
                   <span className="mx-2">/</span>
                 </li>

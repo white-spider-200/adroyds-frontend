@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { FaExclamationTriangle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +17,7 @@ const fadeUp = {
 
 const NotFound = () => {
   const navigate = useNavigate();
+  const { i18n, t } = useTranslation();
 
   return (
     <div className="bg-white font-cairo text-gray-900 selection:bg-blue-200 selection:text-gray-900">
@@ -44,7 +46,7 @@ const NotFound = () => {
               <ol className="inline-flex space-x-2">
                 <li>
                   <a href="/" className="hover:text-white hover:underline">
-                    Home
+                    {t("home")}
                   </a>
                   <span className="mx-2">/</span>
                 </li>

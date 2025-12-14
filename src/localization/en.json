@@ -53,69 +53,152 @@
     "Data-Driven Talent Assessment",
     "Proven Record of Client Success"
   ],
-  "recruitmentSolutions": [
-    {
-      "id": "executive",
-      "titleEn": "Executive Search",
-      "descriptionEn": "Adroyts specializes in Executive Search as a strategic center for attracting senior leadership. We do not just search for candidates, but strive to discover leaders capable of creating a transformative and direct impact on organizational performance and achieving their strategic vision.\nTo ensure this impact, we rely on a precise and comprehensive methodology; starting with an in-depth analysis of client needs, followed by accurate identification and professional evaluation of top-tier leadership talents, concluding with final recommendations based on evidence proving full alignment with success requirements.",
-      "stepsEn": [
-        "Gathering and analyzing job vacancy information: Conducting an in-depth analysis of organizational and skill requirements.",
-        "Searching for suitable competencies: Proactively targeting leadership competencies in the local and regional markets.",
-        "Interviewing and evaluating candidates: Conducting in-depth interviews to assess candidate suitability for the specific role.",
-        "Submitting candidate shortlist to the client: Providing a shortlist of the most qualified leaders for client review and interviews.",
-        "Conducting psychometric tests: Applying advanced behavioral and personality assessments to ensure cultural and leadership fit.",
-        "Checking candidate references: Verifying professional records and past performance through approved references.",
-        "Negotiating the job offer: Managing the negotiation process between client and candidate to ensure final agreement.",
-        "Completing the executive search task: Successfully concluding the process and ensuring smooth transition of the new leader."
-      ]
-    },
-    {
-      "id": "professional",
-      "titleEn": "Professional Search",
-      "descriptionEn": "We assist organizations in reaching the most suitable candidates through precise professional search that considers alignment of experiences with organizational culture and goals. We rely on a clear market vision and comprehensive assessment mechanisms to ensure selection of competencies capable of integration and delivering long-term institutional value.\nOur goal: Supporting teams, enhancing performance, and building sustainable recruitment partnerships.",
-      "featuresEn": [
-        "Proprietary candidate database",
-        "Rapid response for urgent hires",
-        "Custom sourcing pipelines",
-        "Dedicated account manager"
-      ]
-    },
-    {
-      "id": "rpo",
-      "titleEn": "Recruitment Process Outsourcing (RPO)",
-      "descriptionEn": "Adroyts offers recruitment process outsourcing solutions through an operational model that acts as an extension of the HR system within organizations. The service includes providing specialized recruitment teams on a full-time or part-time basis, working according to precise professional standards to ensure solid recruitment processes and improve candidate quality.\nThe partnership relies on extensive experience in attracting competencies that align with client needs.",
-      "featuresEn": [
-        "End-to-end recruitment ownership",
-        "Dedicated sector-focused recruiters",
-        "Unlimited hiring scope",
-        "Scalable workforce model"
-      ]
-    }
-  ],
-  "talentAssessment": {
-    "titleEn": "Talent Assessment",
-    "descriptionEn": "Adroyts provides advanced assessment solutions based on scientific tools and professional standards to measure abilities, competencies, and professional behaviors.\nTalent assessment activities aim to support hiring and development decisions and determine candidate suitability for professional roles, including several tests such as:",
-    "tests": [
-      {
-        "titleEn": "Psychometric Assessments",
-        "descEn": "Standardized scientific tools used to measure behavioral aspects, cognitive abilities, and personality traits of candidates."
-      },
-      {
-        "titleEn": "Competency-Based Interviews",
-        "descEn": "A system focusing on exploring candidates' past behaviors in specific situations to predict future performance."
-      },
-      {
-        "titleEn": "Study Case",
-        "descEn": "A method focusing on exploring candidates' past behaviors in specific situations to predict future performance."
-      },
-      {
-        "titleEn": "Discussion Group",
-        "descEn": "An activity where candidates are placed in a group setting to discuss a specific topic, to assess communication, leadership, and teamwork skills."
-      },
-      {
-        "titleEn": "Role-Playing Activities",
-        "descEn": "Interactive exercises simulating daily work situations to evaluate how the candidate handles challenges in a realistic environment, providing an accurate assessment of behavioral and leadership skills."
+  "adroytsIntro": "For nearly two decades, Adroyts has been a trusted recruitment partner for organizations across Saudi Arabia. We provide end-to-end hiring solutions that balance precision, speed, and cultural alignment—helping clients secure the right talent every time.",
+  "recruitmentSolutionsTitle": "Recruitment Solutions",
+    "expertTrainingCareerGrowth": "Expert Training, Career Growth Since 2006",
+  "recruitmentSolutions": "Recruitment Solutions that Empower Organizations Since 2006",
+  "contactUs": "Contact Us",
+  "aboutOurRecruitmentSolutions": "About Our Recruitment Solutions",
+  "ourRecruitmentServices": "Our Recruitment Services",
+  "learnMore": "Learn More",
+  "candidatesSuccessfullyPlaced": "Candidates Successfully Placed",
+  "recruitmentProjectsCompleted": "Recruitment Projects Completed",
+  "passedProbationPeriod": "Passed Probation Period",
+  "yearsOfRecruitmentExcellence": "Years of Recruitment Excellence",
+  "needServiceContactUs": "If You Need Any Service Contact With Us",
+  "recruitment": {
+    "executiveSearch": {
+      "title": "Executive Search",
+      "description": "Adroyts specializes in Executive Search as a strategic core for attracting senior leadership. We do not merely search for candidates; rather, we strive to discover leaders capable of making a qualitative leap and having a direct impact on organizational performance and achieving strategic vision. To ensure this impact, we rely on a precise and comprehensive methodology; starting with an in-depth analysis of the client’s needs, followed by a precise identification and professional evaluation of top-tier leadership competencies, and concluding with final recommendations based on evidence proving full alignment with success requirements.",
+      "methodologyTitle": "Executive Search Methodology Steps",
+      "methodologyIntro": "At Adroyts, we follow a methodical and precise approach to guarantee the attraction of senior leadership:",
+      "steps": {
+        "1": {
+          "title": "Gathering and Analyzing Job Vacancy Information",
+          "details": "Conducting an in-depth analysis of the organizational and skill requirements of the vacant position."
+        },
+        "2": {
+          "title": "Searching for Suitable Competencies",
+          "details": "Identifying leadership competencies and proactively targeting them in the local and regional market."
+        },
+        "3": {
+          "title": "Interviewing and Evaluating Candidates",
+          "details": "Conducting in-depth interviews to assess the suitability of candidates for the specified role."
+        },
+        "4": {
+          "title": "Submitting the Candidate List to the Client",
+          "details": "Providing a shortlist of the most qualified leaders to the client for review and interviews."
+        },
+        "5": {
+          "title": "Conducting Psychometric Tests for Candidates",
+          "details": "Applying advanced behavioral and personality assessments to ensure cultural and leadership compatibility."
+        },
+        "6": {
+          "title": "Candidate Reference Check",
+          "details": "Verifying the professional record and past performance of candidates through trusted references."
+        },
+        "7": {
+          "title": "Negotiating the Job Offer",
+          "details": "Managing the negotiation process between the client and the candidate to ensure agreement on final terms."
+        },
+        "8": {
+          "title": "Completing the Executive Search Assignment",
+          "details": "Successfully finalizing the process and ensuring the smooth transition of the new leader to start their duties."
+        }
       }
-    ]
+    },
+    "professionalSearch": {
+      "title": "Professional Search",
+      "description": "We assist organizations in reaching the most suitable candidates through a precise professional search that considers experience compatibility with organizational culture and goals. We rely on a clear market vision and comprehensive evaluation mechanisms to ensure selecting competencies capable of integration and delivering long-term institutional value. Our goal: supporting work teams, enhancing performance, and building sustainable recruitment partnerships."
+    },
+    "recruitmentOutsourcing": {
+      "title": "Recruitment Process Outsourcing",
+      "description": "Adroyts offers recruitment outsourcing solutions through an operational model that acts as an extension of the human resources system within organizations. The service includes providing specialized recruitment teams on a full-time or part-time basis, working according to strict professional standards to consolidate recruitment operations and improve candidate quality. The company also leverages extensive expertise in attracting competencies to ensure their alignment with client needs."
+    }
+  },
+  "academy": {
+  "title": "Adroits Academy",
+  "description": "Adroits Academy represents the knowledge and training arm of the company, specializing in leadership development and institutional capability building through precisely designed training programs that deliver maximum impact. The Academy offers an integrated suite of developmental solutions that go beyond conventional training, relying on in-depth needs analysis and the design of customized training packages. This approach ensures full alignment of programs with organizations’ strategic objectives and future directions, in line with Saudi Vision 2030 for human capital development.",
+  "solutionsTitle": "Development Solutions",
+  "solutions": {
+    "alignment": {
+      "title": "Alignment",
+      "description": "Ensuring training programs are fully aligned with organizations’ strategic goals and their current and future needs, enabling sustainable institutional impact."
+    },
+    "trainingPackagesDesign": {
+      "title": "Training Package Design",
+      "description": "Developing distinctive and effective learning content, custom-built to meet clients’ objectives and their technical and functional standards, ensuring a high-quality learning experience."
+    },
+    "trainingNeedsAnalysis": {
+      "title": "Training Needs Analysis",
+      "description": "Applying a systematic approach to assess current and future knowledge and skill gaps, enabling accurate identification of real training needs."
+    },
+    "developmentPlans": {
+      "title": "Design and Implementation of Development Plans",
+      "description": "Developing comprehensive framework plans for delivering training programs and learning pathways, with direct oversight of implementation to ensure maximum impact and measurable outcomes."
+    }
+  }
+  },
+  "talentAssessment": {
+  "title": "Talent Assessment",
+  "description": "Adroits provides advanced talent assessment solutions based on scientific tools and professional standards to measure capabilities, competencies, and workplace behaviors. These assessments are designed to support recruitment and development decisions, as well as to determine candidates’ suitability for professional roles.",
+  "toolsTitle": "Assessment Tools",
+  "tools": {
+    "psychometricAssessments": {
+      "title": "Psychometric Assessments",
+      "description": "Standardized scientific tools used to measure candidates’ behavioral traits, cognitive abilities, and personality characteristics."
+    },
+    "competencyBasedInterviews": {
+      "title": "Competency-Based Interviews",
+      "description": "Structured interviews focused on exploring candidates’ past behaviors in specific situations, enabling accurate prediction of future performance."
+    },
+    "caseStudy": {
+      "title": "Case Study",
+      "description": "Practical assessment exercises that simulate real business scenarios, allowing candidates to demonstrate analytical thinking, problem-solving abilities, and decision-making skills."
+    },
+    "groupDiscussion": {
+      "title": "Group Discussion",
+      "description": "An interactive activity where candidates participate in group discussions around a defined topic, used to evaluate communication skills, leadership potential, and teamwork."
+    },
+    "rolePlaying": {
+      "title": "Role-Playing Activities",
+      "description": "Interactive simulations that replicate real workplace situations to assess how candidates respond to challenges in realistic environments, providing accurate evaluation of behavioral and leadership skills."
+    }
+  }
+  },
+  "hrConsulting":{
+  "title": "Human Resources Consulting",
+  "description": "To turn operational challenges into growth opportunities, Adroits offers a comprehensive suite of human resources consulting services. Today, HR consulting is a strategic focal point with a new dimension in the business world. We work closely with our clients to understand their needs and provide consultations that enable them to make sound decisions supporting their future path. This includes evaluating current projects to ensure optimal deployment of skills within the organization, providing support in merger or acquisition planning, and assessing risks related to layoffs, redundancies, and associated outcomes. We also collaborate with organizations to develop and implement HR policies and procedures and manage human capital efficiently. Our services extend from startups to large enterprises aiming to develop integrated HR strategies that contribute to sustainable growth and clear development plans.",
+  "servicesTitle": "Our Services in this Area",
+  "services": {
+    "hrStrategy": {
+      "title": "HR Strategy Development",
+      "description": "Designing a comprehensive long-term plan to ensure alignment of HR functions with the overall strategic goals of the organization."
+    },
+    "organizationalDevelopment": {
+      "title": "Organizational Development (Structuring)",
+      "description": "Developing a comprehensive long-term plan to ensure alignment of HR functions with the overall strategic goals of the organization."
+    },
+    "hrManual": {
+      "title": "HR Manual",
+      "description": "Preparing a comprehensive document outlining the internal policies, procedures, and regulations governing the relationship between employees and the organization."
+    },
+    "hrAudits": {
+      "title": "HR Audits",
+      "description": "Systematic evaluation of the effectiveness and efficiency of current HR systems and processes to identify strengths and areas for improvement."
+    },
+    "jobAnalysis": {
+      "title": "Job Analysis",
+      "description": "A comprehensive process that includes job evaluation, grading system determination, job description development, and establishing fair and competitive salary scales."
+    },
+    "successionPlanning": {
+      "title": "Succession Planning",
+      "description": "A comprehensive process that includes job evaluation, grading system determination, job description development, and establishing fair and competitive salary scales."
+    },
+    "hrOutsourcing": {
+      "title": "HR Outsourcing",
+      "description": "Providing specialized services to manage specific HR tasks on behalf of the client, enabling them to focus on strategic activities."
+    }
+  }
   }
 }

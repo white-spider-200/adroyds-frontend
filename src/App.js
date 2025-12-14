@@ -24,9 +24,6 @@ import Academy from "./pages/services/Academy";
 import Assessment from "./pages/services/Assessment";
 import Consulting from "./pages/services/Consulting";
 import Recruitment from "./pages/services/Recruitment";
-import Recruitment2 from "./pages/services/Recruitment2";
-import Recruitment3 from "./pages/services/Recruitment3";
-import Recruitment4 from "./pages/services/Recruitment4";
 
 export default function App() {
   const { i18n } = useTranslation();
@@ -59,9 +56,6 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/services/recruitment" element={<Recruitment />} />
-        <Route path="/services/recruitment2" element={<Recruitment2 />} />
-        <Route path="/services/recruitment3" element={<Recruitment3 />} />
-        <Route path="/services/recruitment4" element={<Recruitment4 />} />
         <Route path="/services/academy" element={<Academy />} />
         <Route path="/services/assessment" element={<Assessment />} />
         <Route path="/services/consulting" element={<Consulting />} />

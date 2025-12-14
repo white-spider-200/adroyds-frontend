@@ -180,7 +180,7 @@ const Home = () => {
         }}
       >
         {/* Gradient Overlay */}
-        {/* <div className="to-navy-500/50 absolute inset-0 bg-gradient-to-r from-orange-400/60 via-cyan-400/40"></div> */}
+        {/* <div className="to-navy-500/50 absolute inset-0 bg-gradient-to-r from-cyan-400/60 via-cyan-400/40"></div> */}
 
         {/* About Section */}
         <motion.section
