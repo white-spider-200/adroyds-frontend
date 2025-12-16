@@ -82,13 +82,13 @@ const Blogs = () => {
                   <span className="mx-2">/</span>
                 </li>
                 <li className="font-semibold text-white" aria-current="page">
-                  Our Blogs
+                  {t("blog")}
                 </li>
               </ol>
             </nav>
 
-            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-5xl">
-              Our Blogs
+            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-4xl">
+              {t("blog")}
             </h1>
           </div>
         </motion.div>
@@ -101,7 +101,6 @@ const Blogs = () => {
             // Loading UI
             <div className="flex justify-center py-20">
               <FaSpinner className="animate-spin text-4xl text-cyan-400" />
-              <span className="ml-4 mt-1 text-lg font-semibold text-cyan-400">Loading...</span>
             </div>
           ) : (
             // Articles grid
@@ -151,8 +150,10 @@ const Blogs = () => {
                       className="inline-flex w-max cursor-pointer items-center gap-1 rounded-md bg-white font-semibold text-black transition duration-300 hover:text-cyan-400"
                       aria-label={`Read more about ${blog.title}`}
                     >
-                      <span>Read More</span>
-                      <LuArrowUpRight className="transform transition duration-300" />
+                      <span>{t("readMore")}</span>
+                      <LuArrowUpRight
+                        className={`transform transition duration-300 ${i18n.language === "ar" ? "scale-x-[-1]" : ""}`}
+                      />{" "}
                     </button>
                   </motion.div>
                 </motion.div>
@@ -166,7 +167,7 @@ const Blogs = () => {
               type="button"
               className="hidden items-center gap-2 rounded-full border-2 border-[#0E1C3F] bg-transparent px-6 py-2 text-[#0E1C3F] transition duration-300 hover:border-cyan-400 hover:text-cyan-400 md:flex"
             >
-              View More
+              {t("viewMore")}
             </button>
           </div>
         </div>

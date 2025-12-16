@@ -23,7 +23,7 @@ const ContactAdroyts = () => {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   // Load Cloudflare Turnstile script
   useEffect(() => {
     const script = document.createElement("script");
@@ -157,13 +157,10 @@ const ContactAdroyts = () => {
               </ol>
             </nav>
 
-            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-5xl">
-              Get in Touch with Adroyts
+            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-4xl">
+              {t("getInTouch")}{" "}
             </h1>
-            <p className="max-w-3xl text-lg text-white">
-              We're here to help you transform your digital vision into reality. Contact us today to get
-              started.
-            </p>
+            <p className="max-w-3xl text-lg text-white">{t("helpMessage")}</p>
           </div>
         </motion.div>
       </section>
@@ -171,8 +168,7 @@ const ContactAdroyts = () => {
       {/* INTRO TEXT */}
       <div className="flex w-full justify-center bg-gray-100 px-4 py-12">
         <div className="max-w-3xl text-center text-lg leading-relaxed text-gray-700">
-          At Adroyts, we value meaningful communication. Whether you’re exploring a new project, looking for
-          partnership opportunities, or simply have a question—our team is ready to support you.
+          {t("communicationValue")}
         </div>
       </div>
 
@@ -182,16 +178,16 @@ const ContactAdroyts = () => {
         <div className="space-y-6 lg:w-1/3">
           <div className="group relative cursor-pointer rounded-lg bg-gray-100 p-3 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-cyan-400">
             <h4 className="text-base font-bold text-gray-900 transition-colors duration-300 group-hover:text-white">
-              Phone
+              {t("phone")}
             </h4>
             <p className="text-sm leading-snug text-gray-600 transition-colors duration-300 group-hover:text-white">
-              +962 790 000 000
+              {i18n.language === "ar" ? <p>667 42 23 11 966+</p> : <p>+966 11 23 42 667</p>}{" "}
             </p>
           </div>
 
           <div className="group relative cursor-pointer rounded-lg bg-gray-100 p-3 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-cyan-400">
             <h4 className="text-base font-bold text-gray-900 transition-colors duration-300 group-hover:text-white">
-              Email
+              {t("email")}
             </h4>
             <p className="text-sm leading-snug text-gray-600 transition-colors duration-300 group-hover:text-white">
               info@adroyts.com
@@ -200,25 +196,22 @@ const ContactAdroyts = () => {
 
           <div className="group relative cursor-pointer rounded-lg bg-gray-100 p-3 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-cyan-400">
             <h4 className="text-base font-bold text-gray-900 transition-colors duration-300 group-hover:text-white">
-              Address
+              {t("address")}
             </h4>
-            <p className="text-sm leading-snug text-gray-600 transition-colors duration-300 group-hover:text-white">
-              Amman, Jordan
-            </p>
-          </div>
-
-          <div className="group relative rounded-lg bg-gray-100 p-3 duration-300 ease-in-out">
-            <h4 className="text-base font-bold text-gray-900 transition-colors duration-300">
-              Working Hours
-            </h4>
-            <p className="text-sm leading-snug text-gray-600 transition-colors duration-300">
-              Sun – Thu: 9:00 AM – 6:00 PM
-            </p>
+            {i18n.language == "ar" ? (
+              <p className="text-sm leading-snug text-gray-600 transition-colors duration-300 group-hover:text-white">
+                ٣٣٨٥ طريق الثمامة، حي الندى، الرياض ١٣٣١٧، المملكة العربية السعودية{" "}
+              </p>
+            ) : (
+              <p className="text-sm leading-snug text-gray-600 transition-colors duration-300 group-hover:text-white">
+                3385 Thumamah Road, Alnada District, Riyadh 13317, Kingdom of Saudi Arabia{" "}
+              </p>
+            )}
           </div>
 
           <div className="group relative rounded-lg bg-gray-100 p-3 transition-all duration-300">
             <h4 className="mb-2 text-base font-bold text-gray-900 transition-colors duration-300">
-              Follow Us
+              {t("followUs")}
             </h4>
             <div className="flex gap-4 text-gray-700 transition-colors duration-300 group-hover:text-white">
               <div className="flex space-x-3">
@@ -239,32 +232,30 @@ const ContactAdroyts = () => {
         {/* FORM */}
         <div className="rounded-xl bg-gray-100 p-8 shadow lg:w-2/3">
           {submitted && (
-            <div className="mb-6 rounded bg-green-100 p-4 text-green-700">
-              Thank you! Your message has been submitted. Our team will contact you shortly.
-            </div>
+            <div className="mb-6 rounded bg-green-100 p-4 text-green-700">{t("thankYouMessage")}</div>
           )}
 
           {/* Purpose */}
           <div className="mb-3">
-            <label className="mb-1 block font-medium">Purpose of Contact *</label>
+            <label className="mb-1 block font-medium"> {t("purposeOfContact")}</label>
             <select
               name="purpose"
               value={form.purpose}
               onChange={handleChange}
               className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
             >
-              <option value="">Select purpose</option>
-              <option value="Service Inquiry">Service Inquiry</option>
-              <option value="Partnership">Partnership</option>
-              <option value="General Question">General Question</option>
-              <option value="Job Application">Job Application</option>
+              <option value=""> {t("select")}</option>
+              <option value="Service Inquiry">{t("serviceInquiry")}</option>
+              <option value="Partnership">{t("partnership")}</option>
+              <option value="General Question">{t("generalQuestion")}</option>
+              <option value="Job Application">{t("jobApplication")}</option>
             </select>
             {errors.purpose && <p className="text-sm text-red-500">{errors.purpose}</p>}
           </div>
 
           {/* Full Name */}
           <div className="mb-3">
-            <label className="mb-1 block font-medium">Full Name *</label>
+            <label className="mb-1 block font-medium">{t("fullName")}</label>
             <input
               type="text"
               maxLength={50}
@@ -279,7 +270,7 @@ const ContactAdroyts = () => {
           {/* Company & Job */}
           <div className="flex flex-col gap-6 md:flex-row">
             <div className="md:w-1/2">
-              <label className="mb-1 block font-medium">Company Name *</label>
+              <label className="mb-1 block font-medium">{t("companyNames")}</label>
               <input
                 type="text"
                 maxLength={50}
@@ -292,7 +283,7 @@ const ContactAdroyts = () => {
             </div>
 
             <div className="md:w-1/2">
-              <label className="mb-1 block font-medium">Job Title *</label>
+              <label className="mb-1 block font-medium">{t("jobTitle")}</label>
               <input
                 type="text"
                 maxLength={50}
@@ -308,7 +299,7 @@ const ContactAdroyts = () => {
           {/* Email & Phone */}
           <div className="mt-3 flex flex-col gap-6 md:flex-row">
             <div className="md:w-1/2">
-              <label className="mb-1 block font-medium">Email *</label>
+              <label className="mb-1 block font-medium">{t("email")}</label>
               <input
                 type="email"
                 name="email"
@@ -320,7 +311,7 @@ const ContactAdroyts = () => {
             </div>
 
             <div className="md:w-1/2">
-              <label className="mb-1 block font-medium">Phone Number *</label>
+              <label className="mb-1 block font-medium">{t("phone")}</label>
               <input
                 type="text"
                 maxLength={15}
@@ -335,19 +326,19 @@ const ContactAdroyts = () => {
 
           {/* How heard */}
           <div className="mb-3 mt-3">
-            <label className="mb-1 block font-medium">How did you hear about us? *</label>
+            <label className="mb-1 block font-medium">{t("howDidYouHear")}</label>
             <select
               name="hearAbout"
               value={form.hearAbout}
               onChange={handleChange}
               className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
             >
-              <option value="">Select</option>
-              <option value="Google Search">Google Search</option>
-              <option value="LinkedIn">LinkedIn</option>
-              <option value="Friend or Colleague">Friend or Colleague</option>
-              <option value="Event">Event</option>
-              <option value="Other">Other</option>
+              <option value="">{t("select")}</option>
+              <option value="Google Search">{t("googleSearch")}</option>
+              <option value="LinkedIn">{t("linkedIn")}</option>
+              <option value="Friend or Colleague">{t("friendOrColleague")}</option>
+              <option value="Event">{t("event")}</option>
+              <option value="Other">{t("other")}</option>
             </select>
             {errors.hearAbout && <p className="text-sm text-red-500">{errors.hearAbout}</p>}
           </div>
@@ -355,14 +346,14 @@ const ContactAdroyts = () => {
           {/* Conditional Service */}
           {showServiceDropdown && (
             <div className="mb-3">
-              <label className="mb-1 block font-medium">Service of Interest *</label>
+              <label className="mb-1 block font-medium">{t("serviceOfInterest")}</label>
               <select
                 name="service"
                 value={form.service}
                 onChange={handleChange}
                 className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
               >
-                <option value="">Select service</option>
+                <option value="">{t("select")}</option>
                 <option value="Recruitment Solutions">{t("recruitmentSolutionsTitle")}</option>
                 <option value="Adroyts Academy">{t("academy.title")}</option>
                 <option value="Assessment Center Solutions">{"talentAssessment.title"}</option>
@@ -374,7 +365,7 @@ const ContactAdroyts = () => {
 
           {/* Message */}
           <div className="mb-3">
-            <label className="mb-1 block font-medium">Message *</label>
+            <label className="mb-1 block font-medium">{t("message")}</label>
             <textarea
               rows="6"
               maxLength={500}
@@ -382,7 +373,6 @@ const ContactAdroyts = () => {
               value={form.message}
               onChange={handleChange}
               className="w-full rounded border p-3"
-              placeholder="Write your message here..."
             ></textarea>
             {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
           </div>
@@ -398,7 +388,7 @@ const ContactAdroyts = () => {
               submitting ? "bg-gray-400" : "bg-cyan-400 hover:bg-cyan-500"
             }`}
           >
-            {submitting ? "Submitting..." : "Submit"}
+            {submitting ? t("sending") : t("send")}
           </button>
         </div>
       </div>

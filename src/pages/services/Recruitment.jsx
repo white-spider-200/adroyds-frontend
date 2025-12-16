@@ -90,7 +90,7 @@ const Recruitment = () => {
             </ol>
           </nav>
 
-          <SplitText className="mb-4 text-4xl font-extrabold text-white md:text-5xl">
+          <SplitText className="mb-4 text-4xl font-extrabold text-white md:text-4xl">
             {t("recruitmentSolutions")}
           </SplitText>
 
@@ -117,7 +117,9 @@ const Recruitment = () => {
                 className="group flex w-full items-center justify-between rounded-lg bg-cyan-400 px-4 py-2 text-left font-semibold text-white transition-colors hover:bg-cyan-400/30"
               >
                 <span>{t("recruitmentSolutionsTitle")}</span>
-                <FaArrowRight className="translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
 
               {/* {t("academy.title")} */}
@@ -126,7 +128,9 @@ const Recruitment = () => {
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>{t("academy.title")}</span>
-                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
 
               {/* Assessment Center */}
@@ -135,7 +139,9 @@ const Recruitment = () => {
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>{t("talentAssessment.title")}</span>
-                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
 
               {/* Human Capital Consulting */}
@@ -144,7 +150,9 @@ const Recruitment = () => {
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>{t("hrConsulting.title")}</span>
-                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
             </nav>
           </div>
@@ -282,7 +290,7 @@ const Recruitment = () => {
 
                     <div className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 transition group-hover:text-white">
                       {t("learnMore")}
-                      <FaArrowRight className="transition-transform group-hover:translate-x-1" />
+                      <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />{" "}
                     </div>
                   </div>
 

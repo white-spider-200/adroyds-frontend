@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import Marquee from "react-fast-marquee";
 import { useTranslation } from "react-i18next";
-import { FaArrowLeft, FaArrowRight, FaCalendarAlt } from "react-icons/fa";
+import { FaArrowRight, FaCalendarAlt } from "react-icons/fa";
 import { LuArrowUpRight } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 
@@ -173,7 +173,7 @@ const Home = () => {
         </motion.div>
       </section>
       <div
-        className="relative bg-cover bg-center bg-no-repeat p-12 pb-16 pt-20"
+        className="relative bg-cover bg-center bg-no-repeat p-20 pb-16 pt-20"
         style={{
           backgroundImage: `url('/assets/mamalakah.jpg')`,
           backgroundAttachment: "fixed",
@@ -212,7 +212,7 @@ const Home = () => {
 
         {/* Stats Section */}
         <motion.section
-          className="relative z-20 mx-auto mt-12 flex max-w-7xl flex-wrap justify-center gap-16 rounded-xl p-12 text-center shadow-xl backdrop-blur-xl md:p-16"
+          className="relative z-20 mx-auto mt-12 flex max-w-7xl flex-wrap justify-center gap-16 rounded-xl p-6 px-0 text-center shadow-xl backdrop-blur-xl"
           whileInView="visible"
           viewport={{ once: false }}
           variants={fadeUpContainer}
@@ -241,11 +241,11 @@ const Home = () => {
                     suffix={suffix}
                     enableScrollSpy={true}
                     scrollSpyOnce={false}
-                    className={`text-6xl font-extrabold ${index < 3 ? "text-gradient" : ""}`}
+                    className={`text-5xl font-extrabold ${index < 3 ? "text-gradient" : ""}`}
                     style={{ color: item?.value_color || "#00CFFF" }}
                   />
                 </div>
-                <p className="mt-4 text-2xl font-semibold text-white drop-shadow-lg">{item.title}</p>
+                <p className="mt-4 text-xl font-semibold text-white drop-shadow-lg">{item.title}</p>
               </motion.div>
             );
           })}
@@ -255,16 +255,14 @@ const Home = () => {
       {/* 2. Services Section: The Expandable Container */}
       <ServicesSection />
 
-      {/* --- */}
-
       {/* Trusted Companies */}
 
-      <section className="bg-gray-100 py-20">
+      <section className="ltr-ignore bg-gray-100 py-20">
         <div className="text-center">
-          <SplitText className="mb-8 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl">
-            Trusted by
+          <SplitText className="mb-8 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-4xl">
+            {t("trustedBy")}
           </SplitText>
-          <Marquee>
+          <Marquee direction={i18n.language == "ar" ? "right" : "left"}>
             {clients.map((client, index) => (
               <img
                 key={index}
@@ -292,25 +290,21 @@ const Home = () => {
             viewport={{ once: false }}
             className="mb-12 max-w-xl md:mb-0"
           >
-            <SplitText className="mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl">
-              Case Studies
+            <SplitText className="mb-6 text-3xl font-bold text-white sm:text-4xl md:text-4xl">
+              {t("caseStudies")}
             </SplitText>
-            <p className="mb-8 max-w-lg text-base leading-relaxed text-white sm:text-lg md:text-xl">
-              Our case studies show real examples of how we help companies find the right people and improve
-              their hiring process.
-              <br />
-              Each story explains the company’s problem, what we did to solve it, and the results they
-              achieved.
-              <br />
-              These examples show how our recruitment and HR solutions make hiring faster, easier, and more
-              effective.
-            </p>
+
+            <p
+              className="mb-8 max-w-lg text-base leading-relaxed text-white sm:text-lg md:text-xl"
+              dangerouslySetInnerHTML={{ __html: t("caseStudiesDesc") }}
+            ></p>
+
             <button
               onClick={() => navigate("/media-center/case-studies")}
               className="flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-gray-900 transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white"
             >
-              <span>All case studies</span>
-              <FaArrowRight className="transition duration-300" />
+              <span>{t("allCaseStudies")}</span>
+              <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
             </button>
           </motion.div>
 
@@ -333,7 +327,7 @@ const Home = () => {
                   onClick={() => navigate(`/case-study?id=${caseStudy.id}`)}
                   className="mt-6 cursor-pointer self-end rounded-full border-2 border-[#192757] p-3 text-gray-900 transition-transform duration-300 ease-in-out hover:scale-110 sm:p-4"
                 >
-                  <FaArrowRight />
+                  <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
                 </div>
               </motion.div>
             ))}
@@ -352,8 +346,8 @@ const Home = () => {
       {/* Blog Section */}
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-6 py-12">
-          <SplitText className="mb-12 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-5xl">
-            News & Articles
+          <SplitText className="mb-12 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-4xl">
+            {t("news&Articles")}
           </SplitText>
 
           <div className="grid gap-10 md:grid-cols-3">
@@ -403,11 +397,13 @@ const Home = () => {
                   {/* Read More button */}
                   <button
                     onClick={() => navigate(`/blog?id=${blog.id}`)}
-                    className="inline-flex w-max cursor-pointer items-center gap-1 rounded-md bg-white font-semibold text-black transition duration-300 hover:text-cyan-400"
+                    className="inline-flex w-max cursor-pointer items-center gap-1 rounded-md bg-white p-2 font-semibold text-black transition duration-300 hover:text-cyan-400"
                     aria-label={`Read more about ${blog.title}`}
                   >
-                    <span>Read More</span>
-                    <LuArrowUpRight className="transform transition duration-300" />
+                    <span>{t("readMore")}</span>
+                    <LuArrowUpRight
+                      className={`transform transition duration-300 ${i18n.language === "ar" ? "scale-x-[-1]" : ""}`}
+                    />
                   </button>
                 </motion.div>
               </motion.div>
@@ -420,7 +416,7 @@ const Home = () => {
               type="button"
               className="hidden items-center gap-2 rounded-full border-2 border-[#0E1C3F] bg-transparent px-6 py-2 text-[#0E1C3F] transition duration-300 hover:border-cyan-400 hover:text-cyan-400 md:flex"
             >
-              View More
+              {t("viewMore")}
             </button>
           </div>
         </div>
@@ -436,15 +432,13 @@ const Home = () => {
         >
           <div>
             <h3 className="mb-2 text-2xl font-bold text-[#192757] sm:text-3xl md:text-4xl">
-              Ready for Next-Gen Recruitment Tools?
+              {t("readyForNextGenRecruitment")}
             </h3>
-            <p className="text-base text-[#878da4] sm:text-lg md:text-xl">
-              Start your digital journey with a platform trusted by brands in Saudi Arabia.
-            </p>
+            <p className="text-base text-[#878da4] sm:text-lg md:text-xl">{t("startYourDigitalJourney")}</p>
           </div>
-          <button className="hidden items-center gap-4 rounded-full bg-[#192757] px-8 py-3 text-[26px] text-white transition duration-500 ease-in-out hover:scale-105 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 md:flex">
+          <button className="hidden items-center gap-4 rounded-full bg-[#192757] px-8 py-3 text-[22px] text-white transition duration-500 ease-in-out hover:scale-105 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 md:flex">
             <span>{i18n.language === "ar" ? "تواصل معنا" : "Contact Us Now"}</span>
-            <FaArrowRight className="text-lg transition-transform duration-500 ease-in-out group-hover:translate-x-2" />
+            <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
           </button>
         </motion.div>
       </section>

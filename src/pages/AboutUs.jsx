@@ -68,7 +68,7 @@ const AboutUs = () => {
               </ol>
             </nav>
 
-            <SplitText className="text-4xl font-extrabold leading-tight text-white drop-shadow md:text-5xl">
+            <SplitText className="text-4xl font-extrabold leading-tight text-white drop-shadow md:text-4xl">
               {t("aboutUs")}
             </SplitText>
           </div>

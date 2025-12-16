@@ -20,10 +20,13 @@ import CaseStudyDetails from "./pages/mediaCenter/CaseStudyDetails";
 import News from "./pages/mediaCenter/News";
 import NewsDetails from "./pages/mediaCenter/NewsDetails";
 import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Academy from "./pages/services/Academy";
 import Assessment from "./pages/services/Assessment";
 import Consulting from "./pages/services/Consulting";
 import Recruitment from "./pages/services/Recruitment";
+import Sitemap from "./pages/Sitemap";
+import TermsOfUse from "./pages/TermsOfUse";
 
 export default function App() {
   const { i18n } = useTranslation();
@@ -68,6 +71,9 @@ export default function App() {
         <Route path="/blog" element={<BlogDetails />} />
         <Route path="/news" element={<NewsDetails />} />
         <Route path="/case-study" element={<CaseStudyDetails />} />
+        <Route path="/sitemap" element={<Sitemap />} />
+        <Route path="/terms-of-use" element={<TermsOfUse />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </MainLayout>

@@ -18,7 +18,7 @@ const fadeUp = {
 
 const Consulting = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -61,7 +61,7 @@ const Consulting = () => {
             </ol>
           </nav>
 
-          <SplitText className="mb-4 text-4xl font-extrabold text-white md:text-5xl">
+          <SplitText className="mb-4 text-4xl font-extrabold text-white md:text-4xl">
             {hrConsulting.title}
           </SplitText>
 
@@ -89,7 +89,9 @@ const Consulting = () => {
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>{t("recruitmentSolutionsTitle")}</span>
-                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
 
               <button
@@ -97,7 +99,9 @@ const Consulting = () => {
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>{t("academy.title")}</span>
-                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
 
               <button
@@ -105,7 +109,9 @@ const Consulting = () => {
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>{t("talentAssessment.title")}</span>
-                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
 
               <button
@@ -113,7 +119,9 @@ const Consulting = () => {
                 className="group flex w-full items-center justify-between rounded-lg bg-cyan-400 px-4 py-2 text-left font-semibold text-white transition-colors hover:bg-cyan-400/30"
               >
                 <span>{t("hrConsulting.title")}</span>
-                <FaArrowRight className="translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
             </nav>
           </div>

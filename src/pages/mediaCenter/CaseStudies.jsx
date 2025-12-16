@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { FaArrowRight } from "react-icons/fa";
+import { LuArrowUpRight } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 
 const fadeUp = {
@@ -84,13 +85,13 @@ const CaseStudies = () => {
                   <span className="mx-2">/</span>
                 </li>
                 <li className="font-semibold text-white" aria-current="page">
-                  Case Studies
+                  {t("caseStudies")}
                 </li>
               </ol>
             </nav>
 
-            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-5xl">
-              Case Studies
+            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-4xl">
+              {t("caseStudies")}
             </h1>
           </div>
         </motion.div>
@@ -146,7 +147,10 @@ const CaseStudies = () => {
                       aria-label={`Read more about ${caseStudy.title}`}
                       className="inline-flex items-center gap-2 font-semibold text-cyan-400 transition hover:text-[#0E1C3F]"
                     >
-                      Read More <FaArrowRight />
+                      <span>{t("readMore")}</span>
+                      <LuArrowUpRight
+                        className={`transform transition duration-300 ${i18n.language === "ar" ? "scale-x-[-1]" : ""}`}
+                      />{" "}
                     </button>
                   </div>
                 </div>
@@ -160,7 +164,7 @@ const CaseStudies = () => {
               type="button"
               className="hidden items-center gap-3 rounded-full border-2 border-[#0E1C3F] bg-transparent px-8 py-3 font-semibold text-[#0E1C3F] transition hover:border-cyan-400 hover:text-cyan-400 md:flex"
             >
-              View More Case Studies
+              {t("viewMore")}
             </button>
           </div>
         </div>

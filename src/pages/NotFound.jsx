@@ -54,7 +54,7 @@ const NotFound = () => {
               </ol>
             </nav>
 
-            <SplitText className="text-4xl font-extrabold leading-tight text-white drop-shadow md:text-5xl">
+            <SplitText className="text-4xl font-extrabold leading-tight text-white drop-shadow md:text-4xl">
               Page Not Found
             </SplitText>
           </div>
@@ -85,7 +85,7 @@ const NotFound = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-center text-6xl font-extrabold text-[#0E1C3F]"
+            className="text-center text-5xl font-extrabold text-[#0E1C3F]"
           >
             404
           </motion.h1>

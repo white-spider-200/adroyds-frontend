@@ -212,16 +212,14 @@ const Careers = () => {
                   <span className="mx-2">/</span>
                 </li>
                 <li className="font-semibold text-white" aria-current="page">
-                  Careers
+                  {t("careers")}
                 </li>
               </ol>
             </nav>
-            <h1 className="mb-2 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-5xl">
-              Careers
+            <h1 className="mb-2 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-4xl">
+              {t("careers")}
             </h1>
-            <p className="max-w-xl text-lg text-white/90">
-              Discover opportunities to join Adroyts or become part of our talent network.
-            </p>
+            <p className="max-w-xl text-lg text-white/90">{t("discoverOpportunities")}</p>
           </div>
         </motion.div>
       </section>
@@ -229,16 +227,9 @@ const Careers = () => {
       {/* Intro Text */}
       <div className="flex w-full justify-center bg-gray-100 px-4">
         <section className="mx-auto max-w-4xl bg-gray-100 px-6 py-12 text-center">
-          <p className="mb-3 text-lg font-semibold text-gray-900">
-            At Adroyts, we believe in connecting exceptional talent with meaningful opportunities.
-          </p>
-          <p className="mb-3 text-lg text-gray-700">
-            Whether you're looking to join our team or explore roles with our clients, you're in the right
-            place.
-          </p>
-          <p className="text-lg text-gray-700">
-            Start your journey with us and become part of a network that shapes the future of work.
-          </p>
+          <p className="mb-3 text-lg font-semibold text-gray-900">{t("beliefStatement")}</p>
+          <p className="mb-3 text-lg text-gray-700">{t("welcomeMessage")}</p>
+          <p className="text-lg text-gray-700">{t("startJourney")}</p>
         </section>
       </div>
 
@@ -251,12 +242,10 @@ const Careers = () => {
           onKeyDown={(e) => e.key === "Enter" && scrollToSection("generalApplication")}
           style={{ minHeight: "220px" }}
         >
-          <h2 className="mb-4 text-2xl font-bold text-[#8b78b1]">Join Our Talent Network</h2>
-          <p className="mx-auto mb-6 max-w-md text-gray-700">
-            Register to join Adroyts or to be considered for future opportunities.
-          </p>
+          <h2 className="mb-4 text-2xl font-bold text-[#8b78b1]">{t("joinTalentNetwork")}</h2>
+          <p className="mx-auto mb-6 max-w-md text-gray-700">{t("registerInfo")}</p>
           <button className="rounded bg-cyan-400 px-6 py-3 font-semibold text-white hover:bg-[#19aac0]">
-            Apply / Register
+            {t("applyRegister")}
           </button>
         </div>
 
@@ -268,10 +257,10 @@ const Careers = () => {
           onKeyDown={(e) => e.key === "Enter" && scrollToSection("openings")}
           style={{ minHeight: "220px" }}
         >
-          <h2 className="mb-4 text-2xl font-bold text-[#8b78b1]">Current Job Openings</h2>
-          <p className="mx-auto mb-6 max-w-md text-gray-700">Explore active positions and apply directly.</p>
+          <h2 className="mb-4 text-2xl font-bold text-[#8b78b1]"> {t("currentJobOpenings")}</h2>
+          <p className="mx-auto mb-6 max-w-md text-gray-700"> {t("explorePositions")}</p>
           <button className="rounded bg-cyan-400 px-6 py-3 font-semibold text-white hover:bg-[#19aac0]">
-            View Jobs
+            {t("viewJobs")}
           </button>
         </div>
       </section>
@@ -284,7 +273,7 @@ const Careers = () => {
         aria-label="General Application Form"
       >
         <SplitText className="mb-8 text-center text-3xl font-bold text-gray-900">
-          Join Our Talent Network
+          {t("joinTalentNetwork")}
         </SplitText>
 
         <form
@@ -295,14 +284,13 @@ const Careers = () => {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* Full Name */}
             <div>
-              <label className="mb-1 block font-medium" htmlFor="fullName">
-                Full Name *
+              <label className="mb-1 block text-justify font-medium" htmlFor="fullName">
+                {t("fullName")}
               </label>
               <input
                 id="fullName"
                 name="fullName"
                 type="text"
-                placeholder="Full Name"
                 maxLength={50}
                 value={formik.values.fullName}
                 onChange={formik.handleChange}
@@ -321,14 +309,13 @@ const Careers = () => {
 
             {/* Email Address */}
             <div>
-              <label className="mb-1 block font-medium" htmlFor="email">
-                Email Address *
+              <label className="mb-1 block text-justify font-medium" htmlFor="email">
+                {t("emailAddress")}
               </label>
               <input
                 id="email"
                 name="email"
                 type="email"
-                placeholder="Email Address"
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -344,14 +331,13 @@ const Careers = () => {
 
             {/* Mobile Number */}
             <div>
-              <label className="mb-1 block font-medium" htmlFor="mobileNumber">
-                Mobile Number *
+              <label className="mb-1 block text-justify font-medium" htmlFor="mobileNumber">
+                {t("mobileNumber")}
               </label>
               <input
                 id="mobileNumber"
                 name="mobileNumber"
                 type="text"
-                placeholder="Mobile Number"
                 maxLength={15}
                 pattern="\d+"
                 title="Numbers only"
@@ -372,14 +358,13 @@ const Careers = () => {
 
             {/* Current City */}
             <div>
-              <label className="mb-1 block font-medium" htmlFor="currentCity">
-                Current City *
+              <label className="mb-1 block text-justify font-medium" htmlFor="currentCity">
+                {t("currentCity")}
               </label>
               <input
                 id="currentCity"
                 name="currentCity"
                 type="text"
-                placeholder="Current City"
                 maxLength={50}
                 value={formik.values.currentCity}
                 onChange={formik.handleChange}
@@ -400,14 +385,13 @@ const Careers = () => {
 
             {/* Nationality */}
             <div>
-              <label className="mb-1 block font-medium" htmlFor="nationality">
-                Nationality *
+              <label className="mb-1 block text-justify font-medium" htmlFor="nationality">
+                {t("nationality")}
               </label>
               <input
                 id="nationality"
                 name="nationality"
                 type="text"
-                placeholder="Nationality"
                 maxLength={30}
                 value={formik.values.nationality}
                 onChange={formik.handleChange}
@@ -428,8 +412,8 @@ const Careers = () => {
 
             {/* Opportunity Type */}
             <div>
-              <label className="mb-1 block font-medium" htmlFor="opportunityType">
-                Opportunity Type *
+              <label className="mb-1 block text-justify font-medium" htmlFor="opportunityType">
+                {t("opportunityType")}
               </label>
               <select
                 id="opportunityType"
@@ -444,10 +428,10 @@ const Careers = () => {
                     : "border-gray-300"
                 } bg-white`}
               >
-                <option value="">Select Opportunity Type</option>
-                <option value="Adroyts Team">Apply to Join Adroyts Team</option>
-                <option value="Client Opportunities">Register for Client Opportunities</option>
-                <option value="Consultant">Register as External Consultant / Trainer / Assessor</option>
+                <option value="">{t("selectOpportunityType")}</option>
+                <option value="Adroyts Team">{t("opportunityAdroytsTeam")}</option>
+                <option value="Client Opportunities">{t("opportunityClient")}</option>
+                <option value="Consultant">{t("opportunityConsultant")}</option>
               </select>
               {formik.touched.opportunityType && formik.errors.opportunityType ? (
                 <p className="text-sm text-red-500">{formik.errors.opportunityType}</p>
@@ -456,14 +440,13 @@ const Careers = () => {
 
             {/* LinkedIn Profile URL */}
             <div>
-              <label className="mb-1 block font-medium" htmlFor="linkedIn">
-                LinkedIn Profile URL (Optional)
+              <label className="mb-1 block text-justify font-medium" htmlFor="linkedIn">
+                {t("linkedinProfile")}
               </label>
               <input
                 id="linkedIn"
                 name="linkedIn"
                 type="url"
-                placeholder="LinkedIn Profile URL (Optional)"
                 value={formik.values.linkedIn}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -478,8 +461,8 @@ const Careers = () => {
 
             {/* Resume Upload */}
             <div className="col-span-full">
-              <label className="mb-1 block font-medium" htmlFor="resume">
-                Upload Resume *
+              <label className="mb-1 block text-justify font-medium" htmlFor="resume">
+                {t("uploadResume")}
               </label>
               <input
                 id="resume"
@@ -510,9 +493,7 @@ const Careers = () => {
               required
               className="rounded border-gray-300 text-cyan-400 focus:ring-cyan-400"
             />
-            <span className="text-sm">
-              I consent to Adroyts processing my personal data for recruitment purposes.
-            </span>
+            <span className="text-sm">{t("consentText")}</span>
           </label>
           {formik.touched.consent && formik.errors.consent ? (
             <p className="text-sm text-red-500">{formik.errors.consent}</p>
@@ -524,7 +505,7 @@ const Careers = () => {
             disabled={formik.isSubmitting}
             className="w-full rounded-lg bg-cyan-400 py-3 font-semibold text-white transition hover:bg-[#19aac0] disabled:opacity-50"
           >
-            {formik.isSubmitting ? "Sending..." : "Submit Application"}
+            {formik.isSubmitting ? t("sending") : t("send")}
           </button>
 
           {/* Success & Error Messages */}
@@ -536,11 +517,11 @@ const Careers = () => {
 
       {/* Job Openings Section */}
       <section id="openings" className="mx-auto max-w-7xl px-6 pb-20 pt-10" aria-label="Open Positions">
-        <SplitText className="mb-8 text-center text-3xl font-bold text-gray-900">Open Positions</SplitText>
+        <SplitText className="mb-8 text-center text-3xl font-bold text-gray-900">
+          {t("openPositions")}
+        </SplitText>
 
-        <p className="mx-auto mb-12 max-w-3xl text-center text-gray-700">
-          Explore current openings at Adroyts and with our clients.
-        </p>
+        <p className="mx-auto mb-12 max-w-3xl text-center text-gray-700">{t("exploreCurrentOpenings")}</p>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {jobsData.map((job) => (
             <div
@@ -549,11 +530,11 @@ const Careers = () => {
             >
               {/* Status badge */}
               <span
-                className={`absolute right-4 top-4 rounded-full px-3 py-1 text-xs font-semibold ${
+                className={`absolute top-4 rounded-full px-3 py-1 text-xs font-semibold ltr:right-4 rtl:left-4 ${
                   job.status === "Open" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
                 }`}
               >
-                {job.status}
+                {t(job.status)}
               </span>
 
               {/* Job title */}
@@ -569,7 +550,11 @@ const Careers = () => {
                 </div>
                 <div className="flex items-center gap-1">
                   <HiOutlineCalendar className="h-4 w-4 text-gray-500" aria-hidden="true" />
-                  <span>Posted on {job.postingDate}</span>
+                  <span>
+                    {" "}
+                    {t("postedOn")}
+                    {job.postingDate}
+                  </span>
                 </div>
               </div>
 
@@ -582,7 +567,7 @@ const Careers = () => {
                 className="mt-auto rounded-lg bg-cyan-500 px-5 py-2 font-semibold text-white transition-colors hover:bg-cyan-600"
                 aria-label={`View details for ${job.title}`}
               >
-                View Details
+                {t("viewDetails")}{" "}
               </button>
             </div>
           ))}
@@ -590,7 +575,7 @@ const Careers = () => {
       </section>
 
       {/* Job Details Modal */}
-      {selectedJob && (
+      {selectedJob && !showApplicationModal && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
           onClick={() => {
@@ -610,8 +595,8 @@ const Careers = () => {
                 setSelectedJob(null);
                 setShowApplicationModal(false);
               }}
-              className="absolute right-4 top-4 rounded bg-gray-200 px-3 py-1 font-bold hover:bg-gray-300"
-              aria-label="Close job details modal"
+              className="absolute top-4 rounded bg-gray-200 px-3 py-1 font-bold hover:bg-gray-300 ltr:right-4 rtl:left-4"
+              aria-label={t("closeJobDetails")}
             >
               ×
             </button>
@@ -619,37 +604,38 @@ const Careers = () => {
             <h2 id="job-details-title" className="mb-2 text-2xl font-bold">
               {selectedJob.title}
             </h2>
+
             <p className="mb-1 text-gray-700">
-              <strong>Department:</strong> {selectedJob.department || "N/A"}
+              <strong>{t("department")}:</strong> {selectedJob.department || t("notAvailable")}
             </p>
             <p className="mb-1 text-gray-700">
-              <strong>Location:</strong> {selectedJob.location}
+              <strong>{t("location")}:</strong> {selectedJob.location}
             </p>
             <p className="mb-1 text-gray-700">
-              <strong>Posting Date:</strong> {selectedJob.postingDate}
+              <strong>{t("postingDate")}:</strong> {selectedJob.postingDate}
             </p>
             <p className="mb-4">
-              <strong>Status:</strong>{" "}
+              <strong>{t("status")}:</strong>{" "}
               <span
                 className={`rounded-full px-2 py-1 font-semibold ${
                   selectedJob.status === "Open" ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"
                 }`}
               >
-                {selectedJob.status}
+                {selectedJob.status === "Open" ? t("statusOpen") : t("statusClosed")}
               </span>
             </p>
 
-            <h3 className="mb-2 text-lg font-semibold">Job Description</h3>
+            <h3 className="mb-2 text-lg font-semibold">{t("jobDescription")}</h3>
             <p className="mb-4 text-gray-700">{selectedJob.description}</p>
 
-            <h3 className="mb-2 text-lg font-semibold">Responsibilities</h3>
+            <h3 className="mb-2 text-lg font-semibold">{t("responsibilities")}</h3>
             <ul className="mb-4 list-disc pl-6 text-gray-700">
               {selectedJob.responsibilities.map((item, idx) => (
                 <li key={idx}>{item}</li>
               ))}
             </ul>
 
-            <h3 className="mb-2 text-lg font-semibold">Requirements</h3>
+            <h3 className="mb-2 text-lg font-semibold">{t("requirements")}</h3>
             <ul className="mb-6 list-disc pl-6 text-gray-700">
               {selectedJob.requirements.map((item, idx) => (
                 <li key={idx}>{item}</li>
@@ -663,204 +649,198 @@ const Careers = () => {
                 selectedJob.status !== "Open" ? "cursor-not-allowed opacity-50" : ""
               }`}
             >
-              Apply Now
+              {t("applyNow")}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {selectedJob && showApplicationModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
+          onClick={() => setShowApplicationModal(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="application-modal-title"
+        >
+          <div
+            className="relative max-h-[80vh] w-full max-w-md overflow-y-auto rounded-lg bg-white p-4 shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setShowApplicationModal(false)}
+              className="absolute top-3 rounded bg-gray-200 px-2 py-0.5 text-lg font-bold hover:bg-gray-300 ltr:right-4 rtl:left-4"
+              aria-label={t("closeApplicationModal")}
+            >
+              ×
             </button>
 
-            {/* Application Modal inside Job Details */}
-            {showApplicationModal && (
-              <div
-                className="z-60 fixed inset-0 flex items-center justify-center bg-black/70"
-                onClick={() => setShowApplicationModal(false)}
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="application-modal-title"
+            <h3 id="application-modal-title" className="mb-3 text-lg font-semibold">
+              {t("applyFor", { jobTitle: selectedJob.title })}
+            </h3>
+
+            <form
+              onSubmit={handleApplicationSubmit}
+              encType="multipart/form-data"
+              className="space-y-3 text-left text-sm"
+            >
+              {/* Basic Info */}
+              <input
+                type="text"
+                name="fullName"
+                placeholder={t("fullName")}
+                maxLength={50}
+                value={applicationData.fullName}
+                onChange={handleApplicationChange}
+                required
+                className="w-full rounded border border-gray-300 p-2"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder={t("emailAddress")}
+                value={applicationData.email}
+                onChange={handleApplicationChange}
+                required
+                className="w-full rounded border border-gray-300 p-2"
+              />
+              <input
+                type="text"
+                name="mobileNumber"
+                placeholder={t("mobileNumber")}
+                maxLength={15}
+                pattern="\d*"
+                value={applicationData.mobileNumber}
+                onChange={handleApplicationChange}
+                required
+                className="w-full rounded border border-gray-300 p-2"
+              />
+              <input
+                type="text"
+                name="currentCity"
+                placeholder={t("currentCity")}
+                maxLength={50}
+                value={applicationData.currentCity}
+                onChange={handleApplicationChange}
+                required
+                className="w-full rounded border border-gray-300 p-2"
+              />
+              <input
+                type="text"
+                name="nationality"
+                placeholder={t("nationality")}
+                maxLength={30}
+                value={applicationData.nationality}
+                onChange={handleApplicationChange}
+                required
+                className="w-full rounded border border-gray-300 p-2"
+              />
+
+              {/* Professional Info */}
+              <input
+                type="text"
+                name="currentJobTitle"
+                placeholder={t("currentJobTitle")}
+                maxLength={50}
+                value={applicationData.currentJobTitle}
+                onChange={handleApplicationChange}
+                required
+                className="w-full rounded border border-gray-300 p-2"
+              />
+
+              <select
+                name="yearsExperience"
+                value={applicationData.yearsExperience}
+                onChange={handleApplicationChange}
+                required
+                className="w-full rounded border border-gray-300 p-2"
               >
-                <div
-                  className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-lg bg-white p-6 shadow-lg"
-                  onClick={(e) => e.stopPropagation()}
+                <option value="">{t("yearsExperiencePlaceholder")}</option>
+                <option value="<1">{t("experienceLessThan1")}</option>
+                <option value="1-2">{t("experience1to2")}</option>
+                <option value="3-5">{t("experience3to5")}</option>
+                <option value="6-8">{t("experience6to8")}</option>
+                <option value="9-12">{t("experience9to12")}</option>
+                <option value="12+">{t("experience12Plus")}</option>
+              </select>
+
+              {/* Compensation & Availability */}
+              <input
+                type="number"
+                name="currentSalary"
+                placeholder={t("currentSalary")}
+                value={applicationData.currentSalary}
+                onChange={handleApplicationChange}
+                required
+                className="w-full rounded border border-gray-300 p-2"
+                min={0}
+              />
+              <input
+                type="number"
+                name="expectedSalary"
+                placeholder={t("expectedSalary")}
+                value={applicationData.expectedSalary}
+                onChange={handleApplicationChange}
+                required
+                className="w-full rounded border border-gray-300 p-2"
+                min={0}
+              />
+
+              <select
+                name="noticePeriod"
+                value={applicationData.noticePeriod}
+                onChange={handleApplicationChange}
+                required
+                className="w-full rounded border border-gray-300 p-2"
+              >
+                <option value="">{t("noticePeriod")}</option>
+                <option value="Immediately">{t("noticeImmediately")}</option>
+                <option value="1 Month">{t("notice1Month")}</option>
+                <option value="2 Months">{t("notice2Months")}</option>
+                <option value="3 Months">{t("notice3Months")}</option>
+              </select>
+
+              {/* Resume upload */}
+              <input
+                type="file"
+                name="resume"
+                onChange={handleApplicationChange}
+                accept=".pdf,.doc,.docx"
+                required
+                className="w-full rounded border border-gray-300 p-2"
+              />
+
+              {/* Consent checkbox */}
+              <label className="flex items-center gap-2 text-xs">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  checked={applicationData.consent}
+                  onChange={handleApplicationChange}
+                  required
+                />
+                <span>{t("consentText")}</span>
+              </label>
+
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  disabled={applicationStatus === "loading"}
+                  className="rounded bg-cyan-400 px-4 py-2 text-sm font-semibold text-white hover:bg-[#19aac0] disabled:opacity-50"
                 >
-                  <button
-                    onClick={() => setShowApplicationModal(false)}
-                    className="absolute right-4 top-4 rounded bg-gray-200 px-3 py-1 font-bold hover:bg-gray-300"
-                    aria-label="Close application modal"
-                  >
-                    ×
-                  </button>
-                  <h3 id="application-modal-title" className="mb-4 text-xl font-bold">
-                    Apply for {selectedJob.title}
-                  </h3>
-
-                  <form
-                    onSubmit={handleApplicationSubmit}
-                    encType="multipart/form-data"
-                    className="space-y-4 text-left"
-                  >
-                    {/* Basic Info */}
-                    <input
-                      type="text"
-                      name="fullName"
-                      placeholder="Full Name"
-                      maxLength={50}
-                      value={applicationData.fullName}
-                      onChange={handleApplicationChange}
-                      required
-                      className="w-full rounded border border-gray-300 p-3"
-                    />
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email Address"
-                      value={applicationData.email}
-                      onChange={handleApplicationChange}
-                      required
-                      className="w-full rounded border border-gray-300 p-3"
-                    />
-                    <input
-                      type="text"
-                      name="mobileNumber"
-                      placeholder="Mobile Number"
-                      maxLength={15}
-                      pattern="\d*"
-                      value={applicationData.mobileNumber}
-                      onChange={handleApplicationChange}
-                      required
-                      className="w-full rounded border border-gray-300 p-3"
-                    />
-                    <input
-                      type="text"
-                      name="currentCity"
-                      placeholder="Current City"
-                      maxLength={50}
-                      value={applicationData.currentCity}
-                      onChange={handleApplicationChange}
-                      required
-                      className="w-full rounded border border-gray-300 p-3"
-                    />
-                    <input
-                      type="text"
-                      name="nationality"
-                      placeholder="Nationality"
-                      maxLength={30}
-                      value={applicationData.nationality}
-                      onChange={handleApplicationChange}
-                      required
-                      className="w-full rounded border border-gray-300 p-3"
-                    />
-
-                    {/* Professional Info */}
-                    <input
-                      type="text"
-                      name="currentJobTitle"
-                      placeholder="Current Job Title"
-                      maxLength={50}
-                      value={applicationData.currentJobTitle}
-                      onChange={handleApplicationChange}
-                      required
-                      className="w-full rounded border border-gray-300 p-3"
-                    />
-
-                    <select
-                      name="yearsExperience"
-                      value={applicationData.yearsExperience}
-                      onChange={handleApplicationChange}
-                      required
-                      className="w-full rounded border border-gray-300 p-3"
-                    >
-                      <option value="">Years of Experience</option>
-                      <option value="<1">Less than 1 year</option>
-                      <option value="1-2">1–2 years</option>
-                      <option value="3-5">3–5 years</option>
-                      <option value="6-8">6–8 years</option>
-                      <option value="9-12">9–12 years</option>
-                      <option value="12+">12+ years</option>
-                    </select>
-
-                    {/* Compensation & Availability */}
-                    <input
-                      type="number"
-                      name="currentSalary"
-                      placeholder="Current Salary (SAR)"
-                      value={applicationData.currentSalary}
-                      onChange={handleApplicationChange}
-                      required
-                      className="w-full rounded border border-gray-300 p-3"
-                      min={0}
-                    />
-                    <input
-                      type="number"
-                      name="expectedSalary"
-                      placeholder="Expected Salary (SAR)"
-                      value={applicationData.expectedSalary}
-                      onChange={handleApplicationChange}
-                      required
-                      className="w-full rounded border border-gray-300 p-3"
-                      min={0}
-                    />
-
-                    <select
-                      name="noticePeriod"
-                      value={applicationData.noticePeriod}
-                      onChange={handleApplicationChange}
-                      required
-                      className="w-full rounded border border-gray-300 p-3"
-                    >
-                      <option value="">Notice Period</option>
-                      <option value="Immediately">Immediately</option>
-                      <option value="1 Month">1 Month</option>
-                      <option value="2 Months">2 Months</option>
-                      <option value="3 Months">3 Months</option>
-                    </select>
-
-                    {/* Resume upload */}
-                    <input
-                      type="file"
-                      name="resume"
-                      onChange={handleApplicationChange}
-                      accept=".pdf,.doc,.docx"
-                      required
-                      className="w-full rounded border border-gray-300 p-3"
-                    />
-
-                    {/* Consent checkbox */}
-                    <label className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        name="consent"
-                        checked={applicationData.consent}
-                        onChange={handleApplicationChange}
-                        required
-                      />
-                      <span className="text-sm">
-                        I consent to Adroyts processing my personal data for recruitment purposes.
-                      </span>
-                    </label>
-
-                    {/* TODO: Add CAPTCHA integration */}
-
-                    <div className="flex justify-end">
-                      <button
-                        type="submit"
-                        disabled={applicationStatus === "loading"}
-                        className="rounded bg-cyan-400 px-6 py-3 font-semibold text-white hover:bg-[#19aac0] disabled:opacity-50"
-                      >
-                        {applicationStatus === "loading" ? "Sending..." : "Submit Application"}
-                      </button>
-                    </div>
-
-                    {/* Status messages */}
-                    {applicationStatus === "success" && (
-                      <p className="mt-4 text-green-600">
-                        Your application has been submitted successfully. Our team will review your profile
-                        and contact you if your qualifications match the role.
-                      </p>
-                    )}
-                    {applicationStatus === "error" && (
-                      <p className="mt-4 text-red-600">Something went wrong. Try again.</p>
-                    )}
-                  </form>
-                </div>
+                  {applicationStatus === "loading" ? t("sending") : t("submitApplication")}
+                </button>
               </div>
-            )}
+
+              {/* Status messages */}
+              {applicationStatus === "success" && (
+                <p className="mt-3 text-sm text-green-600">{t("applicationSuccess")}</p>
+              )}
+              {applicationStatus === "error" && (
+                <p className="mt-3 text-sm text-red-600">{t("applicationError")}</p>
+              )}
+            </form>
           </div>
         </div>
       )}

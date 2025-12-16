@@ -1,40 +1,14 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
-import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
-import {
-  FaArrowRight,
-  FaChalkboardTeacher,
-  FaPhoneAlt,
-  FaThumbsUp,
-  FaUserCheck,
-  FaUsersCog,
-} from "react-icons/fa";
+import { FaArrowRight, FaPhoneAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../../utils/SplitText";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay, duration: 0.6, ease: "easeOut" },
-  }),
-};
-
-const fadeUpVariant = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (custom) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: custom * 0.15, duration: 0.6, ease: "easeOut" },
-  }),
-};
-
 const Academy = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const academy = t("academy", { returnObjects: true });
 
   useEffect(() => {
@@ -72,7 +46,7 @@ const Academy = () => {
               <li className="font-semibold text-white">{t("academy.title")}</li>
             </ol>
           </nav>
-          <SplitText className="mb-4 text-4xl font-extrabold text-white md:text-5xl">
+          <SplitText className="mb-4 text-4xl font-extrabold text-white md:text-4xl">
             {t("expertTrainingCareerGrowth")}
           </SplitText>
 
@@ -100,7 +74,9 @@ const Academy = () => {
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>{t("recruitmentSolutionsTitle")}</span>
-                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />
               </button>
 
               <button
@@ -108,7 +84,9 @@ const Academy = () => {
                 className="group flex w-full items-center justify-between rounded-lg bg-cyan-400 px-4 py-2 text-left font-semibold text-white transition-colors hover:bg-cyan-400/30"
               >
                 <span>{t("academy.title")}</span>
-                <FaArrowRight className="translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />
               </button>
 
               {/* Assessment Center */}
@@ -117,7 +95,9 @@ const Academy = () => {
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>{t("talentAssessment.title")}</span>
-                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
 
               {/* Human Capital Consulting */}
@@ -126,7 +106,9 @@ const Academy = () => {
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>{t("hrConsulting.title")}</span>
-                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
             </nav>
           </div>

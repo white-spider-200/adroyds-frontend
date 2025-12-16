@@ -99,17 +99,17 @@ const MainLayout = ({ children }) => {
                 }`}
               >
                 {[
-                  { label: "Overview", hash: "#overview" },
-                  { label: "Our Pillars", hash: "#pillars" },
-                  { label: "Core Performance", hash: "#performance" },
-                  { label: "Why Us", hash: "#why" },
+                  { label: "overview", hash: "#overview" },
+                  { label: "ourPillars", hash: "#pillars" },
+                  { label: "corePerformance", hash: "#performance" },
+                  { label: "whyUs", hash: "#why" },
                 ].map((item) => (
                   <button
                     key={item.hash}
                     onClick={() => handleNav(`/about${item.hash}`)}
-                    className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-blue-50"
+                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-blue-50"
                   >
-                    {item.label}
+                    {t(item.label)}
                   </button>
                 ))}
               </div>
@@ -139,7 +139,7 @@ const MainLayout = ({ children }) => {
                   <button
                     key={item.path}
                     onClick={() => handleNav(item.path)}
-                    className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-blue-50"
+                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-blue-50"
                   >
                     {t(item.label)}
                   </button>
@@ -163,16 +163,16 @@ const MainLayout = ({ children }) => {
                 }`}
               >
                 {[
-                  { label: "Blog", hash: "media-center/blogs" },
-                  { label: "News", hash: "media-center/news" },
-                  { label: "Case Studies", hash: "media-center/case-studies" },
+                  { label: "blog", hash: "media-center/blogs" },
+                  { label: "news", hash: "media-center/news" },
+                  { label: "caseStudies", hash: "media-center/case-studies" },
                 ].map((item) => (
                   <button
                     key={item.hash}
                     onClick={() => handleNav(`/${item.hash}`)}
-                    className="block w-full px-4 py-2 text-left text-gray-700 hover:bg-blue-50"
+                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-blue-50"
                   >
-                    {item.label}
+                    {t(item.label)}
                   </button>
                 ))}
               </div>
@@ -195,7 +195,7 @@ const MainLayout = ({ children }) => {
               className="relative hidden items-center gap-2 rounded-full border-2 border-white bg-transparent px-4 py-2 text-white transition duration-300 ease-in-out hover:border-cyan-400 hover:text-cyan-400 md:flex"
             >
               <span>{i18n.language === "ar" ? "تواصل معنا" : "Contact Us"}</span>
-              <FaArrowRight className="transition duration-300 ease-in-out group-hover:translate-x-1" />
+              <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
             </button>
 
             {/* <button
@@ -224,9 +224,9 @@ const MainLayout = ({ children }) => {
               <button
                 key={item.path}
                 onClick={() => handleNav(item.path)}
-                className="block w-full py-2 text-left text-gray-700"
+                className="block w-full py-2 text-justify text-gray-700"
               >
-                {item.label}
+                {t(item.label)}
               </button>
             ))}
             <button
@@ -247,7 +247,7 @@ const MainLayout = ({ children }) => {
         {/* Inside your footer, wrap key blocks with motion.div and apply item variants */}
 
         <motion.div
-          className="mx-auto grid max-w-7xl gap-10 px-6 py-12 md:grid-cols-12 md:px-12"
+          className="mx-auto grid max-w-7xl gap-10 px-6 py-12 md:grid-cols-12"
           variants={footerItemVariants}
         >
           {/* Your first big block (logo + text + social icons) */}
@@ -256,10 +256,7 @@ const MainLayout = ({ children }) => {
               <img src="/assets/logo.png" alt="Adroyts Logo" className="h-10 w-auto" />
             </div>
 
-            <p className="mb-6 max-w-xs font-bold leading-relaxed text-[#ffffff99]">
-              Adroyts’ focus is on serving corporate clients in Saudi Arabia and other GCC markets by
-              providing them with top experienced professionals in a range of key sectors.
-            </p>
+            <p className="mb-6 max-w-xs font-bold leading-relaxed text-[#ffffff99]">{t("footerDesc")}</p>
 
             <div className="flex space-x-3">
               <a href="#" aria-label="LinkedIn" className="text-white transition hover:text-gray-400">
@@ -281,34 +278,39 @@ const MainLayout = ({ children }) => {
           >
             {/* Company Links Column */}
             <div>
-              <h4 className="mb-4 text-xl uppercase tracking-widest text-white">Company</h4>
+              <h4 className="mb-4 text-xl uppercase tracking-widest text-white">{t("company")}</h4>
               <ul className="space-y-3 text-[#ffffff99]">
                 <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    About Us
-                  </a>
+                  <Link className="transition duration-150 hover:text-white" to="/about#overview">
+                    {t("aboutUs")}
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    Board of Directors
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
+                  <Link className="transition duration-150 hover:text-white" to="/contact">
                     {t("contactUs")}
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    Careers
-                  </a>
+                  <Link className="transition duration-150 hover:text-white" to="/careers">
+                    {t("careers")}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="transition duration-150 hover:text-white" to="/sitemap">
+                    {t("sitemap")}
+                  </Link>
                 </li>
               </ul>
             </div>
             {/* Services Links Column */}
             <div>
-              <h4 className="mb-4 text-xl uppercase tracking-widest text-white">Services</h4>
+              <h4 className="mb-4 text-xl uppercase tracking-widest text-white">{t("coreServices")}</h4>
               <ul className="space-y-3 text-[#ffffff99]">
+                <li>
+                  <a href="#" className="transition duration-150 hover:text-white">
+                    {t("recruitmentSolutionsTitle")}
+                  </a>
+                </li>
                 <li>
                   <a href="#" className="transition duration-150 hover:text-white">
                     {t("academy.title")}
@@ -316,7 +318,7 @@ const MainLayout = ({ children }) => {
                 </li>
                 <li>
                   <a href="#" className="transition duration-150 hover:text-white">
-                    {"talentAssessment.title"}
+                    {t("talentAssessment.title")}
                   </a>
                 </li>
                 <li>
@@ -324,40 +326,30 @@ const MainLayout = ({ children }) => {
                     {t("hrConsulting.title")}
                   </a>
                 </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    {t("recruitmentSolutionsTitle")}
-                  </a>
-                </li>
               </ul>
             </div>
             {/* Resources Links Column */}
             <div>
-              <h4 className="mb-4 text-xl uppercase tracking-widest text-white">Resources</h4>
+              <h4 className="mb-4 text-xl uppercase tracking-widest text-white">{t("resources")}</h4>
               <ul className="space-y-3 text-[#ffffff99]">
                 <li>
                   <a href="#" className="transition duration-150 hover:text-white">
-                    Blog
+                    {t("blog")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="transition duration-150 hover:text-white">
-                    Case Studies
+                    {t("caseStudies")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="transition duration-150 hover:text-white">
-                    FAQs
+                    {t("faq")}
                   </a>
                 </li>
                 <li>
                   <a href="#" className="transition duration-150 hover:text-white">
-                    Media Gallery
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    News
+                    {t("news")}
                   </a>
                 </li>
               </ul>
@@ -374,44 +366,73 @@ const MainLayout = ({ children }) => {
           {/* Contact Information */}
           <div className="grid gap-4 text-sm sm:grid-cols-3 md:col-span-1 lg:col-span-2">
             <div className="flex items-start">
-              <span className="mr-3 mt-1 text-white">
+              <span className="mr-3 mt-1 text-white rtl:ml-3">
                 <img src="/assets/location.png" alt="Location Icon" className="h-6 w-9 bg-cover" />
               </span>
-              <p className="leading-relaxed text-[#ffffff99]">
-                3385 Thumamah Road, Alnada District, Riyadh 13317,
-                <br />
-                Kingdom of Saudi Arabia
-              </p>
+              {i18n.language == "ar" ? (
+                <p className="leading-relaxed text-[#ffffff99]">
+                  ٣٣٨٥ طريق الثمامة، حي الندى، الرياض ١٣٣١٧،
+                  <br />
+                  المملكة العربية السعودية
+                </p>
+              ) : (
+                <p className="leading-relaxed text-[#ffffff99]">
+                  3385 Thumamah Road, Alnada District, Riyadh 13317,
+                  <br />
+                  Kingdom of Saudi Arabia
+                </p>
+              )}
             </div>
 
             <div className="space-y-4">
               <div className="flex items-start">
-                <span className="mr-3 text-white">
+                <span className="mr-3 text-white rtl:ml-3">
                   <img src="/assets/phone.png" alt="Phone Icon" className="h-6 w-6 bg-cover" />
                 </span>
-                <p className="text-[#ffffff99]">+966 11 23 42 667</p>
+                <span>
+                  {i18n.language === "ar" ? (
+                    <a
+                      href="tel:+966112342667"
+                      className="text-[#ffffff99] hover:text-cyan-400 hover:underline"
+                    >
+                      667 42 23 11 966+
+                    </a>
+                  ) : (
+                    <a
+                      href="tel:+966112342667"
+                      className="text-[#ffffff99] hover:text-cyan-400 hover:underline"
+                    >
+                      +966 11 23 42 667
+                    </a>
+                  )}
+                </span>
               </div>
 
               <div className="flex items-start">
-                <span className="mr-3 text-white">
+                <span className="mr-3 text-white rtl:ml-3">
                   <img src="/assets/email.png" alt="Email Icon" className="h-6 w-6 bg-cover" />
                 </span>
-                <p className="text-[#ffffff99]">contact@adroyts.com</p>
+                <a
+                  href="mailto:contact@adroyts.com"
+                  className="text-[#ffffff99] hover:text-cyan-400 hover:underline"
+                >
+                  contact@adroyts.com
+                </a>
               </div>
             </div>
           </div>
 
           {/* Newsletter */}
           <div className="flex flex-col">
-            <p className="mb-3 text-sm text-[#ffffff99]">Stay up to date on the latest Adroyts news.</p>
+            <p className="mb-3 text-sm text-[#ffffff99]">{t("stayUpToDate")}</p>
             <form className="flex">
               <input
                 type="email"
-                placeholder="Your Email"
+                placeholder={t("yourEmail")}
                 className="flex-grow border border-white/60 bg-transparent p-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-white"
               />
               <button className="bg-white px-4 py-2 text-sm font-semibold text-black transition duration-150 hover:bg-gray-200">
-                Send
+                {t("send")}
               </button>
             </form>
           </div>
@@ -422,10 +443,16 @@ const MainLayout = ({ children }) => {
 
       <footer className="bg-[#0e1a41]">
         <div className="m-auto flex max-w-7xl items-center justify-between px-6 py-12 text-center text-sm text-white md:px-12">
-          <p>Copyright© {new Date().getFullYear()}. Adroyts Executive Search.</p>
+          <p>
+            {t("copyright")} {new Date().getFullYear()}. {t("companyName")}
+          </p>
           <div className="flex items-center gap-8">
-            <p>Privacy Policy</p>
-            <p>Terms of Use</p>
+            <Link to="/privacy-policy" className="text-[#ffffff99] hover:underline">
+              {t("privacyPolicy")}
+            </Link>
+            <Link to="/terms-of-use" className="text-[#ffffff99] hover:underline">
+              {t("termsOfUse")}
+            </Link>
           </div>
         </div>
       </footer>

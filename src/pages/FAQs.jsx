@@ -74,7 +74,7 @@ const Faqs = () => {
                 </li>
               </ol>
             </nav>
-            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-5xl">
+            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-4xl">
               Frequently Asked Questions
             </h1>
           </div>
@@ -83,7 +83,7 @@ const Faqs = () => {
 
       {/* FAQ Section */}
       <section className="mx-auto max-w-5xl px-6 py-20">
-        <SplitText className="mb-12 text-center text-4xl font-extrabold text-[#0f0f19] md:text-5xl">
+        <SplitText className="mb-12 text-center text-4xl font-extrabold text-[#0f0f19] md:text-4xl">
           Your Questions Answered
         </SplitText>
 

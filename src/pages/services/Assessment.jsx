@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const TalentAssessment = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const talentAssessment = t("talentAssessment", { returnObjects: true });
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const TalentAssessment = () => {
             </ol>
           </nav>
 
-          <h1 className="mb-4 text-4xl font-extrabold text-white md:text-5xl">{talentAssessment.title}</h1>
+          <h1 className="mb-4 text-4xl font-extrabold text-white md:text-4xl">{talentAssessment.title}</h1>
 
           <motion.button
             onClick={() => navigate("/contact")}
@@ -70,7 +70,9 @@ const TalentAssessment = () => {
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>{t("recruitmentSolutionsTitle")}</span>
-                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
 
               <button
@@ -78,7 +80,9 @@ const TalentAssessment = () => {
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>{t("academy.title")}</span>
-                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
 
               <button
@@ -86,7 +90,9 @@ const TalentAssessment = () => {
                 className="group flex w-full items-center justify-between rounded-lg bg-cyan-400 px-4 py-2 text-left font-semibold text-white transition-colors hover:bg-cyan-400/30"
               >
                 <span>{talentAssessment.title}</span>
-                <FaArrowRight className="translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
 
               <button
@@ -94,7 +100,9 @@ const TalentAssessment = () => {
                 className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
               >
                 <span>{t("hrConsulting.title")}</span>
-                <FaArrowRight className="translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                <FaArrowRight
+                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
+                />{" "}
               </button>
             </nav>
           </div>

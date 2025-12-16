@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaCalendarAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaSpinner } from "react-icons/fa";
 
 import { SplitText } from "../../utils/SplitText";
 
@@ -49,8 +49,7 @@ const NewsDetails = () => {
   if (loading) {
     return (
       <div className="flex justify-center py-20">
-        <FaCalendarAlt className="animate-spin text-4xl text-cyan-400" />
-        <span className="ml-4 mt-1 text-lg font-semibold text-cyan-400">Loading...</span>
+        <FaSpinner className="animate-spin text-4xl text-cyan-400" />
       </div>
     );
   }
@@ -96,7 +95,7 @@ const NewsDetails = () => {
               </ol>
             </nav>
 
-            <SplitText className="text-4xl font-extrabold leading-tight text-white drop-shadow md:text-5xl">
+            <SplitText className="text-4xl font-extrabold leading-tight text-white drop-shadow md:text-4xl">
               {news.title}
             </SplitText>
             <p className="mt-4 flex items-center justify-center gap-2 text-white/75">
