@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
+import mainServices from "../services/mainServices";
+
 const TURNSTILE_SITE_KEY = "YOUR_TURNSTILE_SITE_KEY";
 
 const ContactAdroyts = () => {
@@ -23,6 +25,7 @@ const ContactAdroyts = () => {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [socialMedia, setSocialMedia] = useState([]);
   const { t, i18n } = useTranslation();
   // Load Cloudflare Turnstile script
   useEffect(() => {
@@ -31,6 +34,21 @@ const ContactAdroyts = () => {
     script.async = true;
     document.body.appendChild(script);
   }, []);
+
+  useEffect(() => {
+    const fetchSocialMedia = async () => {
+      try {
+        const [socialRes] = await Promise.all([mainServices.getSocialMedia(i18n.language)]);
+
+        setSocialMedia(socialRes?.data?.data || []);
+        console.log("socialRes?.data?.data", socialRes?.data?.data);
+      } catch (err) {
+        console.error("Home data fetch error:", err);
+      }
+    };
+
+    fetchSocialMedia();
+  }, [i18n.language]);
 
   // Strip emojis + non-English letters
   const sanitizeEnglish = (value) => value.replace(/[^\x00-\x7F]/g, "");
@@ -176,55 +194,58 @@ const ContactAdroyts = () => {
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 py-16 lg:flex-row">
         {/* LEFT SIDE – CONTACT INFO */}
         <div className="space-y-6 lg:w-1/3">
-          <div className="group relative cursor-pointer rounded-lg bg-gray-100 p-3 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-cyan-400">
+          <div className="group relative rounded-lg bg-gray-100 p-3 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-cyan-400">
             <h4 className="text-base font-bold text-gray-900 transition-colors duration-300 group-hover:text-white">
               {t("phone")}
             </h4>
-            <p className="text-sm leading-snug text-gray-600 transition-colors duration-300 group-hover:text-white">
-              {i18n.language === "ar" ? <p>667 42 23 11 966+</p> : <p>+966 11 23 42 667</p>}{" "}
-            </p>
+
+            <a
+              href="tel:+966112342667"
+              className="block text-sm leading-snug text-gray-600 transition-colors duration-300 group-hover:text-white"
+            >
+              {i18n.language === "ar" ? "٦٦٧ ٤٢ ٢٣ ١١ ٩٦٦+" : "+966 11 23 42 667"}
+            </a>
           </div>
 
-          <div className="group relative cursor-pointer rounded-lg bg-gray-100 p-3 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-cyan-400">
+          <div className="group relative rounded-lg bg-gray-100 p-3 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-cyan-400">
             <h4 className="text-base font-bold text-gray-900 transition-colors duration-300 group-hover:text-white">
               {t("email")}
             </h4>
-            <p className="text-sm leading-snug text-gray-600 transition-colors duration-300 group-hover:text-white">
+
+            <a
+              href="mailto:info@adroyts.com"
+              className="block text-sm leading-snug text-gray-600 transition-colors duration-300 group-hover:text-white"
+            >
               info@adroyts.com
-            </p>
+            </a>
           </div>
 
-          <div className="group relative cursor-pointer rounded-lg bg-gray-100 p-3 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-cyan-400">
+          <div className="group relative rounded-lg bg-gray-100 p-3 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-cyan-400">
             <h4 className="text-base font-bold text-gray-900 transition-colors duration-300 group-hover:text-white">
               {t("address")}
             </h4>
-            {i18n.language == "ar" ? (
-              <p className="text-sm leading-snug text-gray-600 transition-colors duration-300 group-hover:text-white">
-                ٣٣٨٥ طريق الثمامة، حي الندى، الرياض ١٣٣١٧، المملكة العربية السعودية{" "}
-              </p>
-            ) : (
-              <p className="text-sm leading-snug text-gray-600 transition-colors duration-300 group-hover:text-white">
-                3385 Thumamah Road, Alnada District, Riyadh 13317, Kingdom of Saudi Arabia{" "}
-              </p>
-            )}
+
+            <a className="block text-sm leading-snug text-gray-600 transition-colors duration-300 group-hover:text-white">
+              {i18n.language === "ar"
+                ? "٣٣٨٥ طريق الثمامة، حي الندى، الرياض ١٣٣١٧، المملكة العربية السعودية"
+                : "3385 Thumamah Road, Alnada District, Riyadh 13317, Kingdom of Saudi Arabia"}
+            </a>
           </div>
 
-          <div className="group relative rounded-lg bg-gray-100 p-3 transition-all duration-300">
-            <h4 className="mb-2 text-base font-bold text-gray-900 transition-colors duration-300">
-              {t("followUs")}
-            </h4>
-            <div className="flex gap-4 text-gray-700 transition-colors duration-300 group-hover:text-white">
-              <div className="flex space-x-3">
-                <a href="#" aria-label="LinkedIn" className="text-black transition hover:text-cyan-400">
-                  <FaLinkedin className="h-6 w-6" />
+          <div className="group relative flex items-center gap-4 rounded-lg bg-gray-400 p-3 transition-all duration-300">
+            <h4 className="text-base font-bold text-white transition-colors duration-300">{t("followUs")}</h4>
+            <div className="flex space-x-3">
+              {socialMedia.map((item) => (
+                <a
+                  key={item.link}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white transition hover:text-gray-400"
+                >
+                  <img src={item.image} alt={`Icon`} className="h-6 w-6 bg-cover" />
                 </a>
-                <a href="#" aria-label="X/Twitter" className="text-black transition hover:text-cyan-400">
-                  <FaXTwitter className="h-6 w-6" />
-                </a>
-                <a href="#" aria-label="Instagram" className="text-black transition hover:text-cyan-400">
-                  <FaInstagram className="h-6 w-6" />
-                </a>
-              </div>
+              ))}
             </div>
           </div>
         </div>

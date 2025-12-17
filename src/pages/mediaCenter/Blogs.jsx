@@ -138,6 +138,7 @@ const Blogs = () => {
                       {blog.date}
                     </p>
                     <a
+                      onClick={() => navigate(`/blog/${blog.id}`)}
                       href={blog.url}
                       className="mb-4 cursor-pointer text-xl font-semibold text-[#0E1C3F] transition duration-300 hover:text-cyan-400"
                       aria-label={`Read more about ${blog.title}`}
@@ -146,7 +147,7 @@ const Blogs = () => {
                     </a>
                     <div className="flex-grow" />
                     <button
-                      onClick={() => navigate(`/blog?id=${blog.id}`)}
+                      onClick={() => navigate(`/blog/${blog.id}`)}
                       className="inline-flex w-max cursor-pointer items-center gap-1 rounded-md bg-white font-semibold text-black transition duration-300 hover:text-cyan-400"
                       aria-label={`Read more about ${blog.title}`}
                     >

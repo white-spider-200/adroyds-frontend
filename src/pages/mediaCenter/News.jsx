@@ -135,6 +135,7 @@ const News = () => {
 
                     {/* Title clickable link */}
                     <a
+                      onClick={() => navigate(`/news/${item.id}`)}
                       href={item.url}
                       className="mb-4 cursor-pointer text-xl font-semibold text-[#0E1C3F] transition duration-700 hover:text-cyan-400"
                       aria-label={`Read more about ${item.title}`}
@@ -147,7 +148,7 @@ const News = () => {
 
                     {/* Read More button (no border, black text, slower hover) */}
                     <button
-                      onClick={() => navigate(`/news?id=${item.id}`)}
+                      onClick={() => navigate(`/news/${item.id}`)}
                       className="inline-flex w-max cursor-pointer items-center gap-1 rounded-md bg-white font-semibold text-black transition duration-300 hover:text-cyan-400"
                       aria-label={`Read more about ${item.title}`}
                     >

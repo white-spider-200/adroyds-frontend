@@ -5,20 +5,7 @@ import { FaArrowRight, FaArrowUp, FaBars, FaChevronDown, FaSearch, FaTimes } fro
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import LanguageSwitcher from "../components/LanguageSwitcher";
-
-const footerContainerVariants = {
-  hidden: { opacity: 1, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      staggerChildren: 0.15,
-      when: "beforeChildren",
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
+import mainServices from "../services/mainServices";
 
 const footerItemVariants = {
   hidden: { opacity: 0, y: 15 },
@@ -28,6 +15,8 @@ const footerItemVariants = {
 const MainLayout = ({ children }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [socialMedia, setSocialMedia] = useState([]);
+
   const [showScrollUp, setShowScrollUp] = useState(false);
   const [dropdown, setDropdown] = useState(null);
   const location = useLocation();
@@ -44,6 +33,21 @@ const MainLayout = ({ children }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const fetchSocialMedia = async () => {
+      try {
+        const [socialRes] = await Promise.all([mainServices.getSocialMedia(i18n.language)]);
+
+        setSocialMedia(socialRes?.data?.data || []);
+        console.log("socialRes?.data?.data", socialRes?.data?.data);
+      } catch (err) {
+        console.error("Home data fetch error:", err);
+      }
+    };
+
+    fetchSocialMedia();
+  }, [i18n.language]);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -259,15 +263,17 @@ const MainLayout = ({ children }) => {
             <p className="mb-6 max-w-xs font-bold leading-relaxed text-[#ffffff99]">{t("footerDesc")}</p>
 
             <div className="flex space-x-3">
-              <a href="#" aria-label="LinkedIn" className="text-white transition hover:text-gray-400">
-                <img src="/assets/linkedin.png" alt="LinkedIn Icon" className="h-6 w-6 bg-cover" />
-              </a>
-              <a href="#" aria-label="X/Twitter" className="text-white transition hover:text-gray-400">
-                <img src="/assets/x.png" alt="X/Twitter Icon" className="h-6 w-6 bg-cover" />
-              </a>
-              <a href="#" aria-label="Instagram" className="text-white transition hover:text-gray-400">
-                <img src="/assets/instagram.png" alt="Instagram Icon" className="h-6 w-6 bg-cover" />
-              </a>
+              {socialMedia.map((item) => (
+                <a
+                  key={item.link}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white transition hover:text-gray-400"
+                >
+                  <img src={item.image} alt={`Icon`} className="h-6 w-6 bg-cover" />
+                </a>
+              ))}
             </div>
           </div>
 

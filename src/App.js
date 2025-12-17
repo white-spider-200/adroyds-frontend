@@ -68,8 +68,8 @@ export default function App() {
         <Route path="/careers" element={<Careers />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/FAQs" element={<Faqs />} />
-        <Route path="/blog" element={<BlogDetails />} />
-        <Route path="/news" element={<NewsDetails />} />
+        <Route path="/blog/:id" element={<BlogDetails />} />
+        <Route path="/news/:id" element={<NewsDetails />} />
         <Route path="/case-study" element={<CaseStudyDetails />} />
         <Route path="/sitemap" element={<Sitemap />} />
         <Route path="/terms-of-use" element={<TermsOfUse />} />

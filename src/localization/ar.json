@@ -330,6 +330,10 @@
   "responsibilities": "المسؤوليات",
   "requirements": "المتطلبات",
   "applyNow": "قدّم الآن",
-  "notAvailable": "غير متوفر"
+  "notAvailable": "غير متوفر",
+  "faqs": "الأسئلة الشائعة",
+  "yourQuestionsAnswered": "إجابات على أسئلتكم",
+  "loading": "جاري التحميل",
+  "noFaqsFound": "لا توجد أسئلة شائعة حالياً"
 }
    

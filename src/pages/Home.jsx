@@ -85,13 +85,11 @@ const Home = () => {
   const navigate = useNavigate();
   const { i18n, t } = useTranslation();
   const [loading, setLoading] = useState(true);
-  const [activeIndex, setActiveIndex] = useState(null);
 
   const [articles, setArticles] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
   const [clients, setClients] = useState([]);
   const [highlights, setHighlights] = useState([]);
-  const [socialMedia, setSocialMedia] = useState([]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -114,7 +112,6 @@ const Home = () => {
         setTestimonials(testimonialsRes?.data?.data || []);
         setClients(clientsRes?.data?.data || []);
         setHighlights(highlightsRes?.data?.data || []);
-        setSocialMedia(socialRes?.data?.data?.data || []);
       } catch (err) {
         console.error("Home data fetch error:", err);
       } finally {

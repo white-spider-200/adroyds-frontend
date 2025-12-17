@@ -331,5 +331,9 @@
   "notice3Months": "3 Months",
   "submitApplication": "Submit Application",
   "applicationSuccess": "Your application has been submitted successfully. Our team will review your profile and contact you if your qualifications match the role.",
-  "applicationError": "Something went wrong. Try again."
+  "applicationError": "Something went wrong. Try again.",
+  "faqs": "Frequently Asked Questions",
+  "yourQuestionsAnswered": "Your Questions Answered",
+  "loading": "Loading",
+  "noFaqsFound": "No FAQs found"
 }
