@@ -17,6 +17,7 @@ import BlogDetails from "./pages/mediaCenter/BlogDetails";
 import Blogs from "./pages/mediaCenter/Blogs";
 import CaseStudies from "./pages/mediaCenter/CaseStudies";
 import CaseStudyDetails from "./pages/mediaCenter/CaseStudyDetails";
+import CaseStudiesDetails from "./pages/mediaCenter/CaseStudyDetails";
 import News from "./pages/mediaCenter/News";
 import NewsDetails from "./pages/mediaCenter/NewsDetails";
 import NotFound from "./pages/NotFound";
@@ -70,6 +71,7 @@ export default function App() {
         <Route path="/FAQs" element={<Faqs />} />
         <Route path="/blog/:id" element={<BlogDetails />} />
         <Route path="/news/:id" element={<NewsDetails />} />
+        <Route path="/case-study/:id" element={<CaseStudiesDetails />} />
         <Route path="/case-study" element={<CaseStudyDetails />} />
         <Route path="/sitemap" element={<Sitemap />} />
         <Route path="/terms-of-use" element={<TermsOfUse />} />

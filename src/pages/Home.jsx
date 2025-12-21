@@ -32,6 +32,7 @@ const fadeUpContainer = {
     },
   },
 };
+const stripHtml = (html = "") => html.replace(/<[^>]*>?/gm, "").slice(0, 190) + "...";
 
 const fadeUpItem = {
   hidden: { opacity: 0, y: 20 },
@@ -66,21 +67,6 @@ const scaleFadeItem = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-const caseStudies = [
-  {
-    id: "cs1",
-    title: "Succession Planning for a Government Entity",
-    description:
-      "Developing a structured and strategic approach to identify and prepare future leaders to ensure leadership continuity within government organizations.",
-  },
-  {
-    id: "cs2",
-    title: "Talent Development and Leadership Readiness",
-    description:
-      "Building the essential skills and capabilities of employees to effectively prepare them for future leadership roles and sustainable organizational growth.",
-  },
-];
-
 const Home = () => {
   const navigate = useNavigate();
   const { i18n, t } = useTranslation();
@@ -90,6 +76,7 @@ const Home = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [clients, setClients] = useState([]);
   const [highlights, setHighlights] = useState([]);
+  const [caseStudies, setCaseStudies] = useState([]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -99,12 +86,12 @@ const Home = () => {
     const fetchHomeData = async () => {
       setLoading(true);
       try {
-        const [articlesRes, testimonialsRes, clientsRes, highlightsRes, socialRes] = await Promise.all([
+        const [articlesRes, testimonialsRes, clientsRes, highlightsRes, caseStudiesRes] = await Promise.all([
           mainServices.getArticles(i18n.language),
           mainServices.getTestimonials(i18n.language),
           mainServices.getClients(i18n.language),
           mainServices.getCompanyHighlights(i18n.language),
-          mainServices.getSocialMedia(i18n.language),
+          mainServices.getCaseStudies(i18n.language),
         ]);
 
         // store in state
@@ -112,6 +99,7 @@ const Home = () => {
         setTestimonials(testimonialsRes?.data?.data || []);
         setClients(clientsRes?.data?.data || []);
         setHighlights(highlightsRes?.data?.data || []);
+        setCaseStudies(caseStudiesRes?.data?.data?.data || []);
       } catch (err) {
         console.error("Home data fetch error:", err);
       } finally {
@@ -314,14 +302,14 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ delay: index * 0.2 }}
-                className="flex flex-col justify-between overflow-hidden rounded-lg bg-white p-8 py-6 shadow-lg transition hover:shadow-2xl"
+                className="flex flex-col justify-between overflow-hidden rounded-lg bg-white p-6 py-6 shadow-lg transition hover:shadow-2xl"
               >
                 <div>
-                  <h3 className="mb-3 text-2xl font-bold text-[#192757] sm:text-3xl">{caseStudy.title}</h3>
-                  <p className="text-base text-[#878da4] sm:text-xl">{caseStudy.description}</p>
+                  <h3 className="mb-3 text-2xl font-bold text-[#192757] sm:text-3xl">{caseStudy?.name}</h3>
+                  <p className="text-base text-[#878da4] sm:text-xl">{stripHtml(caseStudy.description)}</p>
                 </div>
                 <div
-                  onClick={() => navigate(`/case-study?id=${caseStudy.id}`)}
+                  onClick={() => navigate(`/case-study/${caseStudy.id}`)}
                   className="mt-6 cursor-pointer self-end rounded-full border-2 border-[#192757] p-3 text-gray-900 transition-transform duration-300 ease-in-out hover:scale-110 sm:p-4"
                 >
                   <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />

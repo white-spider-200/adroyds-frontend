@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaSpinner } from "react-icons/fa";
 import { LuArrowUpRight } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+
+import mainServices from "../../services/mainServices";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -14,68 +16,59 @@ const fadeUp = {
   }),
 };
 
-const dummyCaseStudies = [
-  {
-    id: 1,
-    title: "Transforming Hiring Process for a Tech Giant",
-    summary:
-      "Implemented AI-powered recruitment automation to reduce hiring time by 40%, enhancing candidate experience and improving quality of hire.",
-    category: "Technology",
-    date: "2024-06-01",
-    client: "Tech Solutions Inc.",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 2,
-    title: "Boosting Sales Through Strategic Talent Acquisition",
-    summary:
-      "Partnered with a leading retail chain to identify and onboard top sales talent, resulting in a 25% increase in quarterly revenue.",
-    category: "Retail",
-    date: "2024-04-15",
-    client: "RetailPro Ltd.",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 3,
-    title: "Leadership Development for Financial Services",
-    summary:
-      "Designed and delivered tailored leadership programs, leading to a 30% increase in internal promotions and improved succession planning.",
-    category: "Finance",
-    date: "2024-03-10",
-    client: "FinanceCore Group",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
-  },
-];
-
 const CaseStudies = () => {
-  const navigate = useNavigate();
   const { i18n, t } = useTranslation();
+  const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+  const [caseStudies, setCaseStudies] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
+
+  // Scroll to top on mount and when page or language changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  }, [currentPage, i18n.language]);
+
+  // Fetch case studies for current page and language
+  const fetchCaseStudies = async (page = 1) => {
+    setLoading(true);
+    try {
+      const res = await mainServices.getCaseStudies(i18n.language, page);
+      const data = res?.data?.data;
+      setCaseStudies(data?.data || []);
+      setCurrentPage(data?.current_page || 1);
+      setLastPage(data?.last_page || 1);
+    } catch (err) {
+      console.error("Case studies fetch error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCaseStudies(currentPage);
+  }, [currentPage, i18n.language]);
+
   return (
     <div className="bg-white text-[#0E1C3F] selection:bg-cyan-400 selection:text-white">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
+      <section className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center px-6 text-center">
         <img
           src="/assets/saudi11-blog-thumbnail.jpg"
           alt=""
           className="absolute inset-0 h-full w-full object-cover"
         />
 
-        {/* Blue Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30" />
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, ease: "easeOut" }}
-          className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
+          className="relative z-10 flex h-full flex-col items-center justify-center"
         >
-          {/* Glass container */}
           <div className="mt-40 rounded-lg px-8 py-12 md:px-12 md:py-16">
-            {/* Breadcrumbs */}
             <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
               <ol className="inline-flex space-x-2">
                 <li>
@@ -84,89 +77,115 @@ const CaseStudies = () => {
                   </a>
                   <span className="mx-2">/</span>
                 </li>
-                <li className="font-semibold text-white" aria-current="page">
-                  {t("caseStudies")}
-                </li>
+                <li className="font-semibold text-white">{t("caseStudies")}</li>
               </ol>
             </nav>
 
-            <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-4xl">
-              {t("caseStudies")}
-            </h1>
+            <h1 className="text-4xl font-extrabold text-white drop-shadow md:text-4xl">{t("caseStudies")}</h1>
           </div>
         </motion.div>
       </section>
 
-      {/* Case Studies Grid */}
-      <section id="blog" className="bg-gray-100 py-16">
-        <div className="mx-auto max-w-7xl px-6 md:px-12">
-          <div className="grid gap-6 md:grid-cols-3">
-            {dummyCaseStudies.map((caseStudy, i) => (
-              <motion.article
-                key={caseStudy.id}
-                initial="hidden"
-                whileInView="visible"
-                variants={fadeUp}
-                custom={i * 0.2}
-                className="group cursor-pointer overflow-hidden rounded-lg bg-white transition-shadow hover:shadow-xl"
-              >
-                {/* Image */}
-                <div className="relative overflow-hidden rounded-t-xl">
-                  <img
-                    src={caseStudy.image}
-                    alt={caseStudy.title}
-                    loading="lazy"
-                    className="h-56 w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
-                </div>
+      {/* CASE STUDIES GRID */}
+      <section className="bg-gray-100 py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          {loading ? (
+            <div className="flex justify-center py-20">
+              <FaSpinner className="animate-spin text-4xl text-cyan-400" />
+            </div>
+          ) : (
+            <>
+              <div className="grid gap-6 md:grid-cols-3">
+                {caseStudies.map((item, i) => (
+                  <motion.div
+                    key={item.id}
+                    initial="hidden"
+                    whileInView="visible"
+                    variants={fadeUp}
+                    custom={i * 0.2}
+                    whileHover={{ y: -8 }}
+                    transition={{ type: "tween", duration: 0.6, ease: "easeOut" }}
+                    className="group flex h-full flex-col overflow-hidden rounded-lg bg-white"
+                  >
+                    <div className="relative h-56 overflow-hidden bg-gray-100">
+                      {!item.image && (
+                        <div className="pointer-events-none absolute inset-0 z-0 bg-[#182756]" />
+                      )}
+                      <img
+                        src={item.image || "/assets/placeholder.png"}
+                        alt={item.name}
+                        className={`relative z-10 h-full w-full transition duration-500 group-hover:scale-105 ${
+                          item.image ? "object-cover" : "object-contain p-6"
+                        }`}
+                      />
+                    </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <div className="mb-2 flex flex-wrap items-center justify-between text-sm font-semibold text-cyan-400">
-                    <span>{caseStudy.category}</span>
-                    <time dateTime={caseStudy.date}>
-                      {new Date(caseStudy.date).toLocaleDateString(undefined, {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </time>
-                  </div>
-
-                  <h3 className="mb-3 text-xl font-bold text-[#0E1C3F] transition-colors group-hover:text-cyan-400">
-                    {caseStudy.title}
-                  </h3>
-
-                  <p className="mb-4 line-clamp-3 text-gray-600">{caseStudy.summary}</p>
-
-                  <div className="flex items-center justify-between text-sm text-gray-500">
-                    <span>Client: {caseStudy.client}</span>
-                    <button
-                      onClick={() => navigate(`/case-study?id=${caseStudy.id}`)}
-                      aria-label={`Read more about ${caseStudy.title}`}
-                      className="inline-flex items-center gap-2 font-semibold text-cyan-400 transition hover:text-[#0E1C3F]"
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: i * 0.2 }}
+                      className="flex flex-grow flex-col px-6 py-4"
                     >
-                      <span>{t("readMore")}</span>
-                      <LuArrowUpRight
-                        className={`transform transition duration-300 ${i18n.language === "ar" ? "scale-x-[-1]" : ""}`}
-                      />{" "}
-                    </button>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
+                      <h3
+                        onClick={() => navigate(`/case-study/${item.id}`)}
+                        className="mb-3 cursor-pointer text-xl font-semibold transition hover:text-cyan-400"
+                      >
+                        {item.name}
+                      </h3>
 
-          {/* View More Button */}
-          <div className="mt-12 flex justify-center">
-            <button
-              type="button"
-              className="hidden items-center gap-3 rounded-full border-2 border-[#0E1C3F] bg-transparent px-8 py-3 font-semibold text-[#0E1C3F] transition hover:border-cyan-400 hover:text-cyan-400 md:flex"
-            >
-              {t("viewMore")}
-            </button>
-          </div>
+                      <div className="flex-grow" />
+
+                      <button
+                        onClick={() => navigate(`/case-study/${item.id}`)}
+                        className="inline-flex w-max items-center gap-1 font-semibold text-black transition hover:text-cyan-400"
+                      >
+                        <span>{t("readMore")}</span>
+                        <LuArrowUpRight
+                          className={`transition ${i18n.language === "ar" ? "scale-x-[-1]" : ""}`}
+                        />
+                      </button>
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Pagination Controls */}
+              <div className="mt-8 flex items-center justify-center space-x-4">
+                <button
+                  onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                  className={`flex items-center justify-center gap-2 rounded-full border border-cyan-400 px-5 py-2 text-sm font-semibold transition-colors duration-300 ${
+                    currentPage === 1
+                      ? "cursor-not-allowed border-gray-300 text-gray-400"
+                      : "cursor-pointer bg-cyan-400 text-white hover:bg-cyan-500"
+                  }`}
+                  aria-label={t("previous")}
+                >
+                  <FaArrowLeft className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
+                  <span>{t("previous")}</span>
+                </button>
+
+                <div className="text-sm font-semibold text-gray-700">
+                  {t("page")} <span className="text-cyan-500">{currentPage}</span> {t("of")}{" "}
+                  <span className="text-cyan-500">{lastPage}</span>
+                </div>
+
+                <button
+                  onClick={() => setCurrentPage((prev) => Math.min(prev + 1, lastPage))}
+                  disabled={currentPage === lastPage}
+                  className={`flex items-center justify-center gap-4 rounded-full border border-cyan-400 px-5 py-2 text-sm font-semibold transition-colors duration-300 ${
+                    currentPage === lastPage
+                      ? "cursor-not-allowed border-gray-300 text-gray-400"
+                      : "cursor-pointer bg-cyan-400 text-white hover:bg-cyan-500"
+                  }`}
+                  aria-label={t("next")}
+                >
+                  <span>{t("next")}</span>
+                  <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </section>
     </div>

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaSpinner } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaSpinner } from "react-icons/fa";
 import { LuArrowUpRight } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 
@@ -18,38 +18,38 @@ const fadeUp = {
 
 const News = () => {
   const { i18n, t } = useTranslation();
-
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
-  const [articles, setArticles] = useState([]);
   const [news, setNews] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
 
+  // Scroll to top on mount and page change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  }, [currentPage, i18n.language]);
+
+  // Fetch paginated news on language or page change
+  const fetchNews = async (page = 1) => {
+    setLoading(true);
+    try {
+      const newsRes = await mainServices.getNews(i18n.language, page);
+      const data = newsRes?.data?.data;
+
+      setNews(data?.data || []);
+      setCurrentPage(data?.current_page || 1);
+      setLastPage(data?.last_page || 1);
+    } catch (err) {
+      console.error("News fetch error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchHomeData = async () => {
-      setLoading(true);
-
-      try {
-        const [articlesRes, newsRes] = await Promise.all([
-          mainServices.getArticles(i18n.language),
-          mainServices.getNews(i18n.language),
-        ]);
-
-        setArticles(articlesRes?.data?.data?.data || []);
-        setNews(newsRes?.data?.data?.data || []);
-      } catch (err) {
-        console.error("Home data fetch error:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchHomeData();
-  }, [i18n.language]);
+    fetchNews(currentPage);
+  }, [currentPage, i18n.language]);
 
   return (
     <div className="bg-white text-[#0E1C3F] selection:bg-cyan-400 selection:text-white">
@@ -102,76 +102,101 @@ const News = () => {
               <FaSpinner className="animate-spin text-4xl text-cyan-400" />
             </div>
           ) : (
-            <div className="grid gap-10 md:grid-cols-3">
-              {news?.map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={fadeUp}
-                  custom={i * 0.2}
-                  whileHover={{ y: -8 }}
-                  transition={{ type: "tween", duration: 0.6, ease: "easeOut" }}
-                  className="group flex h-full flex-col overflow-hidden rounded-lg bg-white"
-                >
-                  {/* Image with zoom + rotate on hover */}
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="h-64 w-full transform object-cover transition-transform duration-700 ease-out group-hover:rotate-[6deg] group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 transition duration-500 ease-out group-hover:bg-transparent"></div>
-                  </div>
-
-                  {/* Text container */}
+            <>
+              <div className="grid gap-6 md:grid-cols-3">
+                {news?.map((item, i) => (
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: i * 0.2 }}
-                    className="flex flex-grow flex-col px-6 py-4"
+                    key={item.id || i}
+                    initial="hidden"
+                    whileInView="visible"
+                    variants={fadeUp}
+                    custom={i * 0.2}
+                    whileHover={{ y: -8 }}
+                    transition={{ type: "tween", duration: 0.6, ease: "easeOut" }}
+                    className="group flex h-full flex-col overflow-hidden rounded-lg bg-white"
                   >
-                    <div className="mb-2 text-sm font-semibold text-cyan-400">{item.category}</div>
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="h-64 w-full transform object-cover transition-transform duration-700 ease-out group-hover:rotate-[6deg] group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 transition duration-500 ease-out group-hover:bg-transparent"></div>
+                    </div>
 
-                    {/* Title clickable link */}
-                    <a
-                      onClick={() => navigate(`/news/${item.id}`)}
-                      href={item.url}
-                      className="mb-4 cursor-pointer text-xl font-semibold text-[#0E1C3F] transition duration-700 hover:text-cyan-400"
-                      aria-label={`Read more about ${item.title}`}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: i * 0.2 }}
+                      className="flex flex-grow flex-col px-6 py-4"
                     >
-                      {item.title}
-                    </a>
+                      <div className="mb-2 text-sm font-semibold text-cyan-400">{item.category}</div>
 
-                    {/* Spacer */}
-                    <div className="flex-grow" />
+                      <a
+                        onClick={() => navigate(`/news/${item.id}`)}
+                        href={item.url}
+                        className="mb-4 cursor-pointer text-xl font-semibold text-[#0E1C3F] transition duration-700 hover:text-cyan-400"
+                        aria-label={`Read more about ${item.title}`}
+                      >
+                        {item.title}
+                      </a>
 
-                    {/* Read More button (no border, black text, slower hover) */}
-                    <button
-                      onClick={() => navigate(`/news/${item.id}`)}
-                      className="inline-flex w-max cursor-pointer items-center gap-1 rounded-md bg-white font-semibold text-black transition duration-300 hover:text-cyan-400"
-                      aria-label={`Read more about ${item.title}`}
-                    >
-                      <span>{t("readMore")}</span>
-                      <LuArrowUpRight
-                        className={`transform transition duration-300 ${i18n.language === "ar" ? "scale-x-[-1]" : ""}`}
-                      />{" "}
-                    </button>
+                      <div className="flex-grow" />
+
+                      <button
+                        onClick={() => navigate(`/news/${item.id}`)}
+                        className="inline-flex w-max cursor-pointer items-center gap-1 rounded-md bg-white font-semibold text-black transition duration-300 hover:text-cyan-400"
+                        aria-label={`Read more about ${item.title}`}
+                      >
+                        <span>{t("readMore")}</span>
+                        <LuArrowUpRight
+                          className={`transform transition duration-300 ${
+                            i18n.language === "ar" ? "scale-x-[-1]" : ""
+                          }`}
+                        />
+                      </button>
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              ))}
-            </div>
-          )}
+                ))}
+              </div>
 
-          {/* View More button */}
-          <div className="mt-12 flex justify-center">
-            <button
-              type="button"
-              className="hidden items-center gap-2 rounded-full border-2 border-[#0E1C3F] bg-transparent px-6 py-2 text-[#0E1C3F] transition duration-300 hover:border-cyan-400 hover:text-cyan-400 md:flex"
-            >
-              {t("viewMore")}
-            </button>
-          </div>
+              {/* Pagination Controls */}
+              <div className="mt-8 flex items-center justify-center space-x-4">
+                <button
+                  onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                  className={`flex items-center justify-center gap-2 rounded-full border border-cyan-400 px-5 py-2 text-sm font-semibold transition-colors duration-300 ${
+                    currentPage === 1
+                      ? "cursor-not-allowed border-gray-300 text-gray-400"
+                      : "cursor-pointer bg-cyan-400 text-white hover:bg-cyan-500"
+                  }`}
+                  aria-label={t("previous")}
+                >
+                  <FaArrowLeft className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
+                  <span>{t("previous")}</span>
+                </button>
+
+                <div className="text-sm font-semibold text-gray-700">
+                  {t("page")} <span className="text-cyan-500">{currentPage}</span> {t("of")}{" "}
+                  <span className="text-cyan-500">{lastPage}</span>
+                </div>
+
+                <button
+                  onClick={() => setCurrentPage((prev) => Math.min(prev + 1, lastPage))}
+                  disabled={currentPage === lastPage}
+                  className={`flex items-center justify-center gap-4 rounded-full border border-cyan-400 px-5 py-2 text-sm font-semibold transition-colors duration-300 ${
+                    currentPage === lastPage
+                      ? "cursor-not-allowed border-gray-300 text-gray-400"
+                      : "cursor-pointer bg-cyan-400 text-white hover:bg-cyan-500"
+                  }`}
+                  aria-label={t("next")}
+                >
+                  <span>{t("next")}</span>
+                  <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </section>
     </div>
