@@ -20,6 +20,7 @@ const mainServices = {
   getCompanyHighlights: (lang) => API.get("/company-highlights", getLangHeaders(lang)),
   getSocialMedia: (lang) => API.get("/social-media", getLangHeaders(lang)),
   getFAQ: (lang) => API.get("/faqs", getLangHeaders(lang)),
+  getTeamMembers: (lang) => API.get("/team-members", getLangHeaders(lang)),
   getCaseStudies: (lang, page = 1) => API.get(`/case-studies?page=${page}`, getLangHeaders(lang)),
   getCaseStudyById: (id, lang) => API.get(`/case-studies/${id}`, getLangHeaders(lang)),
 

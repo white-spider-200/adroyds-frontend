@@ -14,7 +14,7 @@ module.exports = {
         "blue-700": "#1D4ED8", // base blue
         "blue-800": "#1E40AF", // darker
         "blue-900": "#1E3A8A", // darkest
-        "cyan-400": "#0AC0DD",
+        "cyan-400": "#0aacdd",
         "orange-400": "#FFC60A",
         "orange-500": "#E67E22",
         "navy-500": "#0E1C3F",

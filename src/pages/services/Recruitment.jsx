@@ -107,80 +107,7 @@ const Recruitment = () => {
       </section>
 
       <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
-        <div className="sticky top-32 h-full flex-1">
-          {/* MENU BOX */}
-          <div className="flex flex-col rounded-lg bg-[#0E1C3F] p-4 py-6 text-white">
-            <nav className="flex flex-col space-y-4">
-              {/* Recruitment Solutions (ACTIVE) */}
-              <button
-                onClick={() => navigate("/services/recruitment")}
-                className="group flex w-full items-center justify-between rounded-lg bg-cyan-400 px-4 py-2 text-left font-semibold text-white transition-colors hover:bg-cyan-400/30"
-              >
-                <span>{t("recruitmentSolutionsTitle")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-
-              {/* {t("academy.title")} */}
-              <button
-                onClick={() => navigate("/services/academy")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
-              >
-                <span>{t("academy.title")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-
-              {/* Assessment Center */}
-              <button
-                onClick={() => navigate("/services/assessment")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
-              >
-                <span>{t("talentAssessment.title")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-
-              {/* Human Capital Consulting */}
-              <button
-                onClick={() => navigate("/services/consulting")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
-              >
-                <span>{t("hrConsulting.title")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-            </nav>
-          </div>
-
-          {/* CONTACT BOX WITH OVERLAY */}
-          <div className="relative mt-4 overflow-hidden rounded-lg">
-            <img
-              src="/assets/conatact-us-placeholder.jpg"
-              alt="Contact"
-              className="h-48 w-full object-cover"
-            />
-
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-[#0E1C3F]/90"></div>
-
-            {/* Text */}
-            <div className="absolute inset-0 flex flex-col items-start justify-center space-y-4 p-8 text-white">
-              <p className="text-xl font-semibold">{t("needServiceContactUs")}</p>
-
-              <p className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-6 py-2 font-semibold text-[#0E1C3F]">
-                <FaPhoneAlt />
-                {i18n.language == "ar" ? <span>966112342667+</span> : <span>+966112342667</span>}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex-[2.7] bg-white px-6">
+        <div className="bg-white px-6">
           <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
               src="/assets/business-meeting-saudi-arabia-1024x683.webp"
@@ -205,7 +132,7 @@ const Recruitment = () => {
               viewport={{ once: false }}
               className="mb-6 font-medium leading-relaxed text-gray-600"
             >
-              {t("adroytsIntro")}
+              {t("adroytsIntro2")}
             </motion.p>
           </section>
 
@@ -230,7 +157,7 @@ const Recruitment = () => {
                   <div
                     key={i}
                     className={`flex flex-col items-center px-6 ${
-                      i < statsData.length - 1 ? "border-r border-white/30" : ""
+                      i < statsData.length - 1 ? "border-white/30 ltr:border-r rtl:border-l" : ""
                     }`}
                   >
                     <div className="mb-4 text-white">{icon}</div>
@@ -245,7 +172,7 @@ const Recruitment = () => {
                         separator=","
                       />
                     </div>
-                    <div className="mt-1 text-center text-xs tracking-widest">{t(label)}</div>
+                    <div className="mt-1 text-center font-bold tracking-widest">{t(label)}</div>
                   </div>
                 ))}
               </div>
@@ -312,7 +239,8 @@ const Recruitment = () => {
               <SplitText className="mb-6 text-center text-3xl font-bold">
                 {t("recruitment.executiveSearch.title")}
               </SplitText>
-              <p className="mb-12 max-w-4xl text-center leading-relaxed">
+              <p className="mb-8" style={{ whiteSpace: "pre-line" }}>
+                {" "}
                 {t("recruitment.executiveSearch.description")}
               </p>
 
@@ -371,6 +299,39 @@ const Recruitment = () => {
               <p className="mx-auto mb-12 max-w-3xl text-center text-lg leading-relaxed text-white/90">
                 {t("recruitment.recruitmentOutsourcing.description")}
               </p>
+            </div>
+          </section>
+          {/* RECRUITMENT METHODOLOGY */}
+          <section className="bg-[#F8FAFC] py-28">
+            <div className="container mx-auto max-w-7xl px-6">
+              <SplitText className="mb-6 text-center text-3xl font-bold text-[#0E1C3F]">
+                {t("recruitmentMethodology.title")}
+              </SplitText>
+
+              <p className="mx-auto mb-16 max-w-4xl text-center text-lg leading-relaxed text-gray-600">
+                {t("recruitmentMethodology.intro")}
+              </p>
+
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {t("recruitmentMethodology.steps", { returnObjects: true }).map((step, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    className="group rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
+                      {index + 1}
+                    </div>
+
+                    <h4 className="mb-2 text-lg font-semibold text-[#0E1C3F]">{step.title}</h4>
+
+                    <p className="text-sm leading-relaxed text-gray-600">{step.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </section>
         </div>

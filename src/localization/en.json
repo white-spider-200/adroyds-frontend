@@ -1,19 +1,32 @@
 {
   "home": "Home",
   "qualitativeSkills": "Qualitative skills for sustainable growth,",
-  "professionalExpertise": "By attracting professional expertise and employing leading assessment methodologies.",
-  "exploreOurServices": "EXPLORE OUR SERVICES",
+  "professionalExpertise": "By attracting professional expertise and employing leading assessment methodologies",
+  "exploreOurServices": "WHAT WE DO?",
   "viewMore": "View more",
   "footerDesc":"Adroyts focuses on serving corporate clients in Saudi Arabia and other GCC markets by providing them with highly experienced professionals across key sectors.",
   "aboutUsText1": "With nearly two decades of experience, Adroits was founded in 2006 in Saudi Arabia, establishing itself as a leading provider of integrated professional solutions for human resource management and development.",
   "desc1": "To achieve this core objective, Adroyts is committed to enhancing organizational capabilities through a comprehensive portfolio of services that includes recruitment solutions, assessment center solutions, human capital consulting, and the Adroyts Academy. Every step is grounded in precise methodologies and global best practices, with a strategic focus on output quality and sustainable impact in the workplace.",
   "desc2": "From this standpoint, our priority revolves around client service. We focus on providing our partners with specialized and integrated solutions that deliver experienced leadership talent. This commitment has resulted in a strong track record serving over 00 entities across various sectors, reaffirming our dedication to building strong relationships based on mutual trust, accuracy, and meeting all requirements with excellence.",
   "aboutUs": "About Us",
+  "adroytsIntro2":"For nearly two decades, Adroits has provided an integrated system of recruitment services, combining the depth of specialized knowledge of our consultants with effective access to an exclusive database. This integration ensures the attraction of talent that makes a difference, through customized solutions that align directly with our clients’ strategic goals.",
   "readyForNextGenRecruitment":"Discover the Future of Recruitment Today",
   "startYourDigitalJourney":"Start your digital journey with a platform trusted by brands in Saudi Arabia.",
-  "LeadershipPlacements": "Leadership Placements",
+  "LeadershipPlacements": "Partner",
   "careers":"Careers",
   "page": "Page",
+    "getInTouch": "Get in Touch with Adroyts",
+  "helpMessage": "We’re here to support your HR, recruitment, and talent development needs. Please fill out the form below and our team will get back to you shortly.",
+  "communicationValue": "At Adroyts, we value meaningful communication and aim to respond promptly and professionally to all inquiries. Whether you’re seeking support or information about our services, this form will help us guide your message to the right team.",
+  "workingHours": "Working Hours",
+  "followUs": "Follow Us",
+  "sending": "Sending...",
+  "robotCheck": "Please verify you are human",
+  "visionMissionSectionTitle": "Our Vision & Mission",
+  "ourVisionTitle": "Our Vision",
+  "ourVisionDesc": "To be a leading force in innovation and excellence, empowering our community through cutting-edge solutions and unwavering commitment.",
+  "ourMissionTitle": "Our Mission",
+  "ourMissionDesc": "To deliver high-quality services with integrity and passion, fostering sustainable growth and meaningful impact for all our stakeholders.",
   "next":"Next",
   "of":"of",
   "previous":"Previous",
@@ -27,7 +40,6 @@
   "currentJobOpenings": "Current Job Openings",
   "explorePositions": "Explore active positions and apply directly.",
   "viewJobs": "View Jobs",
-  "fullName": "Full Name *",
   "mobileNumber": "Mobile Number *",
   "emailAddress": "Email Address *",
   "currentCity": "Current City *",
@@ -44,33 +56,9 @@
   "openPositions": "Open Positions",
   "exploreCurrentOpenings": "Explore current openings at Adroyts and with our clients.",
   "postedOn": "Posted on",
-  "sending":"Sending",
-  "getInTouch": "Get in Touch with Adroyts",
-  "helpMessage": "We're here to help you transform your digital vision into reality. Contact us today to get started.",
-  "communicationValue": "At Adroyts, we value meaningful communication. Whether you’re exploring a new project, looking for partnership opportunities, or simply have a question—our team is ready to support you.",
-  "workingHours": "Working Hours",
-  "followUs": "Follow Us",
-  "thankYouMessage": "Thank you! Your message has been submitted. Our team will contact you shortly.",
-  "purposeOfContact": "Purpose of Contact *",
   "selectPurpose": "Select purpose",
-  "serviceInquiry": "Service Inquiry",
   "partnership": "Partnership",
-  "generalQuestion": "General Question",
-  "jobApplication": "Job Application",
-  "companyNames": "Company Name *",
-  "jobTitle": "Job Title *",
-  "howDidYouHear": "How did you hear about us? *",
-  "select": "Select",
-  "phone":"Phone",
   "address":"Address",
-  "email":"Email",
-  "googleSearch": "Google Search",
-  "linkedIn": "LinkedIn",
-  "friendOrColleague": "Friend or Colleague",
-  "event": "Event",
-  "other": "Other",
-  "serviceOfInterest": "Service of Interest *",
-  "message": "Message *",
   "viewDetails": "View Details",
   "resources":"Resources",
   "company":"Company",
@@ -80,7 +68,6 @@
   "companyName":"Adroyts Executive Search.",
   "privacyPolicy":"Privacy Policy",
   "termsOfUse":"Terms of Use",
-  "send":"Send",
   "faq":"FAQ's",
   "YearsofExcellence": "Years of Excellence",
   "teamTabAlt": "Our Core Performance",
@@ -117,6 +104,144 @@
       "description": "Building long-term partnerships based on mutual trust, providing continuous support and advanced consulting without interruption."
     }
   ],
+  "BoardOfDirectors": "Board Of Directors",
+  "ExecutiveManagement": "Executive Management",
+  "boardDescription": "Meet the leaders guiding our strategic vision",
+  "executiveDescription": "The team responsible for operational excellence",
+  "academyMethodology": {
+    "title": "Our Methodology",
+    "items": [
+      {
+        "title": "Training Needs Analysis",
+        "desc": "A systematic process to assess current and future knowledge and skill gaps in order to accurately identify real training needs."
+      },
+      {
+        "title": "Design & Implementation of Development Plans",
+        "desc": "Developing comprehensive frameworks for training programs and learning pathways, with close supervision to ensure maximum impact."
+      },
+      {
+        "title": "Training Content & Curriculum Design",
+        "desc": "Developing unique and effective learning content tailored to align with our clients’ objectives, technical standards, and job requirements."
+      }
+    ]
+  },
+  "psychometricProviders": {
+    "title": "Psychometric Assessment Providers",
+    "items": [
+      {
+        "name": "Hogan Assessments",
+        "desc": "Hogan Assessments has over 30 years of experience helping organizations significantly reduce employee turnover and increase productivity by hiring the right people, developing talent, and assessing leadership potential."
+      },
+      {
+        "name": "Saville Assessment",
+        "desc": "Saville Assessment develops scientifically robust, workplace-relevant assessment tools that have transformed traditional evaluation approaches globally, enabling faster, fairer, and more accurate talent selection and development decisions."
+      },
+      {
+        "name": "Psytech International",
+        "desc": "Psytech International is one of the leading developers of psychometric assessment tools, offering reliable tests to measure abilities and personality, helping organizations identify potential and enhance performance."
+      },
+      {
+        "name": "Talent Enterprise",
+        "desc": "Talent Enterprise is a leading provider of talent assessment and development solutions, helping organizations improve HR decisions through innovative scientific assessment tools, advanced leadership development programs, and digital platforms that support talent acquisition and future leadership readiness."
+      }
+    ]
+  },
+  "assessmentCenterTools": {
+    "title": "Assessment Center Tools",
+    "items": [
+      {
+        "title": "Psychometric Assessments",
+        "desc": "Scientific tools used to measure behavioral aspects, cognitive abilities, and personality traits of candidates."
+      },
+      {
+        "title": "Competency-Based Interviews",
+        "desc": "Structured interviews focused on exploring candidates’ past behaviors in specific situations to predict future performance."
+      },
+      {
+        "title": "Case Study",
+        "desc": "Practical work-related scenarios designed to simulate real workplace challenges faced by the candidate."
+      },
+      {
+        "title": "Group Discussion",
+        "desc": "An activity where candidates are placed in a group setting to discuss a specific topic, allowing evaluation of their behaviors and interpersonal skills."
+      },
+      {
+        "title": "Role-Playing Activities",
+        "desc": "Interactive exercises that simulate daily work situations to assess how candidates handle challenges in a realistic environment, providing accurate insights into behavioral and leadership skills."
+      },
+      {
+        "title": "360-Degree Assessment",
+        "desc": "A comprehensive evaluation methodology that gathers multi-source feedback on an individual’s performance (from supervisors, peers, subordinates, and self-assessment) to provide a holistic and realistic view of behavioral and leadership competencies and influence."
+      }
+    ]
+  },
+  "talentSolutions": {
+    "title": "Our Solutions",
+    "items": [
+      {
+        "title": "Professional Development",
+        "desc": "Empowering individuals to develop their skills and build clear career paths that enhance performance and ensure continuity."
+      },
+      {
+        "title": "Individual Development Plans",
+        "desc": "Conducting comprehensive individual assessments to identify core strengths and development needs."
+      },
+      {
+        "title": "High-Potential Talent Identification",
+        "desc": "Identifying high-potential talents and supporting their readiness for future roles."
+      },
+      {
+        "title": "Employee Placement",
+        "desc": "Aligning talents with suitable roles to ensure maximum productivity and stability."
+      },
+      {
+        "title": "Career Guidance",
+        "desc": "Supporting individuals in making informed career decisions that enhance job satisfaction and performance."
+      },
+      {
+        "title": "Recruitment & Selection",
+        "desc": "Selecting the most suitable candidates through objective assessment that improves decision quality and reduces risk."
+      },
+      {
+        "title": "Succession Planning",
+        "desc": "Ensuring continuity of critical roles and building readiness for future leadership."
+      }
+    ]
+  },
+  "recruitmentMethodology": {
+    "title": "Our Recruitment Methodology",
+    "intro": "At Adroyts, we follow a structured and precise methodology to ensure effective talent acquisition through the following steps:",
+    "steps": [
+      {
+        "title": "Information Gathering & Analysis",
+        "desc": "Conducting an in-depth analysis of the organizational and skill requirements for the vacant position."
+      },
+      {
+        "title": "Talent Sourcing",
+        "desc": "Identifying and proactively targeting qualified talents in the local and regional markets."
+      },
+      {
+        "title": "Interviewing & Assessment",
+        "desc": "Conducting comprehensive interviews to evaluate candidates’ suitability for the specified role."
+      },
+      {
+        "title": "Shortlist Submission",
+        "desc": "Presenting a shortlist of the most qualified candidates to the client for review and interviews."
+      },
+      {
+        "title": "Psychometric Assessments",
+        "desc": "Administering advanced behavioral and personality assessments to ensure alignment with role requirements."
+      },
+      {
+        "title": "Reference Check",
+        "desc": "Verifying candidates’ professional background and past performance through authorized references."
+      },
+      {
+        "title": "Offer Negotiation",
+        "desc": "Managing the negotiation process between the client and the candidate to ensure mutual agreement on final terms."
+      }
+    ]
+  },
   "governmentTitle":"Government",
   "realEstateTitle":"Real Estate",
   "financeTitle":"Finance",
@@ -143,7 +268,6 @@
   "clientsSay":"What clients say about us",
   "allCaseStudies":"All case studies",
   "adroytsIntro": "For nearly two decades, Adroyts has been a trusted recruitment partner for organizations across Saudi Arabia. We provide end-to-end hiring solutions that balance precision, speed, and cultural alignment—helping clients secure the right talent every time.",
-  "recruitmentSolutionsTitle": "Recruitment Solutions",
   "expertTrainingCareerGrowth": "Expert Training, Career Growth Since 2006",
   "recruitmentSolutions": "Recruitment Solutions that Empower Organizations Since 2006",
   "contactUs": "Contact Us",
@@ -170,7 +294,7 @@
   "recruitment": {
     "executiveSearch": {
       "title": "Executive Search",
-      "description": "Adroyts specializes in Executive Search as a strategic core for attracting senior leadership. We do not merely search for candidates; rather, we strive to discover leaders capable of making a qualitative leap and having a direct impact on organizational performance and achieving strategic vision. To ensure this impact, we rely on a precise and comprehensive methodology; starting with an in-depth analysis of the client’s needs, followed by a precise identification and professional evaluation of top-tier leadership competencies, and concluding with final recommendations based on evidence proving full alignment with success requirements.",
+      "description": "- Adroits specializes in Executive Search as a strategic pillar for attracting top leadership.\n- We do not just search for candidates; we aim to discover leaders capable of making a qualitative leap and direct impact on organizational performance.\n- We rely on a precise and comprehensive methodology to ensure the desired impact, which includes:\n  1. In-depth analysis of client needs.\n  2. Accurate identification of suitable leadership competencies.\n  3. Professional evaluation of top-tier candidates.\n  4. Final recommendations based on evidence demonstrating full alignment with success requirements.\n- We aim to achieve a clear strategic vision for the organizations we serve.",
       "methodologyTitle": "Executive Search Methodology Steps",
       "methodologyIntro": "At Adroyts, we follow a methodical and precise approach to guarantee the attraction of senior leadership:",
       "steps": {
@@ -222,23 +346,33 @@
   "description": "Adroits Academy represents the knowledge and training arm of the company, specializing in leadership development and institutional capability building through precisely designed training programs that deliver maximum impact. The Academy offers an integrated suite of developmental solutions that go beyond conventional training, relying on in-depth needs analysis and the design of customized training packages. This approach ensures full alignment of programs with organizations’ strategic objectives and future directions, in line with Saudi Vision 2030 for human capital development.",
   "solutionsTitle": "Development Solutions",
   "solutions": {
-    "alignment": {
-      "title": "Alignment",
-      "description": "Ensuring training programs are fully aligned with organizations’ strategic goals and their current and future needs, enabling sustainable institutional impact."
+    "leadershipPrograms": {
+      "title": "Leadership Development Programs",
+      "description": "Specialized programs designed to build and enhance leadership skills, decision-making capabilities, and team management across various leadership and supervisory levels."
     },
-    "trainingPackagesDesign": {
-      "title": "Training Package Design",
-      "description": "Developing distinctive and effective learning content, custom-built to meet clients’ objectives and their technical and functional standards, ensuring a high-quality learning experience."
+    "softSkillsPrograms": {
+      "title": "Soft Skills Programs",
+      "description": "Programs focused on developing essential soft and behavioral skills for all job levels, including but not limited to communication, teamwork, emotional intelligence, and professionalism in the workplace."
     },
-    "trainingNeedsAnalysis": {
-      "title": "Training Needs Analysis",
-      "description": "Applying a systematic approach to assess current and future knowledge and skill gaps, enabling accurate identification of real training needs."
+    "professionalPrograms": {
+      "title": "Professional & Specialized Programs",
+      "description": "Training solutions aimed at developing functional and specialized skills based on organizational needs and the nature of job roles."
     },
-    "developmentPlans": {
-      "title": "Design and Implementation of Development Plans",
-      "description": "Developing comprehensive framework plans for delivering training programs and learning pathways, with direct oversight of implementation to ensure maximum impact and measurable outcomes."
+    "customPrograms": {
+      "title": "Customized Training Programs",
+      "description": "Designing and delivering tailored training programs to address specific organizational challenges, aligned with the organization’s strategy and culture."
     }
-  }
+  },
+   "academicCollaborationTitle": "Academic Collaboration",
+    "academicCollaboration": {
+      "description1": "An international business school founded in France in 1957, offering master's and doctoral programs in business administration. It is renowned for its cultural diversity and focus on leadership and innovation in global business.",
+      "description2": "London Business School is one of the top-ranked institutions globally in leadership training, offering specialized programs in strategy, leadership, and women's leadership. It also provides programs supporting entrepreneurship.",
+      "description3": "A globally leading educational institution affiliated with Harvard University, offering specialized programs in business management, leadership, and entrepreneurship.",
+      "description4": "With Spain’s IE University, we can build long-term learning journeys for leaders that include lectures, coaching sessions, and various activities.",
+      "description5": "Thunderbird School of Global Management, founded in 1946 and part of Arizona State University, specializes in leadership development, international management, and political economy.",
+      "description6": "A British institute specializing in leadership programs and coaching with over fifty years of leadership development experience, empowering leaders to be more impactful and prepared for all kinds of change.",
+      "description7": "London Centre of Excellence is a professional training and consulting center based in the UK, specializing in international courses and professional development. It offers over 400 courses covering areas such as leadership, HR, accounting, and more across multiple cities worldwide."
+    }
   },
   "talentAssessment": {
   "title": "Talent Assessment",
@@ -295,7 +429,7 @@
     },
     "successionPlanning": {
       "title": "Succession Planning",
-      "description": "A comprehensive process that includes job evaluation, grading system determination, job description development, and establishing fair and competitive salary scales."
+      "description": "Design and develop a succession strategy, identify key and critical roles, and build evaluation criteria."
     },
     "hrOutsourcing": {
       "title": "HR Outsourcing",
@@ -303,6 +437,10 @@
     }
   }
   },
+   "personalInformation": "Personal Information",
+  "professionalInformation": "Professional Information",
+  "compensationAvailability": "Compensation & Availability",
+  "resume": "Resume",
   "closeJobDetails": "Close job details modal",
   "department": "Department",
   "location": "Location",
@@ -321,6 +459,13 @@
   "yearsExperience": "Years of Experience",
   "yearsExperiencePlaceholder": "Years of Experience",
   "experienceLessThan1": "Less than 1 year",
+  "consultingHours": "Consulting Hours",
+  "sectorsCovered": "Sectors Covered",
+  "clientsServed": "Clients Served",
+  "clientsServed2": "Clients Served",
+  "trainees": "Trainees",
+  "trainingHours": "Training Hours",
+  "customerSatisfaction": "Customer Satisfaction",
   "experience1to2": "1–2 years",
   "experience3to5": "3–5 years",
   "experience6to8": "6–8 years",
@@ -339,5 +484,99 @@
   "faqs": "Frequently Asked Questions",
   "yourQuestionsAnswered": "Your Questions Answered",
   "loading": "Loading",
-  "noFaqsFound": "No FAQs found"
+  "noFaqsFound": "No FAQs found",
+    "requiredField": "This field is required",
+  "invalidEmail": "Please enter a valid email address",
+  "max500Chars": "Message cannot exceed 500 characters",
+  "verifyHuman": "Please verify that you are human",
+  "select": "Select",
+  "purposeOfContact": "Purpose of Contact",
+  "serviceOfInterest": "Service of Interest",
+  "fullName": "Full Name",
+  "fullName2": "Full Name*",
+  "companyNames": "Company Name",
+  "jobTitle": "Job Title",
+  "email": "Email",
+  "phone": "Phone",
+  "howDidYouHear": "How did you hear about us?",
+  "message": "Message",
+  "send": "Send Message",
+  "thankYouMessage": "Thank you! Your message has been submitted.",
+  "serviceInquiry": "Learn more about our services",
+  "generalQuestion": "General inquiry",
+  "feedback": "Feedback or suggestion",
+  "complaint": "Complaint",
+  "jobApplication": "Job application",
+  "other": "Other",
+  "recruitmentSolutionsTitle": "Recruitment Solutions",
+  "talentAssessmentTitle": "Talent Assessment Solutions",
+  "hrConsultingTitle": "HR Consulting",
+  "academyTitle": "Adroyts Academy",
+  "socialMedia": "Social Media",
+  "googleSearch": "Google Search",
+  "linkedIn": "LinkedIn",
+  "friendOrColleague": "Client Referral",
+  "event": "Event / Conference",
+  "websiteAd": "Website Advertisement",
+  "joinTalentNetworkDescription": "Register to join Adroyts or to be considered for future opportunities.",
+  "currentJobOpeningsDescription": "Explore active positions and apply directly.",
+  "emailCampaign": "Email Campaign",
+  "validation": {
+    "fullNameRequired": "Full Name is required",
+    "fullNameInvalid": "Arabic and English letters only, no symbols",
+    "fullNameMax": "Max 50 characters",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email address",
+    "mobileNumberRequired": "Mobile Number is required",
+    "mobileNumberInvalid": "Numbers only",
+    "mobileNumberMax": "Max 15 digits",
+    "currentCityRequired": "Current City is required",
+    "currentCityInvalid": "Arabic and English letters only, no symbols",
+    "currentCityMax": "Max 50 characters",
+    "nationalityRequired": "Nationality is required",
+    "nationalityInvalid": "Arabic and English letters only, no symbols",
+    "nationalityMax": "Max 30 characters",
+    "opportunityTypeRequired": "Opportunity Type is required",
+    "linkedInInvalid": "Must be a valid URL",
+    "resumeRequired": "Resume is required",
+    "resumeInvalidFormat": "Unsupported file format",
+    "consentRequired": "Consent is required"
+  },
+    "validation2": {
+    "fullNameRequired": "Full Name is required",
+    "fullNameInvalid": "Arabic and English letters only, no symbols",
+    "fullNameMax": "Max 50 characters",
+    
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email address",
+    
+    "mobileNumberRequired": "Mobile Number is required",
+    "mobileNumberInvalid": "Numbers only",
+    "mobileNumberMax": "Max 15 digits",
+    
+    "currentCityRequired": "Current City is required",
+    "currentCityInvalid": "Arabic and English letters only, no symbols",
+    "currentCityMax": "Max 50 characters",
+    
+    "nationalityRequired": "Nationality is required",
+    "nationalityInvalid": "Arabic and English letters only, no symbols",
+    "nationalityMax": "Max 30 characters",
+    
+    "currentJobTitleRequired": "Current Job Title is required",
+    "yearsExperienceRequired": "Years of experience is required",
+    
+    "currentSalaryRequired": "Current Salary is required",
+    "currentSalaryMin": "Salary must be at least 0",
+    
+    "expectedSalaryRequired": "Expected Salary is required",
+    "expectedSalaryMin": "Salary must be at least 0",
+    
+    "noticePeriodRequired": "Notice Period is required",
+    
+    "resumeRequired": "Resume is required",
+    "resumeInvalidFormat": "Unsupported file format",
+    
+    "consentRequired": "Consent is required"
+  }
+
 }

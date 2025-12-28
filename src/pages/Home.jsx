@@ -180,7 +180,7 @@ const Home = () => {
             variants={fadeUp}
             custom={0}
           >
-            {t("aboutUsText1")}
+            {t("desc1")}
           </motion.p>
 
           <motion.div variants={fadeUp} custom={0.2} className="flex">

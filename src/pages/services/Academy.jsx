@@ -1,11 +1,49 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
+import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
-import { FaArrowRight, FaPhoneAlt } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaAward,
+  FaClipboardList,
+  FaClock,
+  FaPhoneAlt,
+  FaSmile,
+  FaThumbsUp,
+  FaUserCheck,
+  FaUserGraduate,
+  FaUsers,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../../utils/SplitText";
 
+const statsData = [
+  {
+    num: 3000,
+    suffix: "+",
+    label: "trainees",
+    icon: <FaUserGraduate size={32} />,
+  },
+  {
+    num: 60000,
+    suffix: "+",
+    label: "trainingHours",
+    icon: <FaClock size={32} />,
+  },
+  {
+    num: 95.38,
+    suffix: "%",
+    label: "customerSatisfaction",
+    icon: <FaSmile size={32} />,
+  },
+  {
+    num: 100,
+    suffix: "+",
+    label: "clientsServed2",
+    icon: <FaUsers size={32} />,
+  },
+];
 const Academy = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -63,81 +101,8 @@ const Academy = () => {
       </section>
 
       <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
-        {/* Sidebar Menu */}
-        <div className="sticky top-32 h-full flex-1">
-          {/* MENU BOX */}
-          <div className="flex flex-col rounded-lg bg-[#0E1C3F] p-4 py-6 text-white">
-            <nav className="flex flex-col space-y-4">
-              {/* Recruitment Solutions (INACTIVE NOW) */}
-              <button
-                onClick={() => navigate("/services/recruitment")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
-              >
-                <span>{t("recruitmentSolutionsTitle")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />
-              </button>
-
-              <button
-                onClick={() => navigate("/services/academy")}
-                className="group flex w-full items-center justify-between rounded-lg bg-cyan-400 px-4 py-2 text-left font-semibold text-white transition-colors hover:bg-cyan-400/30"
-              >
-                <span>{t("academy.title")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />
-              </button>
-
-              {/* Assessment Center */}
-              <button
-                onClick={() => navigate("/services/assessment")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
-              >
-                <span>{t("talentAssessment.title")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-
-              {/* Human Capital Consulting */}
-              <button
-                onClick={() => navigate("/services/consulting")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
-              >
-                <span>{t("hrConsulting.title")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-            </nav>
-          </div>
-
-          {/* CONTACT BOX WITH OVERLAY */}
-          <div className="relative mt-4 overflow-hidden rounded-lg">
-            <img
-              src="/assets/conatact-us-placeholder.jpg"
-              alt="Contact"
-              className="h-48 w-full object-cover"
-            />
-
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-[#0E1C3F]/90"></div>
-
-            {/* Text */}
-            <div className="absolute inset-0 flex flex-col items-start justify-center space-y-4 p-8 text-white">
-              <p className="text-xl font-semibold">{t("needServiceContactUs")}</p>
-
-              <p className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-6 py-2 font-semibold text-[#0E1C3F]">
-                <FaPhoneAlt />
-                +966112342667
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Main Content */}
-        <div className="flex-[2.7] bg-white px-6">
+        <div className="bg-white">
           {/* HERO IMAGE */}
           <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
@@ -149,19 +114,145 @@ const Academy = () => {
           </div>
 
           {/* Remove previous about section, replace with i18n content */}
-          <section className="container pb-16 md:max-w-4xl">
+          <section className="container pb-16">
             <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">{academy.title}</h2>
             <p className="text-lg leading-relaxed text-gray-700">{academy.description}</p>
           </section>
+          {/* STATS SECTION */}
+          <section className="relative overflow-hidden rounded-lg bg-cyan-400 p-10 text-white md:p-12">
+            {/* Polygon overlay */}
+            <svg
+              className="absolute left-0 top-0 h-full w-full opacity-20"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+              viewBox="0 0 800 400"
+              fill="none"
+            >
+              <polygon points="0,0 800,0 800,100 0,300" fill="#1DC0DA" />
+              <polygon points="800,400 0,400 0,300 800,100" fill="#15a8bf" />
+            </svg>
+
+            <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
+              {/* Stats */}
+              <div className="flex flex-1 justify-between">
+                {statsData.map(({ icon, num, suffix, label }, i) => (
+                  <div
+                    key={i}
+                    className={`flex flex-col items-center px-6 ${
+                      i < statsData.length - 1 ? "border-white/30 ltr:border-r rtl:border-l" : ""
+                    }`}
+                  >
+                    <div className="mb-4 text-white">{icon}</div>
+                    <div className="text-4xl font-bold">
+                      <CountUp
+                        end={num}
+                        decimals={num % 1 !== 0 ? 2 : 0}
+                        duration={2.5}
+                        suffix={suffix}
+                        start={0}
+                        enableScrollSpy={true}
+                        separator=","
+                      />
+                    </div>
+                    <div className="mt-1 text-center font-bold tracking-widest">{t(label)}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+          {/* ACADEMY METHODOLOGY */}
+          <section className="bg-[#F8FAFC] py-24">
+            <div className="container mx-auto max-w-7xl px-6">
+              <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: false }}
+                className="mb-14 text-center text-4xl font-bold text-[#0E1C3F]"
+              >
+                {t("academyMethodology.title")}
+              </motion.h2>
+
+              <div className="grid gap-10 md:grid-cols-3">
+                {t("academyMethodology.items", { returnObjects: true }).map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.15, duration: 0.6, ease: "easeOut" }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    className="rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
+                      {index + 1}
+                    </div>
+
+                    <h3 className="mb-3 text-lg font-semibold text-[#0E1C3F]">{item.title}</h3>
+
+                    <p className="text-sm leading-relaxed text-gray-600">{item.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
 
           {/* Solutions Section */}
-          <section className="container mx-auto px-6 py-20">
+          <section className="container px-6 py-20">
             <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">{academy.solutionsTitle}</h2>
-            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-10 md:grid-cols-2">
+
+            <div className="mx-auto grid grid-cols-1 gap-10 md:grid-cols-2">
               {Object.values(academy.solutions).map(({ title, description }, index) => (
                 <div key={index} className="rounded-lg border border-gray-200 p-6 shadow-sm">
                   <h3 className="mb-3 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
                   <p className="text-gray-600">{description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+          {/* Academic Collaboration Section */}
+          <section className="container px-6 py-20">
+            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">
+              {t("academy.academicCollaborationTitle")}
+            </h2>
+
+            <div className="mx-auto max-w-5xl space-y-12">
+              {[
+                {
+                  img: "/assets/edu-1.svg",
+                  text: t("academy.academicCollaboration.description1"),
+                },
+                {
+                  img: "/assets/edu-2.jpg",
+                  text: t("academy.academicCollaboration.description2"),
+                },
+                {
+                  img: "/assets/edu-3.jpg",
+                  text: t("academy.academicCollaboration.description3"),
+                },
+                {
+                  img: "/assets/edu-4.webp",
+                  text: t("academy.academicCollaboration.description4"),
+                },
+                {
+                  img: "/assets/edu-5.png",
+                  text: t("academy.academicCollaboration.description5"),
+                },
+                {
+                  img: "/assets/edu-6.jpg",
+                  text: t("academy.academicCollaboration.description6"),
+                },
+                {
+                  img: "/assets/edu-7.png",
+                  text: t("academy.academicCollaboration.description7"),
+                },
+              ].map(({ img, text }, index) => (
+                <div key={index} className="flex flex-col items-center gap-6 md:flex-row">
+                  <img
+                    src={img}
+                    alt={`Collaboration ${index + 1}`}
+                    className="object-fit max-h-56 w-full max-w-xs rounded-lg"
+                  />
+                  <p className="text-lg leading-relaxed text-[#0E1C3F]">{text}</p>
                 </div>
               ))}
             </div>

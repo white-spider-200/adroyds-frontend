@@ -94,7 +94,7 @@ const MainLayout = ({ children }) => {
               onMouseLeave={() => setDropdown(null)}
             >
               <button className={`flex items-center gap-1 ${isActive("/about")}`}>
-                {i18n.language === "ar" ? "من نحن" : "About Us"}
+                {i18n.language === "ar" ? "من نحن؟" : "About Us"}
                 <FaChevronDown className="mt-0.5 text-xs" />
               </button>
               <div
@@ -126,7 +126,7 @@ const MainLayout = ({ children }) => {
               onMouseLeave={() => setDropdown(null)}
             >
               <button className={`flex items-center gap-1 ${isActive("/services/recruitment")}`}>
-                {i18n.language === "ar" ? "خدماتنا" : "Our Services"}
+                {i18n.language === "ar" ? "ماذا نقدّم؟" : "What We Do?"}
                 <FaChevronDown className="mt-0.5 text-xs" />
               </button>
               <div
@@ -136,8 +136,8 @@ const MainLayout = ({ children }) => {
               >
                 {[
                   { label: "recruitmentSolutionsTitle", path: "/services/recruitment" },
-                  { label: "academy.title", path: "/services/academy" },
                   { label: "talentAssessment.title", path: "/services/assessment" },
+                  { label: "academy.title", path: "/services/academy" },
                   { label: "hrConsulting.title", path: "/services/consulting" },
                 ].map((item) => (
                   <button

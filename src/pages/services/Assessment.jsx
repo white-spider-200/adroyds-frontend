@@ -60,78 +60,8 @@ const TalentAssessment = () => {
       </section>
 
       <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
-        {/* Sidebar Menu */}
-        <div className="sticky top-32 h-full flex-1">
-          {/* MENU BOX */}
-          <div className="flex flex-col rounded-lg bg-[#0E1C3F] p-4 py-6 text-white">
-            <nav className="flex flex-col space-y-4">
-              <button
-                onClick={() => navigate("/services/recruitment")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
-              >
-                <span>{t("recruitmentSolutionsTitle")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-
-              <button
-                onClick={() => navigate("/services/academy")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
-              >
-                <span>{t("academy.title")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-
-              <button
-                onClick={() => navigate("/services/assessment")}
-                className="group flex w-full items-center justify-between rounded-lg bg-cyan-400 px-4 py-2 text-left font-semibold text-white transition-colors hover:bg-cyan-400/30"
-              >
-                <span>{talentAssessment.title}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-
-              <button
-                onClick={() => navigate("/services/consulting")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
-              >
-                <span>{t("hrConsulting.title")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-            </nav>
-          </div>
-
-          {/* CONTACT BOX WITH OVERLAY */}
-          <div className="relative mt-4 overflow-hidden rounded-lg">
-            <img
-              src="/assets/conatact-us-placeholder.jpg"
-              alt="Contact"
-              className="h-48 w-full object-cover"
-            />
-
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-[#0E1C3F]/90"></div>
-
-            {/* Text */}
-            <div className="absolute inset-0 flex flex-col items-start justify-center space-y-4 p-8 text-white">
-              <p className="text-xl font-semibold">{t("needServiceContactUs")} </p>
-
-              <p className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-6 py-2 font-semibold text-[#0E1C3F]">
-                <FaPhoneAlt />
-                +966112342667
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Main Content */}
-        <div className="flex-[2.7] bg-white px-6">
+        <div className="bg-white">
           {/* HERO IMAGE */}
           <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
@@ -143,25 +73,122 @@ const TalentAssessment = () => {
           </div>
 
           {/* About Section */}
-          <section className="container pb-16 md:max-w-4xl">
+          <section className="container pb-16">
             <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">
               {talentAssessment.title}
             </h2>
             <p className="text-lg leading-relaxed text-gray-700">{talentAssessment.description}</p>
           </section>
+          {/* SOLUTIONS SECTION */}
+          <section className="py-24">
+            <div className="container mx-auto max-w-7xl px-6">
+              <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: false }}
+                className="mb-14 text-center text-4xl font-bold text-[#0E1C3F]"
+              >
+                {t("talentSolutions.title")}
+              </motion.h2>
 
-          {/* Tools Section */}
-          <section className="container mx-auto px-6 py-20">
-            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">
-              {talentAssessment.toolsTitle}
-            </h2>
-            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-10 md:grid-cols-2">
-              {Object.values(talentAssessment.tools).map(({ title, description }, index) => (
-                <div key={index} className="rounded-lg border border-gray-200 p-6 shadow-sm">
-                  <h3 className="mb-3 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
-                  <p className="text-gray-600">{description}</p>
-                </div>
-              ))}
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {t("talentSolutions.items", { returnObjects: true }).map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.6 }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    className="rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
+                      {index + 1}
+                    </div>
+
+                    <h3 className="mb-3 text-lg font-semibold text-[#0E1C3F]">{item.title}</h3>
+
+                    <p className="text-sm leading-relaxed text-gray-600">{item.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ASSESSMENT CENTER TOOLS */}
+          <section className="bg-[#F8FAFC] py-24">
+            <div className="container mx-auto max-w-7xl px-6">
+              <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: false }}
+                className="mb-16 text-center text-4xl font-bold text-[#0E1C3F]"
+              >
+                {t("assessmentCenterTools.title")}
+              </motion.h2>
+
+              <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+                {t("assessmentCenterTools.items", { returnObjects: true }).map((tool, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    className="group rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
+                      {index + 1}
+                    </div>
+
+                    <h3 className="mb-3 text-lg font-semibold text-[#0E1C3F]">{tool.title}</h3>
+
+                    <p className="text-sm leading-relaxed text-gray-600">{tool.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+          {/* PSYCHOMETRIC PROVIDERS */}
+          <section className="bg-white py-28">
+            <div className="container mx-auto max-w-7xl px-6">
+              <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: false }}
+                className="mb-16 text-center text-4xl font-bold text-[#0E1C3F]"
+              >
+                {t("psychometricProviders.title")}
+              </motion.h2>
+
+              <div className="grid gap-10 md:grid-cols-2">
+                {t("psychometricProviders.items", { returnObjects: true }).map((provider, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    className="rounded-xl border border-gray-100 bg-[#F8FAFC] p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    {/* Provider Image */}
+                    {provider.image && (
+                      <div className="mb-0 flex justify-center">
+                        <img
+                          src={provider.image}
+                          alt={provider.name}
+                          className="h-32 w-32 rounded-full object-contain"
+                        />
+                      </div>
+                    )}
+
+                    {/* Provider Description */}
+                    <p className="leading-relaxed text-gray-700">{provider.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </section>
         </div>

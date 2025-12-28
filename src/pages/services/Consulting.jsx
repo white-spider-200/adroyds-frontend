@@ -1,7 +1,18 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
+import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
-import { FaArrowRight, FaPhoneAlt } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaAward,
+  FaClipboardList,
+  FaClock,
+  FaIndustry,
+  FaPhoneAlt,
+  FaThumbsUp,
+  FaUserCheck,
+  FaUsers,
+} from "react-icons/fa";
 import { PiBriefcaseLight, PiClipboardTextLight, PiUsersThreeLight } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +26,27 @@ const fadeUp = {
     transition: { delay, duration: 0.6, ease: "easeOut" },
   }),
 };
+
+const statsData = [
+  {
+    num: 100000,
+    suffix: "+",
+    label: "consultingHours",
+    icon: <FaClock size={32} />,
+  },
+  {
+    num: 10,
+    suffix: "+",
+    label: "sectorsCovered",
+    icon: <FaIndustry size={32} />,
+  },
+  {
+    num: 100,
+    suffix: "+",
+    label: "clientsServed",
+    icon: <FaUsers size={32} />,
+  },
+];
 
 const Consulting = () => {
   const navigate = useNavigate();
@@ -46,7 +78,7 @@ const Consulting = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative z-10 max-w-4xl px-4 pt-28"
+          className="relative z-10 px-4 pt-28"
         >
           {/* Breadcrumb */}
           <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
@@ -78,79 +110,8 @@ const Consulting = () => {
       </section>
 
       <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
-        {/* Sidebar Menu */}
-        <div className="sticky top-32 h-full flex-1">
-          {/* MENU BOX */}
-          <div className="flex flex-col rounded-lg bg-[#0E1C3F] p-4 py-6 text-white">
-            <nav className="flex flex-col space-y-4">
-              {/* Other services menu buttons here (simplified for example) */}
-              <button
-                onClick={() => navigate("/services/recruitment")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
-              >
-                <span>{t("recruitmentSolutionsTitle")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-
-              <button
-                onClick={() => navigate("/services/academy")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
-              >
-                <span>{t("academy.title")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-
-              <button
-                onClick={() => navigate("/services/assessment")}
-                className="group flex w-full items-center justify-between rounded-lg px-4 py-2 text-left text-white/80 transition-colors hover:bg-cyan-400/20 hover:text-white"
-              >
-                <span>{t("talentAssessment.title")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-
-              <button
-                onClick={() => navigate("/services/consulting")}
-                className="group flex w-full items-center justify-between rounded-lg bg-cyan-400 px-4 py-2 text-left font-semibold text-white transition-colors hover:bg-cyan-400/30"
-              >
-                <span>{t("hrConsulting.title")}</span>
-                <FaArrowRight
-                  className={`translate-x-[-6px] transition-all duration-300 group-hover:translate-x-0 ${i18n.language === "ar" ? "rotate-180" : ""}`}
-                />{" "}
-              </button>
-            </nav>
-          </div>
-
-          {/* CONTACT BOX WITH OVERLAY */}
-          <div className="relative mt-4 overflow-hidden rounded-lg">
-            <img
-              src="/assets/conatact-us-placeholder.jpg"
-              alt="Contact"
-              className="h-48 w-full object-cover"
-            />
-
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-[#0E1C3F]/90"></div>
-
-            {/* Text */}
-            <div className="absolute inset-0 flex flex-col items-start justify-center space-y-4 p-8 text-white">
-              <p className="text-xl font-semibold">{t("needServiceContactUs")}</p>
-
-              <p className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-6 py-2 font-semibold text-[#0E1C3F]">
-                <FaPhoneAlt />
-                +966112342667
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Main Content */}
-        <div className="flex-[2.7] bg-white px-6">
+        <div className="bg-white">
           {/* Banner Image */}
           <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
             <img
@@ -162,11 +123,52 @@ const Consulting = () => {
           </div>
 
           {/* INTRO */}
-          <section className="container pb-16 md:max-w-4xl">
+          <section className="container pb-16">
             <h2 className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">{hrConsulting.title}</h2>
             <p className="text-lg leading-relaxed text-gray-700">{hrConsulting.description}</p>
           </section>
+          {/* STATS SECTION */}
+          <section className="relative overflow-hidden rounded-lg bg-cyan-400 p-10 text-white md:p-12">
+            {/* Polygon overlay */}
+            <svg
+              className="absolute left-0 top-0 h-full w-full opacity-20"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+              viewBox="0 0 800 400"
+              fill="none"
+            >
+              <polygon points="0,0 800,0 800,100 0,300" fill="#1DC0DA" />
+              <polygon points="800,400 0,400 0,300 800,100" fill="#15a8bf" />
+            </svg>
 
+            <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
+              {/* Stats */}
+              <div className="flex flex-1 justify-between">
+                {statsData.map(({ icon, num, suffix, label }, i) => (
+                  <div
+                    key={i}
+                    className={`flex flex-col items-center px-6 ${
+                      i < statsData.length - 1 ? "border-white/30 ltr:border-r rtl:border-l" : ""
+                    }`}
+                  >
+                    <div className="mb-4 text-white">{icon}</div>
+                    <div className="text-4xl font-bold">
+                      <CountUp
+                        end={num}
+                        decimals={num % 1 !== 0 ? 2 : 0}
+                        duration={2.5}
+                        suffix={suffix}
+                        start={0}
+                        enableScrollSpy={true}
+                        separator=","
+                      />
+                    </div>
+                    <div className="mt-1 text-center font-bold tracking-widest">{t(label)}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
           {/* SERVICES */}
           <section className="container mx-auto px-6 py-20">
             <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">

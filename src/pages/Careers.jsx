@@ -8,6 +8,35 @@ import * as Yup from "yup";
 
 import { SplitText } from "../utils/SplitText";
 
+const headerVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15, // stagger cards animation
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  hover: { scale: 1.03, boxShadow: "0px 10px 20px rgba(0,0,0,0.15)" },
+};
+
+const boxVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  hover: { scale: 1.05, boxShadow: "0px 10px 20px rgba(0,0,0,0.15)" },
+};
+const boxVariants2 = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
 const Careers = () => {
   const location = useLocation();
   const { i18n, t } = useTranslation();
@@ -26,29 +55,36 @@ const Careers = () => {
 
   const validationSchema = Yup.object({
     fullName: Yup.string()
-      .matches(/^[\u0600-\u06FFa-zA-Z\s]+$/, "Arabic and English letters only, no symbols")
-      .max(50, "Max 50 characters")
-      .required("Full Name is required"),
-    email: Yup.string().email("Invalid email address").required("Email is required"),
+      .matches(/^[\u0600-\u06FFa-zA-Z\s]+$/, t("validation.fullNameInvalid"))
+      .max(50, t("validation.fullNameMax"))
+      .required(t("validation.fullNameRequired")),
+
+    email: Yup.string().email(t("validation.emailInvalid")).required(t("validation.emailRequired")),
+
     mobileNumber: Yup.string()
-      .matches(/^\d+$/, "Numbers only")
-      .max(15, "Max 15 digits")
-      .required("Mobile Number is required"),
+      .matches(/^\d+$/, t("validation.mobileNumberInvalid"))
+      .max(15, t("validation.mobileNumberMax"))
+      .required(t("validation.mobileNumberRequired")),
+
     currentCity: Yup.string()
-      .matches(/^[\u0600-\u06FFa-zA-Z\s]+$/, "Arabic and English letters only, no symbols")
-      .max(50, "Max 50 characters")
-      .required("Current City is required"),
+      .matches(/^[\u0600-\u06FFa-zA-Z\s]+$/, t("validation.currentCityInvalid"))
+      .max(50, t("validation.currentCityMax"))
+      .required(t("validation.currentCityRequired")),
+
     nationality: Yup.string()
-      .matches(/^[\u0600-\u06FFa-zA-Z\s]+$/, "Arabic and English letters only, no symbols")
-      .max(30, "Max 30 characters")
-      .required("Nationality is required"),
-    opportunityType: Yup.string().required("Opportunity Type is required"),
-    linkedIn: Yup.string().url("Must be a valid URL").nullable(),
+      .matches(/^[\u0600-\u06FFa-zA-Z\s]+$/, t("validation.nationalityInvalid"))
+      .max(30, t("validation.nationalityMax"))
+      .required(t("validation.nationalityRequired")),
+
+    opportunityType: Yup.string().required(t("validation.opportunityTypeRequired")),
+
+    linkedIn: Yup.string().url(t("validation.linkedInInvalid")).nullable(),
+
     resume: Yup.mixed()
-      .required("Resume is required")
+      .required(t("validation.resumeRequired"))
       .test(
         "fileFormat",
-        "Unsupported file format",
+        t("validation.resumeInvalidFormat"),
         (value) =>
           value &&
           [
@@ -57,7 +93,10 @@ const Careers = () => {
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
           ].includes(value.type)
       ),
-    consent: Yup.boolean().oneOf([true], "Consent is required").required("Consent is required"),
+
+    consent: Yup.boolean()
+      .oneOf([true], t("validation.consentRequired"))
+      .required(t("validation.consentRequired")),
   });
 
   const formik = useFormik({
@@ -131,59 +170,89 @@ const Careers = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [showApplicationModal, setShowApplicationModal] = useState(false);
 
-  // --- Application Modal State ---
-  const [applicationData, setApplicationData] = useState({
-    fullName: "",
-    email: "",
-    mobileNumber: "",
-    currentCity: "",
-    nationality: "",
-    currentJobTitle: "",
-    yearsExperience: "",
-    currentSalary: "",
-    expectedSalary: "",
-    noticePeriod: "",
-    resume: null,
-    consent: false,
-  });
-  const [applicationStatus, setApplicationStatus] = useState(null);
+  const applicationFormik = useFormik({
+    initialValues: {
+      fullName: "",
+      email: "",
+      mobileNumber: "",
+      currentCity: "",
+      nationality: "",
+      currentJobTitle: "",
+      yearsExperience: "",
+      currentSalary: "",
+      expectedSalary: "",
+      noticePeriod: "",
+      resume: null,
+      consent: false,
+    },
+    validationSchema: Yup.object({
+      fullName: Yup.string()
+        .matches(/^[\u0600-\u06FFa-zA-Z\s]+$/, t("validation2.fullNameInvalid"))
+        .max(50, t("validation2.fullNameMax"))
+        .required(t("validation2.fullNameRequired")),
+      email: Yup.string().email(t("validation2.emailInvalid")).required(t("validation2.emailRequired")),
+      mobileNumber: Yup.string()
+        .matches(/^\d+$/, t("validation2.mobileNumberInvalid"))
+        .max(15, t("validation2.mobileNumberMax"))
+        .required(t("validation2.mobileNumberRequired")),
+      currentCity: Yup.string()
+        .matches(/^[\u0600-\u06FFa-zA-Z\s]+$/, t("validation2.currentCityInvalid"))
+        .max(50, t("validation2.currentCityMax"))
+        .required(t("validation2.currentCityRequired")),
+      nationality: Yup.string()
+        .matches(/^[\u0600-\u06FFa-zA-Z\s]+$/, t("validation2.nationalityInvalid"))
+        .max(30, t("validation2.nationalityMax"))
+        .required(t("validation2.nationalityRequired")),
+      currentJobTitle: Yup.string().required(t("validation2.currentJobTitleRequired")),
+      yearsExperience: Yup.string().required(t("validation2.yearsExperienceRequired")),
+      currentSalary: Yup.number()
+        .min(0, t("validation2.currentSalaryMin"))
+        .required(t("validation2.currentSalaryRequired")),
+      expectedSalary: Yup.number()
+        .min(0, t("validation2.expectedSalaryMin"))
+        .required(t("validation2.expectedSalaryRequired")),
+      noticePeriod: Yup.string().required(t("validation2.noticePeriodRequired")),
+      resume: Yup.mixed()
+        .required(t("validation2.resumeRequired"))
+        .test(
+          "fileFormat",
+          t("validation2.resumeInvalidFormat"),
+          (value) =>
+            value &&
+            [
+              "application/pdf",
+              "application/msword",
+              "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            ].includes(value.type)
+        ),
+      consent: Yup.boolean().oneOf([true], t("validation2.consentRequired")),
+    }),
+    onSubmit: (values, { setSubmitting, resetForm }) => {
+      setSubmitting(true);
 
-  const handleApplicationChange = (e) => {
-    const { name, value, files, type, checked } = e.target;
-    setApplicationData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : files ? files[0] : value,
-    }));
-  };
-
-  const handleApplicationSubmit = (e) => {
-    e.preventDefault();
-    setApplicationStatus("loading");
-
-    // TODO: Replace with API call and validation
-    setTimeout(() => {
-      setApplicationStatus("success");
-      setApplicationData({
-        fullName: "",
-        email: "",
-        mobileNumber: "",
-        currentCity: "",
-        nationality: "",
-        currentJobTitle: "",
-        yearsExperience: "",
-        currentSalary: "",
-        expectedSalary: "",
-        noticePeriod: "",
-        resume: null,
-        consent: false,
-      });
+      // Simulate API call
       setTimeout(() => {
-        setApplicationStatus(null);
+        setSubmitting(false);
+        resetForm();
         setShowApplicationModal(false);
         setSelectedJob(null);
-      }, 3000);
-    }, 1500);
-  };
+        setApplicationStatus("success");
+      }, 1500);
+    },
+  });
+
+  const [applicationStatus, setApplicationStatus] = useState(null);
+
+  useEffect(() => {
+    if ((selectedJob && !showApplicationModal) || (selectedJob && showApplicationModal)) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [selectedJob, showApplicationModal]);
 
   return (
     <div className="w-full">
@@ -224,622 +293,627 @@ const Careers = () => {
         </motion.div>
       </section>
 
-      {/* Intro Text */}
-      <div className="flex w-full justify-center bg-gray-100 px-4">
-        <section className="mx-auto max-w-4xl bg-gray-100 px-6 py-12 text-center">
-          <p className="mb-3 text-lg font-semibold text-gray-900">{t("beliefStatement")}</p>
-          <p className="mb-3 text-lg text-gray-700">{t("welcomeMessage")}</p>
-          <p className="text-lg text-gray-700">{t("startJourney")}</p>
+      <div className="w-full overflow-x-hidden">
+        <section className="relative bg-white px-4 py-8">
+          <div className="mx-auto max-w-5xl px-6 text-center">
+            {/* BELIEF STATEMENT - Card with Border Accent */}
+            <div className="mb-6 flex w-full justify-center">
+              <div className="max-w-4xl rounded-xl border-l-4 border-cyan-500 bg-white p-6 pl-6 text-lg italic text-gray-700 shadow-md">
+                {t("beliefStatement")} {t("welcomeMessage")}
+              </div>
+            </div>
+
+            <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+              {/* Box 1: General Application */}
+              <motion.div
+                className="flex cursor-pointer flex-col justify-between rounded-2xl border border-gray-200 bg-white p-6 shadow"
+                variants={boxVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }} // animate when 30% of box is in view
+                whileHover="hover"
+              >
+                <div>
+                  <h3 className="mb-2 text-xl font-bold text-gray-900">{t("joinTalentNetwork")}</h3>
+                  <p className="text-gray-600">{t("joinTalentNetworkDescription")}</p>
+                </div>
+                <button
+                  onClick={() => scrollToSection("generalApplication")}
+                  className="mt-4 rounded-lg bg-cyan-500 px-6 py-3 font-semibold text-white shadow hover:bg-cyan-600"
+                >
+                  {t("applyRegister")}
+                </button>
+              </motion.div>
+
+              {/* Box 2: Job Openings */}
+              <motion.div
+                className="flex cursor-pointer flex-col justify-between rounded-2xl border border-gray-200 bg-white p-6 shadow"
+                variants={boxVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                whileHover="hover"
+              >
+                <div>
+                  <h3 className="mb-2 text-xl font-bold text-gray-900">{t("currentJobOpenings")}</h3>
+                  <p className="text-gray-600">{t("currentJobOpeningsDescription")}</p>
+                </div>
+                <button
+                  onClick={() => scrollToSection("openings")}
+                  className="mt-4 rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 hover:bg-gray-100"
+                >
+                  {t("viewJobs")}
+                </button>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ================= APPLICATION FORM ================= */}
+        <section id="generalApplication" className="mx-auto max-w-6xl px-6 py-24">
+          <SplitText className="mb-12 text-center text-3xl font-bold">{t("joinTalentNetwork")}</SplitText>
+
+          <form
+            onSubmit={formik.handleSubmit}
+            encType="multipart/form-data"
+            className="space-y-6 rounded-2xl bg-white p-10 shadow-xl"
+          >
+            <div className="grid gap-6 md:grid-cols-2">
+              {/* Full Name */}
+              <div>
+                <label className="font-medium">{t("fullName2")}</label>
+                <input
+                  id="fullName"
+                  name="fullName"
+                  type="text"
+                  value={formik.values.fullName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`w-full rounded-md border px-3 py-2 ${
+                    formik.touched.fullName && formik.errors.fullName ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {formik.touched.fullName && formik.errors.fullName && (
+                  <p className="mt-1 text-sm text-red-500">{formik.errors.fullName}</p>
+                )}
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="font-medium">{t("emailAddress")}</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`w-full rounded-md border px-3 py-2 ${
+                    formik.touched.email && formik.errors.email ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {formik.touched.email && formik.errors.email && (
+                  <p className="mt-1 text-sm text-red-500">{formik.errors.email}</p>
+                )}
+              </div>
+
+              {/* Mobile Number */}
+              <div>
+                <label className="font-medium">{t("mobileNumber")}</label>
+                <input
+                  id="mobileNumber"
+                  name="mobileNumber"
+                  value={formik.values.mobileNumber}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`w-full rounded-md border px-3 py-2 ${
+                    formik.touched.mobileNumber && formik.errors.mobileNumber
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
+                />
+                {formik.touched.mobileNumber && formik.errors.mobileNumber && (
+                  <p className="mt-1 text-sm text-red-500">{formik.errors.mobileNumber}</p>
+                )}
+              </div>
+
+              {/* Current City */}
+              <div>
+                <label className="font-medium">{t("currentCity")}</label>
+                <input
+                  id="currentCity"
+                  name="currentCity"
+                  value={formik.values.currentCity}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`w-full rounded-md border px-3 py-2 ${
+                    formik.touched.currentCity && formik.errors.currentCity
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
+                />
+                {formik.touched.currentCity && formik.errors.currentCity && (
+                  <p className="mt-1 text-sm text-red-500">{formik.errors.currentCity}</p>
+                )}
+              </div>
+
+              {/* Nationality */}
+              <div>
+                <label className="font-medium">{t("nationality")}</label>
+                <input
+                  id="nationality"
+                  name="nationality"
+                  value={formik.values.nationality}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`w-full rounded-md border px-3 py-2 ${
+                    formik.touched.nationality && formik.errors.nationality
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
+                />
+                {formik.touched.nationality && formik.errors.nationality && (
+                  <p className="mt-1 text-sm text-red-500">{formik.errors.nationality}</p>
+                )}
+              </div>
+
+              {/* Opportunity Type */}
+              <div>
+                <label className="font-medium">{t("opportunityType")}</label>
+                <select
+                  id="opportunityType"
+                  name="opportunityType"
+                  value={formik.values.opportunityType}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`w-full rounded-md border px-3 py-2 ${
+                    formik.touched.opportunityType && formik.errors.opportunityType
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
+                >
+                  <option value="">{t("selectOpportunityType")}</option>
+                  <option value="Adroyts Team">{t("opportunityAdroytsTeam")}</option>
+                  <option value="Client Opportunities">{t("opportunityClient")}</option>
+                  <option value="Consultant">{t("opportunityConsultant")}</option>
+                </select>
+                {formik.touched.opportunityType && formik.errors.opportunityType && (
+                  <p className="mt-1 text-sm text-red-500">{formik.errors.opportunityType}</p>
+                )}
+              </div>
+
+              {/* LinkedIn */}
+              <div>
+                <label className="font-medium">{t("linkedinProfile")}</label>
+                <input
+                  id="linkedIn"
+                  name="linkedIn"
+                  value={formik.values.linkedIn}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`w-full rounded-md border px-3 py-2 ${
+                    formik.touched.linkedIn && formik.errors.linkedIn ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {formik.touched.linkedIn && formik.errors.linkedIn && (
+                  <p className="mt-1 text-sm text-red-500">{formik.errors.linkedIn}</p>
+                )}
+              </div>
+
+              {/* Resume */}
+              <div className="md:col-span-2">
+                <label className="font-medium">{t("uploadResume")}</label>
+                <input
+                  type="file"
+                  name="resume"
+                  onChange={(e) => formik.setFieldValue("resume", e.currentTarget.files[0])}
+                  className={`w-full rounded-md border px-3 py-2 ${
+                    formik.touched.resume && formik.errors.resume ? "border-red-500" : "border-gray-300"
+                  }`}
+                />
+                {formik.touched.resume && formik.errors.resume && (
+                  <p className="mt-1 text-sm text-red-500">{formik.errors.resume}</p>
+                )}
+              </div>
+            </div>
+
+            {/* Consent */}
+            <label className="flex gap-2 text-sm">
+              <input
+                type="checkbox"
+                name="consent"
+                checked={formik.values.consent}
+                onChange={formik.handleChange}
+              />
+              {t("consentText")}
+            </label>
+            {formik.touched.consent && formik.errors.consent && (
+              <p className="mt-1 text-sm text-red-500">{formik.errors.consent}</p>
+            )}
+
+            <button
+              type="submit"
+              disabled={formik.isSubmitting}
+              className="w-full rounded-xl bg-cyan-500 py-4 font-semibold text-white hover:bg-cyan-600"
+            >
+              {formik.isSubmitting ? t("sending") : t("send")}
+            </button>
+          </form>
+        </section>
+
+        {/* ================= JOBS ================= */}
+        <section id="openings" className="bg-gray-50 py-20">
+          <motion.div
+            className="mx-auto max-w-7xl px-6"
+            variants={boxVariants2}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }} // animate when 30% of box is in view
+            whileHover="hover"
+          >
+            {/* Header */}
+            <motion.div
+              className="mb-8 text-center text-3xl font-bold"
+              variants={headerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
+            >
+              <SplitText>{t("openPositions")}</SplitText>
+            </motion.div>
+
+            {/* Job Cards */}
+            <motion.div
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
+            >
+              {jobsData.map((job) => (
+                <motion.div
+                  key={job.id}
+                  className="cursor-pointer rounded-2xl bg-white p-6 shadow"
+                  variants={cardVariants}
+                  whileHover="hover"
+                >
+                  <h3 className="mb-2 text-xl font-bold">{job.title}</h3>
+
+                  <div className="mb-3 flex gap-3 text-sm text-gray-500">
+                    <span className="flex items-center gap-1">
+                      <HiOutlineLocationMarker />
+                      {job.location}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <HiOutlineCalendar />
+                      {job.postingDate}
+                    </span>
+                  </div>
+
+                  <p className="mb-6 line-clamp-3 text-gray-600">{job.description}</p>
+
+                  <button
+                    onClick={() => setSelectedJob(job)}
+                    className="w-full rounded-lg bg-cyan-500 py-2 font-semibold text-white hover:bg-cyan-600"
+                  >
+                    {t("viewDetails")}
+                  </button>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
         </section>
       </div>
 
-      <section className="mx-auto mb-6 flex max-w-6xl flex-col gap-8 px-6 py-16 md:flex-row md:items-stretch md:justify-center">
-        <div
-          onClick={() => scrollToSection("generalApplication")}
-          className="flex cursor-pointer flex-col justify-between rounded-lg border border-gray-300 bg-white p-8 text-center shadow hover:shadow-lg md:w-1/2"
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => e.key === "Enter" && scrollToSection("generalApplication")}
-          style={{ minHeight: "220px" }}
-        >
-          <h2 className="mb-4 text-2xl font-bold text-[#8b78b1]">{t("joinTalentNetwork")}</h2>
-          <p className="mx-auto mb-6 max-w-md text-gray-700">{t("registerInfo")}</p>
-          <button className="rounded bg-cyan-400 px-6 py-3 font-semibold text-white hover:bg-[#19aac0]">
-            {t("applyRegister")}
-          </button>
-        </div>
-
-        <div
-          onClick={() => scrollToSection("openings")}
-          className="flex cursor-pointer flex-col justify-between rounded-lg border border-gray-300 bg-white p-8 text-center shadow hover:shadow-lg md:w-1/2"
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => e.key === "Enter" && scrollToSection("openings")}
-          style={{ minHeight: "220px" }}
-        >
-          <h2 className="mb-4 text-2xl font-bold text-[#8b78b1]"> {t("currentJobOpenings")}</h2>
-          <p className="mx-auto mb-6 max-w-md text-gray-700"> {t("explorePositions")}</p>
-          <button className="rounded bg-cyan-400 px-6 py-3 font-semibold text-white hover:bg-[#19aac0]">
-            {t("viewJobs")}
-          </button>
-        </div>
-      </section>
-
-      {/* General Application Form Section */}
-
-      <section
-        id="generalApplication"
-        className="mx-auto max-w-6xl px-6 py-20 pt-0 text-left"
-        aria-label="General Application Form"
-      >
-        <SplitText className="mb-8 text-center text-3xl font-bold text-gray-900">
-          {t("joinTalentNetwork")}
-        </SplitText>
-
-        <form
-          onSubmit={formik.handleSubmit}
-          encType="multipart/form-data"
-          className="space-y-6 rounded-xl bg-gray-100 p-8 shadow"
-        >
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {/* Full Name */}
-            <div>
-              <label className="mb-1 block text-justify font-medium" htmlFor="fullName">
-                {t("fullName")}
-              </label>
-              <input
-                id="fullName"
-                name="fullName"
-                type="text"
-                maxLength={50}
-                value={formik.values.fullName}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                className={`w-full rounded-md border px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-400 ${
-                  formik.touched.fullName && formik.errors.fullName ? "border-red-500" : "border-gray-300"
-                } bg-white text-gray-900`}
-                pattern="^[\u0600-\u06FFa-zA-Z\s]+$"
-                title="Arabic and English letters only, no symbols"
-                required
-              />
-              {formik.touched.fullName && formik.errors.fullName ? (
-                <p className="text-sm text-red-500">{formik.errors.fullName}</p>
-              ) : null}
-            </div>
-
-            {/* Email Address */}
-            <div>
-              <label className="mb-1 block text-justify font-medium" htmlFor="email">
-                {t("emailAddress")}
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                required
-                className={`w-full rounded-md border px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-400 ${
-                  formik.touched.email && formik.errors.email ? "border-red-500" : "border-gray-300"
-                } bg-white text-gray-900`}
-              />
-              {formik.touched.email && formik.errors.email ? (
-                <p className="text-sm text-red-500">{formik.errors.email}</p>
-              ) : null}
-            </div>
-
-            {/* Mobile Number */}
-            <div>
-              <label className="mb-1 block text-justify font-medium" htmlFor="mobileNumber">
-                {t("mobileNumber")}
-              </label>
-              <input
-                id="mobileNumber"
-                name="mobileNumber"
-                type="text"
-                maxLength={15}
-                pattern="\d+"
-                title="Numbers only"
-                value={formik.values.mobileNumber}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                required
-                className={`w-full rounded-md border px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-400 ${
-                  formik.touched.mobileNumber && formik.errors.mobileNumber
-                    ? "border-red-500"
-                    : "border-gray-300"
-                } bg-white text-gray-900`}
-              />
-              {formik.touched.mobileNumber && formik.errors.mobileNumber ? (
-                <p className="text-sm text-red-500">{formik.errors.mobileNumber}</p>
-              ) : null}
-            </div>
-
-            {/* Current City */}
-            <div>
-              <label className="mb-1 block text-justify font-medium" htmlFor="currentCity">
-                {t("currentCity")}
-              </label>
-              <input
-                id="currentCity"
-                name="currentCity"
-                type="text"
-                maxLength={50}
-                value={formik.values.currentCity}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                required
-                pattern="^[\u0600-\u06FFa-zA-Z\s]+$"
-                title="Arabic and English letters only, no symbols"
-                className={`w-full rounded-md border px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-400 ${
-                  formik.touched.currentCity && formik.errors.currentCity
-                    ? "border-red-500"
-                    : "border-gray-300"
-                } bg-white text-gray-900`}
-              />
-              {formik.touched.currentCity && formik.errors.currentCity ? (
-                <p className="text-sm text-red-500">{formik.errors.currentCity}</p>
-              ) : null}
-            </div>
-
-            {/* Nationality */}
-            <div>
-              <label className="mb-1 block text-justify font-medium" htmlFor="nationality">
-                {t("nationality")}
-              </label>
-              <input
-                id="nationality"
-                name="nationality"
-                type="text"
-                maxLength={30}
-                value={formik.values.nationality}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                required
-                pattern="^[\u0600-\u06FFa-zA-Z\s]+$"
-                title="Arabic and English letters only, no symbols"
-                className={`w-full rounded-md border px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-400 ${
-                  formik.touched.nationality && formik.errors.nationality
-                    ? "border-red-500"
-                    : "border-gray-300"
-                } bg-white text-gray-900`}
-              />
-              {formik.touched.nationality && formik.errors.nationality ? (
-                <p className="text-sm text-red-500">{formik.errors.nationality}</p>
-              ) : null}
-            </div>
-
-            {/* Opportunity Type */}
-            <div>
-              <label className="mb-1 block text-justify font-medium" htmlFor="opportunityType">
-                {t("opportunityType")}
-              </label>
-              <select
-                id="opportunityType"
-                name="opportunityType"
-                value={formik.values.opportunityType}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                required
-                className={`w-full rounded-md border px-3 py-2 text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-400 ${
-                  formik.touched.opportunityType && formik.errors.opportunityType
-                    ? "border-red-500"
-                    : "border-gray-300"
-                } bg-white`}
-              >
-                <option value="">{t("selectOpportunityType")}</option>
-                <option value="Adroyts Team">{t("opportunityAdroytsTeam")}</option>
-                <option value="Client Opportunities">{t("opportunityClient")}</option>
-                <option value="Consultant">{t("opportunityConsultant")}</option>
-              </select>
-              {formik.touched.opportunityType && formik.errors.opportunityType ? (
-                <p className="text-sm text-red-500">{formik.errors.opportunityType}</p>
-              ) : null}
-            </div>
-
-            {/* LinkedIn Profile URL */}
-            <div>
-              <label className="mb-1 block text-justify font-medium" htmlFor="linkedIn">
-                {t("linkedinProfile")}
-              </label>
-              <input
-                id="linkedIn"
-                name="linkedIn"
-                type="url"
-                value={formik.values.linkedIn}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                className={`w-full rounded-md border px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-400 ${
-                  formik.touched.linkedIn && formik.errors.linkedIn ? "border-red-500" : "border-gray-300"
-                } bg-white text-gray-900`}
-              />
-              {formik.touched.linkedIn && formik.errors.linkedIn ? (
-                <p className="text-sm text-red-500">{formik.errors.linkedIn}</p>
-              ) : null}
-            </div>
-
-            {/* Resume Upload */}
-            <div className="col-span-full">
-              <label className="mb-1 block text-justify font-medium" htmlFor="resume">
-                {t("uploadResume")}
-              </label>
-              <input
-                id="resume"
-                name="resume"
-                type="file"
-                onChange={(event) => formik.setFieldValue("resume", event.currentTarget.files[0])}
-                accept=".pdf,.doc,.docx"
-                required
-                className={`w-full rounded-md border px-3 py-2 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-400 ${
-                  formik.touched.resume && formik.errors.resume ? "border-red-500" : "border-gray-300"
-                } bg-white text-gray-900`}
-              />
-              {formik.touched.resume && formik.errors.resume ? (
-                <p className="text-sm text-red-500">{formik.errors.resume}</p>
-              ) : null}
-            </div>
-          </div>
-
-          {/* Consent Checkbox */}
-          <label className="flex items-center gap-2">
-            <input
-              id="consent"
-              name="consent"
-              type="checkbox"
-              checked={formik.values.consent}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              required
-              className="rounded border-gray-300 text-cyan-400 focus:ring-cyan-400"
-            />
-            <span className="text-sm">{t("consentText")}</span>
-          </label>
-          {formik.touched.consent && formik.errors.consent ? (
-            <p className="text-sm text-red-500">{formik.errors.consent}</p>
-          ) : null}
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={formik.isSubmitting}
-            className="w-full rounded-lg bg-cyan-400 py-3 font-semibold text-white transition hover:bg-[#19aac0] disabled:opacity-50"
-          >
-            {formik.isSubmitting ? t("sending") : t("send")}
-          </button>
-
-          {/* Success & Error Messages */}
-          {formik.status?.success && (
-            <p className="mt-4 text-center text-green-600">{formik.status.message}</p>
-          )}
-        </form>
-      </section>
-
-      {/* Job Openings Section */}
-      <section id="openings" className="mx-auto max-w-7xl px-6 pb-20 pt-10" aria-label="Open Positions">
-        <SplitText className="mb-8 text-center text-3xl font-bold text-gray-900">
-          {t("openPositions")}
-        </SplitText>
-
-        <p className="mx-auto mb-12 max-w-3xl text-center text-gray-700">{t("exploreCurrentOpenings")}</p>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {jobsData.map((job) => (
-            <div
-              key={job.id}
-              className="relative flex flex-col rounded-xl border border-gray-300 bg-white p-6 shadow-md transition-shadow duration-300 hover:shadow-xl"
-            >
-              {/* Status badge */}
-              <span
-                className={`absolute top-4 rounded-full px-3 py-1 text-xs font-semibold ltr:right-4 rtl:left-4 ${
-                  job.status === "Open" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-                }`}
-              >
-                {t(job.status)}
-              </span>
-
-              {/* Job title */}
-              <h3 className="mb-3 cursor-pointer text-xl font-bold text-gray-900 transition-colors hover:text-cyan-600">
-                {job.title}
-              </h3>
-
-              {/* Location and Posting Date */}
-              <div className="mb-4 flex flex-wrap gap-4 text-sm text-gray-600">
-                <div className="flex items-center gap-1">
-                  <HiOutlineLocationMarker className="h-4 w-4 text-gray-500" aria-hidden="true" />
-                  <span>{job.location}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <HiOutlineCalendar className="h-4 w-4 text-gray-500" aria-hidden="true" />
-                  <span>
-                    {" "}
-                    {t("postedOn")}
-                    {job.postingDate}
-                  </span>
-                </div>
-              </div>
-
-              {/* Description */}
-              <p className="mb-6 flex-grow text-gray-700">{job.description}</p>
-
-              {/* View Details button */}
-              <button
-                onClick={() => setSelectedJob(job)}
-                className="mt-auto rounded-lg bg-cyan-500 px-5 py-2 font-semibold text-white transition-colors hover:bg-cyan-600"
-                aria-label={`View details for ${job.title}`}
-              >
-                {t("viewDetails")}{" "}
-              </button>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Job Details Modal */}
+      {/* ================= Job Details Modal ================= */}
       {selectedJob && !showApplicationModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
-          onClick={() => {
-            setSelectedJob(null);
-            setShowApplicationModal(false);
-          }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-labelledby="job-details-title"
         >
           <div
-            className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-lg bg-white p-6 shadow-lg"
-            onClick={(e) => e.stopPropagation()}
+            className="relative flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
+            onClick={(e) => e.stopPropagation()} // Prevent closing on outside click
           >
-            <button
-              onClick={() => {
-                setSelectedJob(null);
-                setShowApplicationModal(false);
-              }}
-              className="absolute top-4 rounded bg-gray-200 px-3 py-1 font-bold hover:bg-gray-300 ltr:right-4 rtl:left-4"
-              aria-label={t("closeJobDetails")}
-            >
-              ×
-            </button>
+            {/* ===== Header ===== */}
+            <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b bg-white p-6">
+              <div>
+                <h2 id="job-details-title" className="text-2xl font-bold text-gray-900">
+                  {selectedJob.title}
+                </h2>
 
-            <h2 id="job-details-title" className="mb-2 text-2xl font-bold">
-              {selectedJob.title}
-            </h2>
+                <div className="mt-3 flex flex-wrap gap-2 text-sm">
+                  <span className="rounded-full bg-gray-100 px-3 py-1 text-gray-700">
+                    {selectedJob.department || t("notAvailable")}
+                  </span>
 
-            <p className="mb-1 text-gray-700">
-              <strong>{t("department")}:</strong> {selectedJob.department || t("notAvailable")}
-            </p>
-            <p className="mb-1 text-gray-700">
-              <strong>{t("location")}:</strong> {selectedJob.location}
-            </p>
-            <p className="mb-1 text-gray-700">
-              <strong>{t("postingDate")}:</strong> {selectedJob.postingDate}
-            </p>
-            <p className="mb-4">
-              <strong>{t("status")}:</strong>{" "}
-              <span
-                className={`rounded-full px-2 py-1 font-semibold ${
-                  selectedJob.status === "Open" ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"
+                  <span className="rounded-full bg-gray-100 px-3 py-1 text-gray-700">
+                    {selectedJob.location}
+                  </span>
+
+                  <span className="rounded-full bg-gray-100 px-3 py-1 text-gray-700">
+                    {t("postedOn")} {selectedJob.postingDate}
+                  </span>
+
+                  <span
+                    className={`rounded-full px-3 py-1 font-semibold ${
+                      selectedJob.status === "Open"
+                        ? "bg-green-100 text-green-700"
+                        : "bg-red-100 text-red-700"
+                    }`}
+                  >
+                    {selectedJob.status === "Open" ? t("statusOpen") : t("statusClosed")}
+                  </span>
+                </div>
+              </div>
+
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedJob(null)}
+                className="rounded-lg bg-gray-100 px-3 py-1 text-xl font-bold text-gray-600 hover:bg-gray-200"
+                aria-label={t("closeJobDetails")}
+              >
+                ×
+              </button>
+            </div>
+
+            {/* ===== Content ===== */}
+            <div className="flex-1 space-y-8 overflow-y-auto p-6">
+              {/* Description */}
+              <section>
+                <h3 className="mb-2 text-lg font-semibold text-gray-900">{t("jobDescription")}</h3>
+                <p className="leading-relaxed text-gray-700">{selectedJob.description}</p>
+              </section>
+
+              {/* Responsibilities */}
+              {selectedJob.responsibilities?.length > 0 && (
+                <section>
+                  <h3 className="mb-2 text-lg font-semibold text-gray-900">{t("responsibilities")}</h3>
+                  <ul className="space-y-2 text-gray-700">
+                    {selectedJob.responsibilities.map((item, idx) => (
+                      <li key={idx} className="flex gap-2">
+                        <span className="mt-1 h-2 w-2 rounded-full bg-cyan-500" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {/* Requirements */}
+              {selectedJob.requirements?.length > 0 && (
+                <section>
+                  <h3 className="mb-2 text-lg font-semibold text-gray-900">{t("requirements")}</h3>
+                  <ul className="space-y-2 text-gray-700">
+                    {selectedJob.requirements.map((item, idx) => (
+                      <li key={idx} className="flex gap-2">
+                        <span className="mt-1 h-2 w-2 rounded-full bg-purple-500" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+            </div>
+
+            {/* ===== Footer ===== */}
+            <div className="sticky bottom-0 border-t bg-white p-6">
+              <button
+                onClick={() => setShowApplicationModal(true)}
+                disabled={selectedJob.status !== "Open"}
+                className={`w-full rounded-xl py-4 text-lg font-semibold text-white transition ${
+                  selectedJob.status === "Open"
+                    ? "bg-cyan-500 hover:bg-cyan-600"
+                    : "cursor-not-allowed bg-gray-300"
                 }`}
               >
-                {selectedJob.status === "Open" ? t("statusOpen") : t("statusClosed")}
-              </span>
-            </p>
-
-            <h3 className="mb-2 text-lg font-semibold">{t("jobDescription")}</h3>
-            <p className="mb-4 text-gray-700">{selectedJob.description}</p>
-
-            <h3 className="mb-2 text-lg font-semibold">{t("responsibilities")}</h3>
-            <ul className="mb-4 list-disc pl-6 text-gray-700">
-              {selectedJob.responsibilities.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
-
-            <h3 className="mb-2 text-lg font-semibold">{t("requirements")}</h3>
-            <ul className="mb-6 list-disc pl-6 text-gray-700">
-              {selectedJob.requirements.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
-
-            <button
-              onClick={() => setShowApplicationModal(true)}
-              disabled={selectedJob.status !== "Open"}
-              className={`rounded bg-cyan-400 px-6 py-3 font-semibold text-white transition hover:bg-[#19aac0] ${
-                selectedJob.status !== "Open" ? "cursor-not-allowed opacity-50" : ""
-              }`}
-            >
-              {t("applyNow")}
-            </button>
+                {selectedJob.status === "Open" ? t("applyNow") : t("positionClosed")}
+              </button>
+            </div>
           </div>
         </div>
       )}
-
+      {/* ================= Application Modal ================= */}
       {selectedJob && showApplicationModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
-          onClick={() => setShowApplicationModal(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-labelledby="application-modal-title"
         >
           <div
-            className="relative max-h-[80vh] w-full max-w-md overflow-y-auto rounded-lg bg-white p-4 shadow-lg"
-            onClick={(e) => e.stopPropagation()}
+            className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
+            onClick={(e) => e.stopPropagation()} // Prevent closing on outside click
           >
-            {/* Close button */}
-            <button
-              onClick={() => setShowApplicationModal(false)}
-              className="absolute top-3 rounded bg-gray-200 px-2 py-0.5 text-lg font-bold hover:bg-gray-300 ltr:right-4 rtl:left-4"
-              aria-label={t("closeApplicationModal")}
-            >
-              ×
-            </button>
+            {/* Header */}
+            <div className="sticky top-0 z-10 border-b bg-white p-6">
+              <div className="flex items-start justify-between">
+                <h3 id="application-modal-title" className="text-xl font-bold text-gray-900">
+                  {t("applyFor", { jobTitle: selectedJob.title })}
+                </h3>
+                <button
+                  onClick={() => setShowApplicationModal(false)}
+                  className="rounded-lg bg-gray-100 px-3 py-1 text-xl font-bold text-gray-600 hover:bg-gray-200"
+                  aria-label={t("closeApplicationModal")}
+                >
+                  ×
+                </button>
+              </div>
+            </div>
 
-            <h3 id="application-modal-title" className="mb-3 text-lg font-semibold">
-              {t("applyFor", { jobTitle: selectedJob.title })}
-            </h3>
-
+            {/* Form */}
             <form
-              onSubmit={handleApplicationSubmit}
+              onSubmit={applicationFormik.handleSubmit}
               encType="multipart/form-data"
-              className="space-y-3 text-left text-sm"
+              className="flex-1 space-y-8 overflow-y-auto p-6 text-sm"
             >
-              {/* Basic Info */}
-              <input
-                type="text"
-                name="fullName"
-                placeholder={t("fullName")}
-                maxLength={50}
-                value={applicationData.fullName}
-                onChange={handleApplicationChange}
-                required
-                className="w-full rounded border border-gray-300 p-2"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder={t("emailAddress")}
-                value={applicationData.email}
-                onChange={handleApplicationChange}
-                required
-                className="w-full rounded border border-gray-300 p-2"
-              />
-              <input
-                type="text"
-                name="mobileNumber"
-                placeholder={t("mobileNumber")}
-                maxLength={15}
-                pattern="\d*"
-                value={applicationData.mobileNumber}
-                onChange={handleApplicationChange}
-                required
-                className="w-full rounded border border-gray-300 p-2"
-              />
-              <input
-                type="text"
-                name="currentCity"
-                placeholder={t("currentCity")}
-                maxLength={50}
-                value={applicationData.currentCity}
-                onChange={handleApplicationChange}
-                required
-                className="w-full rounded border border-gray-300 p-2"
-              />
-              <input
-                type="text"
-                name="nationality"
-                placeholder={t("nationality")}
-                maxLength={30}
-                value={applicationData.nationality}
-                onChange={handleApplicationChange}
-                required
-                className="w-full rounded border border-gray-300 p-2"
-              />
+              {/* Personal Information */}
+              <section className="space-y-3">
+                <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+                  {t("personalInformation")}
+                </h4>
 
-              {/* Professional Info */}
-              <input
-                type="text"
-                name="currentJobTitle"
-                placeholder={t("currentJobTitle")}
-                maxLength={50}
-                value={applicationData.currentJobTitle}
-                onChange={handleApplicationChange}
-                required
-                className="w-full rounded border border-gray-300 p-2"
-              />
+                {["fullName", "email", "mobileNumber", "currentCity", "nationality"].map((field) => (
+                  <div key={field}>
+                    <input
+                      type={field === "email" ? "email" : "text"}
+                      name={field}
+                      placeholder={t(field)}
+                      maxLength={
+                        field === "fullName" || field === "currentCity"
+                          ? 50
+                          : field === "nationality"
+                            ? 30
+                            : undefined
+                      }
+                      onChange={applicationFormik.handleChange}
+                      onBlur={applicationFormik.handleBlur}
+                      value={applicationFormik.values[field]}
+                      className="w-full rounded-lg border border-gray-300 p-3 focus:ring-1 focus:ring-cyan-400"
+                    />
+                    {applicationFormik.touched[field] && applicationFormik.errors[field] && (
+                      <p className="mt-1 text-xs text-red-600">{applicationFormik.errors[field]}</p>
+                    )}
+                  </div>
+                ))}
+              </section>
 
-              <select
-                name="yearsExperience"
-                value={applicationData.yearsExperience}
-                onChange={handleApplicationChange}
-                required
-                className="w-full rounded border border-gray-300 p-2"
-              >
-                <option value="">{t("yearsExperiencePlaceholder")}</option>
-                <option value="<1">{t("experienceLessThan1")}</option>
-                <option value="1-2">{t("experience1to2")}</option>
-                <option value="3-5">{t("experience3to5")}</option>
-                <option value="6-8">{t("experience6to8")}</option>
-                <option value="9-12">{t("experience9to12")}</option>
-                <option value="12+">{t("experience12Plus")}</option>
-              </select>
+              {/* Professional Information */}
+              <section className="space-y-3">
+                <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+                  {t("professionalInformation")}
+                </h4>
+
+                <input
+                  type="text"
+                  name="currentJobTitle"
+                  placeholder={t("currentJobTitle")}
+                  maxLength={50}
+                  onChange={applicationFormik.handleChange}
+                  onBlur={applicationFormik.handleBlur}
+                  value={applicationFormik.values.currentJobTitle}
+                  className="w-full rounded-lg border border-gray-300 p-3 focus:ring-1 focus:ring-cyan-400"
+                />
+                {applicationFormik.touched.currentJobTitle && applicationFormik.errors.currentJobTitle && (
+                  <p className="mt-1 text-xs text-red-600">{applicationFormik.errors.currentJobTitle}</p>
+                )}
+
+                <select
+                  name="yearsExperience"
+                  value={applicationFormik.values.yearsExperience}
+                  onChange={applicationFormik.handleChange}
+                  onBlur={applicationFormik.handleBlur}
+                  className="w-full rounded-lg border border-gray-300 p-3 focus:ring-1 focus:ring-cyan-400"
+                >
+                  <option value="">{t("yearsExperiencePlaceholder")}</option>
+                  <option value="<1">{t("experienceLessThan1")}</option>
+                  <option value="1-2">{t("experience1to2")}</option>
+                  <option value="3-5">{t("experience3to5")}</option>
+                  <option value="6-8">{t("experience6to8")}</option>
+                  <option value="9-12">{t("experience9to12")}</option>
+                  <option value="12+">{t("experience12Plus")}</option>
+                </select>
+                {applicationFormik.touched.yearsExperience && applicationFormik.errors.yearsExperience && (
+                  <p className="mt-1 text-xs text-red-600">{applicationFormik.errors.yearsExperience}</p>
+                )}
+              </section>
 
               {/* Compensation & Availability */}
-              <input
-                type="number"
-                name="currentSalary"
-                placeholder={t("currentSalary")}
-                value={applicationData.currentSalary}
-                onChange={handleApplicationChange}
-                required
-                className="w-full rounded border border-gray-300 p-2"
-                min={0}
-              />
-              <input
-                type="number"
-                name="expectedSalary"
-                placeholder={t("expectedSalary")}
-                value={applicationData.expectedSalary}
-                onChange={handleApplicationChange}
-                required
-                className="w-full rounded border border-gray-300 p-2"
-                min={0}
-              />
+              <section className="space-y-3">
+                <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+                  {t("compensationAvailability")}
+                </h4>
 
-              <select
-                name="noticePeriod"
-                value={applicationData.noticePeriod}
-                onChange={handleApplicationChange}
-                required
-                className="w-full rounded border border-gray-300 p-2"
-              >
-                <option value="">{t("noticePeriod")}</option>
-                <option value="Immediately">{t("noticeImmediately")}</option>
-                <option value="1 Month">{t("notice1Month")}</option>
-                <option value="2 Months">{t("notice2Months")}</option>
-                <option value="3 Months">{t("notice3Months")}</option>
-              </select>
+                {["currentSalary", "expectedSalary"].map((field) => (
+                  <div key={field}>
+                    <input
+                      type="number"
+                      name={field}
+                      placeholder={t(field)}
+                      min={0}
+                      onChange={applicationFormik.handleChange}
+                      onBlur={applicationFormik.handleBlur}
+                      value={applicationFormik.values[field]}
+                      className="w-full rounded-lg border border-gray-300 p-3 focus:ring-1 focus:ring-cyan-400"
+                    />
+                    {applicationFormik.touched[field] && applicationFormik.errors[field] && (
+                      <p className="mt-1 text-xs text-red-600">{applicationFormik.errors[field]}</p>
+                    )}
+                  </div>
+                ))}
 
-              {/* Resume upload */}
-              <input
-                type="file"
-                name="resume"
-                onChange={handleApplicationChange}
-                accept=".pdf,.doc,.docx"
-                required
-                className="w-full rounded border border-gray-300 p-2"
-              />
+                <select
+                  name="noticePeriod"
+                  value={applicationFormik.values.noticePeriod}
+                  onChange={applicationFormik.handleChange}
+                  onBlur={applicationFormik.handleBlur}
+                  className="w-full rounded-lg border border-gray-300 p-3 focus:ring-1 focus:ring-cyan-400"
+                >
+                  <option value="">{t("noticePeriod")}</option>
+                  <option value="Immediately">{t("noticeImmediately")}</option>
+                  <option value="1 Month">{t("notice1Month")}</option>
+                  <option value="2 Months">{t("notice2Months")}</option>
+                  <option value="3 Months">{t("notice3Months")}</option>
+                </select>
+                {applicationFormik.touched.noticePeriod && applicationFormik.errors.noticePeriod && (
+                  <p className="mt-1 text-xs text-red-600">{applicationFormik.errors.noticePeriod}</p>
+                )}
+              </section>
 
-              {/* Consent checkbox */}
-              <label className="flex items-center gap-2 text-xs">
+              {/* Resume */}
+              <section className="space-y-2">
+                <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-500">{t("resume")}</h4>
+                <input
+                  type="file"
+                  name="resume"
+                  onChange={(event) =>
+                    applicationFormik.setFieldValue("resume", event.currentTarget.files[0])
+                  }
+                  onBlur={applicationFormik.handleBlur}
+                  accept=".pdf,.doc,.docx"
+                  className="w-full rounded-lg border border-gray-300 p-3"
+                />
+                {applicationFormik.touched.resume && applicationFormik.errors.resume && (
+                  <p className="mt-1 text-xs text-red-600">{applicationFormik.errors.resume}</p>
+                )}
+              </section>
+
+              {/* Consent */}
+              <label className="flex items-start gap-3 text-xs text-gray-600">
                 <input
                   type="checkbox"
                   name="consent"
-                  checked={applicationData.consent}
-                  onChange={handleApplicationChange}
-                  required
+                  checked={applicationFormik.values.consent}
+                  onChange={applicationFormik.handleChange}
+                  onBlur={applicationFormik.handleBlur}
+                  className="mt-1"
                 />
-                <span>{t("consentText")}</span>
+                {t("consentText")}
               </label>
+              {applicationFormik.touched.consent && applicationFormik.errors.consent && (
+                <p className="mt-1 text-xs text-red-600">{applicationFormik.errors.consent}</p>
+              )}
 
-              <div className="flex justify-end">
-                <button
-                  type="submit"
-                  disabled={applicationStatus === "loading"}
-                  className="rounded bg-cyan-400 px-4 py-2 text-sm font-semibold text-white hover:bg-[#19aac0] disabled:opacity-50"
-                >
-                  {applicationStatus === "loading" ? t("sending") : t("submitApplication")}
-                </button>
-              </div>
-
-              {/* Status messages */}
+              {/* Status Messages */}
               {applicationStatus === "success" && (
-                <p className="mt-3 text-sm text-green-600">{t("applicationSuccess")}</p>
+                <p className="text-sm text-green-600">{t("applicationSuccess")}</p>
               )}
               {applicationStatus === "error" && (
-                <p className="mt-3 text-sm text-red-600">{t("applicationError")}</p>
+                <p className="text-sm text-red-600">{t("applicationError")}</p>
               )}
+
+              {/* Submit Button */}
+              <div className="sticky bottom-0 bg-white pt-4">
+                <button
+                  type="submit"
+                  disabled={applicationFormik.isSubmitting}
+                  className="w-full rounded-xl bg-cyan-500 py-4 font-semibold text-white transition hover:bg-cyan-600 disabled:opacity-50"
+                >
+                  {applicationFormik.isSubmitting ? t("sending") : t("submitApplication")}
+                </button>
+              </div>
             </form>
           </div>
         </div>

@@ -1,11 +1,53 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { FaStar } from "react-icons/fa";
+import { FaBook, FaBullseye, FaHandshake } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
+import mainServices from "../services/mainServices";
 import { SplitText } from "../utils/SplitText";
 
+const boardMembers = [
+  {
+    name: "John Doe",
+    role: "Chairman",
+    image: "/assets/board/john-doe.jpg",
+  },
+  {
+    name: "Jane Smith",
+    role: "Board Member",
+    image: "/assets/board/jane-smith.jpg",
+  },
+  {
+    name: "Michael Johnson",
+    role: "Board Member",
+    image: "/assets/board/michael-johnson.jpg",
+  },
+];
+
+const executiveMembers = [
+  {
+    name: "Alice Brown",
+    role: "CEO",
+    image: "/assets/executive/alice-brown.jpg",
+  },
+  {
+    name: "Robert Wilson",
+    role: "CTO",
+    image: "/assets/executive/robert-wilson.jpg",
+  },
+  {
+    name: "Emma Davis",
+    role: "CFO",
+    image: "/assets/executive/emma-davis.jpg",
+  },
+];
+
+const pillarIcons = [
+  FaBook, // Knowledge Depth
+  FaBullseye, // Strategic Focus
+  FaHandshake, // Sustainable Relationship
+];
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: (delay = 0) => ({
@@ -25,6 +67,7 @@ const AboutUs = () => {
   const location = useLocation();
   const { i18n, t } = useTranslation();
 
+  const [teamMembers, setTeamMembers] = React.useState([]);
   // Load arrays and strings from translation files
   const pillars = t("pillars", { returnObjects: true });
   const features = t("whySectionFeatures", { returnObjects: true });
@@ -32,6 +75,21 @@ const AboutUs = () => {
   useEffect(() => {
     scrollToHash(location.hash);
   }, [location.hash]);
+
+  useEffect(() => {
+    const fetchHomeData = async () => {
+      try {
+        const [teamMembersRes] = await Promise.all([mainServices.getTeamMembers(i18n.language)]);
+        // store in state
+        setTeamMembers(teamMembersRes?.data?.data || []);
+        console.log("Team Members:", teamMembersRes?.data?.data || []);
+      } catch (err) {
+        console.error("Home data fetch error:", err);
+      }
+    };
+
+    fetchHomeData();
+  }, [i18n.language]);
 
   return (
     <div className="bg-white font-cairo text-gray-900 selection:bg-blue-200 selection:text-gray-900">
@@ -95,7 +153,7 @@ const AboutUs = () => {
               </div>
 
               <div className="rounded-lg bg-cyan-400 p-6 text-center">
-                <p className="text-4xl font-extrabold text-white">15+</p>
+                <p className="text-4xl font-extrabold text-white">20+</p>
                 <p className="mt-2 text-base text-white/70">{t("YearsofExcellence")}</p>
               </div>
             </div>
@@ -126,7 +184,7 @@ const AboutUs = () => {
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="mb-3 w-fit rounded-md bg-[#e9fcff] px-4 py-2 text-sm font-semibold text-cyan-400"
+              className="mb-3 w-fit rounded-md bg-[#e9fcff] px-4 py-2 text-lg font-bold text-cyan-400"
             >
               {t("aboutUs")}
             </motion.div>
@@ -166,27 +224,31 @@ const AboutUs = () => {
           <p className="m-auto mb-12 max-w-xl text-gray-700">{t("pillarsSectionSubtitle")}</p>
 
           <div className="grid gap-6 md:grid-cols-3">
-            {pillars.map((pillar, i) => (
-              <motion.div
-                key={i}
-                className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out hover:bg-cyan-400"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -8 }}
-                viewport={{ once: false }}
-                transition={{ delay: i * 0.2 }}
-              >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 text-cyan-400 transition-colors duration-300 group-hover:bg-white group-hover:text-cyan-400">
-                  <FaStar size={24} />
-                </div>
-                <h4 className="mb-3 text-justify text-xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-white">
-                  {pillar.title}
-                </h4>
-                <p className="text-justify text-gray-600 transition-colors duration-300 group-hover:text-white">
-                  {pillar.description}
-                </p>
-              </motion.div>
-            ))}
+            {pillars.map((pillar, i) => {
+              const Icon = pillarIcons[i]; // Select the icon component
+
+              return (
+                <motion.div
+                  key={i}
+                  className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out hover:bg-cyan-400"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -8 }}
+                  viewport={{ once: false }}
+                  transition={{ delay: i * 0.2 }}
+                >
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 text-cyan-400 transition-colors duration-300 group-hover:bg-white group-hover:text-cyan-400">
+                    <Icon size={24} />
+                  </div>
+                  <h4 className="mb-3 text-justify text-xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-white">
+                    {pillar.title}
+                  </h4>
+                  <p className="text-justify text-gray-600 transition-colors duration-300 group-hover:text-white">
+                    {pillar.description}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -197,7 +259,7 @@ const AboutUs = () => {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="m-auto mb-6 w-48 rounded-md bg-[#e9fcff] px-4 py-2 text-center text-sm font-semibold text-cyan-400"
+            className="m-auto mb-6 w-48 rounded-md bg-[#e9fcff] px-4 py-2 text-center text-lg font-bold text-cyan-400"
           >
             {t("teamTabAlt")}
           </motion.div>
@@ -205,171 +267,177 @@ const AboutUs = () => {
           <p className="mx-auto max-w-5xl text-lg leading-relaxed text-gray-700">{t("teamDescription")}</p>
         </div>
       </section>
-
-      {/* WHY CHOOSE US */}
-      <section id="why" className="w-full bg-[#0E1C3F] py-16">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 md:grid-cols-[1fr_2fr]">
-          {/* LEFT SIDE */}
-          <div className="flex gap-4">
-            {/* Image */}
-            <div className="overflow-hidden rounded-lg">
-              <motion.img
-                src="/assets/adroyts-office.webp"
-                alt={t("whySectionTab")}
-                className="h-full w-full max-w-xl rounded-lg object-cover"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.1 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-              />
-            </div>
-          </div>
-
-          {/* RIGHT SIDE */}
-          <div className="flex flex-col justify-center">
+      {/* VISION & MISSION */}
+      <section id="performance" className="w-full bg-white py-24">
+        <div className="mx-auto max-w-7xl px-6 text-center">
+          <h2 className="mb-12 text-4xl font-extrabold text-[#0E1C3F]">{t("visionMissionSectionTitle")}</h2>
+          <div className="grid gap-8 md:grid-cols-2">
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              className="mb-3 w-fit rounded-md bg-[#1DC0DA]/20 px-4 py-2 text-sm font-semibold text-[#1DC0DA]"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="rounded-lg bg-gradient-to-tr from-cyan-100 to-white p-8 shadow-lg"
             >
-              {t("whySectionTab")}
+              <h3 className="mb-4 text-2xl font-bold text-[#0E1C3F]">{t("ourVisionTitle")}</h3>
+              <p className="leading-relaxed text-gray-700">{t("ourVisionDesc")}</p>
             </motion.div>
 
-            <SplitText className="mb-6 text-4xl font-extrabold text-white">{t("whySectionTitle")}</SplitText>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="rounded-lg bg-gradient-to-tr from-cyan-100 to-white p-8 shadow-lg"
+            >
+              <h3 className="mb-4 text-2xl font-bold text-[#0E1C3F]">{t("ourMissionTitle")}</h3>
+              <p className="leading-relaxed text-gray-700">{t("ourMissionDesc")}</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section id="why" className="w-full bg-gradient-to-r from-[#0E1C3F] via-[#123456] to-[#0E1C3F]">
+        <div className="mx-auto max-w-7xl px-6 py-24">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-14 text-center"
+          >
+            <div className="inline-block rounded-full bg-[#1DC0DA]/30 px-6 py-2 text-lg font-bold uppercase tracking-widest text-cyan-400">
+              {t("whySectionTab")}
+            </div>
+            <h2 className="mt-4 text-5xl font-extrabold leading-tight text-white sm:text-4xl">
+              {t("whySectionTitle")}
+            </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-lg font-medium leading-relaxed text-[#B0B0B0]">
+              {t("whySectionParagraph")}
+            </p>
+          </motion.div>
+
+          {/* Content Grid */}
+          <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:items-center">
+            {/* Left Image with subtle zoom on hover */}
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              whileHover={{ scale: 1.05 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="overflow-hidden rounded-2xl shadow-lg"
+            >
+              <img
+                src="/assets/adroyts-office.webp"
+                alt={t("whySectionTab")}
+                className="aspect-[4/3] w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </motion.div>
+
+            {/* Right Features */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            >
+              <ul className="space-y-6">
+                {features.map((feature, index) => (
+                  <li key={index} className="flex items-start gap-4">
+                    <div className="flex-shrink-0">
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-cyan-400 font-semibold text-white shadow-md">
+                        {index + 1}
+                      </span>
+                    </div>
+                    <p className="text-lg font-semibold leading-snug text-white">{feature}</p>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+        {/* Board of Directors Section */}
+        <section id="board" className="bg-gray-100 py-32">
+          <div className="mx-auto max-w-7xl px-6 text-center">
+            <SplitText className="text-4xl font-extrabold text-gray-900">{t("BoardOfDirectors")}</SplitText>
 
             <motion.p
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-              viewport={{ once: false }}
-              className="mb-6 font-medium leading-relaxed text-[#B0B0B0]"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="mt-4 text-lg text-gray-600"
             >
-              {t("whySectionParagraph")}
+              {t("boardDescription")}
             </motion.p>
 
-            <div className="mt-6 grid grid-cols-1 gap-4">
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1DC0DA] text-sm text-white">
-                    ✓
-                  </span>
-                  <p className="font-medium text-white">{feature}</p>
+            <div className="mt-12 grid justify-items-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3">
+              {teamMembers.slice(0, 3).map(({ name, job_title, image }, i) => (
+                <div
+                  key={`${name}-${i}`}
+                  className="group flex cursor-pointer flex-col items-center transition-transform duration-300 hover:scale-105"
+                >
+                  <div className="relative h-60 w-60 overflow-hidden rounded-full border-4 border-gray-200 bg-gray-100">
+                    <img
+                      src={image}
+                      alt={name}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                  <div className="mt-3 text-center">
+                    <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
+                    <p className="mt-1 text-sm text-gray-500">{job_title}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* Executive Management Section */}
+        <section id="executive" className="bg-white py-32">
+          <div className="mx-auto max-w-7xl px-6 text-center">
+            <SplitText className="text-4xl font-extrabold text-gray-900">
+              {t("ExecutiveManagement")}
+            </SplitText>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="mt-4 text-lg text-gray-600"
+            >
+              {t("executiveDescription")}
+            </motion.p>
+
+            <div className="mt-12 grid justify-items-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3">
+              {teamMembers.slice(3).map(({ name, job_title, image }, i) => (
+                <div
+                  key={`${name}-${i}`}
+                  className="group flex cursor-pointer flex-col items-center transition-transform duration-300 hover:scale-105"
+                >
+                  <div className="relative h-60 w-60 overflow-hidden rounded-full border-4 border-gray-200 bg-gray-100">
+                    <img
+                      src={image}
+                      alt={name}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                  <div className="mt-3 text-center">
+                    <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
+                    <p className="mt-1 text-sm text-gray-500">{job_title}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </section>
     </div>
   );
 };
 
 export default AboutUs;
-
-{
-  /* DIRECTORS */
-}
-{
-  /* <section id="board" className="bg-gray-100 py-32">
-        <div className="mx-auto max-w-7xl px-6 text-center">
-          <SplitText className="text-4xl font-extrabold text-gray-900">Board Of Directors</SplitText>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-4 text-lg text-gray-600"
-          >
-            Meet the leaders guiding our strategic vision
-          </motion.p>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={listStagger}
-            className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-3"
-          >
-            {teamMembers.map(({ name, role, image }, i) => (
-              <motion.div
-                key={`${name}-${i}`}
-                variants={{
-                  hidden: { opacity: 0, scale: 0.95, y: 20 },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                    y: 0,
-                    transition: { duration: 0.5, ease: "easeOut" },
-                  },
-                }}
-                className="group flex cursor-pointer flex-col overflow-hidden rounded-lg bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
-              >
-                <div className="relative overflow-hidden rounded-t-lg">
-                  <img
-                    src={image}
-                    alt={name}
-                    className="h-72 w-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:grayscale-0"
-                  />
-                </div>
-                <div className="w-full bg-gray-100 px-6 py-4">
-                  <h3 className="text-xl font-bold text-gray-900">{name}</h3>
-                  <p className="mt-1 text-sm font-medium text-gray-500">{role}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section> */
-}
-
-{
-  /* EXECUTIVE MANAGEMENT */
-}
-{
-  /* <section id="executive" className="bg-white py-32">
-        <div className="mx-auto max-w-7xl text-center">
-          <SplitText className="text-4xl font-extrabold text-gray-900">Executive Management</SplitText>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-4 text-lg text-gray-600"
-          >
-            The team responsible for operational excellence
-          </motion.p>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={listStagger}
-            className="mt-16 grid gap-14 sm:grid-cols-2 md:grid-cols-3"
-          >
-            {teamMembers.map(({ name, role, image }, i) => (
-              <motion.div
-                key={i}
-                variants={{
-                  hidden: { opacity: 0, scale: 0.95, y: 20 },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                    y: 0,
-                    transition: { duration: 0.5, ease: "easeOut" },
-                  },
-                }}
-                className="flex cursor-pointer flex-col items-center rounded-lg bg-gray-50 px-8 py-10 transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg hover:ring-1 hover:ring-gray-300"
-              >
-                <img
-                  src={image}
-                  alt={name}
-                  className="h-28 w-28 rounded-full object-cover transition duration-300 hover:scale-110 hover:grayscale-0"
-                />
-
-                <h3 className="mt-6 text-2xl font-semibold text-gray-900">{name}</h3>
-                <p className="mt-1 text-base italic text-gray-700">{role}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section> */
-}
