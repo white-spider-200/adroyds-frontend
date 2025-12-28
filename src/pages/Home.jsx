@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import Marquee from "react-fast-marquee";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { FaArrowRight, FaCalendarAlt } from "react-icons/fa";
 import { LuArrowUpRight } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
@@ -180,7 +180,12 @@ const Home = () => {
             variants={fadeUp}
             custom={0}
           >
-            {t("desc1")}
+            <Trans
+              i18nKey="desc1"
+              components={{
+                1: <strong className="font-bold text-white" />,
+              }}
+            />
           </motion.p>
 
           <motion.div variants={fadeUp} custom={0.2} className="flex">

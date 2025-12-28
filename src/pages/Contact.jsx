@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import mainServices from "../services/mainServices";
 
-const TURNSTILE_SITE_KEY = "0x4AAAAAACJY6OfpznkF_JB6";
+const TURNSTILE_SITE_KEY = "";
 
 const ContactAdroyts = () => {
   const { t, i18n } = useTranslation();

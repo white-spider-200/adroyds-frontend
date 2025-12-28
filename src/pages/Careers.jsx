@@ -255,7 +255,7 @@ const Careers = () => {
   }, [selectedJob, showApplicationModal]);
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-gray-100">
       {/* HERO SECTION */}
       <section className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
@@ -295,7 +295,7 @@ const Careers = () => {
 
       <div className="w-full overflow-x-hidden">
         <section className="relative bg-white px-4 py-8">
-          <div className="mx-auto max-w-5xl px-6 text-center">
+          <div className="mx-auto max-w-6xl px-6 text-center">
             {/* BELIEF STATEMENT - Card with Border Accent */}
             <div className="mb-6 flex w-full justify-center">
               <div className="max-w-4xl rounded-xl border-l-4 border-cyan-500 bg-white p-6 pl-6 text-lg italic text-gray-700 shadow-md">

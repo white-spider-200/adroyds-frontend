@@ -1,47 +1,11 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import { FaBook, FaBullseye, FaHandshake } from "react-icons/fa";
+import { Trans, useTranslation } from "react-i18next";
+import { FaBook, FaBullseye, FaEye, FaHandshake } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
 import mainServices from "../services/mainServices";
 import { SplitText } from "../utils/SplitText";
-
-const boardMembers = [
-  {
-    name: "John Doe",
-    role: "Chairman",
-    image: "/assets/board/john-doe.jpg",
-  },
-  {
-    name: "Jane Smith",
-    role: "Board Member",
-    image: "/assets/board/jane-smith.jpg",
-  },
-  {
-    name: "Michael Johnson",
-    role: "Board Member",
-    image: "/assets/board/michael-johnson.jpg",
-  },
-];
-
-const executiveMembers = [
-  {
-    name: "Alice Brown",
-    role: "CEO",
-    image: "/assets/executive/alice-brown.jpg",
-  },
-  {
-    name: "Robert Wilson",
-    role: "CTO",
-    image: "/assets/executive/robert-wilson.jpg",
-  },
-  {
-    name: "Emma Davis",
-    role: "CFO",
-    image: "/assets/executive/emma-davis.jpg",
-  },
-];
 
 const pillarIcons = [
   FaBook, // Knowledge Depth
@@ -200,7 +164,12 @@ const AboutUs = () => {
               viewport={{ once: false }}
               className="mb-6 font-medium leading-relaxed text-gray-600"
             >
-              {t("desc1")}
+              <Trans
+                i18nKey="desc1"
+                components={{
+                  1: <strong className="font-bold text-black" />,
+                }}
+              />
             </motion.p>
 
             <motion.p
@@ -210,7 +179,12 @@ const AboutUs = () => {
               viewport={{ once: false }}
               className="mb-6 font-medium leading-relaxed text-gray-600"
             >
-              {t("desc2")}
+              <Trans
+                i18nKey="desc2"
+                components={{
+                  1: <strong className="font-bold text-black" />,
+                }}
+              />
             </motion.p>
           </div>
         </div>
@@ -221,7 +195,7 @@ const AboutUs = () => {
         <div className="mx-auto max-w-7xl text-center">
           <h2 className="mb-4 text-4xl font-extrabold text-[#0E1C3F]">{t("pillarsSectionTitle")}</h2>
 
-          <p className="m-auto mb-12 max-w-xl text-gray-700">{t("pillarsSectionSubtitle")}</p>
+          <p className="m-auto mb-12 max-w-5xl font-bold text-gray-700">{t("pillarsSectionSubtitle")}</p>
 
           <div className="grid gap-6 md:grid-cols-3">
             {pillars.map((pillar, i) => {
@@ -264,34 +238,86 @@ const AboutUs = () => {
             {t("teamTabAlt")}
           </motion.div>
 
-          <p className="mx-auto max-w-5xl text-lg leading-relaxed text-gray-700">{t("teamDescription")}</p>
+          <p className="mx-auto max-w-5xl text-lg leading-relaxed text-gray-700">
+            <Trans
+              i18nKey="teamDescription"
+              components={{
+                1: <strong className="font-bold text-black" />,
+              }}
+            />
+          </p>
         </div>
       </section>
       {/* VISION & MISSION */}
-      <section id="performance" className="w-full bg-white py-24">
-        <div className="mx-auto max-w-7xl px-6 text-center">
-          <h2 className="mb-12 text-4xl font-extrabold text-[#0E1C3F]">{t("visionMissionSectionTitle")}</h2>
-          <div className="grid gap-8 md:grid-cols-2">
+      <section id="performance" className="relative w-full bg-gray-100 py-28">
+        <div className="mx-auto max-w-7xl px-6">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-20 text-center"
+          >
+            <h2 className="text-4xl font-extrabold tracking-tight text-[#0E1C3F]">
+              {t("visionMissionSectionTitle")}
+            </h2>
+          </motion.div>
+
+          {/* Content */}
+          <div className="grid gap-12 md:grid-cols-2">
+            {/* Vision */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="rounded-lg bg-gradient-to-tr from-cyan-100 to-white p-8 shadow-lg"
+              className="group relative rounded-2xl border border-gray-200 bg-white/70 p-10 shadow-sm backdrop-blur-xl transition-all hover:-translate-y-1 hover:shadow-xl"
             >
-              <h3 className="mb-4 text-2xl font-bold text-[#0E1C3F]">{t("ourVisionTitle")}</h3>
-              <p className="leading-relaxed text-gray-700">{t("ourVisionDesc")}</p>
+              <span className="absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-cyan-400" />
+
+              <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-[#0E1C3F]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 text-cyan-400 transition-colors duration-300 group-hover:bg-white group-hover:text-cyan-400">
+                  <FaEye size={24} />
+                </div>
+                {t("ourVisionTitle")}
+              </h3>
+
+              <p className="leading-loose text-gray-700">
+                <Trans
+                  i18nKey="ourVisionDesc"
+                  components={{
+                    1: <strong className="font-semibold text-gray-900" />,
+                  }}
+                />
+              </p>
             </motion.div>
 
+            {/* Mission */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="rounded-lg bg-gradient-to-tr from-cyan-100 to-white p-8 shadow-lg"
+              className="group relative rounded-2xl border border-gray-200 bg-white/70 p-10 shadow-sm backdrop-blur-xl transition-all hover:-translate-y-1 hover:shadow-xl"
             >
-              <h3 className="mb-4 text-2xl font-bold text-[#0E1C3F]">{t("ourMissionTitle")}</h3>
-              <p className="leading-relaxed text-gray-700">{t("ourMissionDesc")}</p>
+              <span className="absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-cyan-400" />
+
+              <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-[#0E1C3F]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 text-cyan-400 transition-colors duration-300 group-hover:bg-white group-hover:text-cyan-400">
+                  <FaBullseye size={24} />
+                </div>
+                {t("ourMissionTitle")}
+              </h3>
+
+              <p className="leading-loose text-gray-700">
+                <Trans
+                  i18nKey="ourMissionDesc"
+                  components={{
+                    1: <strong className="font-semibold text-gray-900" />,
+                  }}
+                />
+              </p>
             </motion.div>
           </div>
         </div>
@@ -313,8 +339,13 @@ const AboutUs = () => {
             <h2 className="mt-4 text-5xl font-extrabold leading-tight text-white sm:text-4xl">
               {t("whySectionTitle")}
             </h2>
-            <p className="mx-auto mt-4 max-w-3xl text-lg font-medium leading-relaxed text-[#B0B0B0]">
-              {t("whySectionParagraph")}
+            <p className="mx-auto mt-4 max-w-3xl text-lg font-medium leading-relaxed text-[#e5e5e5]">
+              <Trans
+                i18nKey="whySectionParagraph"
+                components={{
+                  1: <strong className="font-bold text-white" />,
+                }}
+              />
             </p>
           </motion.div>
 
@@ -353,7 +384,14 @@ const AboutUs = () => {
                         {index + 1}
                       </span>
                     </div>
-                    <p className="text-lg font-semibold leading-snug text-white">{feature}</p>
+                    <p className="text-lg leading-snug text-white/85">
+                      <Trans
+                        i18nKey={feature}
+                        components={{
+                          1: <strong className="font-bold text-white" />,
+                        }}
+                      />
+                    </p>
                   </li>
                 ))}
               </ul>

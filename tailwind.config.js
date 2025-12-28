@@ -25,6 +25,16 @@ module.exports = {
       maxWidth: {
         "8xl": "88rem", // 1440px (you can adjust if you want wider)
       },
+      borderRadius: {
+        none: "0",
+        xs: "1.3rem", // 2px  – tiny elements, dividers
+        sm: "1.3rem", // 4px  – inputs, small buttons
+        md: "1.3rem", // 6px  – default UI elements
+        lg: "1.3rem", // 8px  – cards, buttons
+        xl: "1.3rem", // 12px – modern cards
+        "2xl": "1.3rem", // 16px – feature cards, sections
+        "3xl": "1.3rem", // 24px – hero blocks
+      },
     },
   },
   plugins: [],
