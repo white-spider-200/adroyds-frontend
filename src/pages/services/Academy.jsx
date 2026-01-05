@@ -1,22 +1,18 @@
 import { motion } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import ReactCardFlip from "react-card-flip";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
-import {
-  FaArrowRight,
-  FaAward,
-  FaClipboardList,
-  FaClock,
-  FaPhoneAlt,
-  FaSmile,
-  FaThumbsUp,
-  FaUserCheck,
-  FaUserGraduate,
-  FaUsers,
-} from "react-icons/fa";
+import { FaBookOpen, FaClock, FaSearch, FaSmile, FaTasks, FaUserGraduate, FaUsers } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../../utils/SplitText";
+
+const methodologyIcons = [
+  <FaSearch size={24} color="white" />, // Training Needs Analysis
+  <FaTasks size={24} color="white" />, // Design & Implementation of Plans
+  <FaBookOpen size={24} color="white" />, // Training Content & Curriculum
+];
 
 const statsData = [
   {
@@ -48,11 +44,57 @@ const Academy = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const academy = t("academy", { returnObjects: true });
-
+  const partners = [
+    {
+      img: "/assets/edu-1.svg",
+      text: t("academy.academicCollaboration.description1"),
+    },
+    {
+      img: "/assets/edu-2.jpg",
+      text: t("academy.academicCollaboration.description2"),
+    },
+    {
+      img: "/assets/edu-3.jpg",
+      text: t("academy.academicCollaboration.description3"),
+    },
+    {
+      img: "/assets/edu-4.webp",
+      text: t("academy.academicCollaboration.description4"),
+    },
+    {
+      img: "/assets/edu-5.png",
+      text: t("academy.academicCollaboration.description5"),
+    },
+    {
+      img: "/assets/edu-6.jpg",
+      text: t("academy.academicCollaboration.description6"),
+    },
+    {
+      img: "/assets/edu-7.png",
+      text: t("academy.academicCollaboration.description7"),
+    },
+  ];
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  const [hovered, setHovered] = useState(new Array(partners.length).fill(false));
+
+  const handleMouseEnter = (index) => {
+    setHovered((prev) => {
+      const copy = [...prev];
+      copy[index] = true;
+      return copy;
+    });
+  };
+
+  const handleMouseLeave = (index) => {
+    setHovered((prev) => {
+      const copy = [...prev];
+      copy[index] = false;
+      return copy;
+    });
+  };
   return (
     <div className="w-full bg-white text-[#0E1C3F] selection:bg-cyan-400/30 selection:text-[#0E1C3F]">
       {/* HERO SECTION */}
@@ -184,7 +226,7 @@ const Academy = () => {
                     className="rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                   >
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
-                      {index + 1}
+                      {methodologyIcons[index]}
                     </div>
 
                     <h3 className="mb-3 text-lg font-semibold text-[#0E1C3F]">{item.title}</h3>
@@ -215,44 +257,29 @@ const Academy = () => {
               {t("academy.academicCollaborationTitle")}
             </h2>
 
-            <div className="mx-auto max-w-5xl space-y-12">
-              {[
-                {
-                  img: "/assets/edu-1.svg",
-                  text: t("academy.academicCollaboration.description1"),
-                },
-                {
-                  img: "/assets/edu-2.jpg",
-                  text: t("academy.academicCollaboration.description2"),
-                },
-                {
-                  img: "/assets/edu-3.jpg",
-                  text: t("academy.academicCollaboration.description3"),
-                },
-                {
-                  img: "/assets/edu-4.webp",
-                  text: t("academy.academicCollaboration.description4"),
-                },
-                {
-                  img: "/assets/edu-5.png",
-                  text: t("academy.academicCollaboration.description5"),
-                },
-                {
-                  img: "/assets/edu-6.jpg",
-                  text: t("academy.academicCollaboration.description6"),
-                },
-                {
-                  img: "/assets/edu-7.png",
-                  text: t("academy.academicCollaboration.description7"),
-                },
-              ].map(({ img, text }, index) => (
-                <div key={index} className="flex flex-col items-center gap-6 md:flex-row">
-                  <img
-                    src={img}
-                    alt={`Collaboration ${index + 1}`}
-                    className="object-fit max-h-56 w-full max-w-xs rounded-lg"
-                  />
-                  <p className="text-lg leading-relaxed text-[#0E1C3F]">{text}</p>
+            <div className="grid grid-cols-1 gap-6 py-4 sm:grid-cols-2 md:grid-cols-4">
+              {partners.map(({ img, text }, index) => (
+                <div
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={() => handleMouseLeave(index)}
+                  key={index}
+                  className="flex-shrink-0"
+                >
+                  <ReactCardFlip isFlipped={hovered[index]} flipDirection="horizontal">
+                    {/* Front Side */}
+                    <div className="flex h-56 cursor-pointer items-center justify-center rounded-lg bg-white px-10 shadow-md transition-transform duration-300">
+                      <img src={img} alt={`Partner ${index + 1}`} className="max-h-36 object-contain" />
+                    </div>
+
+                    {/* Back Side */}
+                    <div
+                      onMouseEnter={() => handleMouseEnter(index)}
+                      onMouseLeave={() => handleMouseLeave(index)}
+                      className="flex h-56 cursor-pointer flex-col items-center justify-center rounded-lg bg-cyan-600 p-4 text-center text-white shadow-md"
+                    >
+                      <p className="text-sm leading-relaxed">{text}</p>
+                    </div>
+                  </ReactCardFlip>
                 </div>
               ))}
             </div>

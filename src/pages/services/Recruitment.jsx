@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import ReactCardFlip from "react-card-flip";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 import { FaArrowRight, FaAward, FaClipboardList, FaPhoneAlt, FaThumbsUp, FaUserCheck } from "react-icons/fa";
@@ -57,6 +58,24 @@ const Recruitment = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
+  const [hovered, setHovered] = useState(new Array(servicesList.length).fill(false));
+
+  const handleMouseEnter = (index) => {
+    setHovered((prev) => {
+      const newArr = [...prev];
+      newArr[index] = true;
+      return newArr;
+    });
+  };
+
+  const handleMouseLeave = (index) => {
+    setHovered((prev) => {
+      const newArr = [...prev];
+      newArr[index] = false;
+      return newArr;
+    });
+  };
 
   return (
     <div className="w-full bg-white text-[#0E1C3F] selection:bg-cyan-400/30 selection:text-[#0E1C3F]">
@@ -120,11 +139,7 @@ const Recruitment = () => {
           </div>
 
           {/* INTRO */}
-          <section className="container pb-16 md:max-w-4xl">
-            <SplitText className="mb-6 text-3xl font-bold tracking-tight text-[#0E1C3F]">
-              {t("aboutOurRecruitmentSolutions")}
-            </SplitText>
-
+          <section className="container pb-8">
             <motion.p
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -180,50 +195,96 @@ const Recruitment = () => {
           </section>
 
           {/* SERVICES */}
-          <section className="container mx-auto px-6 py-24">
+          <section className="container mx-auto py-24">
             <SplitText className="mb-14 text-center text-4xl font-bold text-[#0E1C3F]">
               {t("ourRecruitmentServices")}
             </SplitText>
 
-            <div className="flex flex-col gap-10">
-              {servicesList.map(({ i18nKey, image, link }, index) => (
-                <motion.a
+            <div className="flex justify-between gap-8">
+              {servicesList.slice(0, 3).map(({ i18nKey, image, link }, index) => (
+                <div
                   key={i18nKey}
-                  href={link}
-                  className="group relative flex h-[320px] w-full items-end overflow-hidden rounded-2xl shadow-xl"
-                  variants={fadeUpVariant}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.3 }}
-                  custom={index}
-                  whileHover={{ y: -6 }}
-                  transition={{ type: "spring", stiffness: 180, damping: 20 }}
+                  style={{ width: 390, height: 320, cursor: "pointer" }}
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={() => handleMouseLeave(index)}
                 >
-                  {/* Background Image */}
-                  <img
-                    src={image}
-                    alt={t(`recruitment.${i18nKey}.title`)}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#0E1C3F]/95 via-[#0E1C3F]/60 to-transparent" />
-
-                  {/* Content */}
-                  <div className="relative z-10 max-w-xl p-8">
-                    <h3 className="mb-4 text-3xl font-bold text-white">
-                      {t(`recruitment.${i18nKey}.title`)}
-                    </h3>
-
-                    <div className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 transition group-hover:text-white">
-                      {t("learnMore")}
-                      <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />{" "}
+                  <ReactCardFlip isFlipped={hovered[index]} flipDirection="horizontal">
+                    {/* Front Side */}
+                    <div
+                      style={{
+                        width: "390px",
+                        height: "320px",
+                        borderRadius: 16,
+                        backgroundImage: `url(${image})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        boxShadow: "0 10px 15px rgba(0,0,0,0.2)",
+                        color: "white",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-end",
+                        padding: 24,
+                        position: "relative",
+                        userSelect: "none",
+                        overflow: "hidden",
+                      }}
+                    >
+                      <div
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          background:
+                            "linear-gradient(to right, rgba(14, 28, 63, 0.9), rgba(14, 28, 63, 0.7), transparent)",
+                          zIndex: 0,
+                        }}
+                      />
+                      <h3 style={{ zIndex: 1, fontSize: "1.875rem", fontWeight: "700", marginBottom: 16 }}>
+                        {t(`recruitment.${i18nKey}.title`)}
+                      </h3>
                     </div>
-                  </div>
 
-                  {/* Accent bar */}
-                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-cyan-400 transition-all duration-500 group-hover:w-full" />
-                </motion.a>
+                    {/* Back Side */}
+                    <div
+                      style={{
+                        width: "390px",
+                        height: "320px",
+                        borderRadius: 16,
+                        backgroundColor: "#0E1C3F",
+                        boxShadow: "0 10px 15px rgba(0,0,0,0.2)",
+                        padding: 24,
+                        color: "white",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        userSelect: "none",
+                      }}
+                    >
+                      <p style={{ marginBottom: 24, lineHeight: 1.5 }}>
+                        {t(`recruitment.${i18nKey}.descriptionShort`)}
+                      </p>
+                      <a
+                        href={link}
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 8,
+                          fontWeight: "600",
+                          color: "#22d3ee",
+                          textDecoration: "none",
+                          transition: "color 0.3s",
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = "#38bdf8")}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = "#22d3ee")}
+                      >
+                        {t("readMore")}
+                        <FaArrowRight
+                          className={i18n.language === "ar" ? "rotate-180" : ""}
+                          style={{ transition: "transform 0.3s" }}
+                        />
+                      </a>
+                    </div>
+                  </ReactCardFlip>
+                </div>
               ))}
             </div>
           </section>
@@ -240,36 +301,8 @@ const Recruitment = () => {
                 {t("recruitment.executiveSearch.title")}
               </SplitText>
               <p className="mb-8" style={{ whiteSpace: "pre-line" }}>
-                {" "}
                 {t("recruitment.executiveSearch.description")}
               </p>
-
-              <h4 className="mb-4 text-center text-xl font-semibold">
-                {t("recruitment.executiveSearch.methodologyTitle")}
-              </h4>
-              <p className="mb-10 text-center">{t("recruitment.executiveSearch.methodologyIntro")}</p>
-
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
-                {Object.entries(t("recruitment.executiveSearch.steps", { returnObjects: true })).map(
-                  ([key, step]) => (
-                    <motion.div
-                      key={key}
-                      initial="hidden"
-                      whileInView="visible"
-                      variants={fadeUp}
-                      custom={Number(key) * 0.1}
-                      viewport={{ once: false }}
-                      className="rounded-lg bg-white/10 p-6 text-white backdrop-blur-md"
-                    >
-                      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
-                        {key}
-                      </div>
-                      <h5 className="mb-1 font-semibold">{step.title}</h5>
-                      <p className="text-sm text-white/80">{step.details}</p>
-                    </motion.div>
-                  )
-                )}
-              </div>
             </div>
           </section>
 

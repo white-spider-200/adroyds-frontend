@@ -141,7 +141,6 @@ const ContactAdroyts = () => {
             <h1 className="mb-6 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-4xl">
               {t("getInTouch")}{" "}
             </h1>
-            <p className="max-w-3xl text-lg text-white">{t("helpMessage")}</p>
           </div>
         </motion.div>
       </section>
@@ -304,7 +303,7 @@ const Field = ({ label, error, children }) => (
 );
 
 const Info = ({ title, children }) => (
-  <div className="rounded-xl bg-indigo-50 p-5 shadow-lg">
+  <div className="rounded-xl bg-white p-5 shadow-lg">
     <h4 className="mb-1 font-bold text-cyan-400">{title}</h4>
     <p className="text-gray-600">{children}</p>
   </div>

@@ -13,6 +13,7 @@
     "framer-motion": "^12.23.22",
     "i18next": "^25.5.3",
     "react": "^19.2.0",
+    "react-card-flip": "^1.2.3",
     "react-countup": "^6.5.3",
     "react-dom": "^19.2.0",
     "react-fast-marquee": "^1.6.5",

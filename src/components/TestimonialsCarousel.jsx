@@ -63,13 +63,6 @@ export const TestimonialsCarousel = ({ testimonials }) => {
       >
         {/* Left Section */}
         <div className="relative col-span-1 flex flex-col items-start lg:items-start">
-          <p
-            dir={isRTL ? "rtl" : "ltr"}
-            className="text-sm font-semibold uppercase tracking-wider text-cyan-400"
-          >
-            {t("testimonial")}
-          </p>
-
           <SplitText
             className={`mt-2 text-3xl font-bold leading-snug text-[#1b1b1b] sm:text-4xl ${
               isRTL ? "text-right" : "text-left"

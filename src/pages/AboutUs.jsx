@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { Trans, useTranslation } from "react-i18next";
-import { FaBook, FaBullseye, FaEye, FaHandshake } from "react-icons/fa";
+import { FaBook, FaBullseye, FaEye, FaFlag, FaHandshake, FaLinkedinIn } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
 import mainServices from "../services/mainServices";
@@ -146,16 +146,17 @@ const AboutUs = () => {
           {/* RIGHT CONTENT */}
           <div className="flex flex-col justify-center">
             <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              className="mb-3 w-fit rounded-md bg-[#e9fcff] px-4 py-2 text-lg font-bold text-cyan-400"
+              initial={{ opacity: 0, scale: 0.8, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className="relative mb-8 inline-flex items-center rounded-full bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 px-10 py-4 text-xl font-extrabold uppercase tracking-widest text-white shadow-[0_15px_60px_rgba(56,189,248,0.55)] sm:text-2xl md:text-3xl"
             >
+              {/* Strong glow */}
+              <span className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 opacity-70 blur-2xl" />
+
               {t("aboutUs")}
             </motion.div>
-
-            <SplitText className="mb-6 text-4xl font-extrabold text-[#0E1C3F]">
-              {t("qualitativeSkills")} {t("professionalExpertise")}
-            </SplitText>
 
             <motion.p
               initial={{ opacity: 0, x: -40 }}
@@ -305,7 +306,7 @@ const AboutUs = () => {
 
               <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-[#0E1C3F]">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 text-cyan-400 transition-colors duration-300 group-hover:bg-white group-hover:text-cyan-400">
-                  <FaBullseye size={24} />
+                  <FaFlag size={24} />
                 </div>
                 {t("ourMissionTitle")}
               </h3>
@@ -398,6 +399,7 @@ const AboutUs = () => {
             </motion.div>
           </div>
         </div>
+
         {/* Board of Directors Section */}
         <section id="board" className="bg-gray-100 py-32">
           <div className="mx-auto max-w-7xl px-6 text-center">
@@ -412,24 +414,41 @@ const AboutUs = () => {
               {t("boardDescription")}
             </motion.p>
 
-            <div className="mt-12 grid justify-items-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3">
-              {teamMembers.slice(0, 3).map(({ name, job_title, image }, i) => (
-                <div
+            <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+              {teamMembers.slice(0, 3).map(({ name, job_title, image, linkedin }, i) => (
+                <motion.div
                   key={`${name}-${i}`}
-                  className="group flex cursor-pointer flex-col items-center transition-transform duration-300 hover:scale-105"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
                 >
-                  <div className="relative h-60 w-60 overflow-hidden rounded-full border-4 border-gray-200 bg-gray-100">
+                  {/* Image */}
+                  <div className="relative h-80 w-full overflow-hidden">
                     <img
                       src={image}
                       alt={name}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
+
+                    {/* LinkedIn Overlay */}
+                    <a
+                      href={linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute bottom-4 right-4 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#0A66C2] text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100"
+                    >
+                      <FaLinkedinIn className="text-lg" />
+                    </a>
                   </div>
-                  <div className="mt-3 text-center">
-                    <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
-                    <p className="mt-1 text-sm text-gray-500">{job_title}</p>
+
+                  {/* Info */}
+                  <div className="p-6 text-center">
+                    <h3 className="text-xl font-bold text-gray-900">{name}</h3>
+                    <p className="mt-1 text-sm font-medium text-gray-500">{job_title}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -452,23 +471,41 @@ const AboutUs = () => {
             </motion.p>
 
             <div className="mt-12 grid justify-items-center gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3">
-              {teamMembers.slice(3).map(({ name, job_title, image }, i) => (
-                <div
+              {teamMembers.slice(3).map(({ name, job_title, image, linkedin }, i) => (
+                <motion.div
                   key={`${name}-${i}`}
-                  className="group flex cursor-pointer flex-col items-center transition-transform duration-300 hover:scale-105"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group relative flex max-w-[15rem] cursor-pointer flex-col items-center transition-transform duration-300 hover:scale-105"
                 >
+                  {/* Circular image container */}
                   <div className="relative h-60 w-60 overflow-hidden rounded-full border-4 border-gray-200 bg-gray-100">
                     <img
                       src={image}
                       alt={name}
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
+
+                    {/* LinkedIn icon */}
+                    <a
+                      href={linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute bottom-8 right-8 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#0A66C2] text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100"
+                      aria-label={`${name} LinkedIn Profile`}
+                    >
+                      <FaLinkedinIn className="text-lg" />
+                    </a>
                   </div>
+
+                  {/* Text */}
                   <div className="mt-3 text-center">
                     <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
                     <p className="mt-1 text-sm text-gray-500">{job_title}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

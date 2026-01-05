@@ -311,7 +311,7 @@ const Home = () => {
               >
                 <div>
                   <h3 className="mb-3 text-2xl font-bold text-[#192757] sm:text-3xl">{caseStudy?.name}</h3>
-                  <p className="text-base text-[#878da4] sm:text-xl">{stripHtml(caseStudy.description)}</p>
+                  <p className="text-lg text-[#878da4]">{stripHtml(caseStudy.description)}</p>
                 </div>
                 <div
                   onClick={() => navigate(`/case-study/${caseStudy.id}`)}
@@ -340,8 +340,8 @@ const Home = () => {
             {t("news&Articles")}
           </SplitText>
 
-          <div className="grid gap-10 md:grid-cols-3">
-            {articles?.map((blog, i) => (
+          <div className="grid gap-6 md:grid-cols-3">
+            {articles?.slice(0, 3).map((blog, i) => (
               <motion.div
                 key={i}
                 initial="hidden"
@@ -412,24 +412,36 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="bg-[#eceff1] text-gray-300">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#f5f7fa] via-[#eef2f7] to-[#e8ecf3]">
+        {/* Decorative blur */}
+        <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
+
         <motion.div
-          className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 py-12 md:flex-row md:gap-10 md:px-12"
+          className="mx-auto max-w-7xl px-6 py-16 md:px-12"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
         >
-          <div>
-            <h3 className="mb-2 text-2xl font-bold text-[#192757] sm:text-3xl md:text-4xl">
-              {t("readyForNextGenRecruitment")}
-            </h3>
-            <p className="text-base text-[#878da4] sm:text-lg md:text-xl">{t("startYourDigitalJourney")}</p>
+          <div className="flex flex-col items-start justify-between gap-8 rounded-3xl border border-white/40 bg-white/70 p-8 shadow-xl backdrop-blur-md md:flex-row md:items-center md:p-12">
+            {/* Text */}
+            <div className="max-w-2xl">
+              <h3 className="mb-3 text-3xl font-extrabold text-[#192757] sm:text-4xl">
+                {t("readyForNextGenRecruitment")}
+              </h3>
+              <p className="text-lg text-[#6b7280] sm:text-xl">{t("startYourDigitalJourney")}</p>
+            </div>
+
+            {/* CTA */}
+            <button className="group inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-[#192757] to-[#1f3aa8] px-9 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-cyan-400/40">
+              <span>{i18n.language === "ar" ? "تواصل معنا" : "Contact Us Now"}</span>
+
+              <FaArrowRight
+                className={`transition-transform duration-300 group-hover:translate-x-1 ${i18n.language === "ar" ? "rotate-180 group-hover:-translate-x-1" : ""} `}
+              />
+            </button>
           </div>
-          <button className="hidden items-center gap-4 rounded-full bg-[#192757] px-8 py-3 text-[22px] text-white transition duration-500 ease-in-out hover:scale-105 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 md:flex">
-            <span>{i18n.language === "ar" ? "تواصل معنا" : "Contact Us Now"}</span>
-            <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
-          </button>
         </motion.div>
       </section>
     </div>

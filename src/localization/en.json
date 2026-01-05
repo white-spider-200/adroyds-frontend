@@ -10,8 +10,8 @@
   "desc2": "From this standpoint, our priority revolves around client service. We focus on providing our partners with specialized and integrated solutions that deliver experienced leadership talent. This commitment has resulted in a strong track record serving over 00 entities across various sectors, reaffirming our dedication to building strong relationships based on mutual trust, accuracy, and meeting all requirements with excellence.",
   "aboutUs": "About Us",
   "adroytsIntro2":"For nearly two decades, Adroits has provided an integrated system of recruitment services, combining the depth of specialized knowledge of our consultants with effective access to an exclusive database. This integration ensures the attraction of talent that makes a difference, through customized solutions that align directly with our clients’ strategic goals.",
-  "readyForNextGenRecruitment":"Discover the Future of Recruitment Today",
-  "startYourDigitalJourney":"Start your digital journey with a platform trusted by brands in Saudi Arabia.",
+  "readyForNextGenRecruitment":"Discover the Future of Human Capital Today",
+  "startYourDigitalJourney":"At Adroyts, we deliver integrated solutions across recruitment, assessment, development, and human capital consulting to support informed decisions and build impactful leadership.",
   "LeadershipPlacements": "Partner",
   "careers":"Careers",
   "page": "Page",
@@ -57,6 +57,7 @@
   "exploreCurrentOpenings": "Explore current openings at Adroyts and with our clients.",
   "postedOn": "Posted on",
   "selectPurpose": "Select purpose",
+  "submit":"Submit",
   "partnership": "Partnership",
   "address":"Address",
   "viewDetails": "View Details",
@@ -64,8 +65,8 @@
   "company":"Company",
   "yourEmail":"Your Email",
   "stayUpToDate":"Stay up to date on the latest Adroyts news.",
-  "copyright":"Copyright©",
-  "companyName":"Adroyts Executive Search.",
+  "copyright":"All rights reserved for",
+  "companyName":"Adroyts",
   "privacyPolicy":"Privacy Policy",
   "termsOfUse":"Terms of Use",
   "faq":"FAQ's",
@@ -130,19 +131,26 @@
     "items": [
       {
         "name": "Hogan Assessments",
-        "desc": "Hogan Assessments has over 30 years of experience helping organizations significantly reduce employee turnover and increase productivity by hiring the right people, developing talent, and assessing leadership potential."
+        "desc": "Hogan Assessments has over 30 years of experience helping organizations significantly reduce employee turnover and increase productivity by hiring the right people, developing talent, and assessing leadership potential.",
+        "image": "/assets/com-2.webp"
       },
       {
         "name": "Saville Assessment",
-        "desc": "Saville Assessment develops scientifically robust, workplace-relevant assessment tools that have transformed traditional evaluation approaches globally, enabling faster, fairer, and more accurate talent selection and development decisions."
+        "desc": "Saville Assessment develops scientifically robust, workplace-relevant assessment tools that have transformed traditional evaluation approaches globally, enabling faster, fairer, and more accurate talent selection and development decisions.",
+        "image": "/assets/com-1.png"
+
       },
       {
         "name": "Psytech International",
-        "desc": "Psytech International is one of the leading developers of psychometric assessment tools, offering reliable tests to measure abilities and personality, helping organizations identify potential and enhance performance."
+        "desc": "Psytech International is one of the leading developers of psychometric assessment tools, offering reliable tests to measure abilities and personality, helping organizations identify potential and enhance performance.",
+        "image": "/assets/com-3.png"
+
       },
       {
         "name": "Talent Enterprise",
-        "desc": "Talent Enterprise is a leading provider of talent assessment and development solutions, helping organizations improve HR decisions through innovative scientific assessment tools, advanced leadership development programs, and digital platforms that support talent acquisition and future leadership readiness."
+        "desc": "Talent Enterprise is a leading provider of talent assessment and development solutions, helping organizations improve HR decisions through innovative scientific assessment tools, advanced leadership development programs, and digital platforms that support talent acquisition and future leadership readiness.",
+        "image": "/assets/com-4.jpg"
+
       }
     ]
   },
@@ -265,7 +273,7 @@
   "readMore":"Read more",
   "news&Articles":"News & Articles",
   "testimonial":"Testimonial",
-  "clientsSay":"What clients say about us",
+  "clientsSay":"What clients say about Adroyts",
   "allCaseStudies":"All case studies",
   "adroytsIntro": "For nearly two decades, Adroyts has been a trusted recruitment partner for organizations across Saudi Arabia. We provide end-to-end hiring solutions that balance precision, speed, and cultural alignment—helping clients secure the right talent every time.",
   "expertTrainingCareerGrowth": "Expert Training, Career Growth Since 2006",
@@ -283,7 +291,7 @@
   "corePerformance":"Core Performance",
   "whyUs":"Why Us",
   "aboutOurRecruitmentSolutions": "About Our Recruitment Solutions",
-  "ourRecruitmentServices": "Our Recruitment Services",
+  "ourRecruitmentServices": "Our Solutions",
   "learnMore": "Learn More",
   "mediaCenter":"Knowledge & Media Center",
   "candidatesSuccessfullyPlaced": "Candidates Successfully Placed",
@@ -294,6 +302,7 @@
   "recruitment": {
     "executiveSearch": {
       "title": "Executive Search",
+      "descriptionShort": "Executive search helps you find the best executive leaders for your company quickly and professionally.",
       "description": "- Adroits specializes in Executive Search as a strategic pillar for attracting top leadership.\n- We do not just search for candidates; we aim to discover leaders capable of making a qualitative leap and direct impact on organizational performance.\n- We rely on a precise and comprehensive methodology to ensure the desired impact, which includes:\n  1. In-depth analysis of client needs.\n  2. Accurate identification of suitable leadership competencies.\n  3. Professional evaluation of top-tier candidates.\n  4. Final recommendations based on evidence demonstrating full alignment with success requirements.\n- We aim to achieve a clear strategic vision for the organizations we serve.",
       "methodologyTitle": "Executive Search Methodology Steps",
       "methodologyIntro": "At Adroyts, we follow a methodical and precise approach to guarantee the attraction of senior leadership:",
@@ -334,10 +343,12 @@
     },
     "professionalSearch": {
       "title": "Professional Search",
+      "descriptionShort": "We provide professional search services to find the right specialized talents for your company’s needs.",
       "description": "We assist organizations in reaching the most suitable candidates through a precise professional search that considers experience compatibility with organizational culture and goals. We rely on a clear market vision and comprehensive evaluation mechanisms to ensure selecting competencies capable of integration and delivering long-term institutional value. Our goal: supporting work teams, enhancing performance, and building sustainable recruitment partnerships."
     },
     "recruitmentOutsourcing": {
       "title": "Recruitment Process Outsourcing",
+      "descriptionShort": "Recruitment Process Outsourcing offers you a full recruitment team managing hiring processes efficiently.",
       "description": "Adroyts offers recruitment outsourcing solutions through an operational model that acts as an extension of the human resources system within organizations. The service includes providing specialized recruitment teams on a full-time or part-time basis, working according to strict professional standards to consolidate recruitment operations and improve candidate quality. The company also leverages extensive expertise in attracting competencies to ensure their alignment with client needs."
     }
   },

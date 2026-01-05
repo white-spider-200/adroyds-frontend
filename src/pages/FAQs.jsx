@@ -61,10 +61,6 @@ const Faqs = () => {
 
       {/* FAQ SECTION */}
       <section className="mx-auto max-w-5xl px-6 py-20">
-        <SplitText className="mb-12 text-center text-4xl font-extrabold text-[#0f0f19]">
-          {t("yourQuestionsAnswered")}
-        </SplitText>
-
         {loading && (
           <div className="flex justify-center py-20">
             <FaSpinner className="animate-spin text-4xl text-cyan-400" />
@@ -73,23 +69,26 @@ const Faqs = () => {
 
         {!loading && faq.length === 0 && <p className="text-center text-gray-500">{t("noFaqsFound")}</p>}
 
-        <div className="space-y-6">
+        <div className="space-y-3">
           {faq.map((item, index) => (
             <div
               key={item.id || index}
-              className="cursor-pointer rounded-lg border p-6 shadow transition hover:shadow-lg"
+              className="cursor-pointer rounded-md border p-3 shadow transition hover:shadow-md"
               style={{ backgroundColor: "#EAF6FF", borderColor: "#BEE3F8" }}
               onClick={() => toggle(index)}
             >
               <div className="flex items-center justify-between">
-                <h3 className="text-xl font-semibold text-[#0E1C3F]">{item.question}</h3>
-                <span className="select-none text-2xl font-bold text-cyan-500">
+                <h3 className="text-lg font-semibold text-[#0E1C3F]">{item.question}</h3>
+                <span className="select-none text-xl font-bold text-cyan-500">
                   {openIndex === index ? "−" : "+"}
                 </span>
               </div>
 
               {openIndex === index && (
-                <div className="mt-4 text-gray-800" dangerouslySetInnerHTML={{ __html: item.answer }} />
+                <div
+                  className="mt-2 text-sm text-gray-800"
+                  dangerouslySetInnerHTML={{ __html: item.answer }}
+                />
               )}
             </div>
           ))}

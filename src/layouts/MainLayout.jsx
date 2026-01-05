@@ -1,7 +1,15 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaArrowRight, FaArrowUp, FaBars, FaChevronDown, FaSearch, FaTimes } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaArrowUp,
+  FaBars,
+  FaChevronDown,
+  FaSearch,
+  FaTimes,
+  FaWhatsapp,
+} from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import LanguageSwitcher from "../components/LanguageSwitcher";
@@ -450,7 +458,7 @@ const MainLayout = ({ children }) => {
       <footer className="bg-[#0e1a41]">
         <div className="m-auto flex max-w-7xl items-center justify-between px-6 py-12 text-center text-sm text-white md:px-12">
           <p>
-            {t("copyright")} {new Date().getFullYear()}. {t("companyName")}
+            {new Date().getFullYear()} © {t("copyright")} {t("companyName")}
           </p>
           <div className="flex items-center gap-8">
             <Link to="/privacy-policy" className="text-[#ffffff99] hover:underline">

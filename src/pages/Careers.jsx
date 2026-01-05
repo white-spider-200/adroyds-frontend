@@ -476,6 +476,7 @@ const Careers = () => {
                   <option value="Adroyts Team">{t("opportunityAdroytsTeam")}</option>
                   <option value="Client Opportunities">{t("opportunityClient")}</option>
                   <option value="Consultant">{t("opportunityConsultant")}</option>
+                  <option value="other">{t("other")}</option>
                 </select>
                 {formik.touched.opportunityType && formik.errors.opportunityType && (
                   <p className="mt-1 text-sm text-red-500">{formik.errors.opportunityType}</p>
@@ -536,7 +537,7 @@ const Careers = () => {
               disabled={formik.isSubmitting}
               className="w-full rounded-xl bg-cyan-500 py-4 font-semibold text-white hover:bg-cyan-600"
             >
-              {formik.isSubmitting ? t("sending") : t("send")}
+              {formik.isSubmitting ? t("sending") : t("submit")}
             </button>
           </form>
         </section>

@@ -1,14 +1,64 @@
 import { motion } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import ReactCardFlip from "react-card-flip";
 import { useTranslation } from "react-i18next";
-import { FaArrowRight, FaPhoneAlt } from "react-icons/fa";
+import {
+  FaBrain,
+  FaCheckCircle,
+  FaClipboard,
+  FaClipboardList,
+  FaComments,
+  FaCompass,
+  FaForward,
+  FaStar,
+  FaSyncAlt,
+  FaUserTie,
+  FaUsers,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+
+const icons = [
+  <FaUserTie size={24} color="white" />, // Professional Development
+  <FaClipboardList size={24} color="white" />, // Individual Development Plans
+  <FaStar size={24} color="white" />, // High-Potential Talent Identification
+  <FaUsers size={24} color="white" />, // Employee Placement
+  <FaCompass size={24} color="white" />, // Career Guidance
+  <FaCheckCircle size={24} color="white" />, // Recruitment & Selection
+  <FaForward size={24} color="white" />, // Succession Planning
+];
+
+const assessmentIcons = [
+  <FaBrain size={24} color="white" />, // Psychometric Assessments
+  <FaComments size={24} color="white" />, // Competency-Based Interviews
+  <FaClipboard size={24} color="white" />, // Case Study
+  <FaUsers size={24} color="white" />, // Group Discussion
+  <FaUserTie size={24} color="white" />, // Role-Playing Activities
+  <FaSyncAlt size={24} color="white" />, // 360-Degree Assessment
+];
 
 const TalentAssessment = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const talentAssessment = t("talentAssessment", { returnObjects: true });
+  const [hovered, setHovered] = useState(
+    new Array(t("psychometricProviders.items", { returnObjects: true }).length).fill(false)
+  );
 
+  const handleMouseEnter = (index) => {
+    setHovered((prev) => {
+      const copy = [...prev];
+      copy[index] = true;
+      return copy;
+    });
+  };
+
+  const handleMouseLeave = (index) => {
+    setHovered((prev) => {
+      const copy = [...prev];
+      copy[index] = false;
+      return copy;
+    });
+  };
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -103,7 +153,7 @@ const TalentAssessment = () => {
                     className="rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                   >
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
-                      {index + 1}
+                      {icons[index]}
                     </div>
 
                     <h3 className="mb-3 text-lg font-semibold text-[#0E1C3F]">{item.title}</h3>
@@ -139,7 +189,7 @@ const TalentAssessment = () => {
                     className="group rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                   >
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
-                      {index + 1}
+                      {assessmentIcons[index]}
                     </div>
 
                     <h3 className="mb-3 text-lg font-semibold text-[#0E1C3F]">{tool.title}</h3>
@@ -163,29 +213,41 @@ const TalentAssessment = () => {
                 {t("psychometricProviders.title")}
               </motion.h2>
 
-              <div className="grid gap-10 md:grid-cols-2">
+              <div className="no-scrollbar flex justify-between gap-8">
                 {t("psychometricProviders.items", { returnObjects: true }).map((provider, index) => (
                   <motion.div
+                    onMouseEnter={() => handleMouseEnter(index)}
+                    onMouseLeave={() => handleMouseLeave(index)}
                     key={index}
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
                     viewport={{ once: false, amount: 0.3 }}
-                    className="rounded-xl border border-gray-100 bg-[#F8FAFC] p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                    className="w-64 flex-shrink-0"
                   >
-                    {/* Provider Image */}
-                    {provider.image && (
-                      <div className="mb-0 flex justify-center">
-                        <img
-                          src={provider.image}
-                          alt={provider.name}
-                          className="h-32 w-32 rounded-full object-contain"
-                        />
+                    <ReactCardFlip isFlipped={hovered[index]} flipDirection="horizontal">
+                      {/* Front Side */}
+                      <div className="flex h-64 w-64 cursor-pointer items-center justify-center rounded-xl bg-[#F8FAFC] shadow-md transition-transform duration-300">
+                        {provider.image ? (
+                          <img
+                            src={provider.image}
+                            alt={provider.name}
+                            className="h-32 w-32 rounded-full object-contain"
+                          />
+                        ) : (
+                          <div className="text-center text-gray-400">No Image</div>
+                        )}
                       </div>
-                    )}
 
-                    {/* Provider Description */}
-                    <p className="leading-relaxed text-gray-700">{provider.desc}</p>
+                      {/* Back Side */}
+                      <div
+                        onMouseEnter={() => handleMouseEnter(index)}
+                        onMouseLeave={() => handleMouseLeave(index)}
+                        className="flex h-64 w-64 cursor-pointer flex-col items-center justify-center rounded-xl bg-[#0E1C3F] p-6 text-white shadow-md"
+                      >
+                        <p className="text-center text-sm leading-relaxed">{provider.desc}</p>
+                      </div>
+                    </ReactCardFlip>
                   </motion.div>
                 ))}
               </div>
