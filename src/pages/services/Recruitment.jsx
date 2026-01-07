@@ -3,29 +3,21 @@ import React, { useEffect, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
-import { FaArrowRight, FaAward, FaClipboardList, FaPhoneAlt, FaThumbsUp, FaUserCheck } from "react-icons/fa";
-import { PiGearSixLight, PiPersonLight } from "react-icons/pi";
+import { FaArrowRight, FaAward, FaClipboardList, FaThumbsUp, FaUserCheck } from "react-icons/fa";
+import {
+  FiBriefcase,
+  FiCheckCircle,
+  FiClipboard,
+  FiFileText,
+  FiSearch,
+  FiUserCheck,
+  FiUsers,
+} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../../utils/SplitText";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay, duration: 0.6, ease: "easeOut" },
-  }),
-};
-
-const fadeUpVariant = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (custom) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: custom * 0.15, duration: 0.6, ease: "easeOut" },
-  }),
-};
+const stepIcons = [FiSearch, FiClipboard, FiUsers, FiFileText, FiUserCheck, FiBriefcase, FiCheckCircle];
 
 const servicesList = [
   {
@@ -166,12 +158,7 @@ const Recruitment = () => {
               {/* Stats */}
               <div className="flex flex-1 justify-between">
                 {statsData.map(({ icon, num, suffix, label }, i) => (
-                  <div
-                    key={i}
-                    className={`flex flex-col items-center px-6 ${
-                      i < statsData.length - 1 ? "border-white/30 ltr:border-r rtl:border-l" : ""
-                    }`}
-                  >
+                  <div key={i} className={`flex flex-col items-center px-6`}>
                     <div className="mb-4 text-white">{icon}</div>
                     <div className="text-4xl font-bold">
                       <CountUp
@@ -266,12 +253,12 @@ const Recruitment = () => {
                           alignItems: "center",
                           gap: 8,
                           fontWeight: "600",
-                          color: "#22d3ee",
+                          color: "#2081E2",
                           textDecoration: "none",
                           transition: "color 0.3s",
                         }}
-                        onMouseEnter={(e) => (e.currentTarget.style.color = "#38bdf8")}
-                        onMouseLeave={(e) => (e.currentTarget.style.color = "#22d3ee")}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = "#4c9ae7")}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = "#2081E2")}
                       >
                         {t("readMore")}
                         <FaArrowRight
@@ -332,35 +319,70 @@ const Recruitment = () => {
             </div>
           </section>
           {/* RECRUITMENT METHODOLOGY */}
-          <section className="bg-[#F8FAFC] py-28">
-            <div className="container mx-auto max-w-7xl px-6">
-              <SplitText className="mb-6 text-center text-3xl font-bold text-[#0E1C3F]">
-                {t("recruitmentMethodology.title")}
-              </SplitText>
+          <section
+            id="methodology"
+            className="relative mt-24 overflow-hidden rounded-lg bg-navy-500 px-4 py-32 sm:px-6 lg:px-8"
+          >
+            {/* Title */}
+            <SplitText className="mb-6 text-center text-3xl font-bold text-white">
+              {t("recruitmentMethodology.title")}
+            </SplitText>
 
-              <p className="mx-auto mb-16 max-w-4xl text-center text-lg leading-relaxed text-gray-600">
-                {t("recruitmentMethodology.intro")}
-              </p>
+            {/* Intro */}
+            <p className="mx-auto mb-16 max-w-4xl text-center text-lg leading-relaxed text-white/70">
+              {t("recruitmentMethodology.intro")}
+            </p>
 
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {t("recruitmentMethodology.steps", { returnObjects: true }).map((step, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
-                    viewport={{ once: false, amount: 0.3 }}
-                    className="group rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-                  >
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
-                      {index + 1}
-                    </div>
+            {/* Subtle Animated Background */}
+            <div className="absolute inset-0 overflow-hidden">
+              <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
+                transition={{ duration: 18, repeat: Infinity }}
+                className="absolute right-0 top-0 h-96 w-96 rounded-full bg-navy-500/50 blur-3xl"
+              />
+              <motion.div
+                animate={{ scale: [1.2, 1, 1.2], opacity: [0.05, 0.1, 0.05] }}
+                transition={{ duration: 22, repeat: Infinity }}
+                className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-navy-500/50 blur-3xl"
+              />
+            </div>
 
-                    <h4 className="mb-2 text-lg font-semibold text-[#0E1C3F]">{step.title}</h4>
+            <div className="relative z-10 mx-auto max-w-7xl">
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {t("recruitmentMethodology.steps", { returnObjects: true }).map((step, index) => {
+                  const Icon = stepIcons[index];
 
-                    <p className="text-sm leading-relaxed text-gray-600">{step.desc}</p>
-                  </motion.div>
-                ))}
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                    >
+                      <div className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10">
+                        {/* Step Number */}
+                        <div className="absolute -right-4 -top-4 flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-cyan-600 text-lg font-bold text-white shadow-lg">
+                          {index + 1}
+                        </div>
+
+                        {/* Icon */}
+                        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-500/50 transition-transform duration-300 group-hover:scale-110">
+                          {Icon && <Icon className="h-7 w-7 text-white" />}
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="mb-3 text-xl font-bold text-white">{step.title}</h3>
+
+                        {/* Description */}
+                        <p className="flex-grow text-sm leading-relaxed text-white/70">{step.desc}</p>
+
+                        {/* Hover Overlay */}
+                        <div className="pointer-events-none absolute inset-0 rounded-2xl bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-5" />
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </section>

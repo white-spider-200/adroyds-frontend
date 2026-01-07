@@ -303,7 +303,7 @@ const Careers = () => {
 
       <div className="w-full overflow-x-hidden">
         <section className="relative bg-white px-4 py-8">
-          <div className="mx-auto max-w-6xl px-6 text-center">
+          <div className="mx-auto max-w-7xl px-6 text-center">
             {/* BELIEF STATEMENT - Card with Border Accent */}
             <div className="mb-6 flex w-full justify-center">
               <div className="max-w-4xl rounded-xl border-l-4 border-cyan-500 bg-white p-6 pl-6 text-lg italic text-gray-700 shadow-md">
@@ -313,53 +313,53 @@ const Careers = () => {
 
             <div className="grid gap-8 md:grid-cols-2">
               {/* Join Network Card */}
-              <div className="group relative overflow-hidden rounded-3xl bg-[#2470C3] p-10 text-white shadow-2xl transition-all hover:scale-105 hover:shadow-[#2470C3]/50">
+              <div className="relative overflow-hidden rounded-3xl bg-[#2470C3] p-10 text-white shadow-2xl transition-all hover:shadow-[#2470C3]/50">
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzY3NzE0MTMzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral')] bg-cover bg-center opacity-10" />
                 <div className="absolute right-0 top-0 -mr-32 -mt-32 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
                 <div className="absolute bottom-0 left-0 -mb-32 -ml-32 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
 
                 <div className="relative">
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all group-hover:rotate-6 group-hover:scale-110">
-                    <FaUserShield className="h-8 w-8" />
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all group-hover:rotate-6">
+                    <FaUserAlt className="h-8 w-8" />
                   </div>
-                  <h3 className="mb-4 text-3xl font-black">انضم إلى شبكة المواهب</h3>
-                  <p className="mb-8 text-lg leading-relaxed text-white/90">
-                    سجل الآن وكن جزءاً من مجتمع المحترفين المتميزين. سنساعدك في العثور على الفرصة المثالية.
-                  </p>
+
+                  <h3 className="mb-4 text-3xl font-black">{t("joinTalentNetwork")}</h3>
+                  <p className="mb-8 text-lg leading-relaxed text-white/90">{t("registerInfo")}</p>
+
                   <button
-                    size="lg"
-                    variant="secondary"
-                    className="bg-white font-bold text-[#2470C3] shadow-xl hover:bg-white/90 hover:shadow-2xl"
                     onClick={() => scrollToSection("generalApplication")}
+                    className="group relative inline-flex h-14 w-48 items-center justify-center overflow-hidden rounded-md bg-cyan-400 px-6 text-lg font-bold"
                   >
-                    سجّل الآن
-                    <FaArrowLeft className="mr-2 h-5 w-5" />
+                    <span className="absolute h-56 w-full rounded-full bg-white transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
+
+                    <span className="relative text-black transition-colors duration-300 group-hover:text-white">
+                      {t("applyRegister")}
+                    </span>
                   </button>
                 </div>
               </div>
-
-              {/* Browse Jobs Card */}
-              <div className="group relative overflow-hidden rounded-3xl bg-gray-900 p-10 text-white shadow-2xl transition-all hover:scale-105 hover:shadow-gray-900/50">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523287562758-66c7fc58967f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXJlZXIlMjBzdWNjZXNzfGVufDF8fHx8MTc2NzYzMjU5M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral')] bg-cover bg-center opacity-10" />
-                <div className="absolute right-0 top-0 -mr-32 -mt-32 h-64 w-64 rounded-full bg-[#2470C3]/30 blur-3xl" />
-                <div className="absolute bottom-0 left-0 -mb-32 -ml-32 h-64 w-64 rounded-full bg-[#2470C3]/30 blur-3xl" />
+              <div className="relative overflow-hidden rounded-3xl bg-gray-900 p-10 text-white shadow-2xl transition-all hover:shadow-[#2470C3]/50">
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzY3NzE0MTMzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral')] bg-cover bg-center opacity-10" />
+                <div className="absolute right-0 top-0 -mr-32 -mt-32 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+                <div className="absolute bottom-0 left-0 -mb-32 -ml-32 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
 
                 <div className="relative">
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#2470C3]/30 backdrop-blur-sm transition-all group-hover:rotate-6 group-hover:scale-110">
-                    <FaBriefcase className="h-8 w-8" />
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all group-hover:rotate-6">
+                    <FaUserShield className="h-8 w-8" />
                   </div>
-                  <h3 className="mb-4 text-3xl font-black">الوظائف المتاحة</h3>
-                  <p className="mb-8 text-lg leading-relaxed text-white/80">
-                    استكشف مجموعة واسعة من الفرص الوظيفية المتميزة وقدّم على الوظيفة المناسبة لك.
-                  </p>
+
+                  <h3 className="mb-4 text-3xl font-black">{t("currentJobOpenings")}</h3>
+                  <p className="mb-8 text-lg leading-relaxed text-white/90">{t("explorePositions")} </p>
+
                   <button
-                    size="lg"
-                    variant="secondary"
-                    className="bg-white font-bold text-gray-900 shadow-xl hover:bg-white/90 hover:shadow-2xl"
-                    onClick={() => scrollToSection("generalApplication")}
+                    onClick={() => scrollToSection("openings")}
+                    className="group relative inline-flex h-14 w-48 items-center justify-center overflow-hidden rounded-md bg-cyan-400 px-6 text-lg font-bold"
                   >
-                    تصفح الوظائف
-                    <FaArrowLeft className="mr-2 h-5 w-5" />
+                    <span className="absolute h-56 w-full rounded-full bg-white transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
+
+                    <span className="relative text-black transition-colors duration-300 group-hover:text-white">
+                      {t("viewJobs")}
+                    </span>
                   </button>
                 </div>
               </div>
@@ -545,13 +545,13 @@ const Careers = () => {
             {formik.touched.consent && formik.errors.consent && (
               <p className="mt-1 text-sm text-red-500">{formik.errors.consent}</p>
             )}
-
             <button
               type="submit"
               disabled={formik.isSubmitting}
-              className="w-full rounded-xl bg-cyan-500 py-4 font-semibold text-white hover:bg-cyan-600"
+              class="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-md bg-cyan-200 px-6 font-medium text-neutral-50"
             >
-              {formik.isSubmitting ? t("sending") : t("submit")}
+              <span class="absolute h-56 w-full rounded-full bg-cyan-400 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
+              <span class="relative"> {t("submit")}</span>
             </button>
           </form>
         </section>
@@ -586,19 +586,13 @@ const Careers = () => {
               viewport={{ once: false, amount: 0.2 }}
             >
               {jobsData.map((job) => (
-                <motion.div
-                  key={job.id}
-                  variants={cardVariants}
-                  whileHover="hover"
-                  className="cursor-pointer"
-                  onClick={() => setSelectedJob(job)}
-                >
-                  <div className="group relative overflow-hidden border-gray-200 bg-white transition-all duration-500 hover:border-[#2470C3] hover:shadow-2xl">
-                    {/* Left accent */}
-                    <div className="absolute left-0 top-0 h-full w-2 bg-[#2470C3] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <motion.div key={job.id} className="cursor-pointer" onClick={() => setSelectedJob(job)}>
+                  <div className="relative overflow-hidden border border-gray-200 bg-white">
+                    {/* Left accent (always visible now) */}
+                    <div className="absolute top-0 h-full w-2 bg-[#2470C3] opacity-100 ltr:left-0 rtl:right-0" />
 
-                    {/* Glow */}
-                    <div className="absolute -left-40 -top-40 h-80 w-80 rounded-full bg-[#2470C3]/5 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100" />
+                    {/* Glow (always visible, subtle) */}
+                    <div className="absolute -left-40 -top-40 h-80 w-80 rounded-full bg-[#2470C3]/5 opacity-100 blur-3xl" />
 
                     <div className="relative p-8">
                       <div className="mb-6 flex items-start justify-between">
@@ -612,28 +606,22 @@ const Careers = () => {
                             >
                               {job.status}
                             </span>
-
-                            <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700">
-                              {job.department}
-                            </span>
                           </div>
 
                           {/* Title */}
-                          <h3 className="mb-4 text-2xl font-bold text-gray-900 transition-all group-hover:text-[#2470C3]">
-                            {job.title}
-                          </h3>
+                          <h3 className="mb-4 text-2xl font-bold text-gray-900">{job.title}</h3>
 
                           {/* Meta */}
                           <div className="flex flex-wrap gap-4 text-sm text-gray-600">
                             <div className="flex items-center gap-2">
-                              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2470C3]/10 group-hover:bg-[#2470C3]/20">
+                              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2470C3]/10">
                                 <HiOutlineLocationMarker className="h-4 w-4 text-[#2470C3]" />
                               </div>
                               <span className="font-medium">{job.location}</span>
                             </div>
 
                             <div className="flex items-center gap-2">
-                              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2470C3]/10 group-hover:bg-[#2470C3]/20">
+                              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2470C3]/10">
                                 <HiOutlineCalendar className="h-4 w-4 text-[#2470C3]" />
                               </div>
                               <span className="font-medium">
@@ -642,11 +630,6 @@ const Careers = () => {
                             </div>
                           </div>
                         </div>
-
-                        {/* Icon */}
-                        <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-[#2470C3] shadow-lg transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
-                          <FaBriefcase className="h-8 w-8 text-white" />
-                        </div>
                       </div>
 
                       {/* Description */}
@@ -654,21 +637,10 @@ const Careers = () => {
                         {job.description}
                       </p>
 
-                      {/* Actions */}
-                      <div className="flex items-center gap-3">
-                        <button className="group/btn flex-1 bg-[#2470C3] text-white shadow-lg transition-all hover:bg-[#1d5ca0] hover:shadow-xl">
-                          <span>{t("viewDetails")}</span>
-                          <FaChevronRight className="mr-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                        </button>
-
-                        <button
-                          variant="outline"
-                          size="icon"
-                          className="border-gray-300 transition-all hover:border-[#2470C3] hover:bg-[#2470C3]/10"
-                        >
-                          <FaClock className="h-4 w-4" />
-                        </button>
-                      </div>
+                      <button class="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-md bg-cyan-200 px-6 font-medium text-neutral-50">
+                        <span class="absolute h-56 w-full rounded-full bg-cyan-400 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
+                        <span class="relative"> {t("viewDetails")}</span>
+                      </button>
                     </div>
                   </div>
                 </motion.div>
