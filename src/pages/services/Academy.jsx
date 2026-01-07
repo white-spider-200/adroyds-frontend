@@ -3,7 +3,23 @@ import React, { useEffect, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
-import { FaBookOpen, FaClock, FaSearch, FaSmile, FaTasks, FaUserGraduate, FaUsers } from "react-icons/fa";
+import {
+  FaBookOpen,
+  FaBrain,
+  FaBriefcase,
+  FaChalkboardTeacher,
+  FaClipboard,
+  FaClock,
+  FaCogs,
+  FaComments,
+  FaSearch,
+  FaSmile,
+  FaSyncAlt,
+  FaTasks,
+  FaUserGraduate,
+  FaUserTie,
+  FaUsers,
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../../utils/SplitText";
@@ -40,8 +56,15 @@ const statsData = [
     icon: <FaUsers size={32} />,
   },
 ];
+
+const assessmentIcons = [
+  <FaChalkboardTeacher size={24} color="white" />, // Psychometric Assessments
+  <FaUsers size={24} color="white" />, // Competency-Based Interviews
+  <FaBriefcase size={24} color="white" />, // Case Study
+  <FaCogs size={24} color="white" />, // Group Discussion
+];
+
 const Academy = () => {
-  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const academy = t("academy", { returnObjects: true });
   const partners = [
@@ -246,10 +269,21 @@ const Academy = () => {
 
             <div className="mx-auto grid grid-cols-1 gap-10 md:grid-cols-2">
               {Object.values(academy.solutions).map(({ title, description }, index) => (
-                <div key={index} className="rounded-lg border border-gray-200 p-6 shadow-sm">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  className="group rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                >
+                  {" "}
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
+                    {assessmentIcons[index]}
+                  </div>
                   <h3 className="mb-3 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
                   <p className="text-gray-600">{description}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </section>

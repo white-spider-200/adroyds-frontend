@@ -3,19 +3,61 @@ import React, { useEffect, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
-import { FaArrowRight, FaAward, FaClipboardList, FaThumbsUp, FaUserCheck } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaAward,
+  FaClipboardList,
+  FaClock,
+  FaThumbsUp,
+  FaUser,
+  FaUserCheck,
+} from "react-icons/fa";
 import {
   FiBriefcase,
   FiCheckCircle,
   FiClipboard,
   FiFileText,
   FiSearch,
+  FiTarget,
   FiUserCheck,
   FiUsers,
 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../../utils/SplitText";
+
+const features = [
+  "تحليل عميق لاحتياجات العميل",
+  "عملية تحديد دقيقة للكفاءات القيادية المناسبة",
+  "تقييم احترافي للمرشحين من الصف الأول",
+  "تقديم توصيات نهائية مبنية على أدلة تثبت المواءمة مع متطلبات النجاح",
+];
+
+const features2 = [
+  "استقطاب متوسطي الخبرة والمحترفين الذين يشكلون القوة التشغيلية للمنظمة",
+  "منهجية فحص دقيقة لضمان مواءمة المهارات الفنية مع متطلبات الوظيفة الفعلية",
+  "التركيز على الكوادر القادرة على التنفيذ المتميز",
+  "ضمان استدامة الأداء في المنظمة",
+];
+
+const features3 = [
+  {
+    icon: FaUser,
+    text: "فرق استقطاب متخصصة تعمل وفق معايير مهنية دقيقة",
+  },
+  {
+    icon: FaClock,
+    text: "تسريع عمليات التوظيف وتحسين جودة المرشحين",
+  },
+  {
+    icon: FaAward,
+    text: "خبرة واسعة في استقطاب الكفاءات لمختلف القطاعات",
+  },
+  {
+    icon: FiTarget,
+    text: "قدرة عالية على تلبية المتطلبات الوظيفية بكافة مستوياتها (التنفيذية، والإدارية، والتخصصية)",
+  },
+];
 
 const stepIcons = [FiSearch, FiClipboard, FiUsers, FiFileText, FiUserCheck, FiBriefcase, FiCheckCircle];
 
@@ -274,48 +316,188 @@ const Recruitment = () => {
           </section>
 
           {/* EXECUTIVE SEARCH DETAILS */}
-          <section
-            id="executive"
-            className="relative rounded-xl bg-navy-500 bg-cover bg-center bg-no-repeat py-28"
-            style={{ backgroundImage: "url('/assets/istock-90868745-large-spxmmo.jpeg')" }}
-          >
-            <div className="absolute inset-0 rounded-xl bg-[#0E1C3F]/90"></div>
-            <div className="relative z-10 mx-auto max-w-7xl px-6 text-white">
-              <SplitText className="mb-6 text-center text-3xl font-bold">
-                {t("recruitment.executiveSearch.title")}
-              </SplitText>
-              <p className="mb-8" style={{ whiteSpace: "pre-line" }}>
-                {t("recruitment.executiveSearch.description")}
-              </p>
+          <section id="executive" className="bg-white py-20 md:py-32">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8">
+              <div className="grid items-center gap-12 lg:grid-cols-2">
+                {/* Content Side */}
+                <div dir="rtl">
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#1a4d7b]/10 px-4 py-2">
+                    <FiTarget className="h-5 w-5 text-[#1a4d7b]" />
+                    <span className="font-semibold text-[#1a4d7b]">خدمة متميزة</span>
+                  </div>
+
+                  <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">البحث التنفيذي</h2>
+
+                  <p className="mb-6 text-xl leading-relaxed text-gray-600">
+                    تتخصص أدرويتس في خدمة البحث التنفيذي (Search Executive) كركيزة استراتيجية لاستقطاب
+                    القيادات العليا.
+                  </p>
+
+                  <p className="mb-8 text-lg leading-relaxed text-gray-600">
+                    لا نكتفي بالبحث عن المرشحين فقط، بل نسعى لاكتشاف القادة القادرين على إحداث نقلة نوعية
+                    وتأثير مباشر في أداء المؤسسات.
+                  </p>
+
+                  <div className="mb-8 rounded-2xl bg-gradient-to-br from-[#1a4d7b]/5 to-[#2d5f8d]/5 p-8">
+                    <h3 className="mb-4 text-xl font-bold text-gray-900">منهجيتنا الشاملة:</h3>
+                    <ul className="space-y-4">
+                      {features.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <FiCheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-[#1a4d7b]" />
+                          <span className="leading-relaxed text-gray-700">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <p className="text-lg leading-relaxed text-gray-600">
+                    <strong className="text-gray-900">هدفنا:</strong> تحقيق رؤية استراتيجية واضحة للمؤسسات
+                    التي نخدمها.
+                  </p>
+                </div>
+
+                {/* Image Side */}
+                <div className="relative">
+                  <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                    <img
+                      src="https://images.unsplash.com/photo-1758599543146-f263d3b3321e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGV4ZWN1dGl2ZXMlMjBtZWV0aW5nfGVufDF8fHx8MTc2Nzc3ODgyM3ww&ixlib=rb-4.1.0&q=80&w=1080"
+                      alt="Executive Search"
+                      className="h-[600px] w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a4d7b]/40 to-transparent"></div>
+                  </div>
+
+                  {/* Decorative Element */}
+                  <div className="absolute -bottom-6 -right-6 -z-10 h-32 w-32 rounded-2xl bg-gradient-to-br from-[#1a4d7b] to-[#2d5f8d]"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="professional" className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-32">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8">
+              <div className="grid items-center gap-12 lg:grid-cols-2">
+                {/* Image Side */}
+                <div className="relative order-2 lg:order-1">
+                  <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                    <img
+                      src="https://images.unsplash.com/photo-1758518731457-5ef826b75b3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwxfHx8fDE3Njc3MDc4NzV8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                      alt="Professional Search"
+                      className="h-[600px] w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#fbbf24]/40 to-transparent"></div>
+                  </div>
+
+                  {/* Decorative Element */}
+                  <div className="absolute -left-6 -top-6 -z-10 h-32 w-32 rounded-2xl bg-gradient-to-br from-[#fbbf24] to-[#f59e0b]"></div>
+                </div>
+
+                {/* Content Side */}
+                <div className="order-1 lg:order-2" dir="rtl">
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#fbbf24]/10 px-4 py-2">
+                    <FaUser className="h-5 w-5 text-[#f59e0b]" />
+                    <span className="font-semibold text-[#f59e0b]">بناء الفرق المهنية</span>
+                  </div>
+
+                  <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">البحث المهني</h2>
+
+                  <p className="mb-6 text-xl leading-relaxed text-gray-600">
+                    نُمكّن المنظمات من سد الفجوات المهنية عبر استقطاب الكفاءات المهنية التي تقود العمليات
+                    التشغيلية.
+                  </p>
+
+                  <p className="mb-8 text-lg leading-relaxed text-gray-600">
+                    نركز على المستويات الإدارية، والإشرافية، والتخصصية لضمان بناء فريق عمل متكامل وفعّال.
+                  </p>
+
+                  <div className="mb-8 rounded-2xl bg-gradient-to-br from-[#fbbf24]/5 to-[#f59e0b]/5 p-8">
+                    <h3 className="mb-4 text-xl font-bold text-gray-900">نهجنا في البحث المهني:</h3>
+                    <ul className="space-y-4">
+                      {features2.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <FiCheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-[#f59e0b]" />
+                          <span className="leading-relaxed text-gray-700">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="rounded-lg border-r-4 border-[#fbbf24] bg-[#fbbf24]/10 p-6">
+                    <p className="leading-relaxed text-gray-700">
+                      نوفر للمنظمة كوادر قادرة على التنفيذ المتميز وضمان استمرارية العمليات بأعلى معايير
+                      الجودة.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
-          {/* PROFESSIONAL SEARCH */}
-          <section id="professional" className="bg-white py-28">
-            <SplitText className="mb-10 text-center text-3xl font-bold text-[#0E1C3F]">
-              {t("recruitment.professionalSearch.title")}
-            </SplitText>
-            <p className="mx-auto mb-12 max-w-4xl text-center text-lg text-gray-700">
-              {t("recruitment.professionalSearch.description")}
-            </p>
-
-            {/* Here you can add features or other content similarly */}
-          </section>
-
           {/* RPO */}
-          <section
-            id="rpo"
-            className="relative rounded-xl bg-navy-500 bg-cover bg-center bg-no-repeat px-6 py-28"
-            style={{ backgroundImage: "url('/assets/shutterstock_2212724739.jpg')" }}
-          >
-            <div className="absolute inset-0 rounded-xl bg-[#0E1C3F]/90"></div>
-            <div className="container relative z-10 mx-auto max-w-7xl text-white">
-              <SplitText className="mb-8 text-center text-3xl font-bold tracking-tight">
-                {t("recruitment.recruitmentOutsourcing.title")}
-              </SplitText>
-              <p className="mx-auto mb-12 max-w-3xl text-center text-lg leading-relaxed text-white/90">
-                {t("recruitment.recruitmentOutsourcing.description")}
-              </p>
+          <section id="rpo" className="bg-white py-20 md:py-32">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8">
+              <div className="grid items-center gap-12 lg:grid-cols-2">
+                {/* Content Side */}
+                <div dir="rtl">
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#10b981]/10 px-4 py-2">
+                    <FiBriefcase className="h-5 w-5 text-[#10b981]" />
+                    <span className="font-semibold text-[#10b981]">حل متكامل</span>
+                  </div>
+
+                  <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">إسناد عمليات التوظيف</h2>
+
+                  <p className="mb-6 text-xl leading-relaxed text-gray-600">
+                    تقدم أدرُويتس خدمة إسناد عمليات التوظيف (RPO) من خلال توفير فرق استقطاب متخصصة بدوام كامل
+                    أو جزئي.
+                  </p>
+
+                  <p className="mb-8 text-lg leading-relaxed text-gray-600">
+                    نموذج تشغيلي يعمل كامتداد لمنظومة الموارد البشرية داخل المؤسسات، حيث تعمل فرق الاستقطاب
+                    وفق معايير مهنية دقيقة.
+                  </p>
+
+                  <div className="mb-8 rounded-2xl bg-gradient-to-br from-[#10b981]/5 to-[#059669]/5 p-8">
+                    <h3 className="mb-6 text-xl font-bold text-gray-900">مزايا الخدمة:</h3>
+                    <div className="space-y-6">
+                      {features3.map((feature, index) => (
+                        <div key={index} className="flex items-start gap-4">
+                          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-[#10b981]/10">
+                            <feature.icon className="h-6 w-6 text-[#10b981]" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="leading-relaxed text-gray-700">{feature.text}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="rounded-xl bg-[#10b981]/10 p-6 text-center">
+                      <div className="mb-2 text-3xl font-bold text-[#10b981]">24/7</div>
+                      <div className="text-sm text-gray-600">دعم مستمر</div>
+                    </div>
+                    <div className="rounded-xl bg-[#10b981]/10 p-6 text-center">
+                      <div className="mb-2 text-3xl font-bold text-[#10b981]">100%</div>
+                      <div className="text-sm text-gray-600">مواءمة مثالية</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Image Side */}
+                <div className="relative">
+                  <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                    <img
+                      src="https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzY3NzE0MTMzfDA&ixlib=rb-4.1.0&q=80&w=1080"
+                      alt="RPO Service"
+                      className="h-[600px] w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#10b981]/40 to-transparent"></div>
+                  </div>
+
+                  {/* Decorative Element */}
+                  <div className="absolute -bottom-6 -right-6 -z-10 h-32 w-32 rounded-2xl bg-gradient-to-br from-[#10b981] to-[#059669]"></div>
+                </div>
+              </div>
             </div>
           </section>
           {/* RECRUITMENT METHODOLOGY */}

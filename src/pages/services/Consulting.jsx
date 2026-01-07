@@ -3,29 +3,29 @@ import React, { useEffect } from "react";
 import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 import {
-  FaArrowRight,
-  FaAward,
+  FaBook,
   FaClipboardList,
   FaClock,
+  FaHandsHelping,
   FaIndustry,
-  FaPhoneAlt,
-  FaThumbsUp,
+  FaProjectDiagram,
+  FaSearch,
+  FaSitemap,
   FaUserCheck,
   FaUsers,
 } from "react-icons/fa";
-import { PiBriefcaseLight, PiClipboardTextLight, PiUsersThreeLight } from "react-icons/pi";
-import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../../utils/SplitText";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay, duration: 0.6, ease: "easeOut" },
-  }),
-};
+const servicesIcons = [
+  <FaProjectDiagram size={24} color="white" />, // Psychometric Assessments
+  <FaSitemap size={24} color="white" />, // Competency-Based Interviews
+  <FaBook size={24} color="white" />, // Case Study
+  <FaSearch size={24} color="white" />, // Group Discussion
+  <FaClipboardList size={24} color="white" />, // Role-Playing Activities
+  <FaUserCheck size={24} color="white" />, // 360-Degree Assessment
+  <FaHandsHelping size={24} color="white" />, // 360-Degree Assessment
+];
 
 const statsData = [
   {
@@ -49,7 +49,6 @@ const statsData = [
 ];
 
 const Consulting = () => {
-  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -171,22 +170,27 @@ const Consulting = () => {
             </div>
           </section>
           {/* SERVICES */}
-          <section className="container mx-auto px-6 py-20">
+          <section className="container mx-auto mt-14 bg-gray-100 px-6 py-20">
             <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">
               {hrConsulting.servicesTitle}
             </h2>
             <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
-              {services.map(({ title, description }, i) => (
+              {services.map(({ title, description }, index) => (
                 <motion.div
-                  key={i}
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={fadeUp}
-                  viewport={{ once: true }}
-                  className="group flex flex-col rounded-lg bg-white p-6 transition-transform hover:-translate-y-2 hover:shadow-xl"
+                  key={index}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  className="group rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                 >
-                  <h3 className="mb-2 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
-                  <p className="flex-grow text-gray-700">{description}</p>
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
+                    {servicesIcons[index]}
+                  </div>
+
+                  <h3 className="mb-3 text-lg font-semibold text-[#0E1C3F]">{title}</h3>
+
+                  <p className="text-sm leading-relaxed text-gray-600">{description}</p>
                 </motion.div>
               ))}
             </div>
