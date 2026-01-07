@@ -59,34 +59,48 @@ const AboutUs = () => {
   return (
     <div className="bg-white font-cairo text-gray-900 selection:bg-cyan-200 selection:text-gray-900">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 min-h-[calc(43vh+80px)] overflow-hidden bg-[#0E1C3F]">
-        <div className="grid min-h-[calc(43vh+80px)] grid-cols-1 md:grid-cols-2">
-          {/* LEFT: Full-bleed Image */}
-          <div className="relative flex items-center">
-            <div className="mx-auto w-full">
+      <section className="relative -mt-20 overflow-hidden bg-[#0E1C3F] md:-mt-40">
+        <div className="grid min-h-[20vh] grid-cols-1 md:min-h-[calc(43vh+80px)] md:grid-cols-2">
+          {/* LEFT TEXT – DESKTOP ONLY */}
+          <div className="relative hidden items-center md:flex">
+            <div className="w-full px-24">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, ease: "easeOut" }}
               >
-                <h1 className="mt-20 px-36 text-4xl font-extrabold text-white md:text-5xl">{t("aboutUs")}</h1>
+                <h1 className="text-5xl font-extrabold text-white">{t("aboutUs")}</h1>
               </motion.div>
             </div>
           </div>
 
-          {/* RIGHT: Constrained Content */}
+          {/* IMAGE SECTION */}
           <div className="relative h-[45vh] md:h-auto">
             <img
               src="/assets/adroyts-office.webp"
-              alt="Adroyts office"
+              alt="About Us"
               className="absolute inset-0 h-full w-full object-cover"
             />
 
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0E1C3F]/70 via-[#0E1C3F]/40 to-transparent" />
+            {/* OVERLAY */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0E1C3F]/85 via-[#0E1C3F]/50 to-transparent md:bg-gradient-to-r md:from-[#0E1C3F]/70 md:via-[#0E1C3F]/40 md:to-transparent" />
+
+            {/* MOBILE TITLE OVER IMAGE */}
+            <div className="absolute inset-0 flex items-center justify-center px-6 md:hidden">
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="text-center text-3xl font-extrabold text-white sm:text-4xl"
+              >
+                {t("aboutUs")}
+              </motion.h1>
+            </div>
           </div>
 
-          {/* Diagonal Divider */}
+          {/* DIAGONAL DIVIDER – DESKTOP ONLY */}
           <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-40 -translate-x-1/2 md:block">
             <div className="absolute inset-0 -skew-x-12 bg-[#0E1C3F]" />
           </div>

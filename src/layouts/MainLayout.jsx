@@ -81,7 +81,7 @@ const MainLayout = ({ children }) => {
           isScrolled ? "bg-black bg-opacity-25 backdrop-blur-md" : ""
         }`}
       >
-        <div className="container mx-auto flex max-w-7xl items-center justify-between p-6 md:px-6">
+        <div className="container mx-auto flex max-w-7xl items-center justify-between bg-navy-500 p-6 md:bg-transparent md:px-6">
           {/* Logo */}
           <Link to="/" onClick={scrollToTop} className="flex items-center space-x-2">
             <img
@@ -233,19 +233,23 @@ const MainLayout = ({ children }) => {
               <FaSearch />
             </button> */}
             <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
-              {mobileOpen ? <FaTimes size={22} /> : <FaBars className="text-white" size={22} />}
+              {mobileOpen ? (
+                <FaTimes className="text-white" size={22} />
+              ) : (
+                <FaBars className="text-white" size={22} />
+              )}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {mobileOpen && (
-          <div className="space-y-3 border-t border-gray-700 bg-gray-900 px-6 py-4 shadow-lg md:hidden">
+          <div className="space-y-3 border-t border-gray-700 bg-navy-500 px-6 py-4 shadow-lg md:hidden">
             {/* Top-level links with optional submenus */}
             {[
               { label: "home", path: "/" },
               {
-                label: "about",
+                label: "aboutUs",
                 submenu: [
                   { label: "overview", hash: "#overview" },
                   { label: "ourPillars", hash: "#pillars" },
@@ -254,7 +258,7 @@ const MainLayout = ({ children }) => {
                 ],
               },
               {
-                label: "services",
+                label: "exploreOurServices",
                 submenu: [
                   { label: "recruitmentSolutionsTitle", path: "/services/recruitment" },
                   { label: "talentAssessment.title", path: "/services/assessment" },
@@ -264,21 +268,20 @@ const MainLayout = ({ children }) => {
               },
               { label: "careers", path: "/careers" },
               {
-                label: "media",
+                label: "mediaCenter",
                 submenu: [
                   { label: "blog", path: "/media-center/blogs" },
                   { label: "news", path: "/media-center/news" },
                   { label: "caseStudies", path: "/media-center/case-studies" },
                 ],
               },
-              { label: "contact", path: "/contact" },
             ].map((item) => (
               <div key={item.label}>
                 {item.submenu ? (
                   <>
                     <button
                       onClick={() => setMobileDropdown((prev) => (prev === item.label ? null : item.label))}
-                      className="flex w-full justify-between py-2 text-left text-white transition-colors hover:text-cyan-400"
+                      className="flex w-full justify-between py-2 text-white transition-colors hover:text-cyan-400 ltr:text-left rtl:text-right"
                     >
                       {t(item.label)}
                       <FaChevronDown
@@ -294,7 +297,7 @@ const MainLayout = ({ children }) => {
                         <button
                           key={sub.path || sub.hash}
                           onClick={() => handleNav(sub.path || `/about${sub.hash}`)}
-                          className="block w-full py-1 text-left text-gray-300 transition-colors hover:text-cyan-400"
+                          className="block w-full py-1 text-gray-300 transition-colors hover:text-cyan-400 ltr:text-left rtl:text-right"
                         >
                           {t(sub.label)}
                         </button>
@@ -304,21 +307,13 @@ const MainLayout = ({ children }) => {
                 ) : (
                   <button
                     onClick={() => handleNav(item.path)}
-                    className="block w-full py-2 text-left text-white transition-colors hover:text-cyan-400"
+                    className="block w-full py-2 text-white transition-colors hover:text-cyan-400 ltr:text-left rtl:text-right"
                   >
                     {t(item.label)}
                   </button>
                 )}
               </div>
             ))}
-
-            {/* CTA Button */}
-            <button
-              onClick={() => handleNav("/contact")}
-              className="w-full rounded-lg bg-cyan-500 px-4 py-2 text-white shadow-lg transition-colors hover:bg-cyan-600"
-            >
-              {i18n.language === "ar" ? "تواصل الآن" : "Get in Touch"}
-            </button>
           </div>
         )}
       </header>
