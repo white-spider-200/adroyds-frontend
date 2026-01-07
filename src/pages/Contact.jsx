@@ -42,7 +42,9 @@ const ContactAdroyts = () => {
     };
     fetchSocialMedia();
   }, [i18n.language]);
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const handleChange = (e) => {
     let { name, value } = e.target;
 

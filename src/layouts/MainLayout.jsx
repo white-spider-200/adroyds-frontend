@@ -31,6 +31,7 @@ const MainLayout = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { i18n, t } = useTranslation();
+  const [mobileDropdown, setMobileDropdown] = useState(null);
 
   // Scroll effects
   useEffect(() => {
@@ -232,33 +233,89 @@ const MainLayout = ({ children }) => {
               <FaSearch />
             </button> */}
             <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
-              {mobileOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+              {mobileOpen ? <FaTimes size={22} /> : <FaBars className="text-white" size={22} />}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {mobileOpen && (
-          <div className="space-y-3 border-t bg-white px-6 py-4 shadow-md md:hidden">
+          <div className="space-y-3 border-t border-gray-700 bg-gray-900 px-6 py-4 shadow-lg md:hidden">
+            {/* Top-level links with optional submenus */}
             {[
-              { label: "Home", path: "/" },
-              { label: "About", path: "/about" },
-              { label: "Services", path: "/services/recruitment" },
-              { label: "Careers", path: "/careers" },
-              { label: "Media", path: "/media" },
-              { label: "Contact", path: "/contact" },
+              { label: "home", path: "/" },
+              {
+                label: "about",
+                submenu: [
+                  { label: "overview", hash: "#overview" },
+                  { label: "ourPillars", hash: "#pillars" },
+                  { label: "corePerformance", hash: "#performance" },
+                  { label: "whyUs", hash: "#why" },
+                ],
+              },
+              {
+                label: "services",
+                submenu: [
+                  { label: "recruitmentSolutionsTitle", path: "/services/recruitment" },
+                  { label: "talentAssessment.title", path: "/services/assessment" },
+                  { label: "academy.title", path: "/services/academy" },
+                  { label: "hrConsulting.title", path: "/services/consulting" },
+                ],
+              },
+              { label: "careers", path: "/careers" },
+              {
+                label: "media",
+                submenu: [
+                  { label: "blog", path: "/media-center/blogs" },
+                  { label: "news", path: "/media-center/news" },
+                  { label: "caseStudies", path: "/media-center/case-studies" },
+                ],
+              },
+              { label: "contact", path: "/contact" },
             ].map((item) => (
-              <button
-                key={item.path}
-                onClick={() => handleNav(item.path)}
-                className="block w-full py-2 text-justify text-gray-700"
-              >
-                {t(item.label)}
-              </button>
+              <div key={item.label}>
+                {item.submenu ? (
+                  <>
+                    <button
+                      onClick={() => setMobileDropdown((prev) => (prev === item.label ? null : item.label))}
+                      className="flex w-full justify-between py-2 text-left text-white transition-colors hover:text-cyan-400"
+                    >
+                      {t(item.label)}
+                      <FaChevronDown
+                        className={`mt-1 text-xs transition-transform duration-200 ${mobileDropdown === item.label ? "rotate-180" : "rotate-0"}`}
+                      />
+                    </button>
+                    <div
+                      className={`mt-1 space-y-1 pl-4 transition-all duration-200 ${
+                        mobileDropdown === item.label ? "block" : "hidden"
+                      }`}
+                    >
+                      {item.submenu.map((sub) => (
+                        <button
+                          key={sub.path || sub.hash}
+                          onClick={() => handleNav(sub.path || `/about${sub.hash}`)}
+                          className="block w-full py-1 text-left text-gray-300 transition-colors hover:text-cyan-400"
+                        >
+                          {t(sub.label)}
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <button
+                    onClick={() => handleNav(item.path)}
+                    className="block w-full py-2 text-left text-white transition-colors hover:text-cyan-400"
+                  >
+                    {t(item.label)}
+                  </button>
+                )}
+              </div>
             ))}
+
+            {/* CTA Button */}
             <button
               onClick={() => handleNav("/contact")}
-              className="w-full rounded-lg bg-white px-4 py-2 text-black shadow"
+              className="w-full rounded-lg bg-cyan-500 px-4 py-2 text-white shadow-lg transition-colors hover:bg-cyan-600"
             >
               {i18n.language === "ar" ? "تواصل الآن" : "Get in Touch"}
             </button>

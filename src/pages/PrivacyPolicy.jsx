@@ -26,40 +26,40 @@ const PrivacyPolicy = () => {
   return (
     <div className="bg-white font-cairo text-gray-900 selection:bg-cyan-200 selection:text-gray-900">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
-        <img
-          src="/assets/adroyts-office.webp"
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
-
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          transition={{ duration: 1.1, ease: "easeOut" }}
-          className="relative z-10 flex h-full flex-col items-center justify-center px-6"
-        >
-          <div className="mt-32 rounded-lg px-8 py-12 md:px-12 md:py-16">
-            <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
-              <ol className="inline-flex space-x-2">
-                <li>
-                  <a href="/" className="hover:text-white hover:underline">
-                    {t("home")}
-                  </a>
-                  <span className="mx-2">/</span>
-                </li>
-                <li className="font-semibold text-white">{t("privacyPolicy")}</li>
-              </ol>
-            </nav>
-
-            <SplitText className="text-4xl font-extrabold leading-tight text-white drop-shadow md:text-4xl">
-              {t("privacyPolicy")}
-            </SplitText>
+      <section className="relative -mt-40 min-h-[calc(43vh+80px)] overflow-hidden bg-[#0E1C3F]">
+        <div className="grid min-h-[calc(43vh+80px)] grid-cols-1 md:grid-cols-2">
+          {/* LEFT: Full-bleed Image */}
+          <div className="relative flex items-center">
+            <div className="mx-auto w-full">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: "easeOut" }}
+              >
+                <h1 className="mt-20 px-36 text-4xl font-extrabold text-white md:text-5xl">
+                  {t("privacyPolicy")}
+                </h1>
+              </motion.div>
+            </div>
           </div>
-        </motion.div>
+
+          {/* RIGHT: Constrained Content */}
+          <div className="relative h-[45vh] md:h-auto">
+            <img
+              src="/assets/adroyts-office.webp"
+              alt="Adroyts office"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0E1C3F]/70 via-[#0E1C3F]/40 to-transparent" />
+          </div>
+
+          {/* Diagonal Divider */}
+          <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-40 -translate-x-1/2 md:block">
+            <div className="absolute inset-0 -skew-x-12 bg-[#0E1C3F]" />
+          </div>
+        </div>
       </section>
 
       {/* CONTENT SECTION */}

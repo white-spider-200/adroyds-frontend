@@ -251,7 +251,9 @@ const Careers = () => {
   });
 
   const [applicationStatus, setApplicationStatus] = useState(null);
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   useEffect(() => {
     if ((selectedJob && !showApplicationModal) || (selectedJob && showApplicationModal)) {
       document.body.style.overflow = "hidden";
@@ -305,9 +307,17 @@ const Careers = () => {
         <section className="relative bg-white px-4 py-8">
           <div className="mx-auto max-w-7xl px-6 text-center">
             {/* BELIEF STATEMENT - Card with Border Accent */}
-            <div className="mb-6 flex w-full justify-center">
-              <div className="max-w-4xl rounded-xl border-l-4 border-cyan-500 bg-white p-6 pl-6 text-lg italic text-gray-700 shadow-md">
-                {t("beliefStatement")} {t("welcomeMessage")}
+            <div className="mb-6 flex w-full justify-center py-8">
+              <div className="relative max-w-xl rounded-xl bg-navy-500 p-6 backdrop-blur-md md:p-8">
+                {/* Decorative quote mark */}
+                <span className="absolute -top-6 left-4 font-serif text-6xl text-cyan-200">“</span>
+
+                <p className="relative text-lg leading-relaxed text-white md:text-xl">
+                  {t("beliefStatement")} {t("welcomeMessage")}
+                </p>
+
+                {/* Accent line */}
+                <div className="mt-4 h-1 w-12 rounded-full bg-cyan-400" />
               </div>
             </div>
 

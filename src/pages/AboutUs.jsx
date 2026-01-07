@@ -141,6 +141,8 @@ const AboutUs = () => {
 
           {/* RIGHT CONTENT */}
           <div className="flex flex-col justify-center">
+            <SplitText className="mb-6 text-4xl font-extrabold text-gray-900">{t("aboutUs")}</SplitText>
+
             <motion.p
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -177,7 +179,9 @@ const AboutUs = () => {
       {/* PILLARS */}
       <section id="pillars" className="w-full bg-gray-100 px-6 py-20">
         <div className="mx-auto max-w-7xl text-center">
-          <h2 className="mb-4 text-4xl font-extrabold text-[#0E1C3F]">{t("pillarsSectionTitle")}</h2>
+          <SplitText className="mb-4 text-4xl font-extrabold text-gray-900">
+            {t("pillarsSectionTitle")}
+          </SplitText>
 
           <p className="m-auto mb-12 max-w-5xl font-bold text-gray-700">{t("pillarsSectionSubtitle")}</p>
 
@@ -215,9 +219,8 @@ const AboutUs = () => {
       <section id="performance" className="w-full bg-white py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 text-center">
           {/* Section Title */}
-          <h2 className="mb-12 text-4xl font-extrabold leading-tight text-[#0E1C3F] md:text-5xl">
-            {t("teamTabAlt")}
-          </h2>
+
+          <SplitText className="mb-6 text-4xl font-extrabold text-gray-900">{t("teamTabAlt")}</SplitText>
 
           <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:items-center md:gap-20">
             {/* Left Image with subtle zoom on hover */}
