@@ -34,6 +34,7 @@ const AboutUs = () => {
   const [teamMembers, setTeamMembers] = React.useState([]);
   // Load arrays and strings from translation files
   const pillars = t("pillars", { returnObjects: true });
+  const perf = t("perfList", { returnObjects: true });
   const features = t("whySectionFeatures", { returnObjects: true });
 
   useEffect(() => {
@@ -56,45 +57,40 @@ const AboutUs = () => {
   }, [i18n.language]);
 
   return (
-    <div className="bg-white font-cairo text-gray-900 selection:bg-blue-200 selection:text-gray-900">
+    <div className="bg-white font-cairo text-gray-900 selection:bg-cyan-200 selection:text-gray-900">
       {/* HERO SECTION */}
-      <section
-        id="overview"
-        className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center"
-      >
-        <img
-          src="/assets/adroyts-office.webp"
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
-
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          transition={{ duration: 1.1, ease: "easeOut" }}
-          className="relative z-10 flex h-full flex-col items-center justify-center px-6"
-        >
-          <div className="mt-32 rounded-lg px-8 py-12 md:px-12 md:py-16">
-            <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
-              <ol className="flex items-center justify-center space-x-2">
-                <li className="flex items-center">
-                  <a href="/" className="hover:text-white hover:underline">
-                    {t("home")}
-                  </a>
-                  <span className="mx-2">/</span>
-                </li>
-                <li className="font-semibold text-white">{t("aboutUs") || "About Us"}</li>
-              </ol>
-            </nav>
-
-            <SplitText className="text-4xl font-extrabold leading-tight text-white drop-shadow md:text-4xl">
-              {t("aboutUs")}
-            </SplitText>
+      <section className="relative -mt-40 min-h-[calc(43vh+80px)] overflow-hidden bg-[#0E1C3F]">
+        <div className="grid min-h-[calc(43vh+80px)] grid-cols-1 md:grid-cols-2">
+          {/* LEFT: Full-bleed Image */}
+          <div className="relative flex items-center">
+            <div className="mx-auto w-full">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: "easeOut" }}
+              >
+                <h1 className="mt-20 px-36 text-4xl font-extrabold text-white md:text-5xl">{t("aboutUs")}</h1>
+              </motion.div>
+            </div>
           </div>
-        </motion.div>
+
+          {/* RIGHT: Constrained Content */}
+          <div className="relative h-[45vh] md:h-auto">
+            <img
+              src="/assets/adroyts-office.webp"
+              alt="Adroyts office"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0E1C3F]/70 via-[#0E1C3F]/40 to-transparent" />
+          </div>
+
+          {/* Diagonal Divider */}
+          <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-40 -translate-x-1/2 md:block">
+            <div className="absolute inset-0 -skew-x-12 bg-[#0E1C3F]" />
+          </div>
+        </div>
       </section>
 
       {/* OVERVIEW */}
@@ -145,19 +141,6 @@ const AboutUs = () => {
 
           {/* RIGHT CONTENT */}
           <div className="flex flex-col justify-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: 30 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              viewport={{ once: true }}
-              className="relative mb-8 inline-flex items-center rounded-full bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 px-10 py-4 text-xl font-extrabold uppercase tracking-widest text-white shadow-[0_15px_60px_rgba(56,189,248,0.55)] sm:text-2xl md:text-3xl"
-            >
-              {/* Strong glow */}
-              <span className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 opacity-70 blur-2xl" />
-
-              {t("aboutUs")}
-            </motion.div>
-
             <motion.p
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -200,7 +183,7 @@ const AboutUs = () => {
 
           <div className="grid gap-6 md:grid-cols-3">
             {pillars.map((pillar, i) => {
-              const Icon = pillarIcons[i]; // Select the icon component
+              const Icon = pillarIcons[i];
 
               return (
                 <motion.div
@@ -229,26 +212,97 @@ const AboutUs = () => {
       </section>
 
       {/* TEAM */}
-      <section id="performance" className="w-full bg-white py-24">
-        <div className="mx-auto max-w-7xl px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="m-auto mb-6 w-48 rounded-md bg-[#e9fcff] px-4 py-2 text-center text-lg font-bold text-cyan-400"
-          >
+      <section id="performance" className="w-full bg-white py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-4 text-center">
+          {/* Section Title */}
+          <h2 className="mb-12 text-4xl font-extrabold leading-tight text-[#0E1C3F] md:text-5xl">
             {t("teamTabAlt")}
-          </motion.div>
+          </h2>
 
-          <p className="mx-auto max-w-5xl text-lg leading-relaxed text-gray-700">
-            <Trans
-              i18nKey="teamDescription"
-              components={{
-                1: <strong className="font-bold text-black" />,
-              }}
-            />
-          </p>
+          <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:items-center md:gap-20">
+            {/* Left Image with subtle zoom on hover */}
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              whileHover={{ scale: 1.05 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="overflow-hidden rounded-2xl"
+            >
+              <img
+                src="/assets/adroyts-office.webp"
+                alt={t("whySectionTab")}
+                className="aspect-[4/3] w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </motion.div>
+
+            {/* Right Features */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            >
+              <motion.p
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+                viewport={{ once: false }}
+                className="mb-8 text-justify text-lg font-medium leading-relaxed text-gray-700 md:text-xl"
+              >
+                <Trans i18nKey="perf1" components={{ 1: <strong className="font-bold text-black" /> }} />
+              </motion.p>
+
+              <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                {perf.map((feature, index) => (
+                  <li key={index} className="flex items-start gap-4">
+                    {/* Icon with background */}
+                    <div className="flex-shrink-0">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-500 text-white shadow-md">
+                        {/* Replace this with any icon component */}
+                        {feature.icon ? (
+                          <feature.icon className="h-6 w-6" />
+                        ) : (
+                          <svg
+                            className="h-6 w-6"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                        )}
+                      </span>
+                    </div>
+
+                    {/* Feature text */}
+                    <p className="text-lg font-medium leading-snug text-black/90 md:text-xl">
+                      <Trans
+                        i18nKey={feature.title}
+                        components={{ 1: <strong className="font-bold text-black" /> }}
+                      />
+                    </p>
+                  </li>
+                ))}
+              </ul>
+
+              <motion.p
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+                viewport={{ once: false }}
+                className="mt-8 text-justify text-lg font-medium leading-relaxed text-gray-700 md:text-xl"
+              >
+                <Trans i18nKey="perf2" components={{ 1: <strong className="font-bold text-black" /> }} />
+              </motion.p>
+            </motion.div>
+          </div>
         </div>
       </section>
+
       {/* VISION & MISSION */}
       <section id="performance" className="relative w-full bg-gray-100 py-28">
         <div className="mx-auto max-w-7xl px-6">
@@ -269,53 +323,56 @@ const AboutUs = () => {
           <div className="grid gap-12 md:grid-cols-2">
             {/* Vision */}
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out hover:bg-cyan-400"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="group relative rounded-2xl border border-gray-200 bg-white/70 p-10 shadow-sm backdrop-blur-xl transition-all hover:-translate-y-1 hover:shadow-xl"
+              whileHover={{ y: -8 }}
+              viewport={{ once: false }}
+              transition={{ delay: 0.2 }}
             >
-              <span className="absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-cyan-400" />
+              {/* Left border */}
+              <span className="absolute top-[4px] h-[96%] w-1 bg-cyan-400 ltr:left-0 ltr:rounded-l-2xl rtl:right-0 rtl:rounded-r-2xl" />
 
-              <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-[#0E1C3F]">
+              <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-[#0E1C3F] transition-colors duration-300 group-hover:text-white">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 text-cyan-400 transition-colors duration-300 group-hover:bg-white group-hover:text-cyan-400">
                   <FaEye size={24} />
                 </div>
                 {t("ourVisionTitle")}
               </h3>
 
-              <p className="leading-loose text-gray-700">
+              <p className="leading-loose text-gray-700 transition-colors duration-300 group-hover:text-white">
                 <Trans
                   i18nKey="ourVisionDesc"
                   components={{
-                    1: <strong className="font-semibold text-gray-900" />,
+                    1: <strong className="font-semibold" />,
                   }}
                 />
               </p>
             </motion.div>
-
             {/* Mission */}
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out hover:bg-cyan-400"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="group relative rounded-2xl border border-gray-200 bg-white/70 p-10 shadow-sm backdrop-blur-xl transition-all hover:-translate-y-1 hover:shadow-xl"
+              whileHover={{ y: -8 }}
+              viewport={{ once: false }}
+              transition={{ delay: 0.2 }}
             >
-              <span className="absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-cyan-400" />
+              {/* Left border */}
+              <span className="absolute top-[4px] h-[96%] w-1 bg-cyan-400 ltr:left-0 ltr:rounded-l-2xl rtl:right-0 rtl:rounded-r-2xl" />
 
-              <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-[#0E1C3F]">
+              <h3 className="mb-6 flex items-center gap-3 text-2xl font-bold text-[#0E1C3F] transition-colors duration-300 group-hover:text-white">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 text-cyan-400 transition-colors duration-300 group-hover:bg-white group-hover:text-cyan-400">
                   <FaFlag size={24} />
                 </div>
                 {t("ourMissionTitle")}
               </h3>
 
-              <p className="leading-loose text-gray-700">
+              <p className="leading-loose text-gray-700 transition-colors duration-300 group-hover:text-white">
                 <Trans
                   i18nKey="ourMissionDesc"
                   components={{
-                    1: <strong className="font-semibold text-gray-900" />,
+                    1: <strong className="font-semibold" />,
                   }}
                 />
               </p>
@@ -359,7 +416,7 @@ const AboutUs = () => {
               whileHover={{ scale: 1.05 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="overflow-hidden rounded-2xl shadow-lg"
+              className="overflow-hidden rounded-2xl"
             >
               <img
                 src="/assets/adroyts-office.webp"
@@ -422,7 +479,7 @@ const AboutUs = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                   viewport={{ once: true }}
-                  className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+                  className="group relative overflow-hidden rounded-2xl bg-white transition-all duration-500 hover:-translate-y-2"
                 >
                   {/* Image */}
                   <div className="relative h-80 w-full overflow-hidden">
@@ -437,7 +494,7 @@ const AboutUs = () => {
                       href={linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="absolute bottom-4 right-4 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#0A66C2] text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100"
+                      className="absolute bottom-4 right-4 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#0A66C2] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                     >
                       <FaLinkedinIn className="text-lg" />
                     </a>
@@ -493,7 +550,7 @@ const AboutUs = () => {
                       href={linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="absolute bottom-8 right-8 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#0A66C2] text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100"
+                      className="absolute bottom-8 right-8 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#0A66C2] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                       aria-label={`${name} LinkedIn Profile`}
                     >
                       <FaLinkedinIn className="text-lg" />

@@ -20,7 +20,7 @@ const NotFound = () => {
   const { i18n, t } = useTranslation();
 
   return (
-    <div className="bg-white font-cairo text-gray-900 selection:bg-blue-200 selection:text-gray-900">
+    <div className="bg-white font-cairo text-gray-900 selection:bg-cyan-200 selection:text-gray-900">
       {/* HERO SECTION */}
       <section
         id="overview"
@@ -93,7 +93,7 @@ const NotFound = () => {
           {/* BUTTON */}
           <div className="mt-8 flex justify-center">
             <button
-              className="rounded-full bg-[#0E1C3F] px-8 py-3 font-semibold text-white shadow-md transition hover:bg-blue-700"
+              className="rounded-full bg-[#0E1C3F] px-8 py-3 font-semibold text-white shadow-md transition hover:bg-cyan-700"
               onClick={() => navigate("/")}
             >
               Go Back Home

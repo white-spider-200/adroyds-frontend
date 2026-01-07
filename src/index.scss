@@ -3,9 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.input-field {
-  @apply w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-700 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition duration-200;
-}
 
 html {
   scroll-behavior: smooth;

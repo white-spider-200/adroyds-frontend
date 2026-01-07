@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaArrowRight, FaPlusCircle } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaPlusCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../utils/SplitText";
@@ -120,7 +120,7 @@ const ServiceCard = ({ service, isActive, onHover }) => {
       {isActive && (
         <motion.div
           aria-hidden="true"
-          className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-500 opacity-30 blur-3xl"
+          className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-gradient-to-tr from-cyan-400 to-cyan-500 opacity-30 blur-3xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -162,11 +162,23 @@ const ServiceCard = ({ service, isActive, onHover }) => {
 
         <button
           onClick={() => navigate(service.path)}
-          className={`mt-6 flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-gray-900 transition duration-300 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white ${
-            contentVisible ? "block" : "hidden"
-          }`}
+          className="group relative mt-8 inline-flex h-[calc(48px+8px)] items-center justify-center rounded-full bg-cyan-400 py-1 font-medium text-neutral-50 transition-colors duration-300 hover:text-neutral-50 ltr:pl-6 ltr:pr-16 rtl:pl-16 rtl:pr-6"
         >
-          {t(service.buttonText)} <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
+          {/* Button Text */}
+          <span className="z-10 pr-2">{t(service.buttonText)}</span>
+
+          {/* Animated Background / Arrow */}
+          <div
+            className={`absolute ${
+              i18n.language === "ar" ? "left-1" : "right-1"
+            } inline-flex h-12 w-12 items-center justify-end rounded-full bg-cyan-200 transition-[width] duration-300 group-hover:w-[calc(100%-8px)]`}
+          >
+            <div
+              className={`flex items-center justify-center ${i18n.language === "ar" ? "ml-3.5" : "mr-3.5"}`}
+            >
+              {i18n.language === "ar" ? <FaArrowLeft /> : <FaArrowRight />}
+            </div>
+          </div>
         </button>
       </motion.div>
     </motion.div>
@@ -186,7 +198,7 @@ const ServicesSection = () => {
       {/* Decorative Backgrounds */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-20 -top-20 h-[400px] w-[400px] rounded-full bg-gradient-to-tr from-blue-600 via-cyan-400 to-teal-400 opacity-20 blur-3xl"
+        className="pointer-events-none absolute -left-20 -top-20 h-[400px] w-[400px] rounded-full bg-gradient-to-tr from-cyan-600 via-cyan-400 to-teal-400 opacity-20 blur-3xl"
       />
       <div
         aria-hidden="true"

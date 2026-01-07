@@ -80,76 +80,73 @@ const Recruitment = () => {
   return (
     <div className="w-full bg-white text-[#0E1C3F] selection:bg-cyan-400/30 selection:text-[#0E1C3F]">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 flex min-h-[calc(60vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
-        <img
-          src="/assets/business-meeting-saudi-arabia-1024x683.webp"
-          alt="Recruitment Solutions"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+      <section className="relative -mt-40 min-h-[calc(43vh+80px)] overflow-hidden bg-[#0E1C3F]">
+        <div className="grid min-h-[calc(43vh+80px)] grid-cols-1 md:grid-cols-2">
+          {/* LEFT: Full-bleed Image */}
+          <div className="relative flex items-center">
+            <div className="mx-auto w-full">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: "easeOut" }}
+              >
+                <h1 className="mt-20 px-36 text-4xl font-extrabold text-white md:text-5xl">
+                  {t("recruitmentSolutions")}
+                </h1>
+              </motion.div>
+            </div>
+          </div>
 
-        {/* Dark Blue Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
+          {/* RIGHT: Constrained Content */}
+          <div className="relative h-[45vh] md:h-auto">
+            <img
+              src="/assets/business-meeting-saudi-arabia-1024x683.webp"
+              alt="Adroyts office"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="relative z-10 max-w-4xl px-4 pt-28"
-        >
-          {/* Breadcrumb */}
-          <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
-            <ol className="inline-flex space-x-2">
-              <li>
-                <a href="/" className="hover:text-white hover:underline">
-                  {t("home")}
-                </a>
-                <span className="mx-2">/</span>
-              </li>
-              <li className="font-semibold text-white">{t("recruitmentSolutionsTitle")}</li>
-            </ol>
-          </nav>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0E1C3F]/70 via-[#0E1C3F]/40 to-transparent" />
+          </div>
 
-          <SplitText className="mb-4 text-4xl font-extrabold text-white md:text-4xl">
-            {t("recruitmentSolutions")}
-          </SplitText>
-
-          <motion.button
-            onClick={() => navigate("/contact")}
-            className="mt-6 rounded-lg border border-white/30 bg-cyan-400 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-cyan-500 hover:shadow-xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-          >
-            {t("contactUs")}
-          </motion.button>
-        </motion.div>
+          {/* Diagonal Divider */}
+          <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-40 -translate-x-1/2 md:block">
+            <div className="absolute inset-0 -skew-x-12 bg-[#0E1C3F]" />
+          </div>
+        </div>
       </section>
 
       <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
         <div className="bg-white px-6">
-          <div className="relative mb-10 h-[450px] w-full overflow-hidden rounded-lg">
-            <img
-              src="/assets/business-meeting-saudi-arabia-1024x683.webp"
-              alt="Recruitment Solutions"
-              className="h-full w-full object-cover"
-            />
+          <div className="mb-24 flex flex-col gap-10 lg:flex-row lg:items-center">
+            {/* IMAGE */}
+            <div className="relative h-[450px] w-full overflow-hidden rounded-lg lg:w-1/2">
+              <img
+                src="/assets/business-meeting-saudi-arabia-1024x683.webp"
+                alt="Recruitment Solutions"
+                className="h-full w-full object-cover"
+              />
 
-            {/* OVERLAY */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F] to-cyan-400 opacity-20"></div>
+              {/* OVERLAY */}
+              <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F] to-cyan-400 opacity-20"></div>
+            </div>
+
+            {/* TEXT */}
+            <section className="w-full lg:w-1/2">
+              <SplitText className="mb-14 text-center text-4xl font-bold text-[#0E1C3F]">
+                {t("recruitmentSolutionsTitle")}
+              </SplitText>
+              <motion.p
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+                viewport={{ once: false }}
+                className="font-medium leading-relaxed text-gray-600"
+              >
+                {t("adroytsIntro2")}
+              </motion.p>
+            </section>
           </div>
-
-          {/* INTRO */}
-          <section className="container pb-8">
-            <motion.p
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-              viewport={{ once: false }}
-              className="mb-6 font-medium leading-relaxed text-gray-600"
-            >
-              {t("adroytsIntro2")}
-            </motion.p>
-          </section>
 
           {/* STATS SECTION */}
           <section className="relative overflow-hidden rounded-lg bg-cyan-400 p-10 text-white md:p-12">

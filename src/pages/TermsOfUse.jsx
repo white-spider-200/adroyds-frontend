@@ -26,7 +26,7 @@ const TermsOfUse = () => {
 
   return (
     <div
-      className="bg-white font-cairo text-gray-900 selection:bg-blue-200 selection:text-gray-900"
+      className="bg-white font-cairo text-gray-900 selection:bg-cyan-200 selection:text-gray-900"
       dir={i18n.language === "ar" ? "rtl" : "ltr"}
     >
       {/* HERO SECTION */}
@@ -146,7 +146,7 @@ const TermsOfUse = () => {
 
             <h2 className="mb-3 text-2xl font-semibold">10. التواصل</h2>
             <p>
-              <a href="mailto:contact@adroyts.com" className="text-blue-600 hover:underline">
+              <a href="mailto:contact@adroyts.com" className="text-cyan-600 hover:underline">
                 contact@adroyts.com
               </a>
             </p>
@@ -233,7 +233,7 @@ const TermsOfUse = () => {
 
             <h2 className="mb-3 text-2xl font-semibold">10. Contact</h2>
             <p>
-              <a href="mailto:contact@adroyts.com" className="text-blue-600 hover:underline">
+              <a href="mailto:contact@adroyts.com" className="text-cyan-600 hover:underline">
                 contact@adroyts.com
               </a>
             </p>

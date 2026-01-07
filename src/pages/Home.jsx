@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import Marquee from "react-fast-marquee";
 import { Trans, useTranslation } from "react-i18next";
-import { FaArrowRight, FaCalendarAlt } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaCalendarAlt } from "react-icons/fa";
 import { LuArrowUpRight } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 
@@ -142,16 +142,16 @@ const Home = () => {
           <motion.div className="flex items-center justify-center space-x-8" variants={scaleFadeItem}>
             <motion.div className="flex items-center justify-center space-x-8" variants={fadeUpItem}>
               <div className="flex items-center justify-center">
-                <motion.button
+                <button
                   onClick={() => {
                     const section = document.getElementById("services");
                     if (section) section.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="rounded-full bg-cyan-400 px-6 py-4 font-bold text-white shadow-md hover:bg-cyan-500"
-                  whileHover={{ scale: 1.1 }}
+                  class="group relative inline-flex h-14 w-48 items-center justify-center overflow-hidden rounded-md bg-cyan-200 px-6 text-lg font-bold text-neutral-50"
                 >
-                  {t("exploreOurServices")}
-                </motion.button>
+                  <span class="absolute h-56 w-full rounded-full bg-cyan-400 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
+                  <span class="relative"> {t("exploreOurServices")}</span>
+                </button>
               </div>
             </motion.div>
           </motion.div>
@@ -191,7 +191,7 @@ const Home = () => {
           <motion.div variants={fadeUp} custom={0.2} className="flex">
             <motion.button
               onClick={() => navigate("/about#overview")}
-              className="flex items-center space-x-3 font-semibold text-white hover:text-[#00CFFF]"
+              className="flex items-center space-x-3 font-semibold text-white hover:text-cyan-400"
               whileHover={buttonHover}
             >
               <span>{t("viewMore")}</span>
@@ -291,10 +291,23 @@ const Home = () => {
 
             <button
               onClick={() => navigate("/media-center/case-studies")}
-              className="flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-gray-900 transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white"
+              className="group relative mt-8 inline-flex h-[calc(48px+8px)] items-center justify-center rounded-full bg-cyan-400 py-1 font-medium text-neutral-50 transition-colors duration-300 hover:text-neutral-50 ltr:pl-6 ltr:pr-16 rtl:pl-16 rtl:pr-6"
             >
-              <span>{t("allCaseStudies")}</span>
-              <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
+              {/* Button Text */}
+              <span className="z-10 pr-2">{t("allCaseStudies")}</span>
+
+              {/* Animated Background / Arrow */}
+              <div
+                className={`absolute ${
+                  i18n.language === "ar" ? "left-1" : "right-1"
+                } inline-flex h-12 w-12 items-center justify-end rounded-full bg-cyan-200 transition-[width] duration-300 group-hover:w-[calc(100%-8px)]`}
+              >
+                <div
+                  className={`flex items-center justify-center ${i18n.language === "ar" ? "ml-3.5" : "mr-3.5"}`}
+                >
+                  {i18n.language === "ar" ? <FaArrowLeft /> : <FaArrowRight />}
+                </div>
+              </div>
             </button>
           </motion.div>
 
@@ -415,7 +428,7 @@ const Home = () => {
       <section className="relative overflow-hidden bg-gradient-to-br from-[#f5f7fa] via-[#eef2f7] to-[#e8ecf3]">
         {/* Decorative blur */}
         <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl" />
 
         <motion.div
           className="mx-auto max-w-7xl px-6 py-16 md:px-12"
@@ -434,12 +447,26 @@ const Home = () => {
             </div>
 
             {/* CTA */}
-            <button className="group inline-flex items-center gap-4 rounded-full bg-gradient-to-r from-[#192757] to-[#1f3aa8] px-9 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-cyan-400/40">
-              <span>{i18n.language === "ar" ? "تواصل معنا" : "Contact Us Now"}</span>
 
-              <FaArrowRight
-                className={`transition-transform duration-300 group-hover:translate-x-1 ${i18n.language === "ar" ? "rotate-180 group-hover:-translate-x-1" : ""} `}
-              />
+            <button
+              onClick={() => navigate("/contact")}
+              className="group relative mt-8 inline-flex h-[calc(48px+8px)] items-center justify-center rounded-full bg-cyan-400 py-1 font-medium text-neutral-50 transition-colors duration-300 hover:text-neutral-50 ltr:pl-6 ltr:pr-16 rtl:pl-16 rtl:pr-6"
+            >
+              {/* Button Text */}
+              <span className="z-10 pr-2">{i18n.language === "ar" ? "تواصل معنا" : "Contact Us Now"}</span>
+
+              {/* Animated Background / Arrow */}
+              <div
+                className={`absolute ${
+                  i18n.language === "ar" ? "left-1" : "right-1"
+                } inline-flex h-12 w-12 items-center justify-end rounded-full bg-cyan-200 transition-[width] duration-300 group-hover:w-[calc(100%-8px)]`}
+              >
+                <div
+                  className={`flex items-center justify-center ${i18n.language === "ar" ? "ml-3.5" : "mr-3.5"}`}
+                >
+                  {i18n.language === "ar" ? <FaArrowLeft /> : <FaArrowRight />}
+                </div>
+              </div>
             </button>
           </div>
         </motion.div>

@@ -17,7 +17,7 @@ export default function Sitemap() {
   const { i18n, t } = useTranslation();
 
   return (
-    <div className="text-gray-900 selection:bg-blue-200 selection:text-gray-900">
+    <div className="text-gray-900 selection:bg-cyan-200 selection:text-gray-900">
       {/* HERO SECTION */}
       <section
         id="overview"
@@ -63,7 +63,7 @@ export default function Sitemap() {
             <li>
               <Link
                 to="/"
-                className="text-lg font-semibold text-gray-900 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="text-lg font-semibold text-gray-900 hover:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600"
               >
                 {t("home")}
               </Link>
@@ -72,7 +72,7 @@ export default function Sitemap() {
             <li>
               <Link
                 to="/about"
-                className="text-lg font-semibold text-gray-900 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="text-lg font-semibold text-gray-900 hover:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600"
               >
                 {t("aboutUs")}
               </Link>
@@ -84,7 +84,7 @@ export default function Sitemap() {
                 <li>
                   <Link
                     to="/services/recruitment"
-                    className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="hover:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600"
                   >
                     {t("recruitmentSolutionsTitle")}
                   </Link>
@@ -92,7 +92,7 @@ export default function Sitemap() {
                 <li>
                   <Link
                     to="/services/academy"
-                    className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="hover:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600"
                   >
                     {t("academy.title")}
                   </Link>
@@ -100,7 +100,7 @@ export default function Sitemap() {
                 <li>
                   <Link
                     to="/services/assessment"
-                    className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="hover:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600"
                   >
                     {t("talentAssessment.title")}
                   </Link>
@@ -108,7 +108,7 @@ export default function Sitemap() {
                 <li>
                   <Link
                     to="/services/consulting"
-                    className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="hover:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600"
                   >
                     {t("hrConsulting.title")}
                   </Link>
@@ -122,7 +122,7 @@ export default function Sitemap() {
                 <li>
                   <Link
                     to="/media-center/blogs"
-                    className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="hover:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600"
                   >
                     {t("blog")}
                   </Link>
@@ -130,7 +130,7 @@ export default function Sitemap() {
                 <li>
                   <Link
                     to="/media-center/news"
-                    className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="hover:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600"
                   >
                     {t("news")}
                   </Link>
@@ -138,7 +138,7 @@ export default function Sitemap() {
                 <li>
                   <Link
                     to="/media-center/case-studies"
-                    className="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    className="hover:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600"
                   >
                     {t("caseStudies")}
                   </Link>
@@ -149,7 +149,7 @@ export default function Sitemap() {
             <li>
               <Link
                 to="/careers"
-                className="text-lg font-semibold text-gray-900 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="text-lg font-semibold text-gray-900 hover:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600"
               >
                 {t("careers")}
               </Link>
@@ -158,7 +158,7 @@ export default function Sitemap() {
             <li>
               <Link
                 to="/contact"
-                className="text-lg font-semibold text-gray-900 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="text-lg font-semibold text-gray-900 hover:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600"
               >
                 {t("contactUs")}
               </Link>
@@ -167,7 +167,7 @@ export default function Sitemap() {
             <li>
               <Link
                 to="/faqs"
-                className="text-lg font-semibold text-gray-900 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="text-lg font-semibold text-gray-900 hover:text-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600"
               >
                 {t("faq")}
               </Link>

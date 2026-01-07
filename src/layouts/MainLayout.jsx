@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
+  FaArrowLeft,
   FaArrowRight,
   FaArrowUp,
   FaBars,
@@ -60,10 +61,10 @@ const MainLayout = ({ children }) => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   const isActive = (path) =>
-    location.pathname == path ? "text-cyan-400" : "text-white hover:text-blue-200 ";
+    location.pathname == path ? "text-cyan-400" : "text-white hover:text-cyan-200 ";
 
   const isActiveParent = (prefix) =>
-    location.pathname.startsWith(prefix) ? "text-cyan-400" : "text-white hover:text-blue-200";
+    location.pathname.startsWith(prefix) ? "text-cyan-400" : "text-white hover:text-cyan-200";
 
   const handleNav = (path) => {
     setDropdown(null);
@@ -119,7 +120,7 @@ const MainLayout = ({ children }) => {
                   <button
                     key={item.hash}
                     onClick={() => handleNav(`/about${item.hash}`)}
-                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-blue-50"
+                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
                   >
                     {t(item.label)}
                   </button>
@@ -151,7 +152,7 @@ const MainLayout = ({ children }) => {
                   <button
                     key={item.path}
                     onClick={() => handleNav(item.path)}
-                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-blue-50"
+                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
                   >
                     {t(item.label)}
                   </button>
@@ -182,7 +183,7 @@ const MainLayout = ({ children }) => {
                   <button
                     key={item.hash}
                     onClick={() => handleNav(`/${item.hash}`)}
-                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-blue-50"
+                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
                   >
                     {t(item.label)}
                   </button>
@@ -204,12 +205,26 @@ const MainLayout = ({ children }) => {
             <LanguageSwitcher />
             <button
               onClick={() => handleNav("/contact")}
-              className="relative hidden items-center gap-2 rounded-full border-2 border-white bg-transparent px-4 py-2 text-white transition duration-300 ease-in-out hover:border-cyan-400 hover:text-cyan-400 md:flex"
+              className="group relative inline-flex h-[calc(48px+8px)] items-center justify-center rounded-full border-2 border-cyan-400 bg-transparent py-1 font-medium text-neutral-50 transition-colors duration-300 hover:text-neutral-50 ltr:pl-6 ltr:pr-16 rtl:pl-16 rtl:pr-6"
             >
-              <span>{i18n.language === "ar" ? "تواصل معنا" : "Contact Us"}</span>
-              <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
-            </button>
+              {/* Button Text */}
+              <span className="z-10 pr-2">{i18n.language === "ar" ? "تواصل معنا" : "Contact Us"}</span>
 
+              {/* Animated Background / Arrow */}
+              <div
+                className={`absolute ${
+                  i18n.language === "ar" ? "left-1" : "right-1"
+                } inline-flex h-12 w-12 items-center justify-end rounded-full bg-cyan-400 transition-[width] duration-300 group-hover:w-[calc(100%-8px)]`}
+              >
+                <div
+                  className={`flex items-center justify-center ${
+                    i18n.language === "ar" ? "ml-3.5" : "mr-3.5"
+                  }`}
+                >
+                  {i18n.language === "ar" ? <FaArrowLeft /> : <FaArrowRight />}
+                </div>
+              </div>
+            </button>
             {/* <button
               onClick={() => handleNav("/contact")}
               className="hidden items-center rounded-full bg-white p-3 text-black transition md:flex"

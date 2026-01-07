@@ -24,7 +24,7 @@ const PrivacyPolicy = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <div className="bg-white font-cairo text-gray-900 selection:bg-blue-200 selection:text-gray-900">
+    <div className="bg-white font-cairo text-gray-900 selection:bg-cyan-200 selection:text-gray-900">
       {/* HERO SECTION */}
       <section className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
         <img
@@ -221,7 +221,7 @@ const PrivacyPolicy = () => {
           <h2 className="mb-3 text-2xl font-semibold">10. معلومات التواصل</h2>
           <p>
             لأي استفسارات حول سياسة الخصوصية:{" "}
-            <a href="mailto:Contact@adroyts.com" className="text-blue-600 hover:underline">
+            <a href="mailto:Contact@adroyts.com" className="text-cyan-600 hover:underline">
               Contact@adroyts.com
             </a>
           </p>
@@ -342,7 +342,7 @@ const PrivacyPolicy = () => {
 
             <h2 className="mb-3 text-2xl font-semibold">10. Contact Us</h2>
             <p>
-              <a href="mailto:Contact@adroyts.com" className="text-blue-600 hover:underline">
+              <a href="mailto:Contact@adroyts.com" className="text-cyan-600 hover:underline">
                 Contact@adroyts.com
               </a>
             </p>

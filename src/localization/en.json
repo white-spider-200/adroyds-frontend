@@ -15,7 +15,8 @@
   "LeadershipPlacements": "Partner",
   "careers":"Careers",
   "page": "Page",
-    "getInTouch": "Get in Touch with Adroyts",
+  "dragOrClickFile":"Drag Or Click File",
+  "getInTouch": "Get in Touch with Adroyts",
   "helpMessage": "We’re here to support your HR, recruitment, and talent development needs. Please fill out the form below and our team will get back to you shortly.",
   "communicationValue": "At Adroyts, we value meaningful communication and aim to respond promptly and professionally to all inquiries. Whether you’re seeking support or information about our services, this form will help us guide your message to the right team.",
   "workingHours": "Working Hours",
@@ -250,6 +251,22 @@
       }
     ]
   },
+  "perf1": "At the heart of Adroyts' system stands a team of specialized experts and consultants, distinguished by deep knowledge and accumulated professional experience in managing and developing human capital. This exceptional team does not merely provide services, but ensures the highest levels of accuracy and efficiency through the application of professional and pioneering methodologies across all stages of human resources management and strategic partnership, including:",
+  "perf2": "This performance is further reinforced by the company's strong commitment to the continuous development of the team's skills and capabilities, which ensures the sustained quality of outputs, the effectiveness of our solutions, and the lasting value we provide to our clients.",
+  "perfList": [
+    {
+      "title": "Deep Knowledge"
+    },
+    {
+      "title": "Strategic Focus"
+    },
+    {
+      "title": "Sustainable Relationships"
+    },
+    {
+      "title": "Sustainable Relationships"
+    }
+  ],
   "governmentTitle":"Government",
   "realEstateTitle":"Real Estate",
   "financeTitle":"Finance",

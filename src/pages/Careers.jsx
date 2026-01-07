@@ -2,6 +2,15 @@ import { useFormik } from "formik";
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import {
+  FaArrowLeft,
+  FaBriefcase,
+  FaChevronRight,
+  FaClock,
+  FaUserAlt,
+  FaUserSecret,
+  FaUserShield,
+} from "react-icons/fa";
 import { HiOutlineCalendar, HiOutlineLocationMarker } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
 import * as Yup from "yup";
@@ -255,42 +264,41 @@ const Careers = () => {
   }, [selectedJob, showApplicationModal]);
 
   return (
-    <div className="w-full bg-gray-100">
+    <div className="w-full bg-white">
       {/* HERO SECTION */}
-      <section className="relative -mt-40 flex min-h-[calc(50vh+70px)] flex-col items-center justify-center bg-cover px-6 text-center">
-        <img
-          src="/assets/istockphoto-1395570261-612x613.jpg"
-          alt="Careers Hero"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F]/80 to-[#0E1C3F]/30"></div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, ease: "easeOut" }}
-          className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center"
-        >
-          <div className="mt-40 rounded-lg px-8 py-12 md:px-12 md:py-16">
-            <nav aria-label="breadcrumb" className="mb-4 text-sm text-white/75">
-              <ol className="inline-flex space-x-2">
-                <li>
-                  <a href="/" className="hover:text-white hover:underline">
-                    {t("home")}
-                  </a>
-                  <span className="mx-2">/</span>
-                </li>
-                <li className="font-semibold text-white" aria-current="page">
-                  {t("careers")}
-                </li>
-              </ol>
-            </nav>
-            <h1 className="mb-2 text-4xl font-extrabold leading-tight text-white drop-shadow md:text-4xl">
-              {t("careers")}
-            </h1>
-            <p className="max-w-xl text-lg text-white/90">{t("discoverOpportunities")}</p>
+      <section className="relative -mt-40 min-h-[calc(43vh+80px)] overflow-hidden bg-[#0E1C3F]">
+        <div className="grid min-h-[calc(43vh+80px)] grid-cols-1 md:grid-cols-2">
+          {/* LEFT: Full-bleed Image */}
+          <div className="relative flex items-center">
+            <div className="mx-auto w-full">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: "easeOut" }}
+              >
+                <h1 className="mt-20 px-36 text-4xl font-extrabold text-white md:text-5xl">{t("careers")}</h1>
+                <p className="max-w-xl px-36 text-lg text-white/90">{t("discoverOpportunities")}</p>
+              </motion.div>
+            </div>
           </div>
-        </motion.div>
+
+          {/* RIGHT: Constrained Content */}
+          <div className="relative h-[45vh] md:h-auto">
+            <img
+              src="/assets/istockphoto-1395570261-612x613.jpg"
+              alt="Adroyts office"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0E1C3F]/70 via-[#0E1C3F]/40 to-transparent" />
+          </div>
+
+          {/* Diagonal Divider */}
+          <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-40 -translate-x-1/2 md:block">
+            <div className="absolute inset-0 -skew-x-12 bg-[#0E1C3F]" />
+          </div>
+        </div>
       </section>
 
       <div className="w-full overflow-x-hidden">
@@ -303,48 +311,58 @@ const Careers = () => {
               </div>
             </div>
 
-            <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-              {/* Box 1: General Application */}
-              <motion.div
-                className="flex cursor-pointer flex-col justify-between rounded-2xl border border-gray-200 bg-white p-6 shadow"
-                variants={boxVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }} // animate when 30% of box is in view
-                whileHover="hover"
-              >
-                <div>
-                  <h3 className="mb-2 text-xl font-bold text-gray-900">{t("joinTalentNetwork")}</h3>
-                  <p className="text-gray-600">{t("joinTalentNetworkDescription")}</p>
-                </div>
-                <button
-                  onClick={() => scrollToSection("generalApplication")}
-                  className="mt-4 rounded-lg bg-cyan-500 px-6 py-3 font-semibold text-white shadow hover:bg-cyan-600"
-                >
-                  {t("applyRegister")}
-                </button>
-              </motion.div>
+            <div className="grid gap-8 md:grid-cols-2">
+              {/* Join Network Card */}
+              <div className="group relative overflow-hidden rounded-3xl bg-[#2470C3] p-10 text-white shadow-2xl transition-all hover:scale-105 hover:shadow-[#2470C3]/50">
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzY3NzE0MTMzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral')] bg-cover bg-center opacity-10" />
+                <div className="absolute right-0 top-0 -mr-32 -mt-32 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+                <div className="absolute bottom-0 left-0 -mb-32 -ml-32 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
 
-              {/* Box 2: Job Openings */}
-              <motion.div
-                className="flex cursor-pointer flex-col justify-between rounded-2xl border border-gray-200 bg-white p-6 shadow"
-                variants={boxVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
-                whileHover="hover"
-              >
-                <div>
-                  <h3 className="mb-2 text-xl font-bold text-gray-900">{t("currentJobOpenings")}</h3>
-                  <p className="text-gray-600">{t("currentJobOpeningsDescription")}</p>
+                <div className="relative">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm transition-all group-hover:rotate-6 group-hover:scale-110">
+                    <FaUserShield className="h-8 w-8" />
+                  </div>
+                  <h3 className="mb-4 text-3xl font-black">انضم إلى شبكة المواهب</h3>
+                  <p className="mb-8 text-lg leading-relaxed text-white/90">
+                    سجل الآن وكن جزءاً من مجتمع المحترفين المتميزين. سنساعدك في العثور على الفرصة المثالية.
+                  </p>
+                  <button
+                    size="lg"
+                    variant="secondary"
+                    className="bg-white font-bold text-[#2470C3] shadow-xl hover:bg-white/90 hover:shadow-2xl"
+                    onClick={() => scrollToSection("generalApplication")}
+                  >
+                    سجّل الآن
+                    <FaArrowLeft className="mr-2 h-5 w-5" />
+                  </button>
                 </div>
-                <button
-                  onClick={() => scrollToSection("openings")}
-                  className="mt-4 rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 hover:bg-gray-100"
-                >
-                  {t("viewJobs")}
-                </button>
-              </motion.div>
+              </div>
+
+              {/* Browse Jobs Card */}
+              <div className="group relative overflow-hidden rounded-3xl bg-gray-900 p-10 text-white shadow-2xl transition-all hover:scale-105 hover:shadow-gray-900/50">
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523287562758-66c7fc58967f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXJlZXIlMjBzdWNjZXNzfGVufDF8fHx8MTc2NzYzMjU5M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral')] bg-cover bg-center opacity-10" />
+                <div className="absolute right-0 top-0 -mr-32 -mt-32 h-64 w-64 rounded-full bg-[#2470C3]/30 blur-3xl" />
+                <div className="absolute bottom-0 left-0 -mb-32 -ml-32 h-64 w-64 rounded-full bg-[#2470C3]/30 blur-3xl" />
+
+                <div className="relative">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#2470C3]/30 backdrop-blur-sm transition-all group-hover:rotate-6 group-hover:scale-110">
+                    <FaBriefcase className="h-8 w-8" />
+                  </div>
+                  <h3 className="mb-4 text-3xl font-black">الوظائف المتاحة</h3>
+                  <p className="mb-8 text-lg leading-relaxed text-white/80">
+                    استكشف مجموعة واسعة من الفرص الوظيفية المتميزة وقدّم على الوظيفة المناسبة لك.
+                  </p>
+                  <button
+                    size="lg"
+                    variant="secondary"
+                    className="bg-white font-bold text-gray-900 shadow-xl hover:bg-white/90 hover:shadow-2xl"
+                    onClick={() => scrollToSection("generalApplication")}
+                  >
+                    تصفح الوظائف
+                    <FaArrowLeft className="mr-2 h-5 w-5" />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -356,21 +374,21 @@ const Careers = () => {
           <form
             onSubmit={formik.handleSubmit}
             encType="multipart/form-data"
-            className="space-y-6 rounded-2xl bg-white p-10 shadow-xl"
+            className="space-y-6 rounded-2xl bg-gray-100 p-10"
           >
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {/* Full Name */}
               <div>
-                <label className="font-medium">{t("fullName2")}</label>
                 <input
                   id="fullName"
                   name="fullName"
                   type="text"
+                  placeholder={t("fullName2")}
                   value={formik.values.fullName}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full rounded-md border px-3 py-2 ${
-                    formik.touched.fullName && formik.errors.fullName ? "border-red-500" : "border-gray-300"
+                  className={`h-14 w-full rounded-lg bg-white px-4 py-2 text-base transition duration-200 placeholder:text-black focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 ${
+                    formik.touched.fullName && formik.errors.fullName ? "border-red-500" : ""
                   }`}
                 />
                 {formik.touched.fullName && formik.errors.fullName && (
@@ -380,16 +398,16 @@ const Careers = () => {
 
               {/* Email */}
               <div>
-                <label className="font-medium">{t("emailAddress")}</label>
                 <input
                   id="email"
                   name="email"
                   type="email"
+                  placeholder={t("emailAddress")}
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full rounded-md border px-3 py-2 ${
-                    formik.touched.email && formik.errors.email ? "border-red-500" : "border-gray-300"
+                  className={`h-14 w-full rounded-lg bg-white px-4 py-2 text-base transition duration-200 placeholder:text-black focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 ${
+                    formik.touched.email && formik.errors.email ? "border-red-500" : ""
                   }`}
                 />
                 {formik.touched.email && formik.errors.email && (
@@ -399,17 +417,15 @@ const Careers = () => {
 
               {/* Mobile Number */}
               <div>
-                <label className="font-medium">{t("mobileNumber")}</label>
                 <input
                   id="mobileNumber"
                   name="mobileNumber"
+                  placeholder={t("mobileNumber")}
                   value={formik.values.mobileNumber}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full rounded-md border px-3 py-2 ${
-                    formik.touched.mobileNumber && formik.errors.mobileNumber
-                      ? "border-red-500"
-                      : "border-gray-300"
+                  className={`h-14 w-full rounded-lg bg-white px-4 py-2 text-base transition duration-200 placeholder:text-black focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 ${
+                    formik.touched.mobileNumber && formik.errors.mobileNumber ? "border-red-500" : ""
                   }`}
                 />
                 {formik.touched.mobileNumber && formik.errors.mobileNumber && (
@@ -419,17 +435,15 @@ const Careers = () => {
 
               {/* Current City */}
               <div>
-                <label className="font-medium">{t("currentCity")}</label>
                 <input
                   id="currentCity"
                   name="currentCity"
+                  placeholder={t("currentCity")}
                   value={formik.values.currentCity}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full rounded-md border px-3 py-2 ${
-                    formik.touched.currentCity && formik.errors.currentCity
-                      ? "border-red-500"
-                      : "border-gray-300"
+                  className={`h-14 w-full rounded-lg bg-white px-4 py-2 text-base transition duration-200 placeholder:text-black focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 ${
+                    formik.touched.currentCity && formik.errors.currentCity ? "border-red-500" : ""
                   }`}
                 />
                 {formik.touched.currentCity && formik.errors.currentCity && (
@@ -439,17 +453,15 @@ const Careers = () => {
 
               {/* Nationality */}
               <div>
-                <label className="font-medium">{t("nationality")}</label>
                 <input
                   id="nationality"
                   name="nationality"
+                  placeholder={t("nationality")}
                   value={formik.values.nationality}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full rounded-md border px-3 py-2 ${
-                    formik.touched.nationality && formik.errors.nationality
-                      ? "border-red-500"
-                      : "border-gray-300"
+                  className={`h-14 w-full rounded-lg bg-white px-4 py-2 text-base transition duration-200 placeholder:text-black focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 ${
+                    formik.touched.nationality && formik.errors.nationality ? "border-red-500" : ""
                   }`}
                 />
                 {formik.touched.nationality && formik.errors.nationality && (
@@ -459,17 +471,14 @@ const Careers = () => {
 
               {/* Opportunity Type */}
               <div>
-                <label className="font-medium">{t("opportunityType")}</label>
                 <select
                   id="opportunityType"
                   name="opportunityType"
                   value={formik.values.opportunityType}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full rounded-md border px-3 py-2 ${
-                    formik.touched.opportunityType && formik.errors.opportunityType
-                      ? "border-red-500"
-                      : "border-gray-300"
+                  className={`h-14 w-full rounded-lg bg-white px-4 py-2 text-base transition duration-200 placeholder:text-black focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 ${
+                    formik.touched.opportunityType && formik.errors.opportunityType ? "border-red-500" : ""
                   }`}
                 >
                   <option value="">{t("selectOpportunityType")}</option>
@@ -485,15 +494,15 @@ const Careers = () => {
 
               {/* LinkedIn */}
               <div>
-                <label className="font-medium">{t("linkedinProfile")}</label>
                 <input
                   id="linkedIn"
                   name="linkedIn"
+                  placeholder={t("linkedinProfile")}
                   value={formik.values.linkedIn}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full rounded-md border px-3 py-2 ${
-                    formik.touched.linkedIn && formik.errors.linkedIn ? "border-red-500" : "border-gray-300"
+                  className={`h-14 w-full rounded-lg bg-white px-4 py-2 text-base transition duration-200 placeholder:text-black focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 ${
+                    formik.touched.linkedIn && formik.errors.linkedIn ? "border-red-500" : ""
                   }`}
                 />
                 {formik.touched.linkedIn && formik.errors.linkedIn && (
@@ -502,16 +511,21 @@ const Careers = () => {
               </div>
 
               {/* Resume */}
-              <div className="md:col-span-2">
-                <label className="font-medium">{t("uploadResume")}</label>
-                <input
-                  type="file"
-                  name="resume"
-                  onChange={(e) => formik.setFieldValue("resume", e.currentTarget.files[0])}
-                  className={`w-full rounded-md border px-3 py-2 ${
+              <div className="relative md:col-span-2">
+                <label className="mb-2 block text-sm font-medium">{t("uploadResume")}</label>
+                <div
+                  className={`flex cursor-pointer items-center justify-between rounded-lg border-2 border-dashed bg-white px-4 py-4 text-gray-700 transition duration-200 focus-within:border-cyan-500 focus-within:ring-1 focus-within:ring-cyan-500 hover:border-cyan-500 hover:bg-cyan-50 ${
                     formik.touched.resume && formik.errors.resume ? "border-red-500" : "border-gray-300"
                   }`}
-                />
+                >
+                  <span>{formik.values.resume ? formik.values.resume.name : t("dragOrClickFile")}</span>
+                  <input
+                    type="file"
+                    name="resume"
+                    className="absolute h-full w-full cursor-pointer opacity-0"
+                    onChange={(e) => formik.setFieldValue("resume", e.currentTarget.files[0])}
+                  />
+                </div>
                 {formik.touched.resume && formik.errors.resume && (
                   <p className="mt-1 text-sm text-red-500">{formik.errors.resume}</p>
                 )}
@@ -574,31 +588,89 @@ const Careers = () => {
               {jobsData.map((job) => (
                 <motion.div
                   key={job.id}
-                  className="cursor-pointer rounded-2xl bg-white p-6 shadow"
                   variants={cardVariants}
                   whileHover="hover"
+                  className="cursor-pointer"
+                  onClick={() => setSelectedJob(job)}
                 >
-                  <h3 className="mb-2 text-xl font-bold">{job.title}</h3>
+                  <div className="group relative overflow-hidden border-gray-200 bg-white transition-all duration-500 hover:border-[#2470C3] hover:shadow-2xl">
+                    {/* Left accent */}
+                    <div className="absolute left-0 top-0 h-full w-2 bg-[#2470C3] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                  <div className="mb-3 flex gap-3 text-sm text-gray-500">
-                    <span className="flex items-center gap-1">
-                      <HiOutlineLocationMarker />
-                      {job.location}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <HiOutlineCalendar />
-                      {job.postingDate}
-                    </span>
+                    {/* Glow */}
+                    <div className="absolute -left-40 -top-40 h-80 w-80 rounded-full bg-[#2470C3]/5 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100" />
+
+                    <div className="relative p-8">
+                      <div className="mb-6 flex items-start justify-between">
+                        <div className="flex-1">
+                          {/* Status + Department */}
+                          <div className="mb-3 flex items-center gap-3">
+                            <span
+                              className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                                job.status === "Open" ? "bg-green-500 text-white" : "bg-gray-400 text-white"
+                              }`}
+                            >
+                              {job.status}
+                            </span>
+
+                            <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700">
+                              {job.department}
+                            </span>
+                          </div>
+
+                          {/* Title */}
+                          <h3 className="mb-4 text-2xl font-bold text-gray-900 transition-all group-hover:text-[#2470C3]">
+                            {job.title}
+                          </h3>
+
+                          {/* Meta */}
+                          <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                            <div className="flex items-center gap-2">
+                              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2470C3]/10 group-hover:bg-[#2470C3]/20">
+                                <HiOutlineLocationMarker className="h-4 w-4 text-[#2470C3]" />
+                              </div>
+                              <span className="font-medium">{job.location}</span>
+                            </div>
+
+                            <div className="flex items-center gap-2">
+                              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2470C3]/10 group-hover:bg-[#2470C3]/20">
+                                <HiOutlineCalendar className="h-4 w-4 text-[#2470C3]" />
+                              </div>
+                              <span className="font-medium">
+                                {new Date(job.postingDate).toLocaleDateString()}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Icon */}
+                        <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-[#2470C3] shadow-lg transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                          <FaBriefcase className="h-8 w-8 text-white" />
+                        </div>
+                      </div>
+
+                      {/* Description */}
+                      <p className="mb-8 line-clamp-3 text-base leading-relaxed text-gray-600">
+                        {job.description}
+                      </p>
+
+                      {/* Actions */}
+                      <div className="flex items-center gap-3">
+                        <button className="group/btn flex-1 bg-[#2470C3] text-white shadow-lg transition-all hover:bg-[#1d5ca0] hover:shadow-xl">
+                          <span>{t("viewDetails")}</span>
+                          <FaChevronRight className="mr-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                        </button>
+
+                        <button
+                          variant="outline"
+                          size="icon"
+                          className="border-gray-300 transition-all hover:border-[#2470C3] hover:bg-[#2470C3]/10"
+                        >
+                          <FaClock className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
                   </div>
-
-                  <p className="mb-6 line-clamp-3 text-gray-600">{job.description}</p>
-
-                  <button
-                    onClick={() => setSelectedJob(job)}
-                    className="w-full rounded-lg bg-cyan-500 py-2 font-semibold text-white hover:bg-cyan-600"
-                  >
-                    {t("viewDetails")}
-                  </button>
                 </motion.div>
               ))}
             </motion.div>
