@@ -25,6 +25,7 @@ const MainLayout = ({ children }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [socialMedia, setSocialMedia] = useState([]);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const [showScrollUp, setShowScrollUp] = useState(false);
   const [dropdown, setDropdown] = useState(null);
@@ -42,6 +43,14 @@ const MainLayout = ({ children }) => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") setSearchOpen(false);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
   }, []);
 
   useEffect(() => {
@@ -205,6 +214,12 @@ const MainLayout = ({ children }) => {
           <div className="flex items-center gap-5">
             <LanguageSwitcher />
             <button
+              onClick={() => setSearchOpen(true)}
+              className="hidden items-center rounded-full p-3 text-white transition md:flex"
+            >
+              <FaSearch />
+            </button>
+            <button
               onClick={() => handleNav("/contact")}
               className="group relative inline-flex h-[calc(48px+8px)] items-center justify-center rounded-full border-2 border-cyan-400 bg-transparent py-1 font-medium text-neutral-50 transition-colors duration-300 hover:text-neutral-50 ltr:pl-6 ltr:pr-16 rtl:pl-16 rtl:pr-6"
             >
@@ -226,12 +241,7 @@ const MainLayout = ({ children }) => {
                 </div>
               </div>
             </button>
-            {/* <button
-              onClick={() => handleNav("/contact")}
-              className="hidden items-center rounded-full bg-white p-3 text-black transition md:flex"
-            >
-              <FaSearch />
-            </button> */}
+
             <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
               {mobileOpen ? (
                 <FaTimes className="text-white" size={22} />
@@ -546,6 +556,53 @@ const MainLayout = ({ children }) => {
         >
           <FaArrowUp />
         </button>
+      )}
+      {searchOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[999]"
+          onClick={() => setSearchOpen(false)}
+        >
+          {/* TOP PANEL (30%) */}
+          <motion.div
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            onClick={(e) => e.stopPropagation()}
+            className="flex h-[30vh] w-full items-center justify-center border-b border-white/10 bg-black/90 px-6"
+          >
+            <div className="relative w-full max-w-3xl">
+              {/* Close Button */}
+              <button
+                onClick={() => setSearchOpen(false)}
+                className="absolute -top-10 right-0 text-white/70 hover:text-white"
+              >
+                <FaTimes size={22} />
+              </button>
+
+              {/* Search Input */}
+              <div className="flex items-center gap-4 rounded-2xl border border-white/20 bg-white/10 px-6 py-5 shadow-xl">
+                <FaSearch className="text-white/70" size={22} />
+                <input
+                  autoFocus
+                  type="text"
+                  placeholder={i18n.language === "ar" ? "ابحث هنا..." : "Search anything..."}
+                  className="w-full bg-transparent text-xl text-white placeholder-white/60 outline-none"
+                />
+              </div>
+
+              {/* Hint */}
+              <p className="mt-4 text-center text-sm text-white/50">
+                {i18n.language === "ar"
+                  ? "اضغط Enter للبحث أو ESC للإغلاق"
+                  : "Press Enter to search or ESC to close"}
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
       )}
     </div>
   );
