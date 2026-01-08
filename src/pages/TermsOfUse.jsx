@@ -41,7 +41,7 @@ const TermsOfUse = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, ease: "easeOut" }}
               >
-                <h1 className="text-5xl font-extrabold text-white">
+                <h1 className="text-4xl font-extrabold text-white">
                   {i18n.language === "ar" ? "شروط الاستخدام" : "Terms of Use"}
                 </h1>
               </motion.div>

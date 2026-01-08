@@ -30,12 +30,13 @@ const icons = [
 ];
 
 const assessmentIcons = [
-  <FaBrain size={24} color="white" />, // Psychometric Assessments
-  <FaComments size={24} color="white" />, // Competency-Based Interviews
-  <FaClipboard size={24} color="white" />, // Case Study
-  <FaUsers size={24} color="white" />, // Group Discussion
-  <FaUserTie size={24} color="white" />, // Role-Playing Activities
-  <FaSyncAlt size={24} color="white" />, // 360-Degree Assessment
+  FaBrain, // Psychometric Assessments
+  FaComments, // Competency-Based Interviews
+  FaClipboard, // Case Study
+  FaUsers, // Group Discussion
+  FaUserTie, // Role-Playing Activities
+  FaSyncAlt, // 360-Degree Assessment
+  FaComments, // 360-Degree Assessment
 ];
 
 const TalentAssessment = () => {
@@ -79,7 +80,7 @@ const TalentAssessment = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, ease: "easeOut" }}
               >
-                <h1 className="text-5xl font-extrabold text-white">{talentAssessment.title}</h1>
+                <h1 className="text-4xl font-extrabold text-white">{t("assessmentCenterSolutions")}</h1>
               </motion.div>
             </div>
           </div>
@@ -150,7 +151,7 @@ const TalentAssessment = () => {
           </div>
 
           {/* SOLUTIONS SECTION */}
-          <section className="py-8">
+          <section className="bg-gray-100 py-8">
             <div className="container mx-auto max-w-7xl px-6">
               <motion.h2
                 initial={{ opacity: 0, y: 30 }}
@@ -186,40 +187,64 @@ const TalentAssessment = () => {
           </section>
 
           {/* ASSESSMENT CENTER TOOLS */}
-          <section className="bg-[#F8FAFC] py-24">
-            <div className="container mx-auto max-w-7xl px-6">
-              <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: false }}
-                className="mb-16 text-center text-4xl font-bold text-[#0E1C3F]"
-              >
-                {t("assessmentCenterTools.title")}
-              </motion.h2>
+          <section
+            id="assessment-tools"
+            className="relative mt-14 overflow-hidden rounded-lg bg-navy-500 px-4 py-24 sm:px-6 lg:px-8"
+          >
+            {/* Title */}
+            <SplitText className="mb-16 text-center text-3xl font-bold text-white">
+              {t("assessmentCenterTools.title")}
+            </SplitText>
 
-              <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-                {t("assessmentCenterTools.items", { returnObjects: true }).map((tool, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
-                    viewport={{ once: false, amount: 0.3 }}
-                    className="group rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-                  >
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
-                      {assessmentIcons[index]}
-                    </div>
+            {/* Animated Background */}
+            <div className="absolute inset-0 overflow-hidden">
+              <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
+                transition={{ duration: 18, repeat: Infinity }}
+                className="absolute right-0 top-0 h-96 w-96 rounded-full bg-navy-500/50 blur-3xl"
+              />
+              <motion.div
+                animate={{ scale: [1.2, 1, 1.2], opacity: [0.05, 0.1, 0.05] }}
+                transition={{ duration: 22, repeat: Infinity }}
+                className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-navy-500/50 blur-3xl"
+              />
+            </div>
 
-                    <h3 className="mb-3 text-lg font-semibold text-[#0E1C3F]">{tool.title}</h3>
+            <div className="relative z-10 mx-auto max-w-7xl">
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {t("recruitmentMethodology.steps", { returnObjects: true }).map((tool, index) => {
+                  const Icon = assessmentIcons[index];
 
-                    <p className="text-sm leading-relaxed text-gray-600">{tool.desc}</p>
-                  </motion.div>
-                ))}
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                    >
+                      <div className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10">
+                        {/* Icon */}
+                        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-500/50 transition-transform duration-300 group-hover:scale-110">
+                          {Icon && <Icon className="h-7 w-7 text-white" />}
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="mb-3 text-xl font-bold text-white">{tool.title}</h3>
+
+                        {/* Description */}
+                        <p className="flex-grow text-sm leading-relaxed text-white/70">{tool.desc}</p>
+
+                        {/* Hover Overlay */}
+                        <div className="pointer-events-none absolute inset-0 rounded-2xl bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-5" />
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </section>
+
           {/* PSYCHOMETRIC PROVIDERS */}
           <section className="bg-white py-28">
             <div className="container mx-auto max-w-7xl px-6">

@@ -125,7 +125,7 @@ const Recruitment = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, ease: "easeOut" }}
               >
-                <h1 className="text-5xl font-extrabold text-white">{t("recruitmentSolutions")}</h1>
+                <h1 className="text-4xl font-extrabold text-white">{t("recruitmentSolutions")}</h1>
               </motion.div>
             </div>
           </div>
@@ -327,191 +327,143 @@ const Recruitment = () => {
             </div>
           </section>
 
-          {/* EXECUTIVE SEARCH DETAILS */}
+          {/* ================= EXECUTIVE SEARCH ================= */}
           <section id="executive" className="bg-white py-20 md:py-32">
             <div className="container mx-auto px-4 md:px-6 lg:px-8">
               <div className="grid items-center gap-12 lg:grid-cols-2">
-                {/* Content Side */}
-                <div dir="rtl">
-                  <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#1a4d7b]/10 px-4 py-2">
-                    <FiTarget className="h-5 w-5 text-[#1a4d7b]" />
-                    <span className="font-semibold text-[#1a4d7b]">خدمة متميزة</span>
-                  </div>
+                {/* CONTENT */}
+                <div>
+                  <SplitText className="mb-8 text-4xl font-bold text-[#0E1C3F]">
+                    {t("recruitment2.executive.title")}
+                  </SplitText>
 
-                  <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">البحث التنفيذي</h2>
-
-                  <p className="mb-6 text-xl leading-relaxed text-gray-600">
-                    تتخصص أدرويتس في خدمة البحث التنفيذي (Search Executive) كركيزة استراتيجية لاستقطاب
-                    القيادات العليا.
-                  </p>
+                  <p className="mb-6 leading-relaxed text-gray-600">{t("recruitment2.executive.intro")}</p>
 
                   <p className="mb-8 text-lg leading-relaxed text-gray-600">
-                    لا نكتفي بالبحث عن المرشحين فقط، بل نسعى لاكتشاف القادة القادرين على إحداث نقلة نوعية
-                    وتأثير مباشر في أداء المؤسسات.
+                    {t("recruitment2.executive.description")}
                   </p>
 
                   <div className="mb-8 rounded-2xl bg-gradient-to-br from-[#1a4d7b]/5 to-[#2d5f8d]/5 p-8">
-                    <h3 className="mb-4 text-xl font-bold text-gray-900">منهجيتنا الشاملة:</h3>
+                    <h3 className="mb-4 font-semibold text-gray-900">
+                      {t("recruitment2.executive.methodologyTitle")}
+                    </h3>
+
                     <ul className="space-y-4">
-                      {features.map((feature, index) => (
+                      {t("recruitment2.executive.features", { returnObjects: true }).map((item, index) => (
                         <li key={index} className="flex items-start gap-3">
-                          <FiCheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-[#1a4d7b]" />
-                          <span className="leading-relaxed text-gray-700">{feature}</span>
+                          <FiCheckCircle className="mt-1 h-6 w-6 text-[#1a4d7b]" />
+                          <span className="leading-relaxed text-gray-700">{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <p className="text-lg leading-relaxed text-gray-600">
-                    <strong className="text-gray-900">هدفنا:</strong> تحقيق رؤية استراتيجية واضحة للمؤسسات
-                    التي نخدمها.
+                  <p className="text-lg text-gray-600">
+                    <strong className="text-gray-900">{t("recruitment2.executive.goalTitle")}</strong>{" "}
+                    {t("recruitment2.executive.goal")}
                   </p>
                 </div>
 
-                {/* Image Side */}
+                {/* IMAGE */}
                 <div className="relative">
-                  <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                    <img
-                      src="https://images.unsplash.com/photo-1758599543146-f263d3b3321e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGV4ZWN1dGl2ZXMlMjBtZWV0aW5nfGVufDF8fHx8MTc2Nzc3ODgyM3ww&ixlib=rb-4.1.0&q=80&w=1080"
-                      alt="Executive Search"
-                      className="h-[600px] w-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a4d7b]/40 to-transparent"></div>
-                  </div>
-
-                  {/* Decorative Element */}
-                  <div className="absolute -bottom-6 -right-6 -z-10 h-32 w-32 rounded-2xl bg-gradient-to-br from-[#1a4d7b] to-[#2d5f8d]"></div>
+                  <img
+                    src="https://images.unsplash.com/photo-1758599543146-f263d3b3321e"
+                    alt="Executive Search"
+                    className="h-[600px] w-full rounded-2xl object-cover shadow-2xl"
+                  />
                 </div>
               </div>
             </div>
           </section>
+
+          {/* ================= PROFESSIONAL SEARCH ================= */}
           <section id="professional" className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-32">
             <div className="container mx-auto px-4 md:px-6 lg:px-8">
               <div className="grid items-center gap-12 lg:grid-cols-2">
-                {/* Image Side */}
-                <div className="relative order-2 lg:order-1">
-                  <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                    <img
-                      src="https://images.unsplash.com/photo-1758518731457-5ef826b75b3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB0ZWFtJTIwY29sbGFib3JhdGlvbnxlbnwxfHx8fDE3Njc3MDc4NzV8MA&ixlib=rb-4.1.0&q=80&w=1080"
-                      alt="Professional Search"
-                      className="h-[600px] w-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#fbbf24]/40 to-transparent"></div>
-                  </div>
-
-                  {/* Decorative Element */}
-                  <div className="absolute -left-6 -top-6 -z-10 h-32 w-32 rounded-2xl bg-gradient-to-br from-[#fbbf24] to-[#f59e0b]"></div>
+                {/* IMAGE */}
+                <div className="order-2 lg:order-1">
+                  <img
+                    src="https://images.unsplash.com/photo-1758518731457-5ef826b75b3b"
+                    alt="Professional Search"
+                    className="h-[600px] w-full rounded-2xl object-cover shadow-2xl"
+                  />
                 </div>
 
-                {/* Content Side */}
-                <div className="order-1 lg:order-2" dir="rtl">
-                  <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#fbbf24]/10 px-4 py-2">
-                    <FaUser className="h-5 w-5 text-[#f59e0b]" />
-                    <span className="font-semibold text-[#f59e0b]">بناء الفرق المهنية</span>
-                  </div>
+                {/* CONTENT */}
+                <div className="order-1 lg:order-2">
+                  <SplitText className="mb-8 text-4xl font-bold text-[#0E1C3F]">
+                    {t("recruitment2.professional.title")}
+                  </SplitText>
 
-                  <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">البحث المهني</h2>
-
-                  <p className="mb-6 text-xl leading-relaxed text-gray-600">
-                    نُمكّن المنظمات من سد الفجوات المهنية عبر استقطاب الكفاءات المهنية التي تقود العمليات
-                    التشغيلية.
-                  </p>
+                  <p className="mb-6 leading-relaxed text-gray-600">{t("recruitment2.professional.intro")}</p>
 
                   <p className="mb-8 text-lg leading-relaxed text-gray-600">
-                    نركز على المستويات الإدارية، والإشرافية، والتخصصية لضمان بناء فريق عمل متكامل وفعّال.
+                    {t("recruitment2.professional.description")}
                   </p>
 
-                  <div className="mb-8 rounded-2xl bg-gradient-to-br from-[#fbbf24]/5 to-[#f59e0b]/5 p-8">
-                    <h3 className="mb-4 text-xl font-bold text-gray-900">نهجنا في البحث المهني:</h3>
+                  <div className="rounded-2xl bg-[#fbbf24]/5 p-8">
+                    <h3 className="mb-4 font-semibold text-gray-900">
+                      {t("recruitment2.professional.methodologyTitle")}
+                    </h3>
+
                     <ul className="space-y-4">
-                      {features2.map((feature, index) => (
+                      {t("recruitment2.professional.features", { returnObjects: true }).map((item, index) => (
                         <li key={index} className="flex items-start gap-3">
-                          <FiCheckCircle className="mt-0.5 h-6 w-6 flex-shrink-0 text-[#f59e0b]" />
-                          <span className="leading-relaxed text-gray-700">{feature}</span>
+                          <FiCheckCircle className="mt-1 h-6 w-6 text-[#f59e0b]" />
+                          <span className="leading-relaxed text-gray-700">{item}</span>
                         </li>
                       ))}
                     </ul>
-                  </div>
-
-                  <div className="rounded-lg border-r-4 border-[#fbbf24] bg-[#fbbf24]/10 p-6">
-                    <p className="leading-relaxed text-gray-700">
-                      نوفر للمنظمة كوادر قادرة على التنفيذ المتميز وضمان استمرارية العمليات بأعلى معايير
-                      الجودة.
-                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* RPO */}
+          {/* ================= RPO ================= */}
           <section id="rpo" className="bg-white py-20 md:py-32">
             <div className="container mx-auto px-4 md:px-6 lg:px-8">
               <div className="grid items-center gap-12 lg:grid-cols-2">
-                {/* Content Side */}
-                <div dir="rtl">
-                  <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#10b981]/10 px-4 py-2">
-                    <FiBriefcase className="h-5 w-5 text-[#10b981]" />
-                    <span className="font-semibold text-[#10b981]">حل متكامل</span>
-                  </div>
+                {/* CONTENT */}
+                <div>
+                  <SplitText className="mb-8 text-4xl font-bold text-[#0E1C3F]">
+                    {t("recruitment2.rpo.title")}
+                  </SplitText>
 
-                  <h2 className="mb-6 text-4xl font-bold text-gray-900 md:text-5xl">إسناد عمليات التوظيف</h2>
-
-                  <p className="mb-6 text-xl leading-relaxed text-gray-600">
-                    تقدم أدرُويتس خدمة إسناد عمليات التوظيف (RPO) من خلال توفير فرق استقطاب متخصصة بدوام كامل
-                    أو جزئي.
-                  </p>
+                  <p className="mb-6 leading-relaxed text-gray-600">{t("recruitment2.rpo.intro")}</p>
 
                   <p className="mb-8 text-lg leading-relaxed text-gray-600">
-                    نموذج تشغيلي يعمل كامتداد لمنظومة الموارد البشرية داخل المؤسسات، حيث تعمل فرق الاستقطاب
-                    وفق معايير مهنية دقيقة.
+                    {t("recruitment2.rpo.description")}
                   </p>
 
-                  <div className="mb-8 rounded-2xl bg-gradient-to-br from-[#10b981]/5 to-[#059669]/5 p-8">
-                    <h3 className="mb-6 text-xl font-bold text-gray-900">مزايا الخدمة:</h3>
+                  <div className="rounded-2xl bg-[#10b981]/5 p-8">
+                    <h3 className="mb-6 font-semibold text-gray-900">
+                      {t("recruitment2.rpo.benefitsTitle")}
+                    </h3>
+
                     <div className="space-y-6">
-                      {features3.map((feature, index) => (
+                      {t("recruitment2.rpo.features", { returnObjects: true }).map((item, index) => (
                         <div key={index} className="flex items-start gap-4">
-                          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-[#10b981]/10">
-                            <feature.icon className="h-6 w-6 text-[#10b981]" />
-                          </div>
-                          <div className="flex-1">
-                            <p className="leading-relaxed text-gray-700">{feature.text}</p>
-                          </div>
+                          <FiCheckCircle className="mt-1 h-6 w-6 text-[#10b981]" />
+                          <p className="leading-relaxed text-gray-700">{item}</p>
                         </div>
                       ))}
                     </div>
                   </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="rounded-xl bg-[#10b981]/10 p-6 text-center">
-                      <div className="mb-2 text-3xl font-bold text-[#10b981]">24/7</div>
-                      <div className="text-sm text-gray-600">دعم مستمر</div>
-                    </div>
-                    <div className="rounded-xl bg-[#10b981]/10 p-6 text-center">
-                      <div className="mb-2 text-3xl font-bold text-[#10b981]">100%</div>
-                      <div className="text-sm text-gray-600">مواءمة مثالية</div>
-                    </div>
-                  </div>
                 </div>
 
-                {/* Image Side */}
-                <div className="relative">
-                  <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                    <img
-                      src="https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzY3NzE0MTMzfDA&ixlib=rb-4.1.0&q=80&w=1080"
-                      alt="RPO Service"
-                      className="h-[600px] w-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#10b981]/40 to-transparent"></div>
-                  </div>
-
-                  {/* Decorative Element */}
-                  <div className="absolute -bottom-6 -right-6 -z-10 h-32 w-32 rounded-2xl bg-gradient-to-br from-[#10b981] to-[#059669]"></div>
+                {/* IMAGE */}
+                <div>
+                  <img
+                    src="https://images.unsplash.com/photo-1718220216044-006f43e3a9b1"
+                    alt="RPO"
+                    className="h-[600px] w-full rounded-2xl object-cover shadow-2xl"
+                  />
                 </div>
               </div>
             </div>
           </section>
+
           {/* RECRUITMENT METHODOLOGY */}
           <section
             id="methodology"
@@ -566,7 +518,7 @@ const Recruitment = () => {
                         </div>
 
                         {/* Title */}
-                        <h3 className="mb-3 text-xl font-bold text-white">{step.title}</h3>
+                        <h3 className="mb-3 font-bold text-white">{step.title}</h3>
 
                         {/* Description */}
                         <p className="flex-grow text-sm leading-relaxed text-white/70">{step.desc}</p>

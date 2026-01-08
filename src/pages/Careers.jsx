@@ -279,7 +279,7 @@ const Careers = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, ease: "easeOut" }}
               >
-                <h1 className="text-5xl font-extrabold text-white">{t("careers")}</h1>
+                <h1 className="text-4xl font-extrabold text-white">{t("careers")}</h1>
                 <p className="mt-3 max-w-xl text-lg text-white/90">{t("discoverOpportunities")}</p>
               </motion.div>
             </div>

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { FaBook, FaBullseye, FaEye, FaFlag, FaHandshake, FaLinkedinIn } from "react-icons/fa";
+import { FiBriefcase, FiCheckCircle } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
 
 import mainServices from "../services/mainServices";
@@ -70,7 +71,7 @@ const AboutUs = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, ease: "easeOut" }}
               >
-                <h1 className="text-5xl font-extrabold text-white">{t("aboutUs")}</h1>
+                <h1 className="text-4xl font-extrabold text-white">{t("aboutUs")}</h1>
               </motion.div>
             </div>
           </div>
@@ -155,8 +156,11 @@ const AboutUs = () => {
 
           {/* RIGHT CONTENT */}
           <div className="flex flex-col justify-center">
-            <SplitText className="mb-6 text-4xl font-extrabold text-gray-900">{t("aboutUs")}</SplitText>
-
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-cyan-200/10 p-6 px-8">
+              <span className="text-sm font-semibold uppercase tracking-wide text-cyan-200">
+                <SplitText className="text-4xl font-extrabold text-gray-900">{t("aboutUs")}</SplitText>
+              </span>
+            </div>
             <motion.p
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -267,7 +271,7 @@ const AboutUs = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
                 viewport={{ once: false }}
-                className="mb-8 text-justify text-lg font-medium leading-relaxed text-gray-700 md:text-xl"
+                className="mb-8 text-justify font-medium leading-relaxed text-gray-700"
               >
                 <Trans i18nKey="perf1" components={{ 1: <strong className="font-bold text-black" /> }} />
               </motion.p>
@@ -277,26 +281,16 @@ const AboutUs = () => {
                   <li key={index} className="flex items-start gap-4">
                     {/* Icon with background */}
                     <div className="flex-shrink-0">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-500 text-white shadow-md">
-                        {/* Replace this with any icon component */}
-                        {feature.icon ? (
-                          <feature.icon className="h-6 w-6" />
-                        ) : (
-                          <svg
-                            className="h-6 w-6"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                            viewBox="0 0 24 24"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                          </svg>
-                        )}
-                      </span>
+                      {/* Replace this with any icon component */}
+                      {feature.icon ? (
+                        <feature.icon className="h-6 w-6" />
+                      ) : (
+                        <FiCheckCircle className="mt-1 h-6 w-6 text-[#1a4d7b]" />
+                      )}
                     </div>
 
                     {/* Feature text */}
-                    <p className="text-lg font-medium leading-snug text-black/90 md:text-xl">
+                    <p className="font-medium leading-snug text-black/90">
                       <Trans
                         i18nKey={feature.title}
                         components={{ 1: <strong className="font-bold text-black" /> }}
@@ -311,7 +305,7 @@ const AboutUs = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
                 viewport={{ once: false }}
-                className="mt-8 text-justify text-lg font-medium leading-relaxed text-gray-700 md:text-xl"
+                className="mt-8 text-justify font-medium leading-relaxed text-gray-700"
               >
                 <Trans i18nKey="perf2" components={{ 1: <strong className="font-bold text-black" /> }} />
               </motion.p>

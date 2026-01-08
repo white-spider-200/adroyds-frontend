@@ -304,6 +304,8 @@
   "coreServices":"Core Services",
   "sitemap":"Sitemap",
   "overview":"Overview",
+  "assessmentCenterSolutions": "Solutions enabling confident decision-making since 2006",
+  "humanCapitalConsulting": "Building sustainable organizations since 2006",
   "ourPillars":"Our Pillars",
   "corePerformance":"Core Performance",
   "whyUs":"Why Us",
@@ -464,6 +466,53 @@
       "description": "Providing specialized services to manage specific HR tasks on behalf of the client, enabling them to focus on strategic activities."
     }
   }
+  },
+  "recruitment2": {
+    "executive": {
+      "title": "Executive Search",
+      "intro": "Adroyts specializes in Executive Search as a strategic pillar for attracting senior leadership talent.",
+      "description": "We go beyond candidate identification to uncover leaders capable of driving transformational impact and long-term organizational success.",
+      "methodologyTitle": "Our Executive Search Methodology",
+      "features": [
+        "In-depth analysis of client needs and strategic context",
+        "Precise identification of high-impact leadership competencies",
+        "Professional assessment using advanced evaluation tools",
+        "Evidence-based recommendations aligned with success requirements"
+      ],
+       "goalTitle": "Our Goal:",
+      "goal": "Delivering long-term strategic alignment between leadership and organizational objectives."
+    },
+
+    "professional": {
+      "title": "Professional Search",
+      "intro": "We empower organizations to build strong professional teams that drive operational excellence.",
+      "description": "Our focus spans managerial, supervisory, and specialized roles to ensure performance continuity and operational efficiency.",
+      "methodologyTitle": "Our Professional Search Approach",
+      "features": [
+        "Sourcing mid-level and experienced professionals",
+        "Rigorous technical and behavioral screening",
+        "Focus on execution-driven talent",
+        "Ensuring sustainable organizational performance"
+      ],
+      "highlight": "We deliver professionals who support growth and achieve measurable results."
+    },
+
+    "rpo": {
+      "title": "Recruitment Process Outsourcing",
+      "intro": "Adroyts delivers Recruitment Process Outsourcing (RPO) as an integrated operating model aligned with HR functions.",
+      "description": "Our dedicated recruitment teams operate under strict professional standards to accelerate hiring while maintaining quality.",
+      "benefitsTitle": "RPO Service Benefits",
+      "features": [
+        "Dedicated recruitment teams with multi-sector expertise",
+        "Faster hiring cycles with improved candidate quality",
+        "Extensive industry experience",
+        "Coverage across all job levels"
+      ],
+      "stats": {
+        "support": "Continuous Support",
+        "alignment": "Full Alignment"
+      }
+    }
   },
    "personalInformation": "Personal Information",
   "professionalInformation": "Professional Information",

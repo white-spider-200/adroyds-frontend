@@ -64,7 +64,7 @@ const CaseStudies = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, ease: "easeOut" }}
               >
-                <h1 className="text-5xl font-extrabold text-white">{t("caseStudies")}</h1>
+                <h1 className="text-4xl font-extrabold text-white">{t("caseStudies")}</h1>
               </motion.div>
             </div>
           </div>

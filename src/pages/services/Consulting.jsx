@@ -18,13 +18,13 @@ import {
 import { SplitText } from "../../utils/SplitText";
 
 const servicesIcons = [
-  <FaProjectDiagram size={24} color="white" />, // Psychometric Assessments
-  <FaSitemap size={24} color="white" />, // Competency-Based Interviews
-  <FaBook size={24} color="white" />, // Case Study
-  <FaSearch size={24} color="white" />, // Group Discussion
-  <FaClipboardList size={24} color="white" />, // Role-Playing Activities
-  <FaUserCheck size={24} color="white" />, // 360-Degree Assessment
-  <FaHandsHelping size={24} color="white" />, // 360-Degree Assessment
+  FaProjectDiagram, // Psychometric Assessments
+  FaSitemap, // Competency-Based Interviews
+  FaBook, // Case Study
+  FaSearch, // Group Discussion
+  FaClipboardList, // Role-Playing Activities
+  FaUserCheck, // 360-Degree Assessment
+  FaHandsHelping, // 360-Degree Assessment
 ];
 
 const statsData = [
@@ -74,7 +74,7 @@ const Consulting = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, ease: "easeOut" }}
               >
-                <h1 className="text-5xl font-extrabold text-white">{hrConsulting.title}</h1>
+                <h1 className="text-4xl font-extrabold text-white">{t("humanCapitalConsulting")}</h1>
               </motion.div>
             </div>
           </div>
@@ -158,7 +158,7 @@ const Consulting = () => {
               <polygon points="800,400 0,400 0,300 800,100" fill="#15a8bf" />
             </svg>
 
-            <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
+            <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
               {/* Stats */}
               <div className="flex flex-1 justify-between">
                 {statsData.map(({ icon, num, suffix, label }, i) => (
@@ -182,29 +182,61 @@ const Consulting = () => {
             </div>
           </section>
           {/* SERVICES */}
-          <section className="container mx-auto mt-14 bg-gray-100 px-6 py-20">
-            <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">
+          <section
+            id="services"
+            className="relative mt-24 overflow-hidden rounded-lg bg-navy-500 px-4 py-32 sm:px-6 lg:px-8"
+          >
+            {/* Title */}
+            <SplitText className="mb-16 text-center text-3xl font-bold text-white">
               {hrConsulting.servicesTitle}
-            </h2>
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
-              {services.map(({ title, description }, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  className="group rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
-                    {servicesIcons[index]}
-                  </div>
+            </SplitText>
 
-                  <h3 className="mb-3 text-lg font-semibold text-[#0E1C3F]">{title}</h3>
+            {/* Animated Background */}
+            <div className="absolute inset-0 overflow-hidden">
+              <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
+                transition={{ duration: 18, repeat: Infinity }}
+                className="absolute right-0 top-0 h-96 w-96 rounded-full bg-navy-500/50 blur-3xl"
+              />
+              <motion.div
+                animate={{ scale: [1.2, 1, 1.2], opacity: [0.05, 0.1, 0.05] }}
+                transition={{ duration: 22, repeat: Infinity }}
+                className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-navy-500/50 blur-3xl"
+              />
+            </div>
 
-                  <p className="text-sm leading-relaxed text-gray-600">{description}</p>
-                </motion.div>
-              ))}
+            <div className="relative z-10 mx-auto max-w-7xl">
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {services.map(({ title, description }, index) => {
+                  const Icon = servicesIcons[index];
+
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                    >
+                      <div className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10">
+                        {/* Icon */}
+                        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-500/50 transition-transform duration-300 group-hover:scale-110">
+                          {Icon && <Icon className="h-7 w-7 text-white" />}
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="mb-3 text-xl font-bold text-white">{title}</h3>
+
+                        {/* Description */}
+                        <p className="flex-grow text-sm leading-relaxed text-white/70">{description}</p>
+
+                        {/* Hover Overlay */}
+                        <div className="pointer-events-none absolute inset-0 rounded-2xl bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-5" />
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
           </section>
         </div>
