@@ -64,17 +64,17 @@ const stepIcons = [FiSearch, FiClipboard, FiUsers, FiFileText, FiUserCheck, FiBr
 const servicesList = [
   {
     i18nKey: "executiveSearch",
-    image: "/assets/istock-90868745-large-spxmmo.jpeg",
+    image: "/assets/amina-atar-MA4aW8ZOzLM-unsplash.jpg",
     link: "#executive",
   },
   {
     i18nKey: "professionalSearch",
-    image: "/assets/shutterstock_591060992.jpg",
+    image: "/assets/saudi-office.jpg",
     link: "#professional",
   },
   {
     i18nKey: "recruitmentOutsourcing",
-    image: "/assets/shutterstock_2212724739.jpg",
+    image: "/assets/photo-1718220216044-006f43e3a9b1.jpg",
     link: "#rpo",
   },
 ];
@@ -115,50 +115,28 @@ const Recruitment = () => {
     <div className="w-full bg-white text-[#0E1C3F] selection:bg-cyan-400/30 selection:text-[#0E1C3F]">
       {/* HERO SECTION */}
       <section className="relative -mt-20 overflow-hidden bg-[#0E1C3F] md:-mt-40">
-        <div className="grid min-h-[20vh] grid-cols-1 md:min-h-[calc(43vh+80px)] md:grid-cols-2">
-          {/* LEFT TEXT – DESKTOP ONLY */}
-          <div className="relative hidden items-center md:flex">
-            <div className="w-full px-24">
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, ease: "easeOut" }}
-              >
-                <h1 className="text-4xl font-extrabold text-white">{t("recruitmentSolutions")}</h1>
-              </motion.div>
-            </div>
-          </div>
+        {/* Content */}
+        <div className="relative z-10 mx-auto flex min-h-[20vh] max-w-7xl items-center px-6 py-20 md:min-h-[calc(43vh+80px)]">
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="mt-20 w-[60%] text-3xl font-extrabold text-white sm:text-4xl"
+          >
+            {t("recruitmentSolutions")}
+          </motion.h1>
+        </div>
 
-          {/* IMAGE SECTION */}
-          <div className="relative h-[45vh] md:h-auto">
-            <img
-              src="/assets/business-meeting-saudi-arabia-1024x683.webp"
-              alt="Recruitment Solutions"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-
-            {/* OVERLAY */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0E1C3F]/85 via-[#0E1C3F]/50 to-transparent md:bg-gradient-to-r md:from-[#0E1C3F]/70 md:via-[#0E1C3F]/40 md:to-transparent" />
-
-            {/* MOBILE TITLE OVER IMAGE */}
-            <div className="absolute inset-0 flex items-center justify-center px-6 md:hidden">
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="text-center text-3xl font-extrabold text-white sm:text-4xl"
-              >
-                {t("recruitmentSolutions")}
-              </motion.h1>
-            </div>
-          </div>
-
-          {/* DIAGONAL DIVIDER – DESKTOP ONLY */}
-          <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-40 -translate-x-1/2 md:block">
-            <div className="absolute inset-0 -skew-x-12 bg-[#0E1C3F]" />
-          </div>
+        {/* Clipped Image */}
+        <div className="absolute top-0 z-0 h-full w-full overflow-hidden md:w-[40%] ltr:right-0 rtl:left-0">
+          <img
+            src="/assets/business-meeting-saudi-arabia-1024x683.webp"
+            alt="Expert Training Career Growth"
+            className="clipped-image h-full w-full object-cover"
+          />
+          {/* Optional overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0E1C3F]/85 via-[#0E1C3F]/50 to-transparent md:bg-gradient-to-r md:from-[#0E1C3F]/70 md:via-[#0E1C3F]/40 md:to-transparent" />
         </div>
       </section>
 
@@ -172,9 +150,6 @@ const Recruitment = () => {
                 alt="Recruitment Solutions"
                 className="h-full w-full object-cover"
               />
-
-              {/* OVERLAY */}
-              <div className="absolute inset-0 bg-gradient-to-b from-[#0E1C3F] via-[#0E1C3F] to-cyan-400 opacity-20"></div>
             </div>
 
             {/* TEXT */}
@@ -367,7 +342,7 @@ const Recruitment = () => {
                 {/* IMAGE */}
                 <div className="relative">
                   <img
-                    src="https://images.unsplash.com/photo-1758599543146-f263d3b3321e"
+                    src="/assets/amina-atar-MA4aW8ZOzLM-unsplash.jpg"
                     alt="Executive Search"
                     className="h-[600px] w-full rounded-2xl object-cover shadow-2xl"
                   />
@@ -383,7 +358,7 @@ const Recruitment = () => {
                 {/* IMAGE */}
                 <div className="order-2 lg:order-1">
                   <img
-                    src="https://images.unsplash.com/photo-1758518731457-5ef826b75b3b"
+                    src="/assets/saudi-office.jpg"
                     alt="Professional Search"
                     className="h-[600px] w-full rounded-2xl object-cover shadow-2xl"
                   />
@@ -455,7 +430,7 @@ const Recruitment = () => {
                 {/* IMAGE */}
                 <div>
                   <img
-                    src="https://images.unsplash.com/photo-1718220216044-006f43e3a9b1"
+                    src="/assets/photo-1718220216044-006f43e3a9b1.jpg"
                     alt="RPO"
                     className="h-[600px] w-full rounded-2xl object-cover shadow-2xl"
                   />

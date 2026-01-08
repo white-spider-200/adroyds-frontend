@@ -55,50 +55,28 @@ const News = () => {
     <div className="bg-white text-[#0E1C3F] selection:bg-cyan-400 selection:text-white">
       {/* HERO SECTION */}
       <section className="relative -mt-20 overflow-hidden bg-[#0E1C3F] md:-mt-40">
-        <div className="grid min-h-[20vh] grid-cols-1 md:min-h-[calc(43vh+80px)] md:grid-cols-2">
-          {/* LEFT TEXT – DESKTOP ONLY */}
-          <div className="relative hidden items-center md:flex">
-            <div className="w-full px-24">
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.9, ease: "easeOut" }}
-              >
-                <h1 className="text-4xl font-extrabold text-white">{t("news")}</h1>
-              </motion.div>
-            </div>
-          </div>
+        {/* Content */}
+        <div className="relative z-10 mx-auto flex min-h-[20vh] max-w-7xl items-center px-6 py-20 md:min-h-[calc(43vh+80px)]">
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="mt-20 text-center text-3xl font-extrabold text-white sm:text-4xl md:text-left"
+          >
+            {t("news")}
+          </motion.h1>
+        </div>
 
-          {/* IMAGE SECTION */}
-          <div className="relative h-[45vh] md:h-auto">
-            <img
-              src="/assets/saudi11-blog-thumbnail.jpg"
-              alt="News"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-
-            {/* OVERLAY */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0E1C3F]/85 via-[#0E1C3F]/50 to-transparent md:bg-gradient-to-r md:from-[#0E1C3F]/70 md:via-[#0E1C3F]/40 md:to-transparent" />
-
-            {/* MOBILE TITLE OVER IMAGE */}
-            <div className="absolute inset-0 flex items-center justify-center px-6 md:hidden">
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="text-center text-3xl font-extrabold text-white sm:text-4xl"
-              >
-                {t("news")}
-              </motion.h1>
-            </div>
-          </div>
-
-          {/* DIAGONAL DIVIDER – DESKTOP ONLY */}
-          <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-40 -translate-x-1/2 md:block">
-            <div className="absolute inset-0 -skew-x-12 bg-[#0E1C3F]" />
-          </div>
+        {/* Clipped Image */}
+        <div className="absolute top-0 z-0 h-full w-full overflow-hidden md:w-[40%] ltr:right-0 rtl:left-0">
+          <img
+            src="/assets/saudi11-blog-thumbnail.jpg"
+            alt="Expert Training Career Growth"
+            className="clipped-image h-full w-full object-cover"
+          />
+          {/* Optional overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0E1C3F]/85 via-[#0E1C3F]/50 to-transparent md:bg-gradient-to-r md:from-[#0E1C3F]/70 md:via-[#0E1C3F]/40 md:to-transparent" />
         </div>
       </section>
 

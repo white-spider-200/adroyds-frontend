@@ -42,8 +42,17 @@ clip-path: ellipse(100% 100% at 50% 20%);
   display: flex;
   animation: marquee 20s linear infinite;
 }
+/* styles.css or global.css */
+.clipped-image {
+  clip-path: none; /* default for mobile */
+}
 
+@media (min-width: 768px) {
+  .clipped-image {
+        clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
 
+  }
+}
 /* General RTL styles */
 body.rtl {
   *,
@@ -55,6 +64,18 @@ body.rtl {
   .ltr-ignore * {
     direction: ltr !important;
   }
+
+  /* styles.css or global.css */
+.clipped-image {
+  clip-path: none; /* default for mobile */
+}
+
+@media (min-width: 768px) {
+  .clipped-image {
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+    
+  }
+}
 
   .react-tel-input {
     direction: ltr !important;
