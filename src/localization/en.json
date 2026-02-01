@@ -45,8 +45,11 @@
   "emailAddress": "Email Address *",
   "currentCity": "Current City *",
   "nationality": "Nationality *",
+  "whatsapp":"Whatsapp",
   "opportunityType": "Opportunity Type *",
   "uploadResume": "Upload Resume *",
+  "maxFileSize": "Maximum file size",
+  "allowedFileType": "Allowed file types",
   "Open":"Open",
   "selectOpportunityType": "Select Opportunity Type",
   "opportunityAdroytsTeam": "Apply to Join Adroyts Team",
@@ -191,10 +194,7 @@
         "title": "Professional Development",
         "desc": "Empowering individuals to develop their skills and build clear career paths that enhance performance and ensure continuity."
       },
-      {
-        "title": "Individual Development Plans",
-        "desc": "Conducting comprehensive individual assessments to identify core strengths and development needs."
-      },
+   
       {
         "title": "High-Potential Talent Identification",
         "desc": "Identifying high-potential talents and supporting their readiness for future roles."

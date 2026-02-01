@@ -142,19 +142,23 @@ const TalentAssessment = () => {
                 {t("talentSolutions.items", { returnObjects: true }).map((item, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.6 }}
-                    viewport={{ once: false, amount: 0.3 }}
-                    className="rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                    whileHover={{ y: -8 }}
+                    viewport={{ once: false }}
+                    className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out hover:bg-cyan-400"
                   >
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
                       {icons[index]}
                     </div>
 
-                    <h3 className="mb-3 text-lg font-semibold text-[#0E1C3F]">{item.title}</h3>
+                    <h3 className="mb-3 text-lg font-semibold text-[#0E1C3F] transition-colors duration-300 group-hover:text-white">
+                      {item.title}
+                    </h3>
 
-                    <p className="text-sm leading-relaxed text-gray-600">{item.desc}</p>
+                    <p className="text-sm leading-relaxed text-gray-600 transition-colors duration-300 group-hover:text-white">
+                      {item.desc}
+                    </p>
                   </motion.div>
                 ))}
               </div>
@@ -186,7 +190,7 @@ const TalentAssessment = () => {
             </div>
 
             <div className="relative z-10 mx-auto max-w-7xl">
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="flex flex-wrap justify-center gap-8">
                 {t("recruitmentMethodology.steps", { returnObjects: true }).map((tool, index) => {
                   const Icon = assessmentIcons[index];
 
@@ -197,6 +201,7 @@ const TalentAssessment = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="w-full sm:w-[48%] lg:w-[30%] xl:w-[22%]" // responsive widths
                     >
                       <div className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10">
                         {/* Icon */}

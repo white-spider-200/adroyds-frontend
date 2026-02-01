@@ -9,7 +9,6 @@ import {
   FaChevronDown,
   FaSearch,
   FaTimes,
-  FaWhatsapp,
 } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -126,6 +125,8 @@ const MainLayout = ({ children }) => {
                   { label: "ourPillars", hash: "#pillars" },
                   { label: "corePerformance", hash: "#performance" },
                   { label: "whyUs", hash: "#why" },
+                  { label: "BoardOfDirectors", hash: "#board" },
+                  { label: "ExecutiveManagement", hash: "#executive" },
                 ].map((item) => (
                   <button
                     key={item.hash}
@@ -572,7 +573,7 @@ const MainLayout = ({ children }) => {
             exit={{ y: "-100%" }}
             transition={{ duration: 0.35, ease: "easeOut" }}
             onClick={(e) => e.stopPropagation()}
-            className="flex h-[30vh] w-full items-center justify-center border-b border-white/10 bg-black/90 px-6"
+            className="mt-24 flex h-[30vh] w-full items-center justify-center px-6"
           >
             <div className="relative w-full max-w-3xl">
               {/* Close Button */}

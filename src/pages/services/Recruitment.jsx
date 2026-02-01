@@ -469,7 +469,7 @@ const Recruitment = () => {
             </div>
 
             <div className="relative z-10 mx-auto max-w-7xl">
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="flex flex-wrap justify-center gap-8">
                 {t("recruitmentMethodology.steps", { returnObjects: true }).map((step, index) => {
                   const Icon = stepIcons[index];
 
@@ -480,6 +480,7 @@ const Recruitment = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="w-full sm:w-[48%] lg:w-[30%] xl:w-[22%]" // responsive widths
                     >
                       <div className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10">
                         {/* Step Number */}

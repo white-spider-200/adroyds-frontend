@@ -516,20 +516,51 @@ const Careers = () => {
 
               {/* Resume */}
               <div className="relative md:col-span-2">
-                <label className="mb-2 block text-sm font-medium">{t("uploadResume")}</label>
+                <label className="mb-2 block text-sm font-medium text-gray-700">{t("uploadResume")}</label>
+
                 <div
-                  className={`flex cursor-pointer items-center justify-between rounded-lg border-2 border-dashed bg-white px-4 py-4 text-gray-700 transition duration-200 focus-within:border-cyan-500 focus-within:ring-1 focus-within:ring-cyan-500 hover:border-cyan-500 hover:bg-cyan-50 ${
-                    formik.touched.resume && formik.errors.resume ? "border-red-500" : "border-gray-300"
-                  }`}
+                  className={`flex cursor-pointer items-center justify-between rounded-lg border-2 border-dashed bg-white px-4 py-4 text-gray-700 transition duration-200 focus-within:border-cyan-500 focus-within:ring-1 focus-within:ring-cyan-500 hover:border-cyan-500 hover:bg-cyan-50 ${formik.touched.resume && formik.errors.resume ? "border-red-500" : "border-gray-300"} `}
                 >
                   <span>{formik.values.resume ? formik.values.resume.name : t("dragOrClickFile")}</span>
+
                   <input
                     type="file"
                     name="resume"
+                    accept=".pdf,.doc,.docx"
                     className="absolute h-full w-full cursor-pointer opacity-0"
-                    onChange={(e) => formik.setFieldValue("resume", e.currentTarget.files[0])}
+                    onChange={(e) => {
+                      const file = e.currentTarget.files[0];
+
+                      if (!file) return;
+
+                      const allowedTypes = [
+                        "application/pdf",
+                        "application/msword",
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                      ];
+                      if (!allowedTypes.includes(file.type)) {
+                        formik.setFieldError("resume", "Only PDF or Word files are allowed");
+                        formik.setFieldValue("resume", null);
+                        return;
+                      }
+
+                      const maxSize = 2 * 1024 * 1024; // 2MB
+                      if (file.size > maxSize) {
+                        formik.setFieldError("resume", "File size cannot exceed 2MB");
+                        formik.setFieldValue("resume", null);
+                        return;
+                      }
+
+                      formik.setFieldValue("resume", file);
+                    }}
                   />
                 </div>
+
+                {/* ✅ Text indicating allowed type and size */}
+                <p className="mt-1 text-sm text-gray-500">
+                  {t("allowedFileType")} PDF — {t("maxFileSize")} 2MB
+                </p>
+
                 {formik.touched.resume && formik.errors.resume && (
                   <p className="mt-1 text-sm text-red-500">{formik.errors.resume}</p>
                 )}

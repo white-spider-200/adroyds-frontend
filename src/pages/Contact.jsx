@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { AiOutlineClockCircle, AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
+import { AiOutlineClockCircle, AiOutlineMail, AiOutlinePhone, AiOutlineWhatsApp } from "react-icons/ai";
 
 import mainServices from "../services/mainServices";
 
@@ -137,48 +137,70 @@ const ContactAdroyts = () => {
       {/* Main Container */}
       <div className="mx-auto max-w-7xl space-y-12 px-6 py-16">
         {/* Contact Cards */}
-        <div className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mb-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {/* Phone */}
-          <div className="flex items-center rounded-xl bg-gray-100 p-5">
-            <div className="flex-shrink-0">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#10343B] text-white">
-                <AiOutlinePhone className="h-9 w-9" />
+          <a href="tel:+966112342667" className="block">
+            <div className="flex cursor-pointer items-center rounded-xl bg-gray-100 p-5 transition hover:bg-[#E0F2FF]">
+              <div className="flex-shrink-0">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#2081E2] text-white">
+                  <AiOutlinePhone className="h-9 w-9" />
+                </div>
+              </div>
+              <div className="ltr:ml-4 rtl:mr-4">
+                <h4 className="text-lg font-bold text-gray-800">{t("phone")}</h4>
+                <p className="text-base leading-relaxed text-gray-600">
+                  {i18n.language === "ar" ? "٦٦٧ ٤٢ ٢٣ ١١ ٩٦٦+" : "+966 11 23 42 667"}
+                </p>
               </div>
             </div>
-            <div className="ltr:ml-4 rtl:mr-4">
-              <h4 className="text-lg font-bold text-gray-800">{t("phone")}</h4>
-              <p className="text-base leading-relaxed text-gray-600">
-                {i18n.language === "ar" ? "٦٦٧ ٤٢ ٢٣ ١١ ٩٦٦+" : "+966 11 23 42 667"}
-              </p>
+          </a>
+
+          {/* WhatsApp */}
+          <a href="https://wa.me/966112342667" target="_blank" rel="noopener noreferrer" className="block">
+            <div className="flex cursor-pointer items-center rounded-xl bg-gray-100 p-5 transition hover:bg-green-100">
+              <div className="flex-shrink-0">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white">
+                  <AiOutlineWhatsApp className="h-9 w-9" />
+                </div>
+              </div>
+              <div className="ltr:ml-4 rtl:mr-4">
+                <h4 className="text-lg font-bold text-gray-800">{t("whatsapp")}</h4>
+                <p className="text-base leading-relaxed text-gray-600">
+                  {i18n.language === "ar" ? "٦٦٧ ٤٢ ٢٣ ١١ ٩٦٦+" : "+966 11 23 42 667"}
+                </p>
+              </div>
             </div>
-          </div>
+          </a>
 
           {/* Email */}
-          <div className="flex items-center rounded-xl bg-gray-100 p-5">
-            <div className="flex-shrink-0">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#10343B] text-white">
-                <AiOutlineMail className="h-9 w-9" />
+          <a href="mailto:Contact@adroyts.com" className="block">
+            <div className="flex cursor-pointer items-center rounded-xl bg-gray-100 p-5 transition hover:bg-[#E0F2FF]">
+              <div className="flex-shrink-0">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#2081E2] text-white">
+                  <AiOutlineMail className="h-9 w-9" />
+                </div>
+              </div>
+              <div className="ltr:ml-4 rtl:mr-4">
+                <h4 className="text-lg font-bold text-gray-800">{t("email")}</h4>
+                <p className="text-base leading-relaxed text-gray-600">Contact@adroyts.com</p>
               </div>
             </div>
-            <div className="ltr:ml-4 rtl:mr-4">
-              <h4 className="text-lg font-bold text-gray-800">{t("email")}</h4>
-              <p className="text-base leading-relaxed text-gray-600">Contact@adroyts.com</p>
-            </div>
-          </div>
+          </a>
 
           {/* Working Hours */}
-          <div className="flex items-center rounded-xl bg-gray-100 p-5">
+          <div className="flex cursor-default items-center rounded-xl bg-gray-100 p-3 transition hover:bg-[#E0F2FF]">
             <div className="flex-shrink-0">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#10343B] text-white">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#2081E2] text-white">
                 <AiOutlineClockCircle className="h-9 w-9" />
               </div>
             </div>
-            <div className="ltr:ml-4 rtl:mr-4">
+            <div className="ltr:ml-2 rtl:mr-2">
               <h4 className="text-lg font-bold text-gray-800">{t("workingHours")}</h4>
               <p className="text-base leading-relaxed text-gray-600">
-                <span>{i18n.language === "ar" ? "الأحد – الخميس" : "Sunday – Thursday"}</span>
-                <br />
-                <span>{i18n.language === "ar" ? "٩:٠٠ ص – ٥:٠٠ م" : "9:00 AM – 5:00 PM"}</span>
+                <span className="flex items-center">
+                  {i18n.language === "ar" ? "الأحد – الخميس" : "Sunday – Thursday"}{" "}
+                  {i18n.language === "ar" ? "٩:٠٠ ص – ٥:٠٠ م" : "9:00 AM – 5:00 PM"}
+                </span>
               </p>
             </div>
           </div>
@@ -248,7 +270,6 @@ const ContactAdroyts = () => {
                     <option value="general">{t("generalQuestion")}</option>
                     <option value="feedback">{t("feedback")}</option>
                     <option value="complaint">{t("complaint")}</option>
-                    <option value="job">{t("jobApplication")}</option>
                     <option value="other">{t("other")}</option>
                   </select>
                 </Field>

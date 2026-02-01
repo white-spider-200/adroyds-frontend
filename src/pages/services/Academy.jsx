@@ -287,18 +287,22 @@ const Academy = () => {
               {Object.values(academy.solutions).map(({ title, description }, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  className="group rounded-xl border border-gray-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                  whileHover={{ y: -8 }}
+                  viewport={{ once: false }}
+                  className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out hover:bg-cyan-400"
                 >
                   {" "}
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
                     {assessmentIcons[index]}
                   </div>
-                  <h3 className="mb-3 text-xl font-semibold text-[#0E1C3F]">{title}</h3>
-                  <p className="text-gray-600">{description}</p>
+                  <h3 className="mb-3 text-xl font-semibold text-[#0E1C3F] transition-colors duration-300 group-hover:text-white">
+                    {title}
+                  </h3>
+                  <p className="text-gray-600 transition-colors duration-300 group-hover:text-white">
+                    {description}
+                  </p>
                 </motion.div>
               ))}
             </div>

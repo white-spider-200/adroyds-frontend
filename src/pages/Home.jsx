@@ -138,23 +138,6 @@ const Home = () => {
           <motion.p className="mb-20 text-2xl text-[#d2d2d2]" variants={scaleFadeItem}>
             {t("professionalExpertise")}
           </motion.p>
-
-          <motion.div className="flex items-center justify-center space-x-8" variants={scaleFadeItem}>
-            <motion.div className="flex items-center justify-center space-x-8" variants={fadeUpItem}>
-              <div className="flex items-center justify-center">
-                <button
-                  onClick={() => {
-                    const section = document.getElementById("services");
-                    if (section) section.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  class="group relative inline-flex h-14 w-48 items-center justify-center overflow-hidden rounded-md bg-cyan-200 px-6 text-lg font-bold text-neutral-50"
-                >
-                  <span class="absolute h-56 w-full rounded-full bg-cyan-400 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
-                  <span class="relative"> {t("exploreOurServices")}</span>
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
         </motion.div>
       </section>
       <div
