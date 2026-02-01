@@ -141,7 +141,7 @@ const Home = () => {
         </motion.div>
       </section>
       <div
-        className="relative bg-cover bg-center bg-no-repeat p-20 pb-16 pt-20"
+        className="relative bg-cover bg-center bg-no-repeat p-3 pb-16 pt-20 md:p-20"
         style={{
           backgroundImage: `url('/assets/mamalakah.jpg')`,
           backgroundAttachment: "fixed",

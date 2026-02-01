@@ -140,8 +140,8 @@ const Recruitment = () => {
         </div>
       </section>
 
-      <div className="mx-auto flex max-w-7xl gap-2 px-6 py-16 text-lg">
-        <div className="bg-white px-6">
+      <div className="mx-auto flex max-w-7xl gap-2 px-4 py-16 text-lg md:px-0">
+        <div className="bg-white px-1 md:px-6">
           <div className="mb-24 flex flex-col gap-10 lg:flex-row lg:items-center">
             {/* IMAGE */}
             <div className="relative h-[450px] w-full overflow-hidden rounded-lg lg:w-1/2">
@@ -185,7 +185,7 @@ const Recruitment = () => {
 
             <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
               {/* Stats */}
-              <div className="flex flex-1 justify-between">
+              <div className="flex flex-wrap justify-center gap-10 md:justify-between">
                 {statsData.map(({ icon, num, suffix, label }, i) => (
                   <div key={i} className={`flex flex-col items-center px-6`}>
                     <div className="mb-4 text-white">{icon}</div>
@@ -213,11 +213,11 @@ const Recruitment = () => {
               {t("ourRecruitmentServices")}
             </SplitText>
 
-            <div className="flex justify-between gap-8">
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {servicesList.slice(0, 3).map(({ i18nKey, image, link }, index) => (
                 <div
                   key={i18nKey}
-                  style={{ width: 390, height: 320, cursor: "pointer" }}
+                  className="mx-auto w-full max-w-[390px] cursor-pointer"
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={() => handleMouseLeave(index)}
                 >
@@ -304,7 +304,7 @@ const Recruitment = () => {
 
           {/* ================= EXECUTIVE SEARCH ================= */}
           <section id="executive" className="bg-white py-20 md:py-32">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8">
+            <div className="container mx-auto">
               <div className="grid items-center gap-12 lg:grid-cols-2">
                 {/* CONTENT */}
                 <div>
@@ -353,7 +353,7 @@ const Recruitment = () => {
 
           {/* ================= PROFESSIONAL SEARCH ================= */}
           <section id="professional" className="bg-gradient-to-b from-gray-50 to-white py-20 md:py-32">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8">
+            <div className="container mx-auto">
               <div className="grid items-center gap-12 lg:grid-cols-2">
                 {/* IMAGE */}
                 <div className="order-2 lg:order-1">
@@ -397,7 +397,7 @@ const Recruitment = () => {
 
           {/* ================= RPO ================= */}
           <section id="rpo" className="bg-white py-20 md:py-32">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8">
+            <div className="container mx-auto">
               <div className="grid items-center gap-12 lg:grid-cols-2">
                 {/* CONTENT */}
                 <div>
@@ -482,7 +482,7 @@ const Recruitment = () => {
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       className="w-full sm:w-[48%] lg:w-[30%] xl:w-[22%]" // responsive widths
                     >
-                      <div className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10">
+                      <div className="group relative mx-3 flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10 md:mx-0">
                         {/* Step Number */}
                         <div className="absolute -right-4 -top-4 flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-cyan-600 text-lg font-bold text-white shadow-lg">
                           {index + 1}

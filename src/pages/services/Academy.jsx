@@ -187,7 +187,7 @@ const Academy = () => {
 
             <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
               {/* Stats */}
-              <div className="flex flex-1 justify-between">
+              <div className="flex flex-wrap justify-center gap-10 md:justify-between">
                 {statsData.map(({ icon, num, suffix, label }, i) => (
                   <div key={i} className={`flex flex-col items-center px-6`}>
                     <div className="mb-4 text-white">{icon}</div>

@@ -238,7 +238,7 @@ const TalentAssessment = () => {
                 {t("psychometricProviders.title")}
               </motion.h2>
 
-              <div className="no-scrollbar flex justify-between gap-8">
+              <div className="no-scrollbar grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
                 {t("psychometricProviders.items", { returnObjects: true }).map((provider, index) => (
                   <motion.div
                     onMouseEnter={() => handleMouseEnter(index)}
@@ -248,11 +248,11 @@ const TalentAssessment = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
                     viewport={{ once: false, amount: 0.3 }}
-                    className="w-64 flex-shrink-0"
+                    className="w-full"
                   >
                     <ReactCardFlip isFlipped={hovered[index]} flipDirection="horizontal">
                       {/* Front Side */}
-                      <div className="flex h-64 w-64 cursor-pointer items-center justify-center rounded-xl bg-[#F8FAFC] shadow-md transition-transform duration-300">
+                      <div className="flex h-64 w-full cursor-pointer items-center justify-center rounded-xl bg-[#F8FAFC] shadow-md transition-transform duration-300">
                         {provider.image ? (
                           <img
                             src={provider.image}
@@ -268,7 +268,7 @@ const TalentAssessment = () => {
                       <div
                         onMouseEnter={() => handleMouseEnter(index)}
                         onMouseLeave={() => handleMouseLeave(index)}
-                        className="flex h-64 w-64 cursor-pointer flex-col items-center justify-center rounded-xl bg-[#0E1C3F] p-6 text-white shadow-md"
+                        className="flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-xl bg-[#0E1C3F] p-6 text-white shadow-md"
                       >
                         <p className="text-center text-sm leading-relaxed">{provider.desc}</p>
                       </div>

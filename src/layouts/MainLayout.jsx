@@ -95,7 +95,7 @@ const MainLayout = ({ children }) => {
             <img
               src="/assets/logo.png" // adjust path based on your file location
               alt="Adroyts Logo"
-              className="h-9 w-auto" // adjust size as needed
+              className="h-7 w-auto md:h-9" // adjust size as needed
             />
           </Link>
 
@@ -213,7 +213,9 @@ const MainLayout = ({ children }) => {
 
           {/* Right Side */}
           <div className="flex items-center gap-5">
-            <LanguageSwitcher />
+            <div className="hidden md:flex">
+              <LanguageSwitcher />
+            </div>
             <button
               onClick={() => setSearchOpen(true)}
               className="hidden items-center rounded-full p-3 text-white transition md:flex"
@@ -266,6 +268,8 @@ const MainLayout = ({ children }) => {
                   { label: "ourPillars", hash: "#pillars" },
                   { label: "corePerformance", hash: "#performance" },
                   { label: "whyUs", hash: "#why" },
+                  { label: "BoardOfDirectors", hash: "#board" },
+                  { label: "ExecutiveManagement", hash: "#executive" },
                 ],
               },
               {
@@ -325,6 +329,7 @@ const MainLayout = ({ children }) => {
                 )}
               </div>
             ))}
+            <LanguageSwitcher />
           </div>
         )}
       </header>
