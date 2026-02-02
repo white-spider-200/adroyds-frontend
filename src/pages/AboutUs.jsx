@@ -2,12 +2,29 @@ import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { FaBook, FaBullseye, FaEye, FaFlag, FaHandshake, FaLinkedinIn } from "react-icons/fa";
-import { FiBriefcase, FiCheckCircle } from "react-icons/fi";
+import { FiCheckCircle } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
 
 import mainServices from "../services/mainServices";
 import { SplitText } from "../utils/SplitText";
 
+const listVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
 const pillarIcons = [
   FaBook, // Knowledge Depth
   FaBullseye, // Strategic Focus
@@ -66,7 +83,7 @@ const AboutUs = () => {
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.9, ease: "easeOut" }}
             className="mt-20 text-center text-3xl font-extrabold text-white sm:text-4xl md:text-left"
           >
@@ -219,7 +236,7 @@ const AboutUs = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.6 }}
             className="mb-20 text-center"
           >
@@ -229,28 +246,26 @@ const AboutUs = () => {
           </motion.div>
           <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:items-center md:gap-20">
             {/* Left Image with subtle zoom on hover */}
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              whileHover={{ scale: 1.05 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="overflow-hidden rounded-2xl"
-            >
-              <img
+            <div className="overflow-hidden rounded-2xl">
+              <motion.img
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.1 }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
                 src="/assets/adroyts-office.webp"
                 alt={t("whySectionTab")}
                 className="aspect-[4/3] w-full object-cover"
                 loading="lazy"
                 decoding="async"
               />
-            </motion.div>
+            </div>
 
             {/* Right Features */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             >
               <motion.p
@@ -263,9 +278,9 @@ const AboutUs = () => {
                 <Trans i18nKey="perf1" components={{ 1: <strong className="font-bold text-black" /> }} />
               </motion.p>
 
-              <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <motion.ul className="grid grid-cols-1 gap-6 md:grid-cols-2" variants={listVariants}>
                 {perf.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-4">
+                  <motion.li key={index} variants={itemVariants} className="flex items-start gap-4">
                     {/* Icon with background */}
                     <div className="flex-shrink-0">
                       {/* Replace this with any icon component */}
@@ -283,9 +298,9 @@ const AboutUs = () => {
                         components={{ 1: <strong className="font-bold text-black" /> }}
                       />
                     </p>
-                  </li>
+                  </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
 
               <motion.p
                 initial={{ opacity: 0, x: -40 }}
@@ -308,7 +323,7 @@ const AboutUs = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.6 }}
             className="mb-20 text-center"
           >
@@ -385,7 +400,7 @@ const AboutUs = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.6 }}
             className="mb-20 text-center"
           >
@@ -396,7 +411,7 @@ const AboutUs = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.8 }}
             className="mb-14 text-center"
           >
@@ -420,11 +435,16 @@ const AboutUs = () => {
               initial={{ scale: 0.95, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               whileHover={{ scale: 1.05 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="overflow-hidden rounded-2xl"
             >
-              <img
+              <motion.img
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.1 }}
+                viewport={{ once: false }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
                 src="/assets/adroyts-office.webp"
                 alt={t("whySectionTab")}
                 className="aspect-[4/3] w-full object-cover"
@@ -437,12 +457,12 @@ const AboutUs = () => {
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             >
-              <ul className="space-y-6">
+              <motion.ul variants={listVariants} className="space-y-6">
                 {features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-4">
+                  <motion.li key={index} variants={itemVariants} className="flex items-start gap-4">
                     <div className="flex-shrink-0">
                       <span className="flex h-9 w-9 items-center justify-center rounded-full bg-cyan-400 font-semibold text-white shadow-md">
                         {index + 1}
@@ -456,9 +476,9 @@ const AboutUs = () => {
                         }}
                       />
                     </p>
-                  </li>
+                  </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
             </motion.div>
           </div>
         </div>
@@ -485,7 +505,7 @@ const AboutUs = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 className="group relative overflow-hidden rounded-2xl bg-white transition-all duration-500 hover:-translate-y-2"
               >
                 {/* Image */}
@@ -540,7 +560,7 @@ const AboutUs = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 className="group relative overflow-hidden rounded-2xl bg-white transition-all duration-500 hover:-translate-y-2"
               >
                 {/* Image */}

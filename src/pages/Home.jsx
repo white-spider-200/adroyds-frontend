@@ -322,13 +322,14 @@ const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="relative bg-white">
-        <div className="absolute top-0 h-[60%] w-full bg-[#eceff1]"></div>
+      {testimonials.length > 0 ? (
+        <section className="relative bg-white">
+          <div className="absolute top-0 h-[60%] w-full bg-[#eceff1]"></div>
 
-        {/* Carousel */}
-        <TestimonialsCarousel testimonials={testimonials} />
-      </section>
-
+          {/* Carousel */}
+          <TestimonialsCarousel testimonials={testimonials} />
+        </section>
+      ) : null}
       {/* Blog Section */}
       <section className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-6 py-12">

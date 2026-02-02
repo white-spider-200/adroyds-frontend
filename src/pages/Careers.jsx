@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FaArrowLeft,
+  FaArrowRight,
   FaBriefcase,
   FaChevronRight,
   FaClock,
@@ -156,7 +157,7 @@ const Careers = () => {
     },
     {
       id: 2,
-      title: "Talent Acquisition Specialist",
+      title: "Talent Specialist",
       location: "Jeddah",
       postingDate: "2025-11-20",
       status: "Open",
@@ -621,64 +622,75 @@ const Careers = () => {
               viewport={{ once: false, amount: 0.2 }}
             >
               {jobsData.map((job) => (
-                <motion.div key={job.id} className="cursor-pointer" onClick={() => setSelectedJob(job)}>
-                  <div className="relative overflow-hidden border border-gray-200 bg-white">
-                    {/* Left accent (always visible now) */}
-                    <div className="absolute top-0 h-full w-2 bg-[#2470C3] opacity-100 ltr:left-0 rtl:right-0" />
+                <motion.article
+                  onClick={() => setSelectedJob(job)}
+                  className="relative cursor-pointer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 250, damping: 22 }}
+                >
+                  {/* Card */}
+                  <div
+                    className={`relative overflow-hidden rounded-3xl p-[1px] transition-all duration-300 ${
+                      selectedJob?.id === job.id
+                        ? "bg-gradient-to-r from-[#2470C3] to-cyan-400"
+                        : "bg-gradient-to-r from-gray-200 to-gray-100"
+                    }`}
+                  >
+                    <div className="relative rounded-3xl bg-white/70 p-8 backdrop-blur-xl">
+                      {/* Floating status */}
+                      <span
+                        className={`absolute top-6 rounded-full px-4 py-1 text-xs font-semibold backdrop-blur ltr:right-6 rtl:left-6 ${
+                          job.status === "Open" ? "bg-emerald-500/90 text-white" : "bg-gray-500/80 text-white"
+                        }`}
+                      >
+                        {job.status}
+                      </span>
 
-                    {/* Glow (always visible, subtle) */}
-                    <div className="absolute -left-40 -top-40 h-80 w-80 rounded-full bg-[#2470C3]/5 opacity-100 blur-3xl" />
+                      {/* Title */}
+                      <h3 className="mb-4 max-w-[80%] text-2xl font-semibold tracking-tight text-gray-900">
+                        {job.title}
+                      </h3>
 
-                    <div className="relative p-8">
-                      <div className="mb-6 flex items-start justify-between">
-                        <div className="flex-1">
-                          {/* Status + Department */}
-                          <div className="mb-3 flex items-center gap-3">
-                            <span
-                              className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                                job.status === "Open" ? "bg-green-500 text-white" : "bg-gray-400 text-white"
-                              }`}
-                            >
-                              {job.status}
-                            </span>
-                          </div>
+                      {/* Meta */}
+                      <div className="mb-6 flex flex-wrap gap-6 text-sm text-gray-600">
+                        <div className="flex items-center gap-2">
+                          <HiOutlineLocationMarker className="h-5 w-5 text-[#2470C3]" />
+                          <span>{job.location}</span>
+                        </div>
 
-                          {/* Title */}
-                          <h3 className="mb-4 text-2xl font-bold text-gray-900">{job.title}</h3>
-
-                          {/* Meta */}
-                          <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-                            <div className="flex items-center gap-2">
-                              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2470C3]/10">
-                                <HiOutlineLocationMarker className="h-4 w-4 text-[#2470C3]" />
-                              </div>
-                              <span className="font-medium">{job.location}</span>
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2470C3]/10">
-                                <HiOutlineCalendar className="h-4 w-4 text-[#2470C3]" />
-                              </div>
-                              <span className="font-medium">
-                                {new Date(job.postingDate).toLocaleDateString()}
-                              </span>
-                            </div>
-                          </div>
+                        <div className="flex items-center gap-2">
+                          <HiOutlineCalendar className="h-5 w-5 text-[#2470C3]" />
+                          <span>{new Date(job.postingDate).toLocaleDateString()}</span>
                         </div>
                       </div>
 
+                      {/* Divider */}
+                      <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+
                       {/* Description */}
-                      <p className="mb-8 line-clamp-3 text-base leading-relaxed text-gray-600">
+                      <p className="mb-8 line-clamp-3 text-base leading-relaxed text-gray-700">
                         {job.description}
                       </p>
 
-                      <button class="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-md bg-cyan-200 px-6 font-medium text-neutral-50">
-                        <span class="absolute h-56 w-full rounded-full bg-cyan-400 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
-                        <span class="relative"> {t("viewDetails")}</span>
-                      </button>
+                      {/* CTA */}
+                      <div className="flex items-center justify-between">
+                        <motion.span
+                          className="flex items-center gap-2 text-sm font-semibold text-[#2470C3]"
+                          whileHover={{ x: 4 }}
+                        >
+                          {t("viewDetails")} {i18n.language === "ar" ? <FaArrowLeft /> : <FaArrowRight />}
+                        </motion.span>
+
+                        {/* Accent bubble */}
+                        <div className="h-3 w-3 rounded-full bg-[#2470C3]" />
+                      </div>
+
+                      {/* Glow */}
+                      <div className="pointer-events-none absolute -bottom-20 -right-20 h-52 w-52 rounded-full bg-[#2470C3]/20 blur-3xl" />
                     </div>
                   </div>
-                </motion.div>
+                </motion.article>
               ))}
             </motion.div>
           </motion.div>
