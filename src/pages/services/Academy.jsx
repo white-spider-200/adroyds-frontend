@@ -307,8 +307,7 @@ const Academy = () => {
               ))}
             </div>
           </section>
-          {/* Academic Collaboration Section */}
-          <section className="container px-6 py-20">
+          {/* <section className="container px-6 py-20">
             <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">
               {t("academy.academicCollaborationTitle")}
             </h2>
@@ -322,12 +321,10 @@ const Academy = () => {
                   className="flex-shrink-0"
                 >
                   <ReactCardFlip isFlipped={hovered[index]} flipDirection="horizontal">
-                    {/* Front Side */}
                     <div className="flex h-56 cursor-pointer items-center justify-center rounded-lg bg-white px-10 shadow-md transition-transform duration-300">
                       <img src={img} alt={`Partner ${index + 1}`} className="max-h-36 object-contain" />
                     </div>
 
-                    {/* Back Side */}
                     <div
                       onMouseEnter={() => handleMouseEnter(index)}
                       onMouseLeave={() => handleMouseLeave(index)}
@@ -339,7 +336,7 @@ const Academy = () => {
                 </div>
               ))}
             </div>
-          </section>
+          </section> */}
         </div>
       </div>
     </div>

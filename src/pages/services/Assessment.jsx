@@ -225,8 +225,7 @@ const TalentAssessment = () => {
             </div>
           </section>
 
-          {/* PSYCHOMETRIC PROVIDERS */}
-          <section className="bg-white py-28">
+          {/* <section className="bg-white py-28">
             <div className="container mx-auto max-w-7xl px-6">
               <motion.h2
                 initial={{ opacity: 0, y: 30 }}
@@ -251,7 +250,6 @@ const TalentAssessment = () => {
                     className="w-full"
                   >
                     <ReactCardFlip isFlipped={hovered[index]} flipDirection="horizontal">
-                      {/* Front Side */}
                       <div className="flex h-64 w-full cursor-pointer items-center justify-center rounded-xl bg-[#F8FAFC] shadow-md transition-transform duration-300">
                         {provider.image ? (
                           <img
@@ -264,7 +262,6 @@ const TalentAssessment = () => {
                         )}
                       </div>
 
-                      {/* Back Side */}
                       <div
                         onMouseEnter={() => handleMouseEnter(index)}
                         onMouseLeave={() => handleMouseLeave(index)}
@@ -277,7 +274,7 @@ const TalentAssessment = () => {
                 ))}
               </div>
             </div>
-          </section>
+          </section> */}
         </div>
       </div>
     </div>

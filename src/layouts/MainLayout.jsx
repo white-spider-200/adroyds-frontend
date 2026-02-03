@@ -125,8 +125,8 @@ const MainLayout = ({ children }) => {
                   { label: "ourPillars", hash: "#pillars" },
                   { label: "corePerformance", hash: "#performance" },
                   { label: "whyUs", hash: "#why" },
-                  { label: "BoardOfDirectors", hash: "#board" },
-                  { label: "ExecutiveManagement", hash: "#executive" },
+                  // { label: "BoardOfDirectors", hash: "#board" },
+                  // { label: "ExecutiveManagement", hash: "#executive" },
                 ].map((item) => (
                   <button
                     key={item.hash}
@@ -268,8 +268,8 @@ const MainLayout = ({ children }) => {
                   { label: "ourPillars", hash: "#pillars" },
                   { label: "corePerformance", hash: "#performance" },
                   { label: "whyUs", hash: "#why" },
-                  { label: "BoardOfDirectors", hash: "#board" },
-                  { label: "ExecutiveManagement", hash: "#executive" },
+                  // { label: "BoardOfDirectors", hash: "#board" },
+                  // { label: "ExecutiveManagement", hash: "#executive" },
                 ],
               },
               {

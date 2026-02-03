@@ -485,114 +485,120 @@ const AboutUs = () => {
       </section>
 
       {/* Board of Directors Section */}
-      <section id="board" className="bg-gray-100 py-32">
-        <div className="mx-auto max-w-7xl px-6 text-center">
-          <SplitText className="text-4xl font-extrabold text-gray-900">{t("BoardOfDirectors")}</SplitText>
+      {teamMembers.length > 0 ? (
+        <section id="board" className="bg-gray-100 py-32">
+          <div className="mx-auto max-w-7xl px-6 text-center">
+            <SplitText className="text-4xl font-extrabold text-gray-900">{t("BoardOfDirectors")}</SplitText>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-4 text-lg text-gray-600"
-          >
-            {t("boardDescription")}
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="mt-4 text-lg text-gray-600"
+            >
+              {t("boardDescription")}
+            </motion.p>
 
-          <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {teamMembers.slice(0, 3).map(({ name, job_title, image, linkedin }, i) => (
-              <motion.div
-                key={`${name}-${i}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                viewport={{ once: false }}
-                className="group relative overflow-hidden rounded-2xl bg-white transition-all duration-500 hover:-translate-y-2"
-              >
-                {/* Image */}
-                <div className="relative h-80 w-full overflow-hidden">
-                  <img
-                    src={image}
-                    alt={name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+            <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+              {teamMembers.slice(0, 3).map(({ name, job_title, image, linkedin }, i) => (
+                <motion.div
+                  key={`${name}-${i}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  viewport={{ once: false }}
+                  className="group relative overflow-hidden rounded-2xl bg-white transition-all duration-500 hover:-translate-y-2"
+                >
+                  {/* Image */}
+                  <div className="relative h-80 w-full overflow-hidden">
+                    <img
+                      src={image}
+                      alt={name}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
 
-                  {/* LinkedIn Overlay */}
-                  <a
-                    href={linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="absolute bottom-4 right-4 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#0A66C2] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                  >
-                    <FaLinkedinIn className="text-lg" />
-                  </a>
-                </div>
+                    {/* LinkedIn Overlay */}
+                    <a
+                      href={linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute bottom-4 right-4 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#0A66C2] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    >
+                      <FaLinkedinIn className="text-lg" />
+                    </a>
+                  </div>
 
-                {/* Info */}
-                <div className="p-6 text-center">
-                  <h3 className="text-xl font-bold text-gray-900">{name}</h3>
-                  <p className="mt-1 text-sm font-medium text-gray-500">{job_title}</p>
-                  <div className="mt-4 rounded-full border-b-8 border-[#0E1C3F]"></div>
-                </div>
-              </motion.div>
-            ))}
+                  {/* Info */}
+                  <div className="p-6 text-center">
+                    <h3 className="text-xl font-bold text-gray-900">{name}</h3>
+                    <p className="mt-1 text-sm font-medium text-gray-500">{job_title}</p>
+                    <div className="mt-4 rounded-full border-b-8 border-[#0E1C3F]"></div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-
+        </section>
+      ) : null}
       {/* Executive Management Section */}
-      <section id="executive" className="bg-white py-32">
-        <div className="mx-auto max-w-7xl px-6 text-center">
-          <SplitText className="text-4xl font-extrabold text-gray-900">{t("ExecutiveManagement")}</SplitText>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-4 text-lg text-gray-600"
-          >
-            {t("executiveDescription")}
-          </motion.p>
+      {teamMembers.length > 0 ? (
+        <section id="executive" className="bg-white py-32">
+          <div className="mx-auto max-w-7xl px-6 text-center">
+            <SplitText className="text-4xl font-extrabold text-gray-900">
+              {t("ExecutiveManagement")}
+            </SplitText>
 
-          <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {teamMembers.slice(3).map(({ name, job_title, image, linkedin }, i) => (
-              <motion.div
-                key={`${name}-${i}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                viewport={{ once: false }}
-                className="group relative overflow-hidden rounded-2xl bg-white transition-all duration-500 hover:-translate-y-2"
-              >
-                {/* Image */}
-                <div className="relative h-80 w-full overflow-hidden">
-                  <img
-                    src={image}
-                    alt={name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="mt-4 text-lg text-gray-600"
+            >
+              {t("executiveDescription")}
+            </motion.p>
 
-                  {/* LinkedIn Overlay */}
-                  <a
-                    href={linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="absolute bottom-4 right-4 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#0A66C2] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                  >
-                    <FaLinkedinIn className="text-lg" />
-                  </a>
-                </div>
+            <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+              {teamMembers.slice(3).map(({ name, job_title, image, linkedin }, i) => (
+                <motion.div
+                  key={`${name}-${i}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  viewport={{ once: false }}
+                  className="group relative overflow-hidden rounded-2xl bg-white transition-all duration-500 hover:-translate-y-2"
+                >
+                  {/* Image */}
+                  <div className="relative h-80 w-full overflow-hidden">
+                    <img
+                      src={image}
+                      alt={name}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
 
-                {/* Info */}
-                <div className="p-6 text-center">
-                  <h3 className="text-xl font-bold text-gray-900">{name}</h3>
-                  <p className="mt-1 text-sm font-medium text-gray-500">{job_title}</p>
-                  <div className="mt-4 rounded-full border-b-8 border-[#0E1C3F]"></div>
-                </div>
-              </motion.div>
-            ))}
+                    {/* LinkedIn Overlay */}
+                    <a
+                      href={linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute bottom-4 right-4 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#0A66C2] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    >
+                      <FaLinkedinIn className="text-lg" />
+                    </a>
+                  </div>
+
+                  {/* Info */}
+                  <div className="p-6 text-center">
+                    <h3 className="text-xl font-bold text-gray-900">{name}</h3>
+                    <p className="mt-1 text-sm font-medium text-gray-500">{job_title}</p>
+                    <div className="mt-4 rounded-full border-b-8 border-[#0E1C3F]"></div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
     </div>
   );
 };
