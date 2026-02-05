@@ -5,11 +5,11 @@
   "exploreOurServices": "WHAT WE DO?",
   "viewMore": "View more",
   "footerDesc":"Adroyts focuses on serving corporate clients in Saudi Arabia and other GCC markets by providing them with highly experienced professionals across key sectors.",
-  "aboutUsText1": "With nearly two decades of experience, Adroits was founded in 2006 in Saudi Arabia, establishing itself as a leading provider of integrated professional solutions for human resource management and development.",
+  "aboutUsText1": "With nearly two decades of experience, Adroyts was founded in 2006 in Saudi Arabia, establishing itself as a leading provider of integrated professional solutions for human resource management and development.",
   "desc1": "To achieve this core objective, Adroyts is committed to enhancing organizational capabilities through a comprehensive portfolio of services that includes recruitment solutions, assessment center solutions, human capital consulting, and the Adroyts Academy. Every step is grounded in precise methodologies and global best practices, with a strategic focus on output quality and sustainable impact in the workplace.",
   "desc2": "From this standpoint, our priority revolves around client service. We focus on providing our partners with specialized and integrated solutions that deliver experienced leadership talent. This commitment has resulted in a strong track record serving over 00 entities across various sectors, reaffirming our dedication to building strong relationships based on mutual trust, accuracy, and meeting all requirements with excellence.",
   "aboutUs": "About Us",
-  "adroytsIntro2":"For nearly two decades, Adroits has provided an integrated system of recruitment services, combining the depth of specialized knowledge of our consultants with effective access to an exclusive database. This integration ensures the attraction of talent that makes a difference, through customized solutions that align directly with our clients’ strategic goals.",
+  "adroytsIntro2":"For nearly two decades, Adroyts has provided an integrated system of recruitment services, combining the depth of specialized knowledge of our consultants with effective access to an exclusive database. This integration ensures the attraction of talent that makes a difference, through customized solutions that align directly with our clients’ strategic goals.",
   "readyForNextGenRecruitment":"Discover the Future of Human Capital Today",
   "startYourDigitalJourney":"At Adroyts, we deliver integrated solutions across recruitment, assessment, development, and human capital consulting to support informed decisions and build impactful leadership.",
   "LeadershipPlacements": "Partner",
@@ -322,7 +322,7 @@
     "executiveSearch": {
       "title": "Executive Search",
       "descriptionShort": "Executive search helps you find the best executive leaders for your company quickly and professionally.",
-      "description": "- Adroits specializes in Executive Search as a strategic pillar for attracting top leadership.\n- We do not just search for candidates; we aim to discover leaders capable of making a qualitative leap and direct impact on organizational performance.\n- We rely on a precise and comprehensive methodology to ensure the desired impact, which includes:\n  1. In-depth analysis of client needs.\n  2. Accurate identification of suitable leadership competencies.\n  3. Professional evaluation of top-tier candidates.\n  4. Final recommendations based on evidence demonstrating full alignment with success requirements.\n- We aim to achieve a clear strategic vision for the organizations we serve.",
+      "description": "- Adroyts specializes in Executive Search as a strategic pillar for attracting top leadership.\n- We do not just search for candidates; we aim to discover leaders capable of making a qualitative leap and direct impact on organizational performance.\n- We rely on a precise and comprehensive methodology to ensure the desired impact, which includes:\n  1. In-depth analysis of client needs.\n  2. Accurate identification of suitable leadership competencies.\n  3. Professional evaluation of top-tier candidates.\n  4. Final recommendations based on evidence demonstrating full alignment with success requirements.\n- We aim to achieve a clear strategic vision for the organizations we serve.",
       "methodologyTitle": "Executive Search Methodology Steps",
       "methodologyIntro": "At Adroyts, we follow a methodical and precise approach to guarantee the attraction of senior leadership:",
       "steps": {
@@ -372,8 +372,8 @@
     }
   },
   "academy": {
-  "title": "Adroits Academy",
-  "description": "Adroits Academy represents the knowledge and training arm of the company, specializing in leadership development and institutional capability building through precisely designed training programs that deliver maximum impact. The Academy offers an integrated suite of developmental solutions that go beyond conventional training, relying on in-depth needs analysis and the design of customized training packages. This approach ensures full alignment of programs with organizations’ strategic objectives and future directions, in line with Saudi Vision 2030 for human capital development.",
+  "title": "Adroyts Academy",
+  "description": "Adroyts Academy represents the knowledge and training arm of the company, specializing in leadership development and institutional capability building through precisely designed training programs that deliver maximum impact. The Academy offers an integrated suite of developmental solutions that go beyond conventional training, relying on in-depth needs analysis and the design of customized training packages. This approach ensures full alignment of programs with organizations’ strategic objectives and future directions, in line with Saudi Vision 2030 for human capital development.",
   "solutionsTitle": "Development Solutions",
   "solutions": {
     "leadershipPrograms": {
@@ -406,7 +406,7 @@
   },
   "talentAssessment": {
   "title": "Talent Assessment",
-  "description": "Adroits provides advanced talent assessment solutions based on scientific tools and professional standards to measure capabilities, competencies, and workplace behaviors. These assessments are designed to support recruitment and development decisions, as well as to determine candidates’ suitability for professional roles.",
+  "description": "Adroyts provides advanced talent assessment solutions based on scientific tools and professional standards to measure capabilities, competencies, and workplace behaviors. These assessments are designed to support recruitment and development decisions, as well as to determine candidates’ suitability for professional roles.",
   "toolsTitle": "Assessment Tools",
   "tools": {
     "psychometricAssessments": {
@@ -434,7 +434,7 @@
   "hrConsulting":{
   "title": "Human Resources Consulting",
   "description2":"To turn operational challenges into growth opportunities, Adroyts offers comprehensive human resources consulting services. We collaborate closely with clients to understand their needs and provide strategic advice for sound decision-making, including project evaluation, merger and acquisition planning support, and risk assessment related to layoffs. We also assist in developing HR policies and efficiently managing human capital, serving startups and large companies alike to achieve sustainable growth and clear development plans.",
-  "description": "To turn operational challenges into growth opportunities, Adroits offers a comprehensive suite of human resources consulting services. Today, HR consulting is a strategic focal point with a new dimension in the business world. We work closely with our clients to understand their needs and provide consultations that enable them to make sound decisions supporting their future path. This includes evaluating current projects to ensure optimal deployment of skills within the organization, providing support in merger or acquisition planning, and assessing risks related to layoffs, redundancies, and associated outcomes. We also collaborate with organizations to develop and implement HR policies and procedures and manage human capital efficiently. Our services extend from startups to large enterprises aiming to develop integrated HR strategies that contribute to sustainable growth and clear development plans.",
+  "description": "To turn operational challenges into growth opportunities, Adroyts offers a comprehensive suite of human resources consulting services. Today, HR consulting is a strategic focal point with a new dimension in the business world. We work closely with our clients to understand their needs and provide consultations that enable them to make sound decisions supporting their future path. This includes evaluating current projects to ensure optimal deployment of skills within the organization, providing support in merger or acquisition planning, and assessing risks related to layoffs, redundancies, and associated outcomes. We also collaborate with organizations to develop and implement HR policies and procedures and manage human capital efficiently. Our services extend from startups to large enterprises aiming to develop integrated HR strategies that contribute to sustainable growth and clear development plans.",
   "servicesTitle": "Our Services in this Area",
   "services": {
     "hrStrategy": {
