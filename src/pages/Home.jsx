@@ -184,45 +184,47 @@ const Home = () => {
         </motion.section>
 
         {/* Stats Section */}
-        <motion.section
-          className="relative z-20 mx-auto mt-12 flex max-w-7xl flex-wrap justify-center gap-16 rounded-xl p-6 px-0 text-center shadow-xl backdrop-blur-xl"
-          whileInView="visible"
-          viewport={{ once: false }}
-          variants={fadeUpContainer}
-        >
-          {highlights.map((item, index) => {
-            const suffix = index < 3 ? "+" : "%";
-            const value = parseInt(item.value);
+        {highlights.length > 0 && (
+          <motion.section
+            className="relative z-20 mx-auto mt-12 flex max-w-7xl flex-wrap justify-center gap-16 rounded-xl p-6 px-0 text-center shadow-xl backdrop-blur-xl"
+            whileInView="visible"
+            viewport={{ once: false }}
+            variants={fadeUpContainer}
+          >
+            {highlights.map((item, index) => {
+              const suffix = index < 3 ? "+" : "%";
+              const value = parseInt(item.value);
 
-            return (
-              <motion.div
-                key={item.label}
-                className="flex flex-col items-center"
-                variants={fadeUp}
-                custom={index * 0.2}
-              >
-                <div
-                  className={`mb-5 flex h-44 w-44 items-center justify-center rounded-full border-[6px] bg-white/10 backdrop-blur-3xl transition-transform duration-500 hover:scale-105`}
-                  style={{
-                    borderColor: item?.value_color || "#00CFFF",
-                  }}
+              return (
+                <motion.div
+                  key={item.label}
+                  className="flex flex-col items-center"
+                  variants={fadeUp}
+                  custom={index * 0.2}
                 >
-                  <CountUp
-                    start={0}
-                    end={value}
-                    separator={item?.isYear ? "" : ","}
-                    suffix={suffix}
-                    enableScrollSpy={true}
-                    scrollSpyOnce={false}
-                    className={`text-5xl font-extrabold ${index < 3 ? "text-gradient" : ""}`}
-                    style={{ color: item?.value_color || "#00CFFF" }}
-                  />
-                </div>
-                <p className="mt-4 text-xl font-semibold text-white drop-shadow-lg">{item.title}</p>
-              </motion.div>
-            );
-          })}
-        </motion.section>
+                  <div
+                    className={`mb-5 flex h-44 w-44 items-center justify-center rounded-full border-[6px] bg-white/10 backdrop-blur-3xl transition-transform duration-500 hover:scale-105`}
+                    style={{
+                      borderColor: item?.value_color || "#00CFFF",
+                    }}
+                  >
+                    <CountUp
+                      start={0}
+                      end={value}
+                      separator={item?.isYear ? "" : ","}
+                      suffix={suffix}
+                      enableScrollSpy={true}
+                      scrollSpyOnce={false}
+                      className={`text-5xl font-extrabold ${index < 3 ? "text-gradient" : ""}`}
+                      style={{ color: item?.value_color || "#00CFFF" }}
+                    />
+                  </div>
+                  <p className="mt-4 text-xl font-semibold text-white drop-shadow-lg">{item.title}</p>
+                </motion.div>
+              );
+            })}
+          </motion.section>
+        )}
       </div>
 
       {/* 2. Services Section: The Expandable Container */}
@@ -230,23 +232,25 @@ const Home = () => {
 
       {/* Trusted Companies */}
 
-      <section className="ltr-ignore bg-gray-100 py-20">
-        <div className="text-center">
-          <SplitText className="mb-8 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-4xl">
-            {t("trustedBy")}
-          </SplitText>
-          <Marquee direction={i18n.language == "ar" ? "right" : "left"}>
-            {clients.map((client, index) => (
-              <img
-                key={index}
-                src={client.image}
-                alt={client.name}
-                className="mx-9 h-44 w-44 cursor-pointer object-contain opacity-80 grayscale filter transition duration-300 hover:opacity-100 hover:grayscale-0"
-              />
-            ))}
-          </Marquee>
-        </div>
-      </section>
+      {clients.length > 0 && (
+        <section className="ltr-ignore bg-gray-100 py-20">
+          <div className="text-center">
+            <SplitText className="mb-8 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-4xl">
+              {t("trustedBy")}
+            </SplitText>
+            <Marquee direction={i18n.language == "ar" ? "right" : "left"}>
+              {clients.map((client, index) => (
+                <img
+                  key={index}
+                  src={client.image}
+                  alt={client.name}
+                  className="mx-9 h-44 w-44 cursor-pointer object-contain opacity-80 grayscale filter transition duration-300 hover:opacity-100 hover:grayscale-0"
+                />
+              ))}
+            </Marquee>
+          </div>
+        </section>
+      )}
 
       <SectorsSlider />
 
@@ -331,83 +335,85 @@ const Home = () => {
         </section>
       ) : null}
       {/* Blog Section */}
-      <section className="bg-white py-16">
-        <div className="mx-auto max-w-7xl px-6 py-12">
-          <SplitText className="mb-12 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-4xl">
-            {t("news&Articles")}
-          </SplitText>
+      {articles.length > 0 && (
+        <section className="bg-white py-16">
+          <div className="mx-auto max-w-7xl px-6 py-12">
+            <SplitText className="mb-12 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-4xl">
+              {t("news&Articles")}
+            </SplitText>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {articles?.slice(0, 3).map((blog, i) => (
-              <motion.div
-                key={i}
-                initial="hidden"
-                whileInView="visible"
-                variants={fadeUp}
-                custom={i * 0.2}
-                whileHover={{ y: -8 }}
-                transition={{ type: "tween", duration: 0.6, ease: "easeOut" }}
-                className="group flex h-full flex-col overflow-hidden rounded-lg bg-gray-100"
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={blog.image}
-                    alt={blog.title}
-                    className="h-64 w-full transform object-cover transition-transform duration-700 ease-out group-hover:rotate-[6deg] group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 transition duration-500 ease-out group-hover:bg-transparent"></div>
-                </div>
-
-                {/* Text and button container */}
+            <div className="grid gap-6 md:grid-cols-3">
+              {articles?.slice(0, 3).map((blog, i) => (
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.2 }}
-                  className="flex flex-grow flex-col px-6 py-4"
+                  key={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={fadeUp}
+                  custom={i * 0.2}
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "tween", duration: 0.6, ease: "easeOut" }}
+                  className="group flex h-full flex-col overflow-hidden rounded-lg bg-gray-100"
                 >
-                  <div className="mb-2 text-sm font-semibold text-cyan-400">{blog.category}</div>
-                  <p className="mb-2 flex items-center gap-2 text-sm text-[#6b7c93]">
-                    <FaCalendarAlt className="text-black" />
-                    {blog.date}
-                  </p>
-                  {/* Title as clickable link */}
-                  <a
-                    href={blog.url}
-                    className="mb-4 cursor-pointer text-xl font-semibold text-[#0E1C3F] transition duration-300 hover:text-cyan-400"
-                    aria-label={`Read more about ${blog.title}`}
-                  >
-                    {blog.title}
-                  </a>
-                  {/* Spacer to push button down */}
-                  <div className="flex-grow" />
-
-                  {/* Read More button */}
-                  <button
-                    onClick={() => navigate(`/blog?id=${blog.id}`)}
-                    className="inline-flex w-max cursor-pointer items-center gap-1 rounded-md bg-white p-2 font-semibold text-black transition duration-300 hover:text-cyan-400"
-                    aria-label={`Read more about ${blog.title}`}
-                  >
-                    <span>{t("readMore")}</span>
-                    <LuArrowUpRight
-                      className={`transform transition duration-300 ${i18n.language === "ar" ? "scale-x-[-1]" : ""}`}
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={blog.image}
+                      alt={blog.title}
+                      className="h-64 w-full transform object-cover transition-transform duration-700 ease-out group-hover:rotate-[6deg] group-hover:scale-110"
                     />
-                  </button>
+                    <div className="absolute inset-0 transition duration-500 ease-out group-hover:bg-transparent"></div>
+                  </div>
+
+                  {/* Text and button container */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: i * 0.2 }}
+                    className="flex flex-grow flex-col px-6 py-4"
+                  >
+                    <div className="mb-2 text-sm font-semibold text-cyan-400">{blog.category}</div>
+                    <p className="mb-2 flex items-center gap-2 text-sm text-[#6b7c93]">
+                      <FaCalendarAlt className="text-black" />
+                      {blog.date}
+                    </p>
+                    {/* Title as clickable link */}
+                    <a
+                      href={blog.url}
+                      className="mb-4 cursor-pointer text-xl font-semibold text-[#0E1C3F] transition duration-300 hover:text-cyan-400"
+                      aria-label={`Read more about ${blog.title}`}
+                    >
+                      {blog.title}
+                    </a>
+                    {/* Spacer to push button down */}
+                    <div className="flex-grow" />
+
+                    {/* Read More button */}
+                    <button
+                      onClick={() => navigate(`/blog?id=${blog.id}`)}
+                      className="inline-flex w-max cursor-pointer items-center gap-1 rounded-md bg-white p-2 font-semibold text-black transition duration-300 hover:text-cyan-400"
+                      aria-label={`Read more about ${blog.title}`}
+                    >
+                      <span>{t("readMore")}</span>
+                      <LuArrowUpRight
+                        className={`transform transition duration-300 ${i18n.language === "ar" ? "scale-x-[-1]" : ""}`}
+                      />
+                    </button>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
+            {/* View More button */}
+            <div className="mt-12 flex justify-center">
+              <button
+                onClick={() => navigate("/media-center/blogs")}
+                type="button"
+                className="hidden items-center gap-2 rounded-full border-2 border-[#0E1C3F] bg-transparent px-6 py-2 text-[#0E1C3F] transition duration-300 hover:border-cyan-400 hover:text-cyan-400 md:flex"
+              >
+                {t("viewMore")}
+              </button>
+            </div>
           </div>
-          {/* View More button */}
-          <div className="mt-12 flex justify-center">
-            <button
-              onClick={() => navigate("/media-center/blogs")}
-              type="button"
-              className="hidden items-center gap-2 rounded-full border-2 border-[#0E1C3F] bg-transparent px-6 py-2 text-[#0E1C3F] transition duration-300 hover:border-cyan-400 hover:text-cyan-400 md:flex"
-            >
-              {t("viewMore")}
-            </button>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="relative overflow-hidden bg-gradient-to-br from-[#f5f7fa] via-[#eef2f7] to-[#e8ecf3]">
         {/* Decorative blur */}
