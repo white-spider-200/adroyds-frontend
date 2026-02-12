@@ -1,13 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useTranslation } from "react-i18next";
 import { AiOutlineClockCircle, AiOutlineMail, AiOutlinePhone, AiOutlineWhatsApp } from "react-icons/ai";
 
 import mainServices from "../services/mainServices";
-
-const TURNSTILE_SITE_KEY = "";
 
 const ContactAdroyts = () => {
   const { t, i18n } = useTranslation();
@@ -27,7 +26,9 @@ const ContactAdroyts = () => {
 
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
-  const [turnstileToken, setTurnstileToken] = useState(null);
+  const recaptchaRef = useRef(null);
+
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
 
   const sanitizeEnglish = (value) => value.replace(/[^\x20-\x7E]/g, "");
 
@@ -69,7 +70,7 @@ const ContactAdroyts = () => {
     if (form.purpose === "services" && !form.service) e.service = t("requiredField");
     if (!form.message) e.message = t("requiredField");
     else if (form.message.length > 500) e.message = t("max500Chars");
-    if (!turnstileToken) e.robot = t("verifyHuman");
+    if (!recaptchaToken) e.robot = t("verifyHuman");
     return e;
   };
 
@@ -87,7 +88,7 @@ const ContactAdroyts = () => {
     await fetch("/api/contact/send", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...form, turnstileToken }),
+      body: JSON.stringify({ ...form, recaptchaToken }),
     });
 
     setSubmitted(true);
@@ -102,7 +103,8 @@ const ContactAdroyts = () => {
       service: "",
       message: "",
     });
-    setTurnstileToken(null);
+    setRecaptchaToken(null);
+    recaptchaRef.current?.reset();
   };
 
   return (
@@ -376,12 +378,16 @@ const ContactAdroyts = () => {
                 />
               </Field>
 
-              {/* Turnstile */}
-              <div
-                className="cf-turnstile my-6"
-                data-sitekey={TURNSTILE_SITE_KEY}
-                data-callback={(token) => setTurnstileToken(token)}
-              />
+              {/* ✅ Google reCAPTCHA */}
+              <div className="my-4">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                  onChange={(token) => setRecaptchaToken(token)}
+                  onExpired={() => setRecaptchaToken(null)}
+                />
+              </div>
+
               {errors.robot && <p className="text-sm text-red-500">{errors.robot}</p>}
               <button
                 onClick={handleSubmit}
