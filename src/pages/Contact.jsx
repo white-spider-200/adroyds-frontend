@@ -88,7 +88,10 @@ const ContactAdroyts = () => {
     await fetch("/api/contact/send", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...form, recaptchaToken }),
+      body: JSON.stringify({
+        ...form,
+        "g-recaptcha-response": recaptchaToken,
+      }),
     });
 
     setSubmitted(true);
