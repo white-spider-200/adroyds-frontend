@@ -25,6 +25,7 @@ const MainLayout = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [socialMedia, setSocialMedia] = useState([]);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [sections, setSections] = useState([]);
 
   const [showScrollUp, setShowScrollUp] = useState(false);
   const [dropdown, setDropdown] = useState(null);
@@ -53,6 +54,19 @@ const MainLayout = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    const fetchSections = async () => {
+      try {
+        const res = await mainServices.getPages(i18n.language);
+        setSections(res?.data?.data || []);
+      } catch (error) {
+        console.error("Sections fetch error:", error);
+      }
+    };
+
+    fetchSections();
+  }, [i18n.language]);
+
+  useEffect(() => {
     const fetchSocialMedia = async () => {
       try {
         const [socialRes] = await Promise.all([mainServices.getSocialMedia(i18n.language)]);
@@ -67,14 +81,26 @@ const MainLayout = ({ children }) => {
     fetchSocialMedia();
   }, [i18n.language]);
 
+  const hasActiveSection = (prefix) => {
+    return sections.some((section) => section.key.startsWith(prefix) && section.is_active === true);
+  };
+
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const isActive = (path) =>
-    location.pathname == path ? "text-cyan-400" : "text-white hover:text-cyan-200 ";
+  const isActive = (path) => {
+    return location.pathname === path ? "text-cyan-400 font-semibold" : "text-white";
+  };
 
   const isActiveParent = (prefix) =>
     location.pathname.startsWith(prefix) ? "text-cyan-400" : "text-white hover:text-cyan-200";
+  const isSectionActive = (key) => {
+    return sections.find((s) => s.key === key)?.is_active === true;
+  };
 
+  // check if any section with prefix is active (for parent dropdown)
+  const hasActivePrefix = (prefix) => {
+    return sections.some((s) => s.key.startsWith(prefix) && s.is_active === true);
+  };
   const handleNav = (path) => {
     setDropdown(null);
     setMobileOpen(false);
@@ -105,102 +131,162 @@ const MainLayout = ({ children }) => {
               {i18n.language === "ar" ? "الرئيسية" : "Home"}
             </Link>
 
-            {/* About Us */}
-            <div
-              className="relative"
-              onMouseEnter={() => setDropdown("about")}
-              onMouseLeave={() => setDropdown(null)}
-            >
-              <button className={`flex items-center gap-1 ${isActive("/about")}`}>
-                {i18n.language === "ar" ? "من نحن؟" : "About Us"}
-                <FaChevronDown className="mt-0.5 text-xs" />
-              </button>
+            {hasActivePrefix("about_us") && (
               <div
-                className={`absolute left-0 top-full mt-2 w-56 rounded-lg border bg-white py-2 shadow-md transition-all duration-200 ${
-                  dropdown === "about" ? "visible opacity-100" : "invisible opacity-0"
-                }`}
+                className="relative"
+                onMouseEnter={() => setDropdown("about")}
+                onMouseLeave={() => setDropdown(null)}
               >
-                {[
-                  { label: "overview", hash: "#overview" },
-                  { label: "ourPillars", hash: "#pillars" },
-                  { label: "corePerformance", hash: "#performance" },
-                  { label: "whyUs", hash: "#why" },
-                  // { label: "BoardOfDirectors", hash: "#board" },
-                  // { label: "ExecutiveManagement", hash: "#executive" },
-                ].map((item) => (
-                  <button
-                    key={item.hash}
-                    onClick={() => handleNav(`/about${item.hash}`)}
-                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
-                  >
-                    {t(item.label)}
-                  </button>
-                ))}
+                <button className={`flex items-center gap-1 ${isActive("/about")}`}>
+                  {i18n.language === "ar" ? "من نحن؟" : "About Us"}
+                  <FaChevronDown className="mt-0.5 text-xs" />
+                </button>
+
+                <div
+                  className={`absolute left-0 top-full mt-2 w-56 rounded-lg border bg-white py-2 shadow-md transition-all duration-200 ${
+                    dropdown === "about" ? "visible opacity-100" : "invisible opacity-0"
+                  }`}
+                >
+                  {isSectionActive("about_us_overview") && (
+                    <button
+                      onClick={() => handleNav("/about#overview")}
+                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                    >
+                      {t("overview")}
+                    </button>
+                  )}
+
+                  {isSectionActive("about_us_our_pillars") && (
+                    <button
+                      onClick={() => handleNav("/about#pillars")}
+                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                    >
+                      {t("ourPillars")}
+                    </button>
+                  )}
+
+                  {isSectionActive("about_us_core_performance") && (
+                    <button
+                      onClick={() => handleNav("/about#performance")}
+                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                    >
+                      {t("corePerformance")}
+                    </button>
+                  )}
+
+                  {isSectionActive("about_us_why_us") && (
+                    <button
+                      onClick={() => handleNav("/about#why")}
+                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                    >
+                      {t("whyUs")}
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Services */}
-            <div
-              className="relative"
-              onMouseEnter={() => setDropdown("services")}
-              onMouseLeave={() => setDropdown(null)}
-            >
-              <button className={`flex items-center gap-1 ${isActive("/services/recruitment")}`}>
-                {i18n.language === "ar" ? "ماذا نقدّم؟" : "What We Do?"}
-                <FaChevronDown className="mt-0.5 text-xs" />
-              </button>
+            {hasActivePrefix("what_we_do") && (
               <div
-                className={`absolute left-0 top-full mt-2 w-60 rounded-lg border bg-white py-2 shadow-md transition-all duration-200 ${
-                  dropdown === "services" ? "visible opacity-100" : "invisible opacity-0"
-                }`}
+                className="relative"
+                onMouseEnter={() => setDropdown("services")}
+                onMouseLeave={() => setDropdown(null)}
               >
-                {[
-                  { label: "recruitmentSolutionsTitle", path: "/services/recruitment" },
-                  { label: "talentAssessment.title", path: "/services/assessment" },
-                  { label: "academy.title", path: "/services/academy" },
-                  { label: "hrConsulting.title", path: "/services/consulting" },
-                ].map((item) => (
-                  <button
-                    key={item.path}
-                    onClick={() => handleNav(item.path)}
-                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
-                  >
-                    {t(item.label)}
-                  </button>
-                ))}
-              </div>
-            </div>
+                <button className={`flex items-center gap-1 ${isActive("/services/recruitment")}`}>
+                  {i18n.language === "ar" ? "ماذا نقدّم؟" : "What We Do?"}
+                  <FaChevronDown className="mt-0.5 text-xs" />
+                </button>
 
-            {/* Media Center */}
-            <div
-              className="relative"
-              onMouseEnter={() => setDropdown("media")}
-              onMouseLeave={() => setDropdown(null)}
-            >
-              <button className={`flex items-center gap-1 ${isActiveParent("/media-center")}`}>
-                {i18n.language === "ar" ? "مركز المعرفة" : "Knowledge & Media Center"}
-                <FaChevronDown className="mt-0.5 text-xs" />
-              </button>
-              <div
-                className={`absolute left-0 top-full mt-2 w-52 rounded-lg border bg-white py-2 shadow-md transition-all duration-200 ${
-                  dropdown === "media" ? "visible opacity-100" : "invisible opacity-0"
-                }`}
-              >
-                {[
-                  { label: "blog", hash: "media-center/blogs" },
-                  { label: "news", hash: "media-center/news" },
-                  { label: "caseStudies", hash: "media-center/case-studies" },
-                ].map((item) => (
-                  <button
-                    key={item.hash}
-                    onClick={() => handleNav(`/${item.hash}`)}
-                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
-                  >
-                    {t(item.label)}
-                  </button>
-                ))}
+                <div
+                  className={`absolute left-0 top-full mt-2 w-60 rounded-lg border bg-white py-2 shadow-md transition-all duration-200 ${
+                    dropdown === "services" ? "visible opacity-100" : "invisible opacity-0"
+                  }`}
+                >
+                  {isSectionActive("what_we_do_recruitment_solutions") && (
+                    <button
+                      onClick={() => handleNav("/services/recruitment")}
+                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                    >
+                      {t("recruitmentSolutionsTitle")}
+                    </button>
+                  )}
+
+                  {isSectionActive("what_we_do_talent_assessment") && (
+                    <button
+                      onClick={() => handleNav("/services/assessment")}
+                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                    >
+                      {t("talentAssessment.title")}
+                    </button>
+                  )}
+
+                  {isSectionActive("what_we_do_adroyts_academy") && (
+                    <button
+                      onClick={() => handleNav("/services/academy")}
+                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                    >
+                      {t("academy.title")}
+                    </button>
+                  )}
+
+                  {isSectionActive("what_we_do_human_resource_consulting") && (
+                    <button
+                      onClick={() => handleNav("/services/consulting")}
+                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                    >
+                      {t("hrConsulting.title")}
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
+
+            {hasActivePrefix("knowledge_center") && (
+              <div
+                className="relative"
+                onMouseEnter={() => setDropdown("media")}
+                onMouseLeave={() => setDropdown(null)}
+              >
+                <button className={`flex items-center gap-1 ${isActiveParent("/media-center")}`}>
+                  {i18n.language === "ar" ? "مركز المعرفة" : "Knowledge & Media Center"}
+                  <FaChevronDown className="mt-0.5 text-xs" />
+                </button>
+
+                <div
+                  className={`absolute left-0 top-full mt-2 w-52 rounded-lg border bg-white py-2 shadow-md transition-all duration-200 ${
+                    dropdown === "media" ? "visible opacity-100" : "invisible opacity-0"
+                  }`}
+                >
+                  {isSectionActive("knowledge_center_blog") && (
+                    <button
+                      onClick={() => handleNav("/media-center/blogs")}
+                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                    >
+                      {t("blog")}
+                    </button>
+                  )}
+
+                  {isSectionActive("knowledge_center_news") && (
+                    <button
+                      onClick={() => handleNav("/media-center/news")}
+                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                    >
+                      {t("news")}
+                    </button>
+                  )}
+
+                  {isSectionActive("knowledge_center_case_studies") && (
+                    <button
+                      onClick={() => handleNav("/media-center/case-studies")}
+                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                    >
+                      {t("caseStudies")}
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Careers */}
             <Link to="/careers" className={isActive("/careers")}>
@@ -264,31 +350,48 @@ const MainLayout = ({ children }) => {
               {
                 label: "aboutUs",
                 submenu: [
-                  { label: "overview", hash: "#overview" },
-                  { label: "ourPillars", hash: "#pillars" },
-                  { label: "corePerformance", hash: "#performance" },
-                  { label: "whyUs", hash: "#why" },
-                  // { label: "BoardOfDirectors", hash: "#board" },
-                  // { label: "ExecutiveManagement", hash: "#executive" },
-                ],
+                  isSectionActive("about_us_overview") && { label: "overview", hash: "#overview" },
+                  isSectionActive("about_us_our_pillars") && { label: "ourPillars", hash: "#pillars" },
+                  isSectionActive("about_us_core_performance") && {
+                    label: "corePerformance",
+                    hash: "#performance",
+                  },
+                  isSectionActive("about_us_why_us") && { label: "whyUs", hash: "#why" },
+                ].filter(Boolean),
               },
               {
                 label: "exploreOurServices",
                 submenu: [
-                  { label: "recruitmentSolutionsTitle", path: "/services/recruitment" },
-                  { label: "talentAssessment.title", path: "/services/assessment" },
-                  { label: "academy.title", path: "/services/academy" },
-                  { label: "hrConsulting.title", path: "/services/consulting" },
-                ],
+                  isSectionActive("what_we_do_recruitment_solutions") && {
+                    label: "recruitmentSolutionsTitle",
+                    path: "/services/recruitment",
+                  },
+                  isSectionActive("what_we_do_talent_assessment") && {
+                    label: "talentAssessment.title",
+                    path: "/services/assessment",
+                  },
+                  isSectionActive("what_we_do_adroyts_academy") && {
+                    label: "academy.title",
+                    path: "/services/academy",
+                  },
+                  isSectionActive("what_we_do_human_resource_consulting") && {
+                    label: "hrConsulting.title",
+                    path: "/services/consulting",
+                  },
+                ].filter(Boolean), // removes inactive sections
               },
+
               { label: "careers", path: "/careers" },
               {
                 label: "mediaCenter",
                 submenu: [
-                  { label: "blog", path: "/media-center/blogs" },
-                  { label: "news", path: "/media-center/news" },
-                  { label: "caseStudies", path: "/media-center/case-studies" },
-                ],
+                  isSectionActive("knowledge_center_blog") && { label: "blog", path: "/media-center/blogs" },
+                  isSectionActive("knowledge_center_news") && { label: "news", path: "/media-center/news" },
+                  isSectionActive("knowledge_center_case_studies") && {
+                    label: "caseStudies",
+                    path: "/media-center/case-studies",
+                  },
+                ].filter(Boolean),
               },
             ].map((item) => (
               <div key={item.label}>
@@ -339,13 +442,12 @@ const MainLayout = ({ children }) => {
 
       {/* Footer */}
       <motion.footer className="bg-[#0e1a41] text-gray-300" initial="hidden" whileInView="visible">
-        {/* Inside your footer, wrap key blocks with motion.div and apply item variants */}
-
+        {/* Main Footer Grid */}
         <motion.div
           className="mx-auto grid max-w-7xl gap-10 px-6 py-12 md:grid-cols-12"
           variants={footerItemVariants}
         >
-          {/* Your first big block (logo + text + social icons) */}
+          {/* Logo + Description + Social Icons */}
           <div className="md:col-span-4">
             <div className="mb-6">
               <img src="/assets/logo.png" alt="Adroyts Logo" className="h-10 w-auto" />
@@ -362,36 +464,40 @@ const MainLayout = ({ children }) => {
                   rel="noopener noreferrer"
                   className="text-white transition hover:text-gray-400"
                 >
-                  <img src={item.image} alt={`Icon`} className="h-6 w-6 bg-cover" />
+                  <img src={item.image} alt="Icon" className="h-6 w-6 bg-cover" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* RIGHT SIDE: Link Columns */}
+          {/* Footer Links Columns */}
           <motion.div
             className="grid grid-cols-1 gap-8 sm:grid-cols-3 md:col-span-8"
             variants={footerItemVariants}
           >
-            {/* Company Links Column */}
+            {/* Company Links */}
             <div>
               <h4 className="mb-4 text-xl uppercase tracking-widest text-white">{t("company")}</h4>
               <ul className="space-y-3 text-[#ffffff99]">
-                <li>
-                  <Link className="transition duration-150 hover:text-white" to="/about#overview">
-                    {t("aboutUs")}
-                  </Link>
-                </li>
+                {isSectionActive("about_us_overview") && (
+                  <li>
+                    <Link className="transition duration-150 hover:text-white" to="/about#overview">
+                      {t("aboutUs")}
+                    </Link>
+                  </li>
+                )}
                 <li>
                   <Link className="transition duration-150 hover:text-white" to="/contact">
                     {t("contactUs")}
                   </Link>
                 </li>
-                <li>
-                  <Link className="transition duration-150 hover:text-white" to="/careers">
-                    {t("careers")}
-                  </Link>
-                </li>
+                {isSectionActive("careers") && (
+                  <li>
+                    <Link className="transition duration-150 hover:text-white" to="/careers">
+                      {t("careers")}
+                    </Link>
+                  </li>
+                )}
                 <li>
                   <Link className="transition duration-150 hover:text-white" to="/sitemap">
                     {t("sitemap")}
@@ -399,74 +505,97 @@ const MainLayout = ({ children }) => {
                 </li>
               </ul>
             </div>
-            {/* Services Links Column */}
+
+            {/* Services Links */}
             <div>
               <h4 className="mb-4 text-xl uppercase tracking-widest text-white">{t("coreServices")}</h4>
               <ul className="space-y-3 text-[#ffffff99]">
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    {t("recruitmentSolutionsTitle")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    {t("academy.title")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    {t("talentAssessment.title")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    {t("hrConsulting.title")}
-                  </a>
-                </li>
+                {isSectionActive("what_we_do_recruitment_solutions") && (
+                  <li>
+                    <Link className="transition duration-150 hover:text-white" to="/services/recruitment">
+                      {t("recruitmentSolutionsTitle")}
+                    </Link>
+                  </li>
+                )}
+                {isSectionActive("what_we_do_adroyts_academy") && (
+                  <li>
+                    <Link className="transition duration-150 hover:text-white" to="/services/academy">
+                      {t("academy.title")}
+                    </Link>
+                  </li>
+                )}
+                {isSectionActive("what_we_do_talent_assessment") && (
+                  <li>
+                    <Link className="transition duration-150 hover:text-white" to="/services/assessment">
+                      {t("talentAssessment.title")}
+                    </Link>
+                  </li>
+                )}
+                {isSectionActive("what_we_do_human_resource_consulting") && (
+                  <li>
+                    <Link className="transition duration-150 hover:text-white" to="/services/consulting">
+                      {t("hrConsulting.title")}
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
-            {/* Resources Links Column */}
+
+            {/* Resources / Media Links */}
             <div>
               <h4 className="mb-4 text-xl uppercase tracking-widest text-white">{t("resources")}</h4>
               <ul className="space-y-3 text-[#ffffff99]">
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    {t("blog")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    {t("caseStudies")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    {t("faq")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="transition duration-150 hover:text-white">
-                    {t("news")}
-                  </a>
-                </li>
+                {isSectionActive("knowledge_center_blog") && (
+                  <li>
+                    <Link to="/media-center/blogs" className="transition duration-150 hover:text-white">
+                      {t("blog")}
+                    </Link>
+                  </li>
+                )}
+                {isSectionActive("knowledge_center_case_studies") && (
+                  <li>
+                    <Link
+                      to="/media-center/case-studies"
+                      className="transition duration-150 hover:text-white"
+                    >
+                      {t("caseStudies")}
+                    </Link>
+                  </li>
+                )}
+                {isSectionActive("FAQs") && (
+                  <li>
+                    <Link to="/FAQs" className="transition duration-150 hover:text-white">
+                      {t("faq")}
+                    </Link>
+                  </li>
+                )}
+                {isSectionActive("knowledge_center_news") && (
+                  <li>
+                    <Link to="/media-center/news" className="transition duration-150 hover:text-white">
+                      {t("news")}
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </motion.div>
         </motion.div>
 
+        {/* Divider */}
         <div className="mx-auto max-w-7xl border-t border-gray-700"></div>
 
+        {/* Contact + Newsletter */}
         <motion.div
           className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-2 md:px-12 lg:grid-cols-3 lg:gap-16"
           variants={footerItemVariants}
         >
-          {/* Contact Information */}
+          {/* Contact Info */}
           <div className="grid gap-4 text-sm sm:grid-cols-3 md:col-span-1 lg:col-span-2">
             <div className="flex items-start">
               <span className="mr-3 mt-1 text-white rtl:ml-3">
                 <img src="/assets/location.png" alt="Location Icon" className="h-6 w-9 bg-cover" />
               </span>
-              {i18n.language == "ar" ? (
+              {i18n.language === "ar" ? (
                 <p className="leading-relaxed text-[#ffffff99]">
                   ٣٣٨٥ طريق الثمامة، حي الندى، الرياض ١٣٣١٧،
                   <br />
@@ -487,21 +616,12 @@ const MainLayout = ({ children }) => {
                   <img src="/assets/phone.png" alt="Phone Icon" className="h-6 w-6 bg-cover" />
                 </span>
                 <span>
-                  {i18n.language === "ar" ? (
-                    <a
-                      href="tel:+966112342667"
-                      className="text-[#ffffff99] hover:text-cyan-400 hover:underline"
-                    >
-                      667 42 23 11 966+
-                    </a>
-                  ) : (
-                    <a
-                      href="tel:+966112342667"
-                      className="text-[#ffffff99] hover:text-cyan-400 hover:underline"
-                    >
-                      +966 11 23 42 667
-                    </a>
-                  )}
+                  <a
+                    href="tel:+966112342667"
+                    className="text-[#ffffff99] hover:text-cyan-400 hover:underline"
+                  >
+                    {i18n.language === "ar" ? "667 42 23 11 966+" : "+966 11 23 42 667"}
+                  </a>
                 </span>
               </div>
 
@@ -535,24 +655,23 @@ const MainLayout = ({ children }) => {
           </div>
         </motion.div>
 
-        <div className="mx-auto max-w-7xl border-t border-gray-700"></div>
-      </motion.footer>
-
-      <footer className="bg-[#0e1a41]">
-        <div className="m-auto flex max-w-7xl items-center justify-between px-6 py-12 text-center text-sm text-white md:px-12">
-          <p>
-            {new Date().getFullYear()} © {t("copyright")} {t("companyName")}
-          </p>
-          <div className="flex items-center gap-8">
-            <Link to="/privacy-policy" className="text-[#ffffff99] hover:underline">
-              {t("privacyPolicy")}
-            </Link>
-            <Link to="/terms-of-use" className="text-[#ffffff99] hover:underline">
-              {t("termsOfUse")}
-            </Link>
+        {/* Bottom Footer */}
+        <footer className="bg-[#0e1a41]">
+          <div className="m-auto flex max-w-7xl items-center justify-between px-6 py-12 text-center text-sm text-white md:px-12">
+            <p>
+              {new Date().getFullYear()} © {t("copyright")} {t("companyName")}
+            </p>
+            <div className="flex items-center gap-8">
+              <Link to="/privacy-policy" className="text-[#ffffff99] hover:underline">
+                {t("privacyPolicy")}
+              </Link>
+              <Link to="/terms-of-use" className="text-[#ffffff99] hover:underline">
+                {t("termsOfUse")}
+              </Link>
+            </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+      </motion.footer>
 
       {/* Scroll Up Button */}
       {showScrollUp && (

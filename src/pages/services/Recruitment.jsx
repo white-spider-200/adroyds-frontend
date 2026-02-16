@@ -64,12 +64,12 @@ const stepIcons = [FiSearch, FiClipboard, FiUsers, FiFileText, FiUserCheck, FiBr
 const servicesList = [
   {
     i18nKey: "executiveSearch",
-    image: "/assets/amina-atar-MA4aW8ZOzLM-unsplash.jpg",
+    image: "/assets/business-meeting-saudi-arabia-1024x683.webp",
     link: "#executive",
   },
   {
     i18nKey: "professionalSearch",
-    image: "/assets/saudi-office.jpg",
+    image: "/assets/amina-atar-MA4aW8ZOzLM-unsplash.jpg",
     link: "#professional",
   },
   {
@@ -131,7 +131,7 @@ const Recruitment = () => {
         {/* Clipped Image */}
         <div className="absolute top-0 z-0 h-full w-full overflow-hidden md:w-[40%] ltr:right-0 rtl:left-0">
           <img
-            src="/assets/business-meeting-saudi-arabia-1024x683.webp"
+            src="/assets/2nd.jpg"
             alt="Expert Training Career Growth"
             className="clipped-image h-full w-full object-cover"
           />
@@ -145,11 +145,7 @@ const Recruitment = () => {
           <div className="mb-24 flex flex-col gap-10 lg:flex-row lg:items-center">
             {/* IMAGE */}
             <div className="relative h-[450px] w-full overflow-hidden rounded-lg lg:w-1/2">
-              <img
-                src="/assets/business-meeting-saudi-arabia-1024x683.webp"
-                alt="Recruitment Solutions"
-                className="h-full w-full object-cover"
-              />
+              <img src="/assets/2nd.jpg" alt="Recruitment Solutions" className="h-full w-full object-cover" />
             </div>
 
             {/* TEXT */}
@@ -187,7 +183,7 @@ const Recruitment = () => {
               {/* Stats */}
               <div className="flex flex-wrap justify-center gap-10 md:justify-between">
                 {statsData.map(({ icon, num, suffix, label }, i) => (
-                  <div key={i} className={`flex flex-col items-center px-6`}>
+                  <div key={i} className={`flex flex-col items-center px-0`}>
                     <div className="mb-4 text-white">{icon}</div>
                     <div className="text-4xl font-bold">
                       <CountUp
@@ -200,7 +196,7 @@ const Recruitment = () => {
                         separator=","
                       />
                     </div>
-                    <div className="mt-1 text-center font-bold tracking-widest">{t(label)}</div>
+                    <div className="mt-1 text-center font-bold">{t(label)}</div>
                   </div>
                 ))}
               </div>
@@ -342,7 +338,7 @@ const Recruitment = () => {
                 {/* IMAGE */}
                 <div className="relative">
                   <img
-                    src="/assets/amina-atar-MA4aW8ZOzLM-unsplash.jpg"
+                    src="/assets/business-meeting-saudi-arabia-1024x683.webp"
                     alt="Executive Search"
                     className="h-[600px] w-full rounded-2xl object-cover shadow-2xl"
                   />
@@ -358,7 +354,7 @@ const Recruitment = () => {
                 {/* IMAGE */}
                 <div className="order-2 lg:order-1">
                   <img
-                    src="/assets/saudi-office.jpg"
+                    src="/assets/amina-atar-MA4aW8ZOzLM-unsplash.jpg"
                     alt="Professional Search"
                     className="h-[600px] w-full rounded-2xl object-cover shadow-2xl"
                   />

@@ -80,7 +80,7 @@ const Consulting = () => {
         {/* Clipped Image */}
         <div className="absolute top-0 z-0 h-full w-full overflow-hidden md:w-[40%] ltr:right-0 rtl:left-0">
           <img
-            src="/assets/adroyts-consulting.png"
+            src="/assets/3rd.jpg"
             alt="Expert Training Career Growth"
             className="clipped-image h-full w-full object-cover"
           />
@@ -95,11 +95,7 @@ const Consulting = () => {
           <div className="mb-24 flex flex-col gap-10 lg:flex-row lg:items-center">
             {/* IMAGE */}
             <div className="relative h-[450px] w-full overflow-hidden rounded-lg lg:w-1/2">
-              <img
-                src="/assets/adroyts-consulting.png"
-                alt="Recruitment Solutions"
-                className="h-full w-full object-cover"
-              />
+              <img src="/assets/3rd.jpg" alt="Recruitment Solutions" className="h-full w-full object-cover" />
             </div>
 
             {/* TEXT */}

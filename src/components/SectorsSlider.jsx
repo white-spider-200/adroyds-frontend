@@ -70,51 +70,56 @@ const SectorsSlider = () => {
   if (loading) return null; // or skeleton loader
 
   return (
-    <div className="bg-white py-20">
-      <div className="mx-auto max-w-7xl px-6 text-center">
-        <SplitText className="mb-14 text-4xl font-bold tracking-tight text-[#0E1C3F]">
-          {t("sectorsWeServe")}
-        </SplitText>
+    <>
+      {sectors.length > 0 && (
+        <div className="bg-white py-20">
+          <div className="mx-auto max-w-7xl px-6 text-center">
+            <SplitText className="mb-14 text-4xl font-bold tracking-tight text-[#0E1C3F]">
+              {t("sectorsWeServe")}
+            </SplitText>
 
-        <Slider {...sliderSettings}>
-          {sectors.map((sector, index) => (
-            <div key={sector.id || index} className="px-2 py-2">
-              <motion.div
-                variants={fadeUpVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.04 }}
-                transition={{ type: "spring", stiffness: 200, damping: 18 }}
-                className="relative flex h-[420px] flex-col overflow-hidden rounded-xl bg-cover bg-center pt-4"
-                style={{ backgroundImage: `url(${sector.image})` }}
-              >
-                {/* Title */}
-                <div className="z-20 mx-auto mb-1 w-[85%] rounded-xl bg-white/90 px-4 py-2 text-center shadow-lg backdrop-blur">
-                  <h3 className="text-lg font-bold text-[#0E1C3F]">{sector.title}</h3>
+            <Slider {...sliderSettings}>
+              {sectors.map((sector, index) => (
+                <div key={sector.id || index} className="px-2 py-2">
+                  <motion.div
+                    variants={fadeUpVariant}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.04 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 18 }}
+                    className="relative flex h-[420px] flex-col overflow-hidden rounded-xl bg-cover bg-center pt-4"
+                    style={{ backgroundImage: `url(${sector.image})` }}
+                  >
+                    {/* Title */}
+                    <div className="z-20 mx-auto mb-1 w-[85%] rounded-xl bg-white/90 px-4 py-2 text-center shadow-lg backdrop-blur">
+                      <h3 className="text-lg font-bold text-[#0E1C3F]">{sector.title}</h3>
+                    </div>
+
+                    {/* Description */}
+                    <div className="relative z-10 mx-3 mb-3 mt-auto rounded-xl p-3">
+                      <p className="text-lg text-white/90">{sector.description} </p>
+                    </div>
+
+                    {/* Glow */}
+                    <motion.div
+                      className="pointer-events-none absolute inset-0"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 0.25 }}
+                      transition={{ duration: 0.3 }}
+                      style={{
+                        background:
+                          "radial-gradient(circle at center, rgba(255,255,255,0.25), transparent 70%)",
+                      }}
+                    />
+                  </motion.div>
                 </div>
-
-                {/* Description */}
-                <div className="relative z-10 mx-3 mb-3 mt-auto rounded-xl p-3">
-                  <p className="text-lg text-white/90">{sector.description} </p>
-                </div>
-
-                {/* Glow */}
-                <motion.div
-                  className="pointer-events-none absolute inset-0"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 0.25 }}
-                  transition={{ duration: 0.3 }}
-                  style={{
-                    background: "radial-gradient(circle at center, rgba(255,255,255,0.25), transparent 70%)",
-                  }}
-                />
-              </motion.div>
-            </div>
-          ))}
-        </Slider>
-      </div>
-    </div>
+              ))}
+            </Slider>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

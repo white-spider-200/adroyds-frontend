@@ -1,17 +1,9 @@
 import { useFormik } from "formik";
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useTranslation } from "react-i18next";
-import {
-  FaArrowLeft,
-  FaArrowRight,
-  FaBriefcase,
-  FaChevronRight,
-  FaClock,
-  FaUserAlt,
-  FaUserSecret,
-  FaUserShield,
-} from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaUserAlt, FaUserShield } from "react-icons/fa";
 import { HiOutlineCalendar, HiOutlineLocationMarker } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
 import * as Yup from "yup";
@@ -32,17 +24,6 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-  hover: { scale: 1.03, boxShadow: "0px 10px 20px rgba(0,0,0,0.15)" },
-};
-
-const boxVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  hover: { scale: 1.05, boxShadow: "0px 10px 20px rgba(0,0,0,0.15)" },
-};
 const boxVariants2 = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -50,6 +31,9 @@ const boxVariants2 = {
 const Careers = () => {
   const location = useLocation();
   const { i18n, t } = useTranslation();
+  const generalRecaptchaRef = useRef(null);
+  const [generalRecaptchaToken, setGeneralRecaptchaToken] = useState(null);
+  const [generalRecaptchaError, setGeneralRecaptchaError] = useState(false);
 
   useEffect(() => {
     if (location.hash) {
@@ -123,14 +107,25 @@ const Careers = () => {
     },
     validationSchema,
     onSubmit: (values, { setSubmitting, resetForm, setStatus }) => {
+      // 🔥 Check reCAPTCHA first
+      if (!generalRecaptchaToken) {
+        setGeneralRecaptchaError(true);
+        return;
+      }
+
+      setGeneralRecaptchaError(false);
       setSubmitting(true);
       setStatus(null);
 
-      // Simulate API call
       setTimeout(() => {
         setSubmitting(false);
-        setStatus({ success: true, message: "Your application has been submitted successfully." });
+        setStatus({
+          success: true,
+          message: "Your application has been submitted successfully.",
+        });
         resetForm();
+        setGeneralRecaptchaToken(null);
+        generalRecaptchaRef.current?.reset();
       }, 1500);
     },
   });
@@ -581,10 +576,24 @@ const Careers = () => {
             {formik.touched.consent && formik.errors.consent && (
               <p className="mt-1 text-sm text-red-500">{formik.errors.consent}</p>
             )}
+            <div className="my-4">
+              <ReCAPTCHA
+                ref={generalRecaptchaRef}
+                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                onChange={(token) => {
+                  setGeneralRecaptchaToken(token);
+                  setGeneralRecaptchaError(false);
+                }}
+                onExpired={() => setGeneralRecaptchaToken(null)}
+              />
+            </div>
+
+            {generalRecaptchaError && <p className="text-sm text-red-500">{t("verifyHuman")}</p>}
+
             <button
               type="submit"
               disabled={formik.isSubmitting}
-              class="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-md bg-cyan-200 px-6 font-medium text-neutral-50"
+              className="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-md bg-cyan-200 px-6 font-medium text-neutral-50"
             >
               <span class="absolute h-56 w-full rounded-full bg-cyan-400 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
               <span class="relative"> {t("submit")}</span>

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import SectorsSlider from "../components/SectorsSlider";
 import ServicesSection from "../components/ServicesSection";
 import { TestimonialsCarousel } from "../components/TestimonialsCarousel";
+import { usePages } from "../context/PagesContext";
 import mainServices from "../services/mainServices";
 import { SplitText } from "../utils/SplitText";
 
@@ -68,6 +69,8 @@ const scaleFadeItem = {
 };
 
 const Home = () => {
+  const { isActive } = usePages(); // 👈 from context
+
   const navigate = useNavigate();
   const { i18n, t } = useTranslation();
   const [loading, setLoading] = useState(true);
@@ -255,75 +258,77 @@ const Home = () => {
       <SectorsSlider />
 
       {/* Case Studies */}
-      <section
-        className="bg-gray-50 bg-cover py-16 pt-40 md:py-28"
-        style={{ backgroundImage: `url('/assets/studies-bg.png')` }}
-      >
-        <div className="mx-auto max-w-7xl px-6 py-6 md:flex md:items-start md:justify-between md:gap-44">
-          {/* Left Side: Title, description, button */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } }}
-            viewport={{ once: false }}
-            className="mb-12 max-w-xl md:mb-0"
-          >
-            <SplitText className="mb-6 text-3xl font-bold text-white sm:text-4xl md:text-4xl">
-              {t("caseStudies")}
-            </SplitText>
-
-            <p
-              className="mb-8 max-w-lg text-base leading-relaxed text-white sm:text-lg md:text-xl"
-              dangerouslySetInnerHTML={{ __html: t("caseStudiesDesc") }}
-            ></p>
-
-            <button
-              onClick={() => navigate("/media-center/case-studies")}
-              className="group relative mt-8 inline-flex h-[calc(48px+8px)] items-center justify-center rounded-full bg-cyan-400 py-1 font-medium text-neutral-50 transition-colors duration-300 hover:text-neutral-50 ltr:pl-6 ltr:pr-16 rtl:pl-16 rtl:pr-6"
+      {caseStudies.length > 0 && isActive("knowledge_center_case_studies") && (
+        <section
+          className="bg-gray-50 bg-cover py-16 pt-40 md:py-28"
+          style={{ backgroundImage: `url('/assets/studies-bg.png')` }}
+        >
+          <div className="mx-auto max-w-7xl px-6 py-6 md:flex md:items-start md:justify-between md:gap-44">
+            {/* Left Side: Title, description, button */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } }}
+              viewport={{ once: false }}
+              className="mb-12 max-w-xl md:mb-0"
             >
-              {/* Button Text */}
-              <span className="z-10 pr-2">{t("allCaseStudies")}</span>
+              <SplitText className="mb-6 text-3xl font-bold text-white sm:text-4xl md:text-4xl">
+                {t("caseStudies")}
+              </SplitText>
 
-              {/* Animated Background / Arrow */}
-              <div
-                className={`absolute ${
-                  i18n.language === "ar" ? "left-1" : "right-1"
-                } inline-flex h-12 w-12 items-center justify-end rounded-full bg-cyan-200 transition-[width] duration-300 group-hover:w-[calc(100%-8px)]`}
-              >
-                <div
-                  className={`flex items-center justify-center ${i18n.language === "ar" ? "ml-3.5" : "mr-3.5"}`}
-                >
-                  {i18n.language === "ar" ? <FaArrowLeft /> : <FaArrowRight />}
-                </div>
-              </div>
-            </button>
-          </motion.div>
+              <p
+                className="mb-8 max-w-lg text-base leading-relaxed text-white sm:text-lg md:text-xl"
+                dangerouslySetInnerHTML={{ __html: t("caseStudiesDesc") }}
+              ></p>
 
-          {/* Right Side: Two cards side-by-side on md+, stacked on sm */}
-          <div className="grid w-full gap-12 md:w-2/3 md:grid-cols-2">
-            {caseStudies.slice(0, 2).map((caseStudy, index) => (
-              <motion.div
-                key={caseStudy.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ delay: index * 0.2 }}
-                className="flex flex-col justify-between overflow-hidden rounded-lg bg-white p-6 py-6 shadow-lg transition hover:shadow-2xl"
+              <button
+                onClick={() => navigate("/media-center/case-studies")}
+                className="group relative mt-8 inline-flex h-[calc(48px+8px)] items-center justify-center rounded-full bg-cyan-400 py-1 font-medium text-neutral-50 transition-colors duration-300 hover:text-neutral-50 ltr:pl-6 ltr:pr-16 rtl:pl-16 rtl:pr-6"
               >
-                <div>
-                  <h3 className="mb-3 text-2xl font-bold text-[#192757] sm:text-3xl">{caseStudy?.name}</h3>
-                  <p className="text-lg text-[#878da4]">{stripHtml(caseStudy.description)}</p>
-                </div>
+                {/* Button Text */}
+                <span className="z-10 pr-2">{t("allCaseStudies")}</span>
+
+                {/* Animated Background / Arrow */}
                 <div
-                  onClick={() => navigate(`/case-study/${caseStudy.id}`)}
-                  className="mt-6 cursor-pointer self-end rounded-full border-2 border-[#192757] p-3 text-gray-900 transition-transform duration-300 ease-in-out hover:scale-110 sm:p-4"
+                  className={`absolute ${
+                    i18n.language === "ar" ? "left-1" : "right-1"
+                  } inline-flex h-12 w-12 items-center justify-end rounded-full bg-cyan-200 transition-[width] duration-300 group-hover:w-[calc(100%-8px)]`}
                 >
-                  <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
+                  <div
+                    className={`flex items-center justify-center ${i18n.language === "ar" ? "ml-3.5" : "mr-3.5"}`}
+                  >
+                    {i18n.language === "ar" ? <FaArrowLeft /> : <FaArrowRight />}
+                  </div>
                 </div>
-              </motion.div>
-            ))}
+              </button>
+            </motion.div>
+
+            {/* Right Side: Two cards side-by-side on md+, stacked on sm */}
+            <div className="grid w-full gap-12 md:w-2/3 md:grid-cols-2">
+              {caseStudies.slice(0, 2).map((caseStudy, index) => (
+                <motion.div
+                  key={caseStudy.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false }}
+                  transition={{ delay: index * 0.2 }}
+                  className="flex flex-col justify-between overflow-hidden rounded-lg bg-white p-6 py-6 shadow-lg transition hover:shadow-2xl"
+                >
+                  <div>
+                    <h3 className="mb-3 text-2xl font-bold text-[#192757] sm:text-3xl">{caseStudy?.name}</h3>
+                    <p className="text-lg text-[#878da4]">{stripHtml(caseStudy.description)}</p>
+                  </div>
+                  <div
+                    onClick={() => navigate(`/case-study/${caseStudy.id}`)}
+                    className="mt-6 cursor-pointer self-end rounded-full border-2 border-[#192757] p-3 text-gray-900 transition-transform duration-300 ease-in-out hover:scale-110 sm:p-4"
+                  >
+                    <FaArrowRight className={`${i18n.language === "ar" ? "rotate-180" : ""}`} />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Testimonials */}
       {testimonials.length > 0 ? (
@@ -334,8 +339,9 @@ const Home = () => {
           <TestimonialsCarousel testimonials={testimonials} />
         </section>
       ) : null}
+
       {/* Blog Section */}
-      {articles.length > 0 && (
+      {articles.length > 0 && isActive("knowledge_center_blog") && (
         <section className="bg-white py-16">
           <div className="mx-auto max-w-7xl px-6 py-12">
             <SplitText className="mb-12 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-4xl">

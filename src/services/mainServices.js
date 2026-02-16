@@ -12,6 +12,7 @@ const getLangHeaders = (lang) => ({
 const mainServices = {
   // ✅ GET
   getArticles: (lang, page = 1) => API.get(`/articles?page=${page}`, getLangHeaders(lang)),
+  getPages: (lang) => API.get(`/pages`, getLangHeaders(lang)),
   getArticleById: (id, lang) => API.get(`/articles/${id}`, getLangHeaders(lang)),
   getNews: (lang, page = 1) => API.get(`/news?page=${page}`, getLangHeaders(lang)),
   getNewsById: (id, lang) => API.get(`/news/${id}`, getLangHeaders(lang)),

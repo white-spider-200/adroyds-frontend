@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { FaArrowLeft, FaArrowRight, FaPlusCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
+import { usePages } from "../context/PagesContext";
 import { SplitText } from "../utils/SplitText";
 
 const services = [
@@ -186,12 +187,35 @@ const ServiceCard = ({ service, isActive, onHover }) => {
 };
 
 const ServicesSection = () => {
+  const { isActive } = usePages(); // 👈 from context
+
   const [hoveredId, setHoveredId] = useState(1); // first card active by default
   const { t } = useTranslation();
   const handleHover = (id) => {
     if (id !== null) setHoveredId(id);
     // Do NOT reset on leave
   };
+
+  const filteredServices = services.filter((service) => {
+    if (service.path === "/services/recruitment") {
+      return isActive("what_we_do_recruitment_solutions");
+    }
+
+    if (service.path === "/services/assessment") {
+      return isActive("what_we_do_talent_assessment");
+    }
+
+    if (service.path === "/services/academy") {
+      return isActive("what_we_do_adroyts_academy");
+    }
+
+    if (service.path === "/services/consulting") {
+      return isActive("what_we_do_human_resource_consulting");
+    }
+
+    return false;
+  });
+  if (filteredServices.length === 0) return null;
 
   return (
     <section id="services" className="relative overflow-hidden bg-[#0E1C3F] py-16 sm:py-24">
@@ -210,7 +234,7 @@ const ServicesSection = () => {
       </SplitText>
 
       <div className="scrollbar-hide mx-auto flex max-w-7xl space-x-4 overflow-x-auto px-4 sm:px-6">
-        {services.map((service) => (
+        {filteredServices.map((service) => (
           <ServiceCard
             key={service.id}
             service={service}

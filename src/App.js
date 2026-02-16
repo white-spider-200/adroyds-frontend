@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
+import { PagesProvider } from "./context/PagesContext";
 import MainLayout from "./layouts/MainLayout";
 import AboutUs from "./pages/AboutUs";
 import Careers from "./pages/Careers";
@@ -55,29 +56,31 @@ export default function App() {
   }, [location.search, i18n, navigate, location.pathname]);
 
   return (
-    <MainLayout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/services/recruitment" element={<Recruitment />} />
-        <Route path="/services/academy" element={<Academy />} />
-        <Route path="/services/assessment" element={<Assessment />} />
-        <Route path="/services/consulting" element={<Consulting />} />
-        <Route path="/media-center/blogs" element={<Blogs />} />
-        <Route path="/media-center/news" element={<News />} />
-        <Route path="/media-center/case-studies" element={<CaseStudies />} />
-        <Route path="/careers" element={<Careers />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/FAQs" element={<Faqs />} />
-        <Route path="/blog/:id" element={<BlogDetails />} />
-        <Route path="/news/:id" element={<NewsDetails />} />
-        <Route path="/case-study/:id" element={<CaseStudiesDetails />} />
-        <Route path="/case-study" element={<CaseStudyDetails />} />
-        <Route path="/sitemap" element={<Sitemap />} />
-        <Route path="/terms-of-use" element={<TermsOfUse />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </MainLayout>
+    <PagesProvider>
+      <MainLayout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/services/recruitment" element={<Recruitment />} />
+          <Route path="/services/academy" element={<Academy />} />
+          <Route path="/services/assessment" element={<Assessment />} />
+          <Route path="/services/consulting" element={<Consulting />} />
+          <Route path="/media-center/blogs" element={<Blogs />} />
+          <Route path="/media-center/news" element={<News />} />
+          <Route path="/media-center/case-studies" element={<CaseStudies />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/FAQs" element={<Faqs />} />
+          <Route path="/blog/:id" element={<BlogDetails />} />
+          <Route path="/news/:id" element={<NewsDetails />} />
+          <Route path="/case-study/:id" element={<CaseStudiesDetails />} />
+          <Route path="/case-study" element={<CaseStudyDetails />} />
+          <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/terms-of-use" element={<TermsOfUse />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </MainLayout>
+    </PagesProvider>
   );
 }
