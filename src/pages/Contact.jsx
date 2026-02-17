@@ -79,35 +79,50 @@ const ContactAdroyts = () => {
     setErrors(v);
     if (Object.keys(v).length > 0) return;
 
-    if (form.purpose === "job") {
-      const ok = window.confirm("You will be redirected to the Careers page. Continue?");
-      if (ok) window.location.href = "/careers";
+    if (!recaptchaToken) {
+      setErrors({ recaptcha: "Please verify that you are not a robot." });
       return;
     }
 
-    await fetch("/api/contact/send", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...form,
+    try {
+      const payload = {
+        // Required fields
+        email: form.email,
+        name: form.fullName,
+        message: form.message,
+        subject: form.purpose || form.service || "Contact Form",
         "g-recaptcha-response": recaptchaToken,
-      }),
-    });
 
-    setSubmitted(true);
-    setForm({
-      purpose: "",
-      fullName: "",
-      company: "",
-      jobTitle: "",
-      email: "",
-      phone: "",
-      hearAbout: "",
-      service: "",
-      message: "",
-    });
-    setRecaptchaToken(null);
-    recaptchaRef.current?.reset();
+        // Extra fields
+        company: form.company,
+        jobTitle: form.jobTitle,
+        phone: form.phone,
+        hearAbout: form.hearAbout,
+        service: form.service,
+        purpose: form.purpose,
+      };
+
+      await mainServices.sendContactMessage(payload);
+
+      setSubmitted(true);
+
+      setForm({
+        purpose: "",
+        fullName: "",
+        company: "",
+        jobTitle: "",
+        email: "",
+        phone: "",
+        hearAbout: "",
+        service: "",
+        message: "",
+      });
+
+      setRecaptchaToken(null);
+      recaptchaRef.current?.reset();
+    } catch (error) {
+      console.error("Submit failed:", error);
+    }
   };
 
   return (
@@ -394,10 +409,10 @@ const ContactAdroyts = () => {
               {errors.robot && <p className="text-sm text-red-500">{errors.robot}</p>}
               <button
                 onClick={handleSubmit}
-                class="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-md bg-cyan-200 px-6 font-medium text-neutral-50"
+                className="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-md bg-cyan-200 px-6 font-medium text-neutral-50"
               >
-                <span class="absolute h-56 w-full rounded-full bg-cyan-400 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
-                <span class="relative"> {t("send")}</span>
+                <span className="absolute h-56 w-full rounded-full bg-cyan-400 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
+                <span className="relative"> {t("send")}</span>
               </button>
             </div>
           </div>
