@@ -30,8 +30,6 @@ const ContactAdroyts = () => {
 
   const [recaptchaToken, setRecaptchaToken] = useState(null);
 
-  const sanitizeEnglish = (value) => value.replace(/[^\x20-\x7E]/g, "");
-
   useEffect(() => {
     const fetchSocialMedia = async () => {
       try {
@@ -50,7 +48,6 @@ const ContactAdroyts = () => {
     let { name, value } = e.target;
 
     if (["fullName", "company", "jobTitle", "message"].includes(name)) {
-      value = sanitizeEnglish(value);
     }
     if (name === "phone") value = value.replace(/[^0-9+]/g, "");
 
