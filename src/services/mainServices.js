@@ -28,6 +28,7 @@ const mainServices = {
 
   // ✅ POST
   sendContactMessage: (data) => API.post("/contact-us", data),
+  sendCVData: (data) => API.post("/submit-cv", data),
 };
 
 export default mainServices;

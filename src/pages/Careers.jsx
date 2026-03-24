@@ -8,6 +8,7 @@ import { HiOutlineCalendar, HiOutlineLocationMarker } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
 import * as Yup from "yup";
 
+import mainServices from "../services/mainServices";
 import { SplitText } from "../utils/SplitText";
 
 const headerVariants = {
@@ -106,27 +107,52 @@ const Careers = () => {
       consent: false,
     },
     validationSchema,
-    onSubmit: (values, { setSubmitting, resetForm, setStatus }) => {
-      // 🔥 Check reCAPTCHA first
+    onSubmit: async (values, { setSubmitting, resetForm, setStatus }) => {
       if (!generalRecaptchaToken) {
         setGeneralRecaptchaError(true);
+        setSubmitting(false);
         return;
       }
 
-      setGeneralRecaptchaError(false);
-      setSubmitting(true);
-      setStatus(null);
+      try {
+        setGeneralRecaptchaError(false);
+        setSubmitting(true);
+        setStatus(null);
 
-      setTimeout(() => {
-        setSubmitting(false);
+        const formData = new FormData();
+
+        formData.append("name", values.fullName);
+        formData.append("email", values.email);
+        formData.append("mobileNumber", values.mobileNumber);
+        formData.append("currentCity", values.currentCity);
+        formData.append("nationality", values.nationality);
+        formData.append("opportunityType", values.opportunityType);
+        formData.append("linkedIn", values.linkedIn || "");
+        formData.append("file", values.resume);
+        formData.append("consent", values.consent);
+        formData.append("g-recaptcha-response", generalRecaptchaToken);
+
+        await mainServices.sendCVData(formData);
+
+        resetForm();
+
         setStatus({
           success: true,
           message: "Your application has been submitted successfully.",
         });
-        resetForm();
+
         setGeneralRecaptchaToken(null);
         generalRecaptchaRef.current?.reset();
-      }, 1500);
+      } catch (error) {
+        console.error(error);
+
+        setStatus({
+          success: false,
+          message: "Something went wrong. Please try again.",
+        });
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
@@ -311,7 +337,7 @@ const Careers = () => {
               </div>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2">
+            <div className="grid gap-8 md:grid-cols-1">
               {/* Join Network Card */}
               <div className="relative overflow-hidden rounded-3xl bg-[#2470C3] p-10 text-white shadow-2xl transition-all hover:shadow-[#2470C3]/50">
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzY3NzE0MTMzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral')] bg-cover bg-center opacity-10" />
@@ -338,7 +364,7 @@ const Careers = () => {
                   </button>
                 </div>
               </div>
-              <div className="relative overflow-hidden rounded-3xl bg-gray-900 p-10 text-white shadow-2xl transition-all hover:shadow-[#2470C3]/50">
+              {/* <div className="relative overflow-hidden rounded-3xl bg-gray-900 p-10 text-white shadow-2xl transition-all hover:shadow-[#2470C3]/50">
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1718220216044-006f43e3a9b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2V8ZW58MXx8fHwxNzY3NzE0MTMzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral')] bg-cover bg-center opacity-10" />
                 <div className="absolute right-0 top-0 -mr-32 -mt-32 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
                 <div className="absolute bottom-0 left-0 -mb-32 -ml-32 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
@@ -362,7 +388,7 @@ const Careers = () => {
                     </span>
                   </button>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
@@ -593,12 +619,48 @@ const Careers = () => {
             <button
               type="submit"
               disabled={formik.isSubmitting}
-              className="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-md bg-cyan-200 px-6 font-medium text-neutral-50"
+              className="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-md bg-cyan-200 px-6 font-medium text-neutral-50 disabled:opacity-70"
             >
-              <span className="absolute h-56 w-full rounded-full bg-cyan-400 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
-              <span className="relative"> {t("submit")}</span>
+              {formik.isSubmitting ? (
+                <span className="flex items-center gap-2">
+                  <svg
+                    className="h-5 w-5 animate-spin"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                  </svg>
+                  {t("sending") || "Sending..."}
+                </span>
+              ) : (
+                <>
+                  <span className="absolute h-56 w-full rounded-full bg-cyan-400 transition-all duration-300 group-hover:h-0 group-hover:w-0"></span>
+                  <span className="relative">{t("submit")}</span>
+                </>
+              )}
             </button>
           </form>
+          {formik.status && (
+            <div
+              className={`mt-6 rounded-lg border p-4 text-sm font-medium ${
+                formik.status.success
+                  ? "border-green-200 bg-green-50 text-green-700"
+                  : "border-red-200 bg-red-50 text-red-600"
+              }`}
+            >
+              {formik.status.success ? "✅ " : "⚠️ "}
+              {formik.status.message}
+            </div>
+          )}
         </section>
 
         {/* ================= JOBS ================= */}
@@ -611,8 +673,7 @@ const Careers = () => {
             viewport={{ once: false, amount: 0.3 }} // animate when 30% of box is in view
             whileHover="hover"
           >
-            {/* Header */}
-            <motion.div
+            {/* <motion.div
               className="mb-8 text-center text-3xl font-bold"
               variants={headerVariants}
               initial="hidden"
@@ -620,10 +681,9 @@ const Careers = () => {
               viewport={{ once: false, amount: 0.3 }}
             >
               <SplitText>{t("openPositions")}</SplitText>
-            </motion.div>
+            </motion.div> */}
 
-            {/* Job Cards */}
-            <motion.div
+            {/* <motion.div
               className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
               variants={containerVariants}
               initial="hidden"
@@ -638,7 +698,6 @@ const Careers = () => {
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 250, damping: 22 }}
                 >
-                  {/* Card */}
                   <div
                     className={`relative overflow-hidden rounded-3xl p-[1px] transition-all duration-300 ${
                       selectedJob?.id === job.id
@@ -647,7 +706,6 @@ const Careers = () => {
                     }`}
                   >
                     <div className="relative rounded-3xl bg-white/70 p-8 backdrop-blur-xl">
-                      {/* Floating status */}
                       <span
                         className={`absolute top-6 rounded-full px-4 py-1 text-xs font-semibold backdrop-blur ltr:right-6 rtl:left-6 ${
                           job.status === "Open" ? "bg-emerald-500/90 text-white" : "bg-gray-500/80 text-white"
@@ -656,12 +714,10 @@ const Careers = () => {
                         {job.status}
                       </span>
 
-                      {/* Title */}
                       <h3 className="mb-4 max-w-[80%] text-2xl font-semibold tracking-tight text-gray-900">
                         {job.title}
                       </h3>
 
-                      {/* Meta */}
                       <div className="mb-6 flex flex-wrap gap-6 text-sm text-gray-600">
                         <div className="flex items-center gap-2">
                           <HiOutlineLocationMarker className="h-5 w-5 text-[#2470C3]" />
@@ -674,15 +730,12 @@ const Careers = () => {
                         </div>
                       </div>
 
-                      {/* Divider */}
                       <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
 
-                      {/* Description */}
                       <p className="mb-8 line-clamp-3 text-base leading-relaxed text-gray-700">
                         {job.description}
                       </p>
 
-                      {/* CTA */}
                       <div className="flex items-center justify-between">
                         <motion.span
                           className="flex items-center gap-2 text-sm font-semibold text-[#2470C3]"
@@ -691,17 +744,15 @@ const Careers = () => {
                           {t("viewDetails")} {i18n.language === "ar" ? <FaArrowLeft /> : <FaArrowRight />}
                         </motion.span>
 
-                        {/* Accent bubble */}
                         <div className="h-3 w-3 rounded-full bg-[#2470C3]" />
                       </div>
 
-                      {/* Glow */}
                       <div className="pointer-events-none absolute -bottom-20 -right-20 h-52 w-52 rounded-full bg-[#2470C3]/20 blur-3xl" />
                     </div>
                   </div>
                 </motion.article>
               ))}
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </section>
       </div>
