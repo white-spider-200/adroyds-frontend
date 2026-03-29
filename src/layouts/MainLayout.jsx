@@ -137,51 +137,34 @@ const MainLayout = ({ children }) => {
                 onMouseEnter={() => setDropdown("about")}
                 onMouseLeave={() => setDropdown(null)}
               >
-                <button className={`flex items-center gap-1 ${isActive("/about")}`}>
+                <button className={`flex items-center gap-1 ${isActiveParent("/about")}`}>
                   {i18n.language === "ar" ? "من نحن؟" : "About Us"}
                   <FaChevronDown className="mt-0.5 text-xs" />
                 </button>
 
                 <div
-                  className={`absolute left-0 top-full mt-2 w-56 rounded-lg border bg-white py-2 shadow-md transition-all duration-200 ${
+                  className={`absolute left-0 top-full mt-2 w-60 rounded-lg border bg-white py-2 shadow-md transition-all duration-200 ${
                     dropdown === "about" ? "visible opacity-100" : "invisible opacity-0"
                   }`}
                 >
-                  {isSectionActive("about_us_overview") && (
-                    <button
-                      onClick={() => handleNav("/about#overview")}
-                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
-                    >
-                      {t("overview")}
-                    </button>
-                  )}
-
-                  {isSectionActive("about_us_our_pillars") && (
-                    <button
-                      onClick={() => handleNav("/about#pillars")}
-                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
-                    >
-                      {t("ourPillars")}
-                    </button>
-                  )}
-
-                  {isSectionActive("about_us_core_performance") && (
-                    <button
-                      onClick={() => handleNav("/about#performance")}
-                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
-                    >
-                      {t("corePerformance")}
-                    </button>
-                  )}
-
-                  {isSectionActive("about_us_why_us") && (
-                    <button
-                      onClick={() => handleNav("/about#why")}
-                      className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
-                    >
-                      {t("whyUs")}
-                    </button>
-                  )}
+                  <button
+                    onClick={() => handleNav("/about")}
+                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                  >
+                    {t("aboutUs")}
+                  </button>
+                  <button
+                    onClick={() => handleNav("/about#board")}
+                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                  >
+                    {t("BoardOfDirectors")}
+                  </button>
+                  <button
+                    onClick={() => handleNav("/about#executive")}
+                    className="block w-full px-4 py-2 text-justify text-gray-700 hover:bg-cyan-50"
+                  >
+                    {t("ExecutiveManagement")}
+                  </button>
                 </div>
               </div>
             )}
@@ -350,14 +333,10 @@ const MainLayout = ({ children }) => {
               {
                 label: "aboutUs",
                 submenu: [
-                  isSectionActive("about_us_overview") && { label: "overview", hash: "#overview" },
-                  isSectionActive("about_us_our_pillars") && { label: "ourPillars", hash: "#pillars" },
-                  isSectionActive("about_us_core_performance") && {
-                    label: "corePerformance",
-                    hash: "#performance",
-                  },
-                  isSectionActive("about_us_why_us") && { label: "whyUs", hash: "#why" },
-                ].filter(Boolean),
+                  { label: "aboutUs", path: "/about" },
+                  { label: "BoardOfDirectors", path: "/about#board" },
+                  { label: "ExecutiveManagement", path: "/about#executive" },
+                ],
               },
               {
                 label: "exploreOurServices",

@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import ReactCardFlip from "react-card-flip";
-import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 import {
   FaArrowRight,
@@ -25,6 +24,13 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../../utils/SplitText";
+
+const recruitmentTheme = {
+  accent: "#1a6fce",
+  accentSoft: "rgba(26, 111, 206, 0.14)",
+  accentBorder: "rgba(26, 111, 206, 0.3)",
+  accentGlow: "0 18px 40px rgba(26, 111, 206, 0.14)",
+};
 
 const features = [
   "تحليل عميق لاحتياجات العميل",
@@ -80,11 +86,144 @@ const servicesList = [
 ];
 
 const statsData = [
-  { num: 1200, suffix: "+", label: "candidatesSuccessfullyPlaced", icon: <FaUserCheck size={32} /> },
-  { num: 250, suffix: "+", label: "recruitmentProjectsCompleted", icon: <FaClipboardList size={32} /> },
-  { num: 95.93, suffix: "%", label: "passedProbationPeriod", icon: <FaThumbsUp size={32} /> },
-  { num: 19, suffix: "+", label: "yearsOfRecruitmentExcellence", icon: <FaAward size={32} /> },
+  {
+    value: 1200,
+    suffix: "+",
+    label: "candidatesSuccessfullyPlaced",
+    icon: "people",
+  },
+  {
+    value: 250,
+    suffix: "+",
+    label: "recruitmentProjectsCompleted",
+    icon: "id",
+  },
+  {
+    value: 9593,
+    suffix: "%",
+    label: "passedProbationPeriod",
+    icon: "thumbs",
+    isPercentage: true,
+  },
+  {
+    value: 19,
+    suffix: "+",
+    label: "yearsOfRecruitmentExcellence",
+    icon: "star",
+  },
 ];
+
+const StatIcon = ({ type }) => {
+  const common = "h-[22px] w-[22px] fill-current";
+
+  if (type === "people") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} aria-hidden="true">
+        <path d="M16 11c1.66 0 3-1.57 3-3.5S17.66 4 16 4s-3 1.57-3 3.5 1.34 3.5 3 3.5Zm-8 0c1.66 0 3-1.57 3-3.5S9.66 4 8 4 5 5.57 5 7.5 6.34 11 8 11Zm0 2c-2.67 0-8 1.34-8 4v2h10v-2c0-1.15.6-2.13 1.56-2.94C10.55 13.39 9.09 13 8 13Zm8 0c-.29 0-.62.02-.97.05 1.2.84 1.97 1.97 1.97 3.45v2H24v-2c0-2.66-5.33-4-8-4Z" />
+      </svg>
+    );
+  }
+
+  if (type === "id") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} aria-hidden="true">
+        <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM8.5 8A2.5 2.5 0 1 1 6 10.5 2.5 2.5 0 0 1 8.5 8Zm5.5 9H5.5v-.6A3.9 3.9 0 0 1 9.4 12.5h.2a3.9 3.9 0 0 1 3.9 3.9Zm4-7h-3V8h3Zm0 4h-3v-2h3Z" />
+      </svg>
+    );
+  }
+
+  if (type === "thumbs") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} aria-hidden="true">
+        <path d="M2 21h4V9H2Zm20-11a2 2 0 0 0-2-2h-6.31l.95-4.57.03-.32a1.5 1.5 0 0 0-.44-1.06L13.17 1 6.59 7.59A2 2 0 0 0 6 9v10a2 2 0 0 0 2 2h8a2 2 0 0 0 1.84-1.22l3.02-7.05A2 2 0 0 0 22 12Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" className={common} aria-hidden="true">
+      <path d="m12 17.27 6.18 3.73-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21Z" />
+    </svg>
+  );
+};
+
+const formatStatValue = ({ value, suffix, isPercentage }) => {
+  if (isPercentage) {
+    return `${(value / 100).toFixed(2)}${suffix}`;
+  }
+
+  return `${Math.round(value).toLocaleString("en-US")}${suffix}`;
+};
+
+const RecruitmentStats = ({ t }) => {
+  const [animatedValues, setAnimatedValues] = useState(statsData.map(() => 0));
+
+  useEffect(() => {
+    const duration = 1800;
+    const targets = statsData.map((item) => item.value);
+    let frameId;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const elapsed = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - elapsed, 3);
+
+      setAnimatedValues(targets.map((target) => target * eased));
+
+      if (elapsed < 1) {
+        frameId = window.requestAnimationFrame(tick);
+      }
+    };
+
+    frameId = window.requestAnimationFrame(tick);
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, []);
+
+  return (
+    <section className="px-1 py-10 md:px-0 md:py-12">
+      <div className="mx-auto w-full max-w-[1240px] rounded-[20px] bg-[#1a6fce] px-6 py-8 shadow-[0_20px_60px_rgba(26,111,206,0.35)] md:px-8 md:py-10">
+        <div className="grid grid-cols-4 overflow-hidden rounded-[20px] max-[600px]:grid-cols-2">
+          {statsData.map((item, index) => {
+            const showDesktopDivider = index < statsData.length - 1;
+            const showMobileDivider = index === 0 || index === 2;
+
+            return (
+              <div
+                key={item.label}
+                className="group relative flex min-h-[180px] flex-col items-center justify-center bg-[#1a6fce] px-4 py-8 text-center transition-colors duration-300 hover:bg-[#1860b8] md:min-h-[190px] md:px-6 md:py-10"
+              >
+                <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-white">
+                  <StatIcon type={item.icon} />
+                </span>
+
+                <div className="text-[2.4rem] font-bold leading-none tracking-[-0.5px] text-white [font-family:Georgia,serif]">
+                  {formatStatValue({
+                    value: animatedValues[index],
+                    suffix: item.suffix,
+                    isPercentage: item.isPercentage,
+                  })}
+                </div>
+
+                <div className="mt-4 max-w-[220px] text-center text-[0.78rem] font-medium uppercase tracking-[0.03em] text-white/75">
+                  {t(item.label)}
+                </div>
+
+                {showDesktopDivider && (
+                  <span className="absolute right-0 top-[20%] hidden h-[60%] w-px bg-white/20 min-[601px]:block" />
+                )}
+
+                {showMobileDivider && (
+                  <span className="absolute right-0 top-[20%] h-[60%] w-px bg-white/20 min-[601px]:hidden" />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const Recruitment = () => {
   const navigate = useNavigate();
@@ -150,6 +289,12 @@ const Recruitment = () => {
 
             {/* TEXT */}
             <section className="w-full lg:w-1/2">
+              <div
+                className="mb-5 inline-flex items-center rounded-full px-4 py-2 text-sm font-bold tracking-[0.18em]"
+                style={{ backgroundColor: recruitmentTheme.accentSoft, color: recruitmentTheme.accent }}
+              >
+                RECRUITMENT
+              </div>
               <SplitText className="mb-14 text-center text-4xl font-bold text-[#0E1C3F]">
                 {t("recruitmentSolutionsTitle")}
               </SplitText>
@@ -165,43 +310,7 @@ const Recruitment = () => {
             </section>
           </div>
 
-          {/* STATS SECTION */}
-          <section className="relative overflow-hidden rounded-lg bg-cyan-400 p-10 text-white md:p-12">
-            {/* Polygon overlay */}
-            <svg
-              className="absolute left-0 top-0 h-full w-full opacity-20"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              viewBox="0 0 800 400"
-              fill="none"
-            >
-              <polygon points="0,0 800,0 800,100 0,300" fill="#1DC0DA" />
-              <polygon points="800,400 0,400 0,300 800,100" fill="#15a8bf" />
-            </svg>
-
-            <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
-              {/* Stats */}
-              <div className="flex flex-wrap justify-center gap-10 md:justify-between">
-                {statsData.map(({ icon, num, suffix, label }, i) => (
-                  <div key={i} className={`flex flex-col items-center px-0`}>
-                    <div className="mb-4 text-white">{icon}</div>
-                    <div className="text-4xl font-bold">
-                      <CountUp
-                        end={num}
-                        decimals={num % 1 !== 0 ? 2 : 0}
-                        duration={2.5}
-                        suffix={suffix}
-                        start={0}
-                        enableScrollSpy={true}
-                        separator=","
-                      />
-                    </div>
-                    <div className="mt-1 text-center font-bold">{t(label)}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+          <RecruitmentStats t={t} />
 
           {/* SERVICES */}
           <section className="container mx-auto py-24">
@@ -224,10 +333,11 @@ const Recruitment = () => {
                         width: "390px",
                         height: "320px",
                         borderRadius: 16,
+                        borderTop: `4px solid ${recruitmentTheme.accent}`,
                         backgroundImage: `url(${image})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
-                        boxShadow: "0 10px 15px rgba(0,0,0,0.2)",
+                        boxShadow: recruitmentTheme.accentGlow,
                         color: "white",
                         display: "flex",
                         flexDirection: "column",
@@ -258,8 +368,9 @@ const Recruitment = () => {
                         width: "390px",
                         height: "320px",
                         borderRadius: 16,
+                        borderTop: `4px solid ${recruitmentTheme.accent}`,
                         backgroundColor: "#0E1C3F",
-                        boxShadow: "0 10px 15px rgba(0,0,0,0.2)",
+                        boxShadow: recruitmentTheme.accentGlow,
                         padding: 24,
                         color: "white",
                         display: "flex",
@@ -278,12 +389,12 @@ const Recruitment = () => {
                           alignItems: "center",
                           gap: 8,
                           fontWeight: "600",
-                          color: "#2081E2",
+                          color: recruitmentTheme.accent,
                           textDecoration: "none",
                           transition: "color 0.3s",
                         }}
                         onMouseEnter={(e) => (e.currentTarget.style.color = "#4c9ae7")}
-                        onMouseLeave={(e) => (e.currentTarget.style.color = "#2081E2")}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = recruitmentTheme.accent)}
                       >
                         {t("readMore")}
                         <FaArrowRight
@@ -314,7 +425,10 @@ const Recruitment = () => {
                     {t("recruitment2.executive.description")}
                   </p>
 
-                  <div className="mb-8 rounded-2xl bg-gradient-to-br from-[#1a4d7b]/5 to-[#2d5f8d]/5 p-8">
+                  <div
+                    className="mb-8 rounded-2xl p-8"
+                    style={{ background: `linear-gradient(135deg, ${recruitmentTheme.accentSoft}, rgba(255,255,255,0.55))` }}
+                  >
                     <h3 className="mb-4 font-semibold text-gray-900">
                       {t("recruitment2.executive.methodologyTitle")}
                     </h3>
@@ -439,6 +553,7 @@ const Recruitment = () => {
           <section
             id="methodology"
             className="relative mt-24 overflow-hidden rounded-lg bg-navy-500 px-4 py-32 sm:px-6 lg:px-8"
+            style={{ boxShadow: recruitmentTheme.accentGlow }}
           >
             {/* Title */}
             <SplitText className="mb-6 text-center text-3xl font-bold text-white">
@@ -478,14 +593,23 @@ const Recruitment = () => {
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       className="w-full sm:w-[48%] lg:w-[30%] xl:w-[22%]" // responsive widths
                     >
-                      <div className="group relative mx-3 flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10 md:mx-0">
+                      <div
+                        className="group relative mx-3 flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10 md:mx-0"
+                        style={{ borderTop: `3px solid ${recruitmentTheme.accentBorder}` }}
+                      >
                         {/* Step Number */}
-                        <div className="absolute -right-4 -top-4 flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-cyan-600 text-lg font-bold text-white shadow-lg">
+                        <div
+                          className="absolute -right-4 -top-4 flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 text-lg font-bold text-white shadow-lg"
+                          style={{ backgroundColor: recruitmentTheme.accent }}
+                        >
                           {index + 1}
                         </div>
 
                         {/* Icon */}
-                        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-500/50 transition-transform duration-300 group-hover:scale-110">
+                        <div
+                          className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 transition-transform duration-300 group-hover:scale-110"
+                          style={{ backgroundColor: recruitmentTheme.accentSoft }}
+                        >
                           {Icon && <Icon className="h-7 w-7 text-white" />}
                         </div>
 

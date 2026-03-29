@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
-import Marquee from "react-fast-marquee";
 import { Trans, useTranslation } from "react-i18next";
 import { FaArrowLeft, FaArrowRight, FaCalendarAlt } from "react-icons/fa";
 import { LuArrowUpRight } from "react-icons/lu";
@@ -77,7 +76,6 @@ const Home = () => {
 
   const [articles, setArticles] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
-  const [clients, setClients] = useState([]);
   const [highlights, setHighlights] = useState([]);
   const [caseStudies, setCaseStudies] = useState([]);
 
@@ -89,10 +87,9 @@ const Home = () => {
     const fetchHomeData = async () => {
       setLoading(true);
       try {
-        const [articlesRes, testimonialsRes, clientsRes, highlightsRes, caseStudiesRes] = await Promise.all([
+        const [articlesRes, testimonialsRes, highlightsRes, caseStudiesRes] = await Promise.all([
           mainServices.getArticles(i18n.language),
           mainServices.getTestimonials(i18n.language),
-          mainServices.getClients(i18n.language),
           mainServices.getCompanyHighlights(i18n.language),
           mainServices.getCaseStudies(i18n.language),
         ]);
@@ -100,7 +97,6 @@ const Home = () => {
         // store in state
         setArticles(articlesRes?.data?.data?.data || []);
         setTestimonials(testimonialsRes?.data?.data || []);
-        setClients(clientsRes?.data?.data || []);
         setHighlights(highlightsRes?.data?.data || []);
         setCaseStudies(caseStudiesRes?.data?.data?.data || []);
       } catch (err) {
@@ -232,28 +228,6 @@ const Home = () => {
 
       {/* 2. Services Section: The Expandable Container */}
       <ServicesSection />
-
-      {/* Trusted Companies */}
-
-      {clients.length > 0 && (
-        <section className="ltr-ignore bg-gray-100 py-20">
-          <div className="text-center">
-            <SplitText className="mb-8 text-center text-4xl font-bold tracking-tight text-[#0E1C3F] md:text-4xl">
-              {t("trustedBy")}
-            </SplitText>
-            <Marquee direction={i18n.language == "ar" ? "right" : "left"}>
-              {clients.map((client, index) => (
-                <img
-                  key={index}
-                  src={client.image}
-                  alt={client.name}
-                  className="mx-9 h-44 w-44 cursor-pointer object-contain opacity-80 grayscale filter transition duration-300 hover:opacity-100 hover:grayscale-0"
-                />
-              ))}
-            </Marquee>
-          </div>
-        </section>
-      )}
 
       <SectorsSlider />
 

@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import ReactCardFlip from "react-card-flip";
-import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 import {
   FaBookOpen,
@@ -18,6 +17,13 @@ import {
 
 import { SplitText } from "../../utils/SplitText";
 
+const academyTheme = {
+  accent: "#c79b3b",
+  accentSoft: "rgba(199, 155, 59, 0.14)",
+  accentBorder: "rgba(199, 155, 59, 0.3)",
+  accentGlow: "0 18px 40px rgba(199, 155, 59, 0.12)",
+};
+
 const methodologyIcons = [
   FaSearch, // Training Needs Analysis
   FaTasks, // Design & Implementation of Plans
@@ -26,28 +32,29 @@ const methodologyIcons = [
 
 const statsData = [
   {
-    num: 3000,
+    value: 3000,
     suffix: "+",
     label: "trainees",
-    icon: <FaUserGraduate size={32} />,
+    icon: "graduate",
   },
   {
-    num: 60000,
+    value: 60000,
     suffix: "+",
     label: "trainingHours",
-    icon: <FaClock size={32} />,
+    icon: "clock",
   },
   {
-    num: 95.38,
+    value: 9538,
     suffix: "%",
     label: "customerSatisfaction",
-    icon: <FaSmile size={32} />,
+    icon: "smile",
+    isPercentage: true,
   },
   {
-    num: 100,
+    value: 100,
     suffix: "+",
     label: "clientsServed2",
-    icon: <FaUsers size={32} />,
+    icon: "clients",
   },
 ];
 
@@ -57,6 +64,173 @@ const assessmentIcons = [
   <FaBriefcase size={24} color="white" />, // Case Study
   <FaCogs size={24} color="white" />, // Group Discussion
 ];
+
+const statsContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const statCardVariants = {
+  hidden: { opacity: 0, y: 28, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.55, ease: "easeOut" },
+  },
+};
+
+const AcademyStatIcon = ({ type }) => {
+  const common = "h-[22px] w-[22px] fill-current";
+
+  if (type === "clients") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} aria-hidden="true">
+        <path d="M16 11c1.66 0 3-1.57 3-3.5S17.66 4 16 4s-3 1.57-3 3.5 1.34 3.5 3 3.5Zm-8 0c1.66 0 3-1.57 3-3.5S9.66 4 8 4 5 5.57 5 7.5 6.34 11 8 11Zm0 2c-2.67 0-8 1.34-8 4v2h10v-2c0-1.15.6-2.13 1.56-2.94C10.55 13.39 9.09 13 8 13Zm8 0c-.29 0-.62.02-.97.05 1.2.84 1.97 1.97 1.97 3.45v2H24v-2c0-2.66-5.33-4-8-4Z" />
+      </svg>
+    );
+  }
+
+  if (type === "smile") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} aria-hidden="true">
+        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm-3 7a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 9 9Zm3 9a6.22 6.22 0 0 1-5.33-3h10.66A6.22 6.22 0 0 1 12 18Zm3-6a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 15 12Z" />
+      </svg>
+    );
+  }
+
+  if (type === "clock") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} aria-hidden="true">
+        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm4.25 14.16-5-3a1 1 0 0 1-.5-.86V7h2v4.73l4.53 2.72Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" className={common} aria-hidden="true">
+      <path d="M12 3 1 9l11 6 9-4.91V17h2V9Zm-6.91 8.09L5 15l7 4 7-4v-3.91l-7 3.82Z" />
+    </svg>
+  );
+};
+
+const formatAcademyStatValue = ({ value, suffix, isPercentage }) => {
+  if (isPercentage) {
+    return `${(value / 100).toFixed(2)}${suffix}`;
+  }
+
+  return `${Math.round(value).toLocaleString("en-US")}${suffix}`;
+};
+
+const AcademyStats = ({ t }) => {
+  const [animatedValues, setAnimatedValues] = useState(statsData.map(() => 0));
+
+  useEffect(() => {
+    const duration = 1800;
+    const targets = statsData.map((item) => item.value);
+    let frameId;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const elapsed = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - elapsed, 3);
+
+      setAnimatedValues(targets.map((target) => target * eased));
+
+      if (elapsed < 1) {
+        frameId = window.requestAnimationFrame(tick);
+      }
+    };
+
+    frameId = window.requestAnimationFrame(tick);
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, []);
+
+  return (
+    <section className="px-1 py-8 md:px-0 md:py-10">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.65, ease: "easeOut" }}
+        className="relative mx-auto w-full max-w-[1240px] overflow-hidden rounded-[20px] bg-[#1a6fce] px-6 py-6 shadow-[0_20px_60px_rgba(26,111,206,0.35)] md:px-8 md:py-7"
+      >
+        <motion.div
+          aria-hidden="true"
+          animate={{ x: ["-20%", "110%"] }}
+          transition={{ duration: 3.8, ease: "easeInOut", repeat: Infinity, repeatDelay: 1.2 }}
+          className="pointer-events-none absolute inset-y-0 left-[-20%] w-[28%] bg-gradient-to-r from-white/0 via-white/10 to-white/0 blur-xl"
+        />
+
+        <motion.div
+          variants={statsContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          className="grid grid-cols-4 overflow-hidden rounded-[20px] max-[600px]:grid-cols-2"
+        >
+          {statsData.map((item, index) => {
+            const showDesktopDivider = index < statsData.length - 1;
+            const showMobileDivider = index === 0 || index === 2;
+
+            return (
+              <motion.div
+                key={item.label}
+                variants={statCardVariants}
+                className="group relative flex min-h-[150px] flex-col items-center justify-center bg-[#1a6fce] px-4 py-6 text-center transition-colors duration-300 hover:bg-[#1860b8] md:min-h-[160px] md:px-6 md:py-7"
+              >
+                <motion.span
+                  animate={{ y: [0, -4, 0], scale: [1, 1.03, 1] }}
+                  transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: index * 0.18 }}
+                  className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-white shadow-[0_0_0_8px_rgba(255,255,255,0.04)]"
+                >
+                  <AcademyStatIcon type={item.icon} />
+                </motion.span>
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: 0.18 + index * 0.08 }}
+                  className="text-[2.4rem] font-bold leading-none tracking-[-0.5px] text-white [font-family:Georgia,serif]"
+                >
+                  {formatAcademyStatValue({
+                    value: animatedValues[index],
+                    suffix: item.suffix,
+                    isPercentage: item.isPercentage,
+                  })}
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.24 + index * 0.08 }}
+                  className="mt-3 max-w-[220px] text-center text-[0.78rem] font-medium uppercase tracking-[0.03em] text-white/75"
+                >
+                  {t(item.label)}
+                </motion.div>
+
+                {showDesktopDivider && (
+                  <span className="absolute right-0 top-[20%] hidden h-[60%] w-px bg-white/20 min-[601px]:block" />
+                )}
+
+                {showMobileDivider && (
+                  <span className="absolute right-0 top-[20%] h-[60%] w-px bg-white/20 min-[601px]:hidden" />
+                )}
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+};
 
 const Academy = () => {
   const { t, i18n } = useTranslation();
@@ -156,6 +330,12 @@ const Academy = () => {
 
             {/* TEXT */}
             <section className="w-full lg:w-1/2">
+              <div
+                className="mb-5 inline-flex items-center rounded-full px-4 py-2 text-sm font-bold tracking-[0.18em]"
+                style={{ backgroundColor: academyTheme.accentSoft, color: academyTheme.accent }}
+              >
+                ACADEMY
+              </div>
               <SplitText className="mb-14 text-center text-4xl font-bold text-[#0E1C3F]">
                 {academy.title}
               </SplitText>
@@ -171,47 +351,12 @@ const Academy = () => {
             </section>
           </div>
 
-          {/* STATS SECTION */}
-          <section className="relative overflow-hidden rounded-lg bg-cyan-400 p-10 text-white md:p-12">
-            {/* Polygon overlay */}
-            <svg
-              className="absolute left-0 top-0 h-full w-full opacity-20"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              viewBox="0 0 800 400"
-              fill="none"
-            >
-              <polygon points="0,0 800,0 800,100 0,300" fill="#1DC0DA" />
-              <polygon points="800,400 0,400 0,300 800,100" fill="#15a8bf" />
-            </svg>
-
-            <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-12 md:flex-row md:items-start md:gap-20">
-              {/* Stats */}
-              <div className="flex flex-wrap justify-center gap-10 md:justify-between">
-                {statsData.map(({ icon, num, suffix, label }, i) => (
-                  <div key={i} className={`flex flex-col items-center px-6`}>
-                    <div className="mb-4 text-white">{icon}</div>
-                    <div className="text-4xl font-bold">
-                      <CountUp
-                        end={num}
-                        decimals={num % 1 !== 0 ? 2 : 0}
-                        duration={2.5}
-                        suffix={suffix}
-                        start={0}
-                        enableScrollSpy={true}
-                        separator=","
-                      />
-                    </div>
-                    <div className="mt-1 text-center font-bold tracking-widest">{t(label)}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+          <AcademyStats t={t} />
           {/* ACADEMY METHODOLOGY */}
           <section
             id="academy-methodology"
             className="relative mt-24 overflow-hidden rounded-lg bg-navy-500 px-4 py-24 sm:px-6 lg:px-8"
+            style={{ boxShadow: academyTheme.accentGlow }}
           >
             {/* Title */}
             <SplitText className="mb-16 text-center text-3xl font-bold text-white">
@@ -252,14 +397,23 @@ const Academy = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                     >
-                      <div className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10">
+                      <div
+                        className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10"
+                        style={{ borderTop: `3px solid ${academyTheme.accentBorder}` }}
+                      >
                         {/* Step Number */}
-                        <div className="absolute -right-4 -top-4 flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-cyan-600 text-lg font-bold text-white shadow-lg">
+                        <div
+                          className="absolute -right-4 -top-4 flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 text-lg font-bold text-white shadow-lg"
+                          style={{ backgroundColor: academyTheme.accent }}
+                        >
                           {index + 1}
                         </div>
 
                         {/* Icon */}
-                        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-500/50 transition-transform duration-300 group-hover:scale-110">
+                        <div
+                          className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 transition-transform duration-300 group-hover:scale-110"
+                          style={{ backgroundColor: academyTheme.accentSoft }}
+                        >
                           {Icon && <Icon className="h-7 w-7 text-white" />}
                         </div>
 
@@ -291,10 +445,17 @@ const Academy = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   whileHover={{ y: -8 }}
                   viewport={{ once: false }}
-                  className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out hover:bg-cyan-400"
+                  className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out"
+                  style={{
+                    boxShadow: academyTheme.accentGlow,
+                    borderTop: `3px solid ${academyTheme.accent}`,
+                  }}
                 >
                   {" "}
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
+                  <div
+                    className="mb-4 flex h-12 w-12 items-center justify-center rounded-full text-lg font-bold text-white"
+                    style={{ backgroundColor: academyTheme.accent }}
+                  >
                     {assessmentIcons[index]}
                   </div>
                   <h3 className="mb-3 text-xl font-semibold text-[#0E1C3F] transition-colors duration-300 group-hover:text-white">

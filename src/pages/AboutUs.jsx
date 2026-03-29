@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Trans, useTranslation } from "react-i18next";
-import { FaBook, FaBullseye, FaEye, FaFlag, FaHandshake, FaLinkedinIn } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaBook, FaBullseye, FaEye, FaFlag, FaHandshake, FaLinkedinIn } from "react-icons/fa";
 import { FiCheckCircle } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
 
@@ -46,17 +46,289 @@ const scrollToHash = (hash) => {
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 };
 
+const fallbackTeamMembers = {
+  board: [
+    {
+      nameAr: "عبدالرحمن الحربي",
+      nameEn: "Abdulrahman Al-Harbi",
+      jobTitleAr: "عضو مجلس الإدارة",
+      jobTitleEn: "Board Member",
+      image: "/assets/team1-img1.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "خالد العتيبي",
+      nameEn: "Khaled Al-Otaibi",
+      jobTitleAr: "رئيس مجلس الإدارة",
+      jobTitleEn: "Chairman",
+      image: "/assets/team1-img2.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "تركي القحطاني",
+      nameEn: "Turki Al-Qahtani",
+      jobTitleAr: "نائب رئيس مجلس الإدارة",
+      jobTitleEn: "Vice Chairman",
+      image: "/assets/team1-img9.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "محمد الشمري",
+      nameEn: "Mohammed Al-Shammari",
+      jobTitleAr: "عضو مجلس الإدارة",
+      jobTitleEn: "Board Member",
+      image: "/assets/team1-img1.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "سلمان الدوسري",
+      nameEn: "Salman Al-Dosari",
+      jobTitleAr: "عضو مستقل",
+      jobTitleEn: "Independent Member",
+      image: "/assets/team1-img2.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "فهد المطيري",
+      nameEn: "Fahad Al-Mutairi",
+      jobTitleAr: "عضو مجلس الإدارة",
+      jobTitleEn: "Board Member",
+      image: "/assets/team1-img9.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "ماجد الغامدي",
+      nameEn: "Majed Al-Ghamdi",
+      jobTitleAr: "عضو لجنة المراجعة",
+      jobTitleEn: "Audit Committee Member",
+      image: "/assets/team1-img1.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "نواف الشهري",
+      nameEn: "Nawaf Al-Shahri",
+      jobTitleAr: "عضو مجلس الإدارة",
+      jobTitleEn: "Board Member",
+      image: "/assets/team1-img2.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "بندر الحربي",
+      nameEn: "Bandar Al-Harbi",
+      jobTitleAr: "عضو مستقل",
+      jobTitleEn: "Independent Member",
+      image: "/assets/team1-img9.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "زياد العمري",
+      nameEn: "Ziyad Al-Omari",
+      jobTitleAr: "عضو مجلس الإدارة",
+      jobTitleEn: "Board Member",
+      image: "/assets/team1-img1.png",
+      linkedin: "#",
+    },
+  ],
+  executive: [
+    {
+      nameAr: "عبدالعزيز القحطاني",
+      nameEn: "Abdulaziz Al-Qahtani",
+      jobTitleAr: "الرئيس التنفيذي",
+      jobTitleEn: "Chief Executive Officer",
+      image: "/assets/team1-img2.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "سارة الحربي",
+      nameEn: "Sarah Al-Harbi",
+      jobTitleAr: "المدير المالي",
+      jobTitleEn: "Chief Financial Officer",
+      image: "/assets/team1-img9.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "تركي السبيعي",
+      nameEn: "Turki Al-Subaie",
+      jobTitleAr: "مدير العمليات",
+      jobTitleEn: "Chief Operating Officer",
+      image: "/assets/team1-img1.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "ريم العتيبي",
+      nameEn: "Reem Al-Otaibi",
+      jobTitleAr: "مدير الموارد البشرية",
+      jobTitleEn: "HR Director",
+      image: "/assets/team1-img2.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "فيصل الغامدي",
+      nameEn: "Faisal Al-Ghamdi",
+      jobTitleAr: "مدير تطوير الأعمال",
+      jobTitleEn: "Business Development Director",
+      image: "/assets/team1-img9.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "لينا الدوسري",
+      nameEn: "Lina Al-Dosari",
+      jobTitleAr: "مدير التسويق",
+      jobTitleEn: "Marketing Director",
+      image: "/assets/team1-img1.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "مشعل المطيري",
+      nameEn: "Mishal Al-Mutairi",
+      jobTitleAr: "مدير الاستراتيجية",
+      jobTitleEn: "Strategy Director",
+      image: "/assets/team1-img2.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "هند الشمري",
+      nameEn: "Hind Al-Shammari",
+      jobTitleAr: "مدير تجربة العميل",
+      jobTitleEn: "Customer Experience Director",
+      image: "/assets/team1-img9.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "نورة العمري",
+      nameEn: "Noura Al-Omari",
+      jobTitleAr: "مدير المشاريع",
+      jobTitleEn: "Projects Director",
+      image: "/assets/team1-img1.png",
+      linkedin: "#",
+    },
+    {
+      nameAr: "راكان الشهري",
+      nameEn: "Rakan Al-Shahri",
+      jobTitleAr: "مدير التقنية",
+      jobTitleEn: "Technology Director",
+      image: "/assets/team1-img2.png",
+      linkedin: "#",
+    },
+  ],
+};
+
+const TeamScroller = ({ members, isArabic }) => {
+  const sliderRef = useRef(null);
+
+  const scrollMembers = (direction) => {
+    const container = sliderRef.current;
+    if (!container) return;
+
+    const step = Math.max(container.clientWidth * 0.8, 280);
+    container.scrollBy({
+      left: direction === "next" ? step : -step,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <div className="mt-16">
+      <div className="mb-6 flex items-center justify-center gap-3">
+        <button
+          type="button"
+          onClick={() => scrollMembers("prev")}
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-[#0E1C3F]/15 bg-white text-[#0E1C3F] shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-400 hover:text-cyan-500"
+          aria-label={isArabic ? "إظهار الأعضاء السابقين" : "Show previous members"}
+        >
+          {isArabic ? <FaArrowRight /> : <FaArrowLeft />}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => scrollMembers("next")}
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-[#0E1C3F]/15 bg-white text-[#0E1C3F] shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-400 hover:text-cyan-500"
+          aria-label={isArabic ? "إظهار الأعضاء التاليين" : "Show next members"}
+        >
+          {isArabic ? <FaArrowLeft /> : <FaArrowRight />}
+        </button>
+      </div>
+
+      <div
+        ref={sliderRef}
+        className="overflow-x-auto pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      >
+        <div className="flex min-w-max flex-nowrap items-stretch gap-8 px-2 py-2">
+          {members.map(({ name, job_title, image, linkedin }, i) => (
+            <div key={`${name}-${i}`} className="w-[280px] flex-shrink-0 md:w-[320px]">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: false }}
+                className="group relative overflow-hidden rounded-[22px] bg-white shadow-[0_18px_45px_rgba(14,28,63,0.10)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_50px_rgba(14,28,63,0.16)]"
+              >
+                <div className="relative h-[360px] w-full overflow-hidden md:h-[400px]">
+                  <img
+                    src={image}
+                    alt={name}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0E1C3F]/18 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+
+                  {linkedin && linkedin !== "#" ? (
+                    <a
+                      href={linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute bottom-4 right-4 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#0A66C2] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    >
+                      <FaLinkedinIn className="text-lg" />
+                    </a>
+                  ) : null}
+                </div>
+
+                <div className="border-t border-[#edf1f7] bg-white px-6 py-7 text-center">
+                  <h3 className="text-[1.9rem] font-extrabold tracking-tight text-[#0E1C3F]">{name}</h3>
+                  <p className="mt-2 text-lg font-medium text-[#6d7b98]">{job_title}</p>
+                </div>
+              </motion.div>
+
+              <div className="mx-auto mt-4 h-1.5 w-28 rounded-full bg-[#0E1C3F]" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const AboutUs = () => {
   const { isActive } = usePages();
 
   const location = useLocation();
   const { i18n, t } = useTranslation();
+  const isArabic = i18n.language === "ar";
 
   const [teamMembers, setTeamMembers] = React.useState([]);
   // Load arrays and strings from translation files
   const pillars = t("pillars", { returnObjects: true });
   const perf = t("perfList", { returnObjects: true });
   const features = t("whySectionFeatures", { returnObjects: true });
+  const boardMembers =
+    teamMembers.length > 0
+      ? teamMembers.slice(0, 10)
+      : fallbackTeamMembers.board.map((member) => ({
+          name: i18n.language === "ar" ? member.nameAr : member.nameEn,
+          job_title: i18n.language === "ar" ? member.jobTitleAr : member.jobTitleEn,
+          image: member.image,
+          linkedin: member.linkedin,
+        }));
+  const executiveMembers =
+    teamMembers.length > 10
+      ? teamMembers.slice(10, 20)
+      : fallbackTeamMembers.executive.map((member) => ({
+          name: i18n.language === "ar" ? member.nameAr : member.nameEn,
+          job_title: i18n.language === "ar" ? member.jobTitleAr : member.jobTitleEn,
+          image: member.image,
+          linkedin: member.linkedin,
+        }));
 
   useEffect(() => {
     scrollToHash(location.hash);
@@ -110,9 +382,21 @@ const AboutUs = () => {
         <section className="w-full bg-white py-28">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 md:grid-cols-2">
             {/* LEFT IMAGES + STATS */}
-            <div className="relative flex gap-4 md:gap-6">
+            <motion.div
+              className="relative flex gap-4 md:gap-6"
+              initial={{ opacity: 0, x: isArabic ? 50 : -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
               <div className="flex flex-col gap-4 md:gap-6">
-                <div className="overflow-hidden rounded-lg">
+                <motion.div
+                  className="overflow-hidden rounded-lg"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ duration: 0.7, delay: 0.1 }}
+                >
                   <motion.img
                     src="/assets/istockphoto-1395570261-612x612.jpg"
                     alt="About"
@@ -123,21 +407,51 @@ const AboutUs = () => {
                     viewport={{ once: false }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                   />
-                </div>
+                </motion.div>
 
-                <div className="transform rounded-lg bg-cyan-400 p-6 text-center transition duration-300 hover:scale-105 hover:shadow-xl">
-                  <p className="text-4xl font-extrabold text-white">20+</p>
-                  <p className="mt-2 text-base text-white/70">{t("YearsofExcellence")}</p>
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.4 }}
+                  whileHover={{ y: -8, scale: 1.03 }}
+                  transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                  className="group relative overflow-hidden rounded-2xl bg-cyan-400 p-6 text-center shadow-[0_16px_40px_rgba(34,211,238,0.28)]"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-[#0E1C3F]/15 opacity-0 transition duration-500 group-hover:opacity-100" />
+                  <div className="relative z-10">
+                    <p className="text-4xl font-extrabold text-white transition duration-300 group-hover:tracking-[0.08em]">
+                      20+
+                    </p>
+                    <p className="mt-2 text-base text-white/80">{t("YearsofExcellence")}</p>
+                  </div>
+                </motion.div>
               </div>
 
               <div className="flex flex-col gap-4 md:gap-6">
-                <div className="transform rounded-lg bg-[#0E1C3F] p-6 text-center transition duration-300 hover:scale-105 hover:shadow-xl">
-                  <p className="text-4xl font-extrabold text-white">500+</p>
-                  <p className="mt-2 text-base text-white/70">{t("LeadershipPlacements")}</p>
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.4 }}
+                  transition={{ duration: 0.6, delay: 0.25 }}
+                  whileHover={{ y: -8, scale: 1.03 }}
+                  className="group relative overflow-hidden rounded-2xl bg-[#0E1C3F] p-6 text-center shadow-[0_16px_40px_rgba(14,28,63,0.24)]"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 via-transparent to-white/10 opacity-0 transition duration-500 group-hover:opacity-100" />
+                  <div className="relative z-10">
+                    <p className="text-4xl font-extrabold text-white transition duration-300 group-hover:tracking-[0.08em]">
+                      500+
+                    </p>
+                    <p className="mt-2 text-base text-white/80">{t("LeadershipPlacements")}</p>
+                  </div>
+                </motion.div>
 
-                <div className="overflow-hidden rounded-lg">
+                <motion.div
+                  className="overflow-hidden rounded-lg"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ duration: 0.7, delay: 0.15 }}
+                >
                   <motion.img
                     src="/assets/Screenshot 2025-11-23 103258.png"
                     alt="About"
@@ -148,16 +462,25 @@ const AboutUs = () => {
                     viewport={{ once: false }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                   />
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
 
             {/* RIGHT CONTENT */}
-            <div className="flex flex-col justify-center">
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-cyan-200/10 p-6 px-8">
-                <span className="text-sm font-semibold uppercase tracking-wide text-cyan-200">
-                  <SplitText className="text-3xl font-extrabold text-gray-900">{t("aboutUs")}</SplitText>
-                </span>
+            <motion.div
+              className="flex flex-col justify-center"
+              initial={{ opacity: 0, x: isArabic ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <div className="mb-8">
+                <div className="mb-4 inline-flex items-center rounded-full border border-cyan-100 bg-cyan-50 px-5 py-2 text-sm font-bold tracking-[0.2em] text-cyan-700">
+                  {isArabic ? "ABOUT ADROYTS" : "ABOUT ADROYTS"}
+                </div>
+                <SplitText className="text-4xl font-extrabold leading-tight text-gray-900 md:text-5xl">
+                  {t("aboutUs")}
+                </SplitText>
               </div>
               <motion.p
                 initial={{ opacity: 0, x: -40 }}
@@ -188,7 +511,7 @@ const AboutUs = () => {
                   }}
                 />
               </motion.p>
-            </div>
+            </motion.div>
           </div>
         </section>
       )}
@@ -235,17 +558,18 @@ const AboutUs = () => {
 
       {isActive("about_us_core_performance") && (
         <section id="performance" className="w-full bg-white py-20 md:py-28">
-          <div className="mx-auto max-w-7xl px-4 text-center">
-            {/* Section Title */}
-
+          <div className="mx-auto max-w-7xl px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
               transition={{ duration: 0.6 }}
-              className="mb-20 text-center"
+              className="mb-12"
             >
-              <SplitText className="text-4xl font-extrabold tracking-tight text-[#0E1C3F]">
+              <div className="mb-4 inline-flex rounded-full border border-[#0E1C3F]/10 bg-[#0E1C3F] px-5 py-2 text-sm font-bold tracking-[0.2em] text-white">
+                {isArabic ? "CORE PERFORMANCE" : "CORE PERFORMANCE"}
+              </div>
+              <SplitText className="text-4xl font-extrabold tracking-tight text-[#0E1C3F] md:text-5xl">
                 {t("teamTabAlt")}
               </SplitText>
             </motion.div>
@@ -409,8 +733,11 @@ const AboutUs = () => {
               transition={{ duration: 0.6 }}
               className="mb-20 text-center"
             >
-              <SplitText className="text-4xl font-extrabold tracking-tight text-white">
+              <div className="mb-6 inline-flex rounded-full bg-white px-7 py-3 text-lg font-extrabold tracking-tight text-[#0E1C3F] shadow-[0_12px_30px_rgba(255,255,255,0.18)] md:text-2xl">
                 {t("whySectionTab")}
+              </div>
+              <SplitText className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">
+                {t("whySectionTitle")}
               </SplitText>
             </motion.div>
             <motion.div
@@ -420,9 +747,6 @@ const AboutUs = () => {
               transition={{ duration: 0.8 }}
               className="mb-14 text-center"
             >
-              <h2 className="mt-4 text-4xl font-extrabold leading-tight text-white sm:text-3xl">
-                {t("whySectionTitle")}
-              </h2>
               <p className="mx-auto mt-4 max-w-3xl text-lg font-medium leading-relaxed text-[#e5e5e5]">
                 <Trans
                   i18nKey="whySectionParagraph"
@@ -491,120 +815,40 @@ const AboutUs = () => {
       )}
 
       {/* Board of Directors Section */}
-      {teamMembers.length > 0 ? (
-        <section id="board" className="bg-gray-100 py-32">
-          <div className="mx-auto max-w-7xl px-6 text-center">
-            <SplitText className="text-4xl font-extrabold text-gray-900">{t("BoardOfDirectors")}</SplitText>
+      <section id="board" className="bg-gray-100 py-32">
+        <div className="mx-auto max-w-7xl px-6 text-center">
+          <SplitText className="text-4xl font-extrabold text-gray-900">{t("BoardOfDirectors")}</SplitText>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="mt-4 text-lg text-gray-600"
-            >
-              {t("boardDescription")}
-            </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="mt-4 text-lg text-gray-600"
+          >
+            {t("boardDescription")}
+          </motion.p>
 
-            <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-              {teamMembers.slice(0, 3).map(({ name, job_title, image, linkedin }, i) => (
-                <motion.div
-                  key={`${name}-${i}`}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  viewport={{ once: false }}
-                  className="group relative overflow-hidden rounded-2xl bg-white transition-all duration-500 hover:-translate-y-2"
-                >
-                  {/* Image */}
-                  <div className="relative h-80 w-full overflow-hidden">
-                    <img
-                      src={image}
-                      alt={name}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-
-                    {/* LinkedIn Overlay */}
-                    <a
-                      href={linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="absolute bottom-4 right-4 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#0A66C2] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    >
-                      <FaLinkedinIn className="text-lg" />
-                    </a>
-                  </div>
-
-                  {/* Info */}
-                  <div className="p-6 text-center">
-                    <h3 className="text-xl font-bold text-gray-900">{name}</h3>
-                    <p className="mt-1 text-sm font-medium text-gray-500">{job_title}</p>
-                    <div className="mt-4 rounded-full border-b-8 border-[#0E1C3F]"></div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
+          <TeamScroller members={boardMembers} isArabic={isArabic} />
+        </div>
+      </section>
       {/* Executive Management Section */}
 
-      {teamMembers.length > 0 ? (
-        <section id="executive" className="bg-white py-32">
-          <div className="mx-auto max-w-7xl px-6 text-center">
-            <SplitText className="text-4xl font-extrabold text-gray-900">
-              {t("ExecutiveManagement")}
-            </SplitText>
+      <section id="executive" className="bg-white py-32">
+        <div className="mx-auto max-w-7xl px-6 text-center">
+          <SplitText className="text-4xl font-extrabold text-gray-900">{t("ExecutiveManagement")}</SplitText>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="mt-4 text-lg text-gray-600"
-            >
-              {t("executiveDescription")}
-            </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="mt-4 text-lg text-gray-600"
+          >
+            {t("executiveDescription")}
+          </motion.p>
 
-            <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-              {teamMembers.slice(3).map(({ name, job_title, image, linkedin }, i) => (
-                <motion.div
-                  key={`${name}-${i}`}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  viewport={{ once: false }}
-                  className="group relative overflow-hidden rounded-2xl bg-white transition-all duration-500 hover:-translate-y-2"
-                >
-                  {/* Image */}
-                  <div className="relative h-80 w-full overflow-hidden">
-                    <img
-                      src={image}
-                      alt={name}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-
-                    {/* LinkedIn Overlay */}
-                    <a
-                      href={linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="absolute bottom-4 right-4 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[#0A66C2] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    >
-                      <FaLinkedinIn className="text-lg" />
-                    </a>
-                  </div>
-
-                  {/* Info */}
-                  <div className="p-6 text-center">
-                    <h3 className="text-xl font-bold text-gray-900">{name}</h3>
-                    <p className="mt-1 text-sm font-medium text-gray-500">{job_title}</p>
-                    <div className="mt-4 rounded-full border-b-8 border-[#0E1C3F]"></div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
+          <TeamScroller members={executiveMembers} isArabic={isArabic} />
+        </div>
+      </section>
     </div>
   );
 };

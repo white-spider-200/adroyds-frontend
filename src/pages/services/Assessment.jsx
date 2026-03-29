@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
-import ReactCardFlip from "react-card-flip";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FaBrain,
@@ -15,9 +14,15 @@ import {
   FaUserTie,
   FaUsers,
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
 import { SplitText } from "../../utils/SplitText";
+
+const assessmentTheme = {
+  accent: "#22b8cf",
+  accentSoft: "rgba(34, 184, 207, 0.12)",
+  accentBorder: "rgba(34, 184, 207, 0.28)",
+  accentGlow: "0 18px 40px rgba(34, 184, 207, 0.14)",
+};
 
 const icons = [
   <FaUserTie size={24} color="white" />, // Professional Development
@@ -40,28 +45,10 @@ const assessmentIcons = [
 ];
 
 const TalentAssessment = () => {
-  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const talentAssessment = t("talentAssessment", { returnObjects: true });
-  const [hovered, setHovered] = useState(
-    new Array(t("psychometricProviders.items", { returnObjects: true }).length).fill(false)
-  );
+  const assessmentTools = Object.values(talentAssessment.tools || {});
 
-  const handleMouseEnter = (index) => {
-    setHovered((prev) => {
-      const copy = [...prev];
-      copy[index] = true;
-      return copy;
-    });
-  };
-
-  const handleMouseLeave = (index) => {
-    setHovered((prev) => {
-      const copy = [...prev];
-      copy[index] = false;
-      return copy;
-    });
-  };
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -110,6 +97,12 @@ const TalentAssessment = () => {
 
             {/* TEXT */}
             <section className="w-full lg:w-1/2">
+              <div
+                className="mb-5 inline-flex items-center rounded-full px-4 py-2 text-sm font-bold tracking-[0.18em]"
+                style={{ backgroundColor: assessmentTheme.accentSoft, color: assessmentTheme.accent }}
+              >
+                ASSESSMENT
+              </div>
               <SplitText className="mb-14 text-center text-4xl font-bold text-[#0E1C3F]">
                 {talentAssessment.title}
               </SplitText>
@@ -146,9 +139,16 @@ const TalentAssessment = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     whileHover={{ y: -8 }}
                     viewport={{ once: false }}
-                    className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out hover:bg-cyan-400"
+                    className="group relative cursor-pointer rounded-lg bg-white p-6 transition-colors duration-300 ease-in-out"
+                    style={{
+                      boxShadow: assessmentTheme.accentGlow,
+                      borderTop: `3px solid ${assessmentTheme.accent}`,
+                    }}
                   >
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-bold text-white">
+                    <div
+                      className="mb-4 flex h-12 w-12 items-center justify-center rounded-full text-lg font-bold text-white"
+                      style={{ backgroundColor: assessmentTheme.accent }}
+                    >
                       {icons[index]}
                     </div>
 
@@ -169,10 +169,11 @@ const TalentAssessment = () => {
           <section
             id="assessment-tools"
             className="relative mt-14 overflow-hidden rounded-lg bg-navy-500 px-4 py-24 sm:px-6 lg:px-8"
+            style={{ boxShadow: assessmentTheme.accentGlow }}
           >
             {/* Title */}
             <SplitText className="mb-16 text-center text-3xl font-bold text-white">
-              {t("assessmentCenterTools.title")}
+              {talentAssessment.toolsTitle}
             </SplitText>
 
             {/* Animated Background */}
@@ -191,7 +192,7 @@ const TalentAssessment = () => {
 
             <div className="relative z-10 mx-auto max-w-7xl">
               <div className="flex flex-wrap justify-center gap-8">
-                {t("recruitmentMethodology.steps", { returnObjects: true }).map((tool, index) => {
+                {assessmentTools.map((tool, index) => {
                   const Icon = assessmentIcons[index];
 
                   return (
@@ -203,9 +204,15 @@ const TalentAssessment = () => {
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       className="w-full sm:w-[48%] lg:w-[30%] xl:w-[22%]" // responsive widths
                     >
-                      <div className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10">
+                      <div
+                        className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10"
+                        style={{ borderTop: `3px solid ${assessmentTheme.accentBorder}` }}
+                      >
                         {/* Icon */}
-                        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-500/50 transition-transform duration-300 group-hover:scale-110">
+                        <div
+                          className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 transition-transform duration-300 group-hover:scale-110"
+                          style={{ backgroundColor: assessmentTheme.accentSoft }}
+                        >
                           {Icon && <Icon className="h-7 w-7 text-white" />}
                         </div>
 
@@ -213,7 +220,9 @@ const TalentAssessment = () => {
                         <h3 className="mb-3 text-xl font-bold text-white">{tool.title}</h3>
 
                         {/* Description */}
-                        <p className="flex-grow text-sm leading-relaxed text-white/70">{tool.desc}</p>
+                        <p className="flex-grow text-sm leading-relaxed text-white/70">
+                          {tool.description}
+                        </p>
 
                         {/* Hover Overlay */}
                         <div className="pointer-events-none absolute inset-0 rounded-2xl bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-5" />
@@ -224,57 +233,6 @@ const TalentAssessment = () => {
               </div>
             </div>
           </section>
-
-          {/* <section className="bg-white py-28">
-            <div className="container mx-auto max-w-7xl px-6">
-              <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: false }}
-                className="mb-16 text-center text-4xl font-bold text-[#0E1C3F]"
-              >
-                {t("psychometricProviders.title")}
-              </motion.h2>
-
-              <div className="no-scrollbar grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                {t("psychometricProviders.items", { returnObjects: true }).map((provider, index) => (
-                  <motion.div
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={() => handleMouseLeave(index)}
-                    key={index}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
-                    viewport={{ once: false, amount: 0.3 }}
-                    className="w-full"
-                  >
-                    <ReactCardFlip isFlipped={hovered[index]} flipDirection="horizontal">
-                      <div className="flex h-64 w-full cursor-pointer items-center justify-center rounded-xl bg-[#F8FAFC] shadow-md transition-transform duration-300">
-                        {provider.image ? (
-                          <img
-                            src={provider.image}
-                            alt={provider.name}
-                            className="h-32 w-32 rounded-full object-contain"
-                          />
-                        ) : (
-                          <div className="text-center text-gray-400">No Image</div>
-                        )}
-                      </div>
-
-                      <div
-                        onMouseEnter={() => handleMouseEnter(index)}
-                        onMouseLeave={() => handleMouseLeave(index)}
-                        className="flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-xl bg-[#0E1C3F] p-6 text-white shadow-md"
-                      >
-                        <p className="text-center text-sm leading-relaxed">{provider.desc}</p>
-                      </div>
-                    </ReactCardFlip>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section> */}
         </div>
       </div>
     </div>
