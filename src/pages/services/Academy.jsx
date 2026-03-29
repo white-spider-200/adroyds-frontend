@@ -459,10 +459,10 @@ const Academy = () => {
                   >
                     {assessmentIcons[index]}
                   </div>
-                  <h3 className="mb-3 text-xl font-semibold text-[#0E1C3F] transition-colors duration-300 group-hover:text-white">
+                  <h3 className="mb-3 text-xl font-semibold text-[#0E1C3F] transition-colors duration-300">
                     {title}
                   </h3>
-                  <p className="text-gray-600 transition-colors duration-300 group-hover:text-white">
+                  <p className="text-gray-600 transition-colors duration-300">
                     {description}
                   </p>
                 </motion.div>

@@ -475,9 +475,6 @@ const AboutUs = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <div className="mb-8">
-                <div className="mb-4 inline-flex items-center rounded-full border border-cyan-100 bg-cyan-50 px-5 py-2 text-sm font-bold tracking-[0.2em] text-cyan-700">
-                  {isArabic ? "ABOUT ADROYTS" : "ABOUT ADROYTS"}
-                </div>
                 <SplitText className="text-4xl font-extrabold leading-tight text-gray-900 md:text-5xl">
                   {t("aboutUs")}
                 </SplitText>
@@ -563,12 +560,9 @@ const AboutUs = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
-              transition={{ duration: 0.6 }}
-              className="mb-12"
-            >
-              <div className="mb-4 inline-flex rounded-full border border-[#0E1C3F]/10 bg-[#0E1C3F] px-5 py-2 text-sm font-bold tracking-[0.2em] text-white">
-                {isArabic ? "CORE PERFORMANCE" : "CORE PERFORMANCE"}
-              </div>
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
               <SplitText className="text-4xl font-extrabold tracking-tight text-[#0E1C3F] md:text-5xl">
                 {t("teamTabAlt")}
               </SplitText>

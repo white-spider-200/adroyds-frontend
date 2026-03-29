@@ -249,9 +249,15 @@ const ServiceProofSections = ({ accent, accentSoft, variant }) => {
           >
             <div className={isRTL ? "text-right" : "text-left"}>
               <div
-                className="mb-4 inline-flex rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]"
-                style={{ backgroundColor: accentSoft, color: accent }}
+                className="mb-5 inline-flex items-center gap-3 rounded-full border px-3 py-3 pr-6 text-[0.72rem] font-bold uppercase tracking-[0.32em] shadow-[0_10px_24px_rgba(15,23,42,0.08)]"
+                style={{ borderColor: accentSoft, color: "#0E1C3F", backgroundColor: "#fffdf8" }}
               >
+                <span
+                  className="flex h-10 w-10 items-center justify-center rounded-full text-[0.62rem] font-extrabold tracking-[0.28em] text-white"
+                  style={{ backgroundColor: accent }}
+                >
+                  CS
+                </span>
                 {labels.caseStudies}
               </div>
               <SplitText className="text-3xl font-bold text-[#0E1C3F] sm:text-4xl">
