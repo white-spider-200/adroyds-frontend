@@ -15,6 +15,7 @@ import {
   FaUsers,
 } from "react-icons/fa";
 
+import ServiceProofSections from "../../components/ServiceProofSections";
 import { SplitText } from "../../utils/SplitText";
 
 const assessmentTheme = {
@@ -233,6 +234,12 @@ const TalentAssessment = () => {
               </div>
             </div>
           </section>
+
+          <ServiceProofSections
+            accent={assessmentTheme.accent}
+            accentSoft={assessmentTheme.accentSoft}
+            variant="assessment"
+          />
         </div>
       </div>
     </div>

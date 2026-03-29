@@ -14,6 +14,7 @@ import {
   FaUsers,
 } from "react-icons/fa";
 
+import ServiceProofSections from "../../components/ServiceProofSections";
 import { SplitText } from "../../utils/SplitText";
 
 const consultingTheme = {
@@ -335,6 +336,12 @@ const Consulting = () => {
               </div>
             </div>
           </section>
+
+          <ServiceProofSections
+            accent={consultingTheme.accent}
+            accentSoft={consultingTheme.accentSoft}
+            variant="consulting"
+          />
         </div>
       </div>
     </div>

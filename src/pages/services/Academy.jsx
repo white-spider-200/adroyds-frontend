@@ -15,6 +15,7 @@ import {
   FaUsers,
 } from "react-icons/fa";
 
+import ServiceProofSections from "../../components/ServiceProofSections";
 import { SplitText } from "../../utils/SplitText";
 
 const academyTheme = {
@@ -468,6 +469,12 @@ const Academy = () => {
               ))}
             </div>
           </section>
+
+          <ServiceProofSections
+            accent={academyTheme.accent}
+            accentSoft={academyTheme.accentSoft}
+            variant="academy"
+          />
           {/* <section className="container px-6 py-20">
             <h2 className="mb-12 text-center text-4xl font-bold text-[#0E1C3F]">
               {t("academy.academicCollaborationTitle")}
